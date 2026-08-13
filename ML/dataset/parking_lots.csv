@@ -1,0 +1,41 @@
+id,owner_id,name,address,latitude,longitude,price_per_hour,total_slots,vehicle_type,timing_start,timing_end,status,created_at
+d59e8262-1e8f-4602-914e-5551b3174e5b,782421f7-44c6-463c-acd4-04de3f021705,Rohini Parking A,"Rohini, Delhi",28.746245,77.058964,20.85,66,car,06:00,23:00,approved,2025-03-01T00:00:00
+695b7d7d-d6bc-45e4-9ccd-1ab692e481ae,782421f7-44c6-463c-acd4-04de3f021705,Saket Parking B,"Saket, Delhi",28.521139,77.203302,34.67,51,all,06:00,23:00,approved,2025-05-12T00:00:00
+0dd9e357-3716-429f-83bf-6da01a71c6a1,1276fb01-3a1f-4fa1-a044-5c0ef785a82d,Lajpat Nagar Parking C,"Lajpat Nagar, Delhi",28.569873,77.240638,32.44,43,ev,06:00,23:00,pending,2025-06-01T00:00:00
+42591084-2367-45ae-98c3-6da0eb1bf09c,c146dbc3-f373-4e36-a05a-fd00051cd4bd,Nehru Place Parking D,"Nehru Place, Delhi",28.549175,77.254786,24.0,56,ev,06:00,23:00,approved,2025-02-21T00:00:00
+66e019e7-5c23-4c7a-8358-1da734b434fe,63e42c8a-5a87-46d1-8b0d-571f9e5a208e,Pitampura Parking E,"Pitampura, Delhi",28.69917,77.133056,46.73,65,ev,06:00,23:00,approved,2025-05-11T00:00:00
+ee459ce9-6a73-42b2-9e8b-a5e34b05ebf4,03f067ea-825d-4467-8ec4-7ee5aa477589,Janakpuri Parking A,"Janakpuri, Delhi",28.620621,77.085919,21.29,47,bike,06:00,23:00,approved,2025-04-27T00:00:00
+8253dd7a-18fb-473d-840b-1e186ba0c5e5,57f1d0f7-cb7d-46c5-a6ff-89d95ff6da89,Greater Kailash Parking B,"Greater Kailash, Delhi",28.55398,77.240237,40.44,57,bike,06:00,23:00,approved,2025-04-12T00:00:00
+d7cfdefe-2859-458d-8bc5-ab840a62418e,c146dbc3-f373-4e36-a05a-fd00051cd4bd,Lajpat Nagar Parking C,"Lajpat Nagar, Delhi",28.56636,77.243951,40.16,51,all,06:00,23:00,approved,2025-04-25T00:00:00
+19c8358a-b82b-4ab4-b5a8-645fd399e303,1276fb01-3a1f-4fa1-a044-5c0ef785a82d,Pitampura Parking D,"Pitampura, Delhi",28.702073,77.130505,24.66,37,all,06:00,23:00,approved,2025-04-07T00:00:00
+dccfe102-88f6-4a07-a791-76d919900546,782421f7-44c6-463c-acd4-04de3f021705,Pitampura Parking E,"Pitampura, Delhi",28.698135,77.126797,17.62,17,ev,06:00,23:00,approved,2025-03-08T00:00:00
+30c9d6df-abe8-45ab-842f-ab365e631bcd,066cdd4c-7b46-4b13-8483-74d3d7c129b2,Dwarka Parking A,"Dwarka, Delhi",28.594089,77.04657,40.07,43,car,06:00,23:00,approved,2025-05-11T00:00:00
+78ad0a9f-8291-4b2b-ba25-1ed481f9b863,52e557ac-7a98-4418-8c43-7236eda2c4cd,Hauz Khas Parking B,"Hauz Khas, Delhi",28.550034,77.202602,51.63,41,ev,06:00,23:00,approved,2025-04-02T00:00:00
+365892af-a36f-4af7-bd9a-d5cf29756b87,03f067ea-825d-4467-8ec4-7ee5aa477589,Dwarka Parking C,"Dwarka, Delhi",28.589452,77.044548,47.51,21,all,06:00,23:00,approved,2025-02-14T00:00:00
+d2a8af93-39d7-4599-8a35-7cf21819f4b2,52e557ac-7a98-4418-8c43-7236eda2c4cd,Dwarka Parking D,"Dwarka, Delhi",28.594048,77.044122,21.85,73,all,06:00,23:00,approved,2025-04-17T00:00:00
+6e3b42ab-8562-41a3-a0d4-c8c989d7baf3,c329f822-6131-4577-b42b-a21e2f90d5b7,Pitampura Parking E,"Pitampura, Delhi",28.700686,77.134562,28.57,25,all,06:00,23:00,approved,2025-03-30T00:00:00
+08a20e54-8f66-49fb-89d7-59c930d42d9a,86d5f3bd-31d2-4711-8fd5-ea4b343ed144,Rohini Parking A,"Rohini, Delhi",28.749181,77.049751,20.31,77,bike,06:00,23:00,approved,2025-02-14T00:00:00
+d6ee3f19-3155-4210-8064-c6121d669156,782421f7-44c6-463c-acd4-04de3f021705,Greater Kailash Parking B,"Greater Kailash, Delhi",28.544011,77.245299,26.96,47,all,06:00,23:00,approved,2025-05-16T00:00:00
+b0de9982-cba8-443f-aeb0-d390678e9397,57f1d0f7-cb7d-46c5-a6ff-89d95ff6da89,Rohini Parking C,"Rohini, Delhi",28.754697,77.055075,35.22,31,all,06:00,23:00,approved,2025-05-19T00:00:00
+7e501c69-47ec-4521-957f-873d88ebad19,5748440f-df50-49d1-bca0-c40343fba2af,Janakpuri Parking D,"Janakpuri, Delhi",28.621078,77.084,35.51,44,all,06:00,23:00,pending,2025-06-16T00:00:00
+bb8721a8-2bae-4da5-ae71-1d0cfc8a49d3,fd18f2e2-72d4-42ae-a1f5-28ef505a835c,Dwarka Parking E,"Dwarka, Delhi",28.585191,77.047738,22.95,67,bike,06:00,23:00,approved,2025-04-28T00:00:00
+bc464c1d-5590-438c-acc7-efab360d5bc8,314a79f3-784f-4cd5-a85a-5f3f5adcb3c9,Lajpat Nagar Parking A,"Lajpat Nagar, Delhi",28.561916,77.243589,34.44,47,car,06:00,23:00,approved,2025-05-19T00:00:00
+ad0d0b95-98d7-4e45-a170-6e6eb21249e4,066cdd4c-7b46-4b13-8483-74d3d7c129b2,Saket Parking B,"Saket, Delhi",28.524587,77.213007,18.8,21,bike,06:00,23:00,approved,2025-05-09T00:00:00
+53c77199-1104-4a6e-beec-f5175c546c49,c146dbc3-f373-4e36-a05a-fd00051cd4bd,Pitampura Parking C,"Pitampura, Delhi",28.699617,77.13278,29.84,26,all,06:00,23:00,approved,2025-04-16T00:00:00
+926a9b08-1177-4e9c-9564-83c22d890a6a,08e0aa00-b4f2-4155-9aa5-716cd1f7d4f7,Saket Parking D,"Saket, Delhi",28.525927,77.212453,22.68,26,all,06:00,23:00,pending,2025-04-30T00:00:00
+237291de-6a6d-452f-ad82-2f915745a94a,c329f822-6131-4577-b42b-a21e2f90d5b7,Janakpuri Parking E,"Janakpuri, Delhi",28.618194,77.086241,41.59,44,all,06:00,23:00,approved,2025-03-25T00:00:00
+eeb4d423-17f5-4d6c-a6e7-ad79313471a9,314a79f3-784f-4cd5-a85a-5f3f5adcb3c9,Rohini Parking A,"Rohini, Delhi",28.748611,77.050617,50.22,42,all,06:00,23:00,approved,2025-04-14T00:00:00
+72fdf97a-3441-4e1d-a506-1f1dd367eeef,470c358e-68f8-4a0a-b635-d59cf436613d,Pitampura Parking B,"Pitampura, Delhi",28.702253,77.139887,57.2,58,car,06:00,23:00,pending,2025-04-15T00:00:00
+efc921b7-dee5-4ba3-8d14-01472a8afbe7,57f1d0f7-cb7d-46c5-a6ff-89d95ff6da89,Rohini Parking C,"Rohini, Delhi",28.745542,77.047972,29.92,67,ev,06:00,23:00,approved,2025-03-13T00:00:00
+ed408159-7665-4668-b9da-b382834fc70a,fa35d9d9-7f7e-4874-a760-3d3dee177268,Rohini Parking D,"Rohini, Delhi",28.747839,77.054052,52.18,33,all,06:00,23:00,pending,2025-02-04T00:00:00
+7b60e816-f6ce-4c95-a98c-b9b8eeb44e8d,c146dbc3-f373-4e36-a05a-fd00051cd4bd,Lajpat Nagar Parking E,"Lajpat Nagar, Delhi",28.568328,77.242665,19.89,34,car,06:00,23:00,approved,2025-04-25T00:00:00
+2b3806df-2078-4cf4-87c5-0462022a942c,1276fb01-3a1f-4fa1-a044-5c0ef785a82d,Vasant Kunj Parking A,"Vasant Kunj, Delhi",28.522455,77.158585,49.59,62,bike,06:00,23:00,pending,2025-05-21T00:00:00
+aa8039b3-3308-4616-8ab0-12c28e7246e4,314a79f3-784f-4cd5-a85a-5f3f5adcb3c9,Saket Parking B,"Saket, Delhi",28.528431,77.204603,16.68,78,ev,06:00,23:00,approved,2025-03-07T00:00:00
+aed763d5-7c54-4ca7-8ac8-259d26fa6d2c,314a79f3-784f-4cd5-a85a-5f3f5adcb3c9,Janakpuri Parking C,"Janakpuri, Delhi",28.618999,77.096314,51.37,35,bike,06:00,23:00,approved,2025-06-05T00:00:00
+6f1380b7-12b7-40fd-8cde-756c8974b743,86d5f3bd-31d2-4711-8fd5-ea4b343ed144,Nehru Place Parking D,"Nehru Place, Delhi",28.544688,77.255026,38.18,56,bike,06:00,23:00,approved,2025-03-16T00:00:00
+7107ee03-6709-40ba-adfa-380007cc77c0,57f1d0f7-cb7d-46c5-a6ff-89d95ff6da89,Vasant Kunj Parking E,"Vasant Kunj, Delhi",28.524237,77.156181,17.02,26,car,06:00,23:00,approved,2025-02-25T00:00:00
+e53d7ad5-ca44-4488-bcaa-7dfbe0ac8a38,08e0aa00-b4f2-4155-9aa5-716cd1f7d4f7,Nehru Place Parking A,"Nehru Place, Delhi",28.543398,77.246188,48.69,24,all,06:00,23:00,approved,2025-06-14T00:00:00
+d5c739a3-6f73-415a-b465-32d1f893b9dc,470c358e-68f8-4a0a-b635-d59cf436613d,Saket Parking B,"Saket, Delhi",28.52514,77.206125,29.22,22,ev,06:00,23:00,pending,2025-04-19T00:00:00
+5957ec3c-81dc-42cf-b4d6-411e793408d0,de777da9-0ede-4629-90a1-26189e8c4bc0,Dwarka Parking C,"Dwarka, Delhi",28.592978,77.044356,19.25,41,car,06:00,23:00,pending,2025-03-29T00:00:00
+f063fb91-dfae-415c-8fe1-caff87514d40,782421f7-44c6-463c-acd4-04de3f021705,Janakpuri Parking D,"Janakpuri, Delhi",28.628043,77.088533,25.84,15,car,06:00,23:00,approved,2025-06-21T00:00:00
+14d550ff-098c-4a84-8f96-7f9776734a1b,03f067ea-825d-4467-8ec4-7ee5aa477589,Greater Kailash Parking E,"Greater Kailash, Delhi",28.554604,77.250595,23.07,72,all,06:00,23:00,approved,2025-02-23T00:00:00
