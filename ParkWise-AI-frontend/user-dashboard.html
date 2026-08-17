@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Dashboard | ParkWise AI</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="css\dashboard.css">
+</head>
+
+<body class="dashboard-page">
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <!-- Logo -->
+        <div class="sidebar-logo">
+
+            <div class="sidebar-logo-icon">
+                <i class="fa-solid fa-p"></i>
+            </div>
+
+            <span>ParkWise <strong>AI</strong></span>
+
+        </div>
+
+
+        <!-- Navigation -->
+        <nav class="sidebar-nav">
+
+            <p class="nav-title">MAIN</p>
+
+            <a href="user-dashboard.html" class="nav-item active">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="find-parking.html" class="nav-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Find Parking</span>
+            </a>
+
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-star"></i>
+                <span>Recommendations</span>
+            </a>
+
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>Parking History</span>
+            </a>
+
+
+            <p class="nav-title">ACCOUNT</p>
+
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+
+        </nav>
+
+
+        <!-- Sidebar Bottom -->
+
+        <div class="sidebar-bottom">
+
+            <div class="help-box">
+
+                <div class="help-icon">
+                    <i class="fa-solid fa-circle-question"></i>
+                </div>
+
+                <div>
+                    <strong>Need Help?</strong>
+                    <p>We're here for you.</p>
+                </div>
+
+            </div>
+
+
+            <a href="landingpage.html" class="logout-btn">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>Logout</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+    <main class="dashboard-main">
+
+
+        <!-- =================================================
+             TOPBAR
+             ================================================= -->
+
+        <header class="dashboard-topbar">
+
+            <div class="topbar-left">
+
+                <button class="menu-btn" id="menuBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div>
+                    <p class="welcome-small">Welcome back 👋</p>
+
+                    <h1>Dashboard</h1>
+                </div>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <!-- Notification -->
+                <button class="notification-btn">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span class="notification-dot"></span>
+
+                </button>
+
+
+                <!-- User -->
+                <div class="user-profile">
+
+                    <div class="user-avatar">
+                        K
+                    </div>
+
+                    <div class="user-info">
+
+                        <strong>Kalyani</strong>
+
+                        <span>User</span>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             CONTENT
+             ================================================= -->
+
+        <section class="dashboard-content">
+
+
+            <!-- =================================================
+                 SEARCH SECTION
+                 ================================================= -->
+
+            <div class="search-section">
+
+                <div class="search-heading">
+
+                    <div>
+
+                        <span class="section-badge">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            AI Powered
+                        </span>
+
+                        <h2>Find your perfect parking spot</h2>
+
+                        <p>
+                            Search nearby parking and get intelligent
+                            recommendations based on availability,
+                            distance and price.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Search Box -->
+
+                <div class="parking-search">
+
+                    <div class="search-input">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        <input
+                            type="text"
+                            id="locationInput"
+                            placeholder="Where do you want to park?"
+                        >
+
+                    </div>
+
+
+                    <button
+                        class="search-btn"
+                        id="searchBtn"
+                    >
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        Find Parking
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 STAT CARDS
+                 ================================================= -->
+
+            <div class="stats-grid">
+
+
+                <!-- Nearby Parking -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        <i class="fa-solid fa-square-parking"></i>
+                    </div>
+
+                    <div class="stat-details">
+
+                        <span>Nearby Parking</span>
+
+                        <strong>24</strong>
+
+                        <small>
+                            <i class="fa-solid fa-arrow-up"></i>
+                            12% available
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Available Spots -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+
+                    <div class="stat-details">
+
+                        <span>Available Spots</span>
+
+                        <strong>186</strong>
+
+                        <small class="positive">
+                            Currently available
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Average Occupancy -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+
+                    <div class="stat-details">
+
+                        <span>Avg. Occupancy</span>
+
+                        <strong>68%</strong>
+
+                        <small>
+                            <i class="fa-solid fa-arrow-down"></i>
+                            4% from yesterday
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Saved Places -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        <i class="fa-solid fa-bookmark"></i>
+                    </div>
+
+                    <div class="stat-details">
+
+                        <span>Saved Places</span>
+
+                        <strong>5</strong>
+
+                        <small>
+                            Your favourite parking
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 AI RECOMMENDATION + OCCUPANCY
+                 ================================================= -->
+
+            <div class="main-grid">
+
+
+                <!-- =================================================
+                     AI RECOMMENDATION
+                     ================================================= -->
+
+                <div class="panel recommendation-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="panel-label">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                AI RECOMMENDATION
+                            </span>
+
+                            <h3>Best parking for you</h3>
+
+                        </div>
+
+                        <button class="more-btn">
+                            <i class="fa-solid fa-ellipsis"></i>
+                        </button>
+
+                    </div>
+
+
+                    <!-- Recommendation -->
+
+                    <div class="recommendation-card">
+
+                        <div class="recommendation-top">
+
+                            <div class="parking-icon">
+                                <i class="fa-solid fa-square-parking"></i>
+                            </div>
+
+                            <div class="parking-name">
+
+                                <h4>City Centre Parking</h4>
+
+                                <p>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    0.5 km away
+                                </p>
+
+                            </div>
+
+                            <div class="match-score">
+
+                                <strong>96%</strong>
+
+                                <span>Match</span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="parking-meta">
+
+                            <span>
+                                <i class="fa-solid fa-car"></i>
+                                18 spots available
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-star"></i>
+                                4.7
+                            </span>
+
+                            <strong>₹30/hr</strong>
+
+                        </div>
+
+
+                        <div class="recommendation-reason">
+
+                            <i class="fa-solid fa-lightbulb"></i>
+
+                            <p>
+                                Recommended based on distance,
+                                price and current availability.
+                            </p>
+
+                        </div>
+
+
+                        <button class="view-parking-btn">
+
+                            View Parking
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     OCCUPANCY PREDICTION
+                     ================================================= -->
+
+                <div class="panel occupancy-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="panel-label">
+                                <i class="fa-solid fa-chart-line"></i>
+                                AI PREDICTION
+                            </span>
+
+                            <h3>Occupancy Prediction</h3>
+
+                        </div>
+
+                        <select id="timeSelect">
+
+                            <option>Today</option>
+
+                            <option>Tomorrow</option>
+
+                            <option>Next 7 Days</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Occupancy -->
+
+                    <div class="occupancy-main">
+
+                        <div class="occupancy-circle">
+
+                            <div>
+
+                                <strong>68%</strong>
+
+                                <span>Occupancy</span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="occupancy-info">
+
+                            <div class="prediction-status">
+
+                                <span class="status-dot"></span>
+
+                                <strong>Moderate</strong>
+
+                            </div>
+
+                            <p>
+                                Parking availability is expected
+                                to remain moderate.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Prediction bars -->
+
+                    <div class="prediction-bars">
+
+                        <div class="prediction-item">
+
+                            <span>10 AM</span>
+
+                            <div class="bar">
+                                <div style="width: 42%;"></div>
+                            </div>
+
+                            <strong>42%</strong>
+
+                        </div>
+
+
+                        <div class="prediction-item">
+
+                            <span>12 PM</span>
+
+                            <div class="bar">
+                                <div style="width: 68%;"></div>
+                            </div>
+
+                            <strong>68%</strong>
+
+                        </div>
+
+
+                        <div class="prediction-item">
+
+                            <span>2 PM</span>
+
+                            <div class="bar">
+                                <div style="width: 82%;"></div>
+                            </div>
+
+                            <strong>82%</strong>
+
+                        </div>
+
+
+                        <div class="prediction-item">
+
+                            <span>4 PM</span>
+
+                            <div class="bar">
+                                <div style="width: 61%;"></div>
+                            </div>
+
+                            <strong>61%</strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 NEARBY PARKING
+                 ================================================= -->
+
+            <div class="nearby-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h3>Nearby Parking</h3>
+
+                        <p>
+                            Parking spaces available near you
+                        </p>
+
+                    </div>
+
+                    <a href="find-parking.html">
+                        View all
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+
+                <div class="parking-grid">
+
+
+                    <!-- Parking 1 -->
+
+                    <div class="parking-card">
+
+                        <div class="parking-card-top">
+
+                            <div class="small-parking-icon">
+                                <i class="fa-solid fa-square-parking"></i>
+                            </div>
+
+                            <span class="available-badge">
+                                Available
+                            </span>
+
+                        </div>
+
+
+                        <h4>City Centre Parking</h4>
+
+                        <p class="parking-location">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            Main Road · 0.5 km
+
+                        </p>
+
+
+                        <div class="parking-card-details">
+
+                            <span>
+                                <i class="fa-solid fa-car"></i>
+                                18 spots
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-star"></i>
+                                4.7
+                            </span>
+
+                            <strong>₹30/hr</strong>
+
+                        </div>
+
+
+                        <button class="card-btn">
+                            View Details
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- Parking 2 -->
+
+                    <div class="parking-card">
+
+                        <div class="parking-card-top">
+
+                            <div class="small-parking-icon">
+                                <i class="fa-solid fa-square-parking"></i>
+                            </div>
+
+                            <span class="available-badge">
+                                Available
+                            </span>
+
+                        </div>
+
+
+                        <h4>Mall Road Parking</h4>
+
+                        <p class="parking-location">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            Mall Road · 1.2 km
+
+                        </p>
+
+
+                        <div class="parking-card-details">
+
+                            <span>
+                                <i class="fa-solid fa-car"></i>
+                                32 spots
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-star"></i>
+                                4.5
+                            </span>
+
+                            <strong>₹40/hr</strong>
+
+                        </div>
+
+
+                        <button class="card-btn">
+                            View Details
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- Parking 3 -->
+
+                    <div class="parking-card">
+
+                        <div class="parking-card-top">
+
+                            <div class="small-parking-icon">
+                                <i class="fa-solid fa-square-parking"></i>
+                            </div>
+
+                            <span class="busy-badge">
+                                Busy
+                            </span>
+
+                        </div>
+
+
+                        <h4>Station Parking</h4>
+
+                        <p class="parking-location">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            Station Road · 1.8 km
+
+                        </p>
+
+
+                        <div class="parking-card-details">
+
+                            <span>
+                                <i class="fa-solid fa-car"></i>
+                                6 spots
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-star"></i>
+                                4.3
+                            </span>
+
+                            <strong>₹25/hr</strong>
+
+                        </div>
+
+
+                        <button class="card-btn">
+                            View Details
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- Parking 4 -->
+
+                    <div class="parking-card">
+
+                        <div class="parking-card-top">
+
+                            <div class="small-parking-icon">
+                                <i class="fa-solid fa-square-parking"></i>
+                            </div>
+
+                            <span class="available-badge">
+                                Available
+                            </span>
+
+                        </div>
+
+
+                        <h4>Market Parking</h4>
+
+                        <p class="parking-location">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            Market Area · 2.1 km
+
+                        </p>
+
+
+                        <div class="parking-card-details">
+
+                            <span>
+                                <i class="fa-solid fa-car"></i>
+                                24 spots
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-star"></i>
+                                4.6
+                            </span>
+
+                            <strong>₹20/hr</strong>
+
+                        </div>
+
+
+                        <button class="card-btn">
+                            View Details
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script src="dashboard.js"></script>
+
+</body>
+
+</html>

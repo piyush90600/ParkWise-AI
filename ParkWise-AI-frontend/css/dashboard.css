@@ -1,0 +1,1684 @@
+/* =========================================================
+   PARKWISE AI - USER DASHBOARD
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family: "Inter", Arial, sans-serif;
+
+    background: #f7f9fc;
+
+    color: #172033;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 245px;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #ffffff;
+
+    border-right: 1px solid #e5eaf1;
+
+    z-index: 100;
+}
+
+
+/* Logo */
+
+.sidebar-logo {
+
+    height: 82px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 0 25px;
+
+    border-bottom: 1px solid #eef1f5;
+
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+
+.sidebar-logo-icon {
+
+    width: 39px;
+    height: 39px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 18px;
+}
+
+
+.sidebar-logo strong {
+    color: #2563eb;
+}
+
+
+/* Navigation */
+
+.sidebar-nav {
+
+    flex: 1;
+
+    padding: 27px 14px;
+}
+
+
+.nav-title {
+
+    padding: 0 13px;
+
+    margin: 15px 0 9px;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+
+.nav-item {
+
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 0 13px;
+
+    margin-bottom: 4px;
+
+    border-radius: 8px;
+
+    color: #64748b;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    transition: 0.2s ease;
+}
+
+
+.nav-item i {
+
+    width: 18px;
+
+    text-align: center;
+
+    font-size: 13px;
+}
+
+
+.nav-item:hover {
+
+    background: #f1f5ff;
+
+    color: #2563eb;
+}
+
+
+.nav-item.active {
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-weight: 700;
+}
+
+
+/* Sidebar bottom */
+
+.sidebar-bottom {
+
+    padding: 15px;
+
+    border-top: 1px solid #eef1f5;
+}
+
+
+/* Help */
+
+.help-box {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px;
+
+    margin-bottom: 12px;
+
+    border-radius: 9px;
+
+    background: #f8fafc;
+}
+
+
+.help-icon {
+
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 7px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 13px;
+}
+
+
+.help-box strong {
+
+    display: block;
+
+    font-size: 10px;
+}
+
+
+.help-box p {
+
+    margin-top: 2px;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+}
+
+
+/* Logout */
+
+.logout-btn {
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 0 13px;
+
+    color: #64748b;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    border-radius: 8px;
+}
+
+
+.logout-btn:hover {
+
+    color: #ef4444;
+
+    background: #fef2f2;
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.dashboard-main {
+
+    margin-left: 245px;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.dashboard-topbar {
+
+    height: 82px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 35px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e5eaf1;
+}
+
+
+.topbar-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.menu-btn {
+
+    display: none;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #f1f5f9;
+
+    color: #334155;
+
+    cursor: pointer;
+}
+
+
+.welcome-small {
+
+    margin-bottom: 3px;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+}
+
+
+.topbar-left h1 {
+
+    font-size: 20px;
+
+    font-weight: 750;
+}
+
+
+/* Top right */
+
+.topbar-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+.notification-btn {
+
+    position: relative;
+
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid #e5eaf1;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #64748b;
+
+    cursor: pointer;
+}
+
+
+.notification-dot {
+
+    position: absolute;
+
+    top: 8px;
+    right: 8px;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+
+    border: 1px solid white;
+}
+
+
+.user-profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    cursor: pointer;
+}
+
+
+.user-avatar {
+
+    width: 37px;
+    height: 37px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.user-info strong {
+
+    display: block;
+
+    color: #172033;
+
+    font-size: 11px;
+}
+
+
+.user-info span {
+
+    color: #94a3b8;
+
+    font-size: 9px;
+}
+
+
+.user-profile > i {
+
+    color: #94a3b8;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.dashboard-content {
+
+    max-width: 1450px;
+
+    margin: auto;
+
+    padding: 30px 35px 50px;
+}
+
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+.search-section {
+
+    padding: 27px 30px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            120deg,
+            #f0f6ff,
+            #f8fbff
+        );
+
+    border: 1px solid #e3edff;
+}
+
+
+.section-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 6px 10px;
+
+    margin-bottom: 10px;
+
+    border-radius: 20px;
+
+    background: #ffffff;
+
+    color: #2563eb;
+
+    font-size: 9px;
+
+    font-weight: 700;
+}
+
+
+.search-heading h2 {
+
+    margin-bottom: 6px;
+
+    color: #111827;
+
+    font-size: 22px;
+}
+
+
+.search-heading p {
+
+    max-width: 650px;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+/* Search bar */
+
+.parking-search {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+
+.search-input {
+
+    position: relative;
+
+    flex: 1;
+}
+
+
+.search-input i {
+
+    position: absolute;
+
+    left: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #94a3b8;
+
+    font-size: 13px;
+}
+
+
+.search-input input {
+
+    width: 100%;
+
+    height: 46px;
+
+    padding: 0 15px 0 40px;
+
+    border: 1px solid #dbe4f0;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 11px;
+}
+
+
+.search-input input:focus {
+
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 3px rgba(37,99,235,.08);
+}
+
+
+.search-btn {
+
+    height: 46px;
+
+    padding: 0 22px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.search-btn:hover {
+
+    background: #1d4ed8;
+}
+
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.stats-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+
+.stat-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 18px;
+
+    border: 1px solid #e7ebf1;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+}
+
+
+.stat-icon {
+
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+}
+
+
+.stat-icon.blue {
+
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+
+.stat-icon.green {
+
+    background: #ecfdf5;
+    color: #10b981;
+}
+
+
+.stat-icon.orange {
+
+    background: #fff7ed;
+    color: #f97316;
+}
+
+
+.stat-icon.purple {
+
+    background: #f5f3ff;
+    color: #7c3aed;
+}
+
+
+.stat-details span {
+
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+}
+
+
+.stat-details strong {
+
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #172033;
+
+    font-size: 21px;
+}
+
+
+.stat-details small {
+
+    color: #64748b;
+
+    font-size: 8px;
+}
+
+
+.stat-details small i {
+
+    color: #10b981;
+}
+
+
+.stat-details .positive {
+
+    color: #10b981;
+}
+
+
+/* =========================================================
+   MAIN GRID
+   ========================================================= */
+
+.main-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1.1fr 0.9fr;
+
+    gap: 18px;
+
+    margin-top: 20px;
+}
+
+
+.panel {
+
+    padding: 22px;
+
+    border: 1px solid #e7ebf1;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+}
+
+
+/* Panel header */
+
+.panel-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+
+.panel-label {
+
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #2563eb;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: .7px;
+}
+
+
+.panel-label i {
+
+    margin-right: 4px;
+}
+
+
+.panel-header h3 {
+
+    color: #172033;
+
+    font-size: 15px;
+}
+
+
+.more-btn {
+
+    border: none;
+
+    background: transparent;
+
+    color: #94a3b8;
+
+    cursor: pointer;
+}
+
+
+.panel-header select {
+
+    padding: 7px 10px;
+
+    border: 1px solid #e5eaf1;
+
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    color: #64748b;
+
+    font-size: 9px;
+
+    outline: none;
+}
+
+
+/* =========================================================
+   RECOMMENDATION
+   ========================================================= */
+
+.recommendation-card {
+
+    padding: 17px;
+
+    border: 1px solid #dfe9ff;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7faff,
+            #ffffff
+        );
+}
+
+
+.recommendation-top {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+
+.parking-icon {
+
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-size: 16px;
+}
+
+
+.parking-name {
+
+    flex: 1;
+}
+
+
+.parking-name h4 {
+
+    margin-bottom: 4px;
+
+    font-size: 12px;
+}
+
+
+.parking-name p {
+
+    color: #94a3b8;
+
+    font-size: 9px;
+}
+
+
+.parking-name p i {
+
+    color: #f59e0b;
+
+    margin-right: 3px;
+}
+
+
+.match-score {
+
+    text-align: right;
+}
+
+
+.match-score strong {
+
+    display: block;
+
+    color: #2563eb;
+
+    font-size: 20px;
+}
+
+
+.match-score span {
+
+    color: #64748b;
+
+    font-size: 8px;
+}
+
+
+/* Meta */
+
+.parking-meta {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 17px;
+
+    margin-top: 16px;
+
+    padding-top: 13px;
+
+    border-top: 1px solid #edf1f6;
+
+    color: #64748b;
+
+    font-size: 9px;
+}
+
+
+.parking-meta i {
+
+    margin-right: 3px;
+
+    color: #94a3b8;
+}
+
+
+.parking-meta span:nth-child(2) i {
+
+    color: #f59e0b;
+}
+
+
+.parking-meta strong {
+
+    margin-left: auto;
+
+    color: #172033;
+
+    font-size: 12px;
+}
+
+
+/* Reason */
+
+.recommendation-reason {
+
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 13px;
+
+    padding: 10px;
+
+    border-radius: 7px;
+
+    background: #eff6ff;
+}
+
+
+.recommendation-reason i {
+
+    color: #2563eb;
+
+    font-size: 11px;
+}
+
+
+.recommendation-reason p {
+
+    color: #526581;
+
+    font-size: 9px;
+
+    line-height: 1.5;
+}
+
+
+/* Button */
+
+.view-parking-btn {
+
+    width: 100%;
+
+    height: 38px;
+
+    margin-top: 13px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.view-parking-btn i {
+
+    margin-left: 7px;
+}
+
+
+/* =========================================================
+   OCCUPANCY
+   ========================================================= */
+
+.occupancy-main {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-bottom: 18px;
+}
+
+
+.occupancy-circle {
+
+    width: 105px;
+    height: 105px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            #2563eb 68%,
+            #e8eef7 0
+        );
+
+    position: relative;
+}
+
+
+.occupancy-circle::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 82px;
+    height: 82px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+}
+
+
+.occupancy-circle div {
+
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+}
+
+
+.occupancy-circle strong {
+
+    display: block;
+
+    color: #172033;
+
+    font-size: 19px;
+}
+
+
+.occupancy-circle span {
+
+    color: #94a3b8;
+
+    font-size: 8px;
+}
+
+
+.occupancy-info {
+
+    flex: 1;
+}
+
+
+.prediction-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-bottom: 7px;
+
+    font-size: 11px;
+}
+
+
+.status-dot {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #f59e0b;
+}
+
+
+.occupancy-info p {
+
+    color: #64748b;
+
+    font-size: 9px;
+
+    line-height: 1.5;
+}
+
+
+/* Prediction bars */
+
+.prediction-bars {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.prediction-item {
+
+    display: grid;
+
+    grid-template-columns: 35px 1fr 30px;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 8px;
+
+    color: #94a3b8;
+}
+
+
+.prediction-item strong {
+
+    color: #526581;
+
+    font-size: 8px;
+
+    text-align: right;
+}
+
+
+.bar {
+
+    height: 6px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background: #edf1f6;
+}
+
+
+.bar div {
+
+    height: 100%;
+
+    border-radius: 10px;
+
+    background: #2563eb;
+}
+
+
+/* =========================================================
+   NEARBY PARKING
+   ========================================================= */
+
+.nearby-section {
+
+    margin-top: 24px;
+}
+
+
+.section-header {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    margin-bottom: 14px;
+}
+
+
+.section-header h3 {
+
+    margin-bottom: 4px;
+
+    font-size: 16px;
+}
+
+
+.section-header p {
+
+    color: #94a3b8;
+
+    font-size: 9px;
+}
+
+
+.section-header a {
+
+    color: #2563eb;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+.section-header a i {
+
+    margin-left: 5px;
+}
+
+
+/* Parking grid */
+
+.parking-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 14px;
+}
+
+
+/* Parking card */
+
+.parking-card {
+
+    padding: 17px;
+
+    border: 1px solid #e7ebf1;
+
+    border-radius: 11px;
+
+    background: #ffffff;
+
+    transition: 0.2s ease;
+}
+
+
+.parking-card:hover {
+
+    transform: translateY(-2px);
+
+    border-color: #c9dafe;
+
+    box-shadow:
+        0 8px 25px rgba(15,23,42,.05);
+}
+
+
+.parking-card-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 13px;
+}
+
+
+.small-parking-icon {
+
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 13px;
+}
+
+
+.available-badge,
+.busy-badge {
+
+    padding: 5px 7px;
+
+    border-radius: 20px;
+
+    font-size: 7px;
+
+    font-weight: 700;
+}
+
+
+.available-badge {
+
+    background: #ecfdf5;
+
+    color: #10b981;
+}
+
+
+.busy-badge {
+
+    background: #fff7ed;
+
+    color: #f97316;
+}
+
+
+.parking-card h4 {
+
+    margin-bottom: 6px;
+
+    font-size: 11px;
+}
+
+
+.parking-location {
+
+    color: #94a3b8;
+
+    font-size: 8px;
+}
+
+
+.parking-location i {
+
+    margin-right: 3px;
+}
+
+
+/* Details */
+
+.parking-card-details {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-top: 15px;
+
+    color: #64748b;
+
+    font-size: 8px;
+}
+
+
+.parking-card-details i {
+
+    margin-right: 2px;
+}
+
+
+.parking-card-details span:nth-child(2) i {
+
+    color: #f59e0b;
+}
+
+
+.parking-card-details strong {
+
+    margin-left: auto;
+
+    color: #172033;
+
+    font-size: 10px;
+}
+
+
+/* Card button */
+
+.card-btn {
+
+    width: 100%;
+
+    height: 34px;
+
+    margin-top: 14px;
+
+    border: 1px solid #dbe4f0;
+
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    color: #2563eb;
+
+    font-family: inherit;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.card-btn:hover {
+
+    background: #eff6ff;
+
+    border-color: #bfdbfe;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .sidebar {
+
+        width: 210px;
+    }
+
+
+    .dashboard-main {
+
+        margin-left: 210px;
+    }
+
+
+    .stats-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .parking-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .main-grid {
+
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .sidebar {
+
+        left: -245px;
+
+        width: 245px;
+
+        transition: 0.25s ease;
+    }
+
+
+    .sidebar.open {
+
+        left: 0;
+
+        box-shadow:
+            8px 0 30px rgba(15,23,42,.12);
+    }
+
+
+    .dashboard-main {
+
+        margin-left: 0;
+    }
+
+
+    .dashboard-topbar {
+
+        padding: 0 18px;
+    }
+
+
+    .menu-btn {
+
+        display: block;
+    }
+
+
+    .user-info,
+    .user-profile > i {
+
+        display: none;
+    }
+
+
+    .dashboard-content {
+
+        padding: 20px 18px 40px;
+    }
+
+
+    .search-section {
+
+        padding: 22px;
+    }
+
+
+    .parking-search {
+
+        flex-direction: column;
+    }
+
+
+    .search-btn {
+
+        width: 100%;
+    }
+
+
+    .stats-grid {
+
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .parking-grid {
+
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .stats-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .parking-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .occupancy-main {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .search-heading h2 {
+
+        font-size: 19px;
+    }
+}

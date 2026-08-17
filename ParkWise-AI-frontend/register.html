@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | ParkWise AI</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/register.css">
+
+</head>
+
+
+<body class="auth-page">
+
+
+<!--NAVBAR -->
+
+<header class="navbar">
+
+    <a href="landingpage.html" class="logo">
+
+        <div class="logo-icon">
+            <i class="fa-solid fa-square-parking"></i>
+        </div>
+
+        <span>
+            ParkWise<span class="logo-ai"> AI</span>
+        </span>
+
+    </a>
+
+
+    <div class="auth-nav">
+
+        <span>
+            Already have an account?
+        </span>
+
+        <a href="login.html"
+           class="auth-signup-btn">
+
+            Sign In
+
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!--MAIN-->
+
+<main class="auth-container">
+
+
+    <!--LEFT SECTION -->
+
+    <section class="auth-info">
+
+        <div class="auth-info-content">
+
+            <span class="auth-badge">
+
+                <i class="fa-solid fa-sparkles"></i>
+
+                Join ParkWise AI
+
+            </span>
+
+
+            <h1>
+
+                Park smarter.
+                <span>Every time.</span>
+
+            </h1>
+
+
+            <p>
+
+                Create your ParkWise AI account and
+                experience intelligent parking with
+                AI-powered recommendations and
+                occupancy prediction.
+
+            </p>
+
+
+            <div class="auth-benefits">
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+
+                        <i class="fa-solid fa-brain"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            AI Recommendations
+                        </h3>
+
+                        <p>
+                            Get personalized parking
+                            suggestions.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Occupancy Prediction
+                        </h3>
+
+                        <p>
+                            Predict parking availability
+                            before you arrive.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+
+                        <i class="fa-solid fa-map-location-dot"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Smart Parking
+                        </h3>
+
+                        <p>
+                            Find parking spaces near
+                            your destination.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!--RIGHT FORM SECTION-->
+
+    <section class="auth-form-section">
+
+        <div class="auth-card register-card">
+
+
+            <!-- Heading -->
+
+            <div class="auth-heading">
+
+                <h2>
+                    Create your account
+                </h2>
+
+                <p>
+                    Choose your account type to continue.
+                </p>
+
+            </div>
+
+            <!--ACCOUNT TYPE-->
+
+            <div class="account-type-section">
+
+                <label class="account-type-title">
+                    I want to register as
+                </label>
+
+
+                <div class="account-type-selector">
+
+
+                    <!-- USER -->
+
+                    <label class="type-option">
+
+                        <input
+                            type="radio"
+                            name="accountType"
+                            value="user"
+                            checked>
+
+                        <div class="type-option-content">
+
+                            <div class="type-icon">
+
+                                <i class="fa-solid fa-user"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    User
+                                </strong>
+
+                                <small>
+                                    Find parking
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+
+                    <!-- PARK OWNER -->
+
+                    <label class="type-option">
+
+                        <input
+                            type="radio"
+                            name="accountType"
+                            value="owner">
+
+                        <div class="type-option-content">
+
+                            <div class="type-icon">
+
+                                <i class="fa-solid fa-square-parking"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Park Owner
+                                </strong>
+
+                                <small>
+                                    Manage parking
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+
+            <!--ERROR-->
+
+            <div id="registerError"
+                 class="form-message error-message">
+
+                <i class="fa-solid fa-circle-exclamation"></i>
+
+                <span id="registerErrorText"></span>
+
+            </div>
+
+            <!--USER FORM-->
+
+            <form id="userRegisterForm"
+                  class="register-form">
+
+                <div class="form-section-title">
+                    <i class="fa-solid fa-user"></i>
+                    Personal Information
+                </div> 
+
+                <!-- NAME -->
+
+                <div class="form-group">
+                    <label for="userName">
+                        Full Name
+                    </label>
+                    <div class="input-wrapper">
+
+                        <i class="fa-regular fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="userName"
+                            placeholder="Enter your full name"
+                            required>
+
+                    </div>
+
+                    <small
+                        class="field-error"
+                        id="userNameError">
+                    </small>
+
+                </div>
+
+
+
+                <!-- EMAIL + PHONE -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="userEmail">
+                            Email Address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-regular fa-envelope"></i>
+
+                            <input
+                                type="email"
+                                id="userEmail"
+                                placeholder="Enter email"
+                                required>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="userPhone">
+                            Phone Number
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-phone"></i>
+
+                            <input
+                                type="tel"
+                                id="userPhone"
+                                placeholder="10-digit number"
+                                maxlength="10"
+                                required>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- VEHICLE -->
+
+                <div class="form-group">
+
+                    <label for="vehicleType">
+                        Vehicle Type
+                    </label>
+
+                    <div class="select-wrapper">
+
+                        <i class="fa-solid fa-car"></i>
+
+                        <select id="vehicleType"
+                                required>
+
+                            <option value="">
+                                Select vehicle type
+                            </option>
+
+                            <option value="car">
+                                Car
+                            </option>
+
+                            <option value="bike">
+                                Bike
+                            </option>
+
+                            <option value="suv">
+                                SUV
+                            </option>
+
+                            <option value="ev">
+                                Electric Vehicle
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="userPassword">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="userPassword"
+                                placeholder="Create password"
+                                required>
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                data-target="userPassword">
+
+                                <i class="fa-regular fa-eye"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="userConfirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="userConfirmPassword"
+                                placeholder="Confirm password"
+                                required>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- TERMS -->
+
+                <label class="checkbox-label terms-label">
+
+                    <input
+                        type="checkbox"
+                        id="userTerms"
+                        required>
+
+                    <span>
+                        I agree to the
+                        <a href="#">Terms & Conditions</a>
+                        and
+                        <a href="#">Privacy Policy</a>
+                    </span>
+
+                </label>
+
+                <!-- BUTTON -->
+
+                <button
+                    type="submit"
+                    class="auth-submit-btn">
+
+                    Create User Account
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </form>
+
+            <!--PARK OWNER FORM-->
+
+            <form id="ownerRegisterForm"
+                  class="register-form"
+                  style="display: none;">
+
+
+                <div class="form-section-title">
+
+                    <i class="fa-solid fa-square-parking"></i>
+
+                    Parking Owner Information
+
+                </div>
+
+
+                <!-- OWNER NAME -->
+
+                <div class="form-group">
+
+                    <label for="ownerName">
+                        Owner / Business Name
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-regular fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="ownerName"
+                            placeholder="Enter owner or business name"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- EMAIL + PHONE -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="ownerEmail">
+                            Email Address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-regular fa-envelope"></i>
+
+                            <input
+                                type="email"
+                                id="ownerEmail"
+                                placeholder="Enter email"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="ownerPhone">
+                            Phone Number
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-phone"></i>
+
+                            <input
+                                type="tel"
+                                id="ownerPhone"
+                                placeholder="10-digit number"
+                                maxlength="10"
+                                required>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PARKING NAME -->
+
+                <div class="form-group">
+
+                    <label for="parkingName">
+                        Parking Area Name
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-square-parking"></i>
+
+                        <input
+                            type="text"
+                            id="parkingName"
+                            placeholder="e.g. City Mall Parking"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- LOCATION -->
+
+                <div class="form-group">
+
+                    <label for="parkingLocation">
+                        Parking Location
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        <input
+                            type="text"
+                            id="parkingLocation"
+                            placeholder="Enter parking location"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CAPACITY + TYPE -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="parkingCapacity">
+                            Total Capacity
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-car"></i>
+
+                            <input
+                                type="number"
+                                id="parkingCapacity"
+                                placeholder="Total spaces"
+                                min="1"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="parkingType">
+                            Parking Type
+                        </label>
+
+                        <div class="select-wrapper">
+
+                            <i class="fa-solid fa-building"></i>
+
+                            <select id="parkingType"
+                                    required>
+
+                                <option value="">
+                                    Select type
+                                </option>
+
+                                <option value="mall">
+                                    Mall
+                                </option>
+
+                                <option value="street">
+                                    Street Parking
+                                </option>
+
+                                <option value="private">
+                                    Private Parking
+                                </option>
+
+                                <option value="commercial">
+                                    Commercial
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="ownerPassword">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="ownerPassword"
+                                placeholder="Create password"
+                                required>
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                data-target="ownerPassword">
+
+                                <i class="fa-regular fa-eye"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="ownerConfirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="ownerConfirmPassword"
+                                placeholder="Confirm password"
+                                required>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TERMS -->
+
+                <label class="checkbox-label terms-label">
+
+                    <input
+                        type="checkbox"
+                        id="ownerTerms"
+                        required>
+
+                    <span>
+
+                        I agree to the
+                        <a href="#">Terms & Conditions</a>
+                        and
+                        <a href="#">Privacy Policy</a>
+
+                    </span>
+
+                </label>
+
+
+
+                <!-- BUTTON -->
+
+                <button
+                    type="submit"
+                    class="auth-submit-btn">
+
+                    Register Parking
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </form>
+
+
+
+            <!-- LOGIN -->
+
+            <p class="register-text">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Sign in
+                </a>
+
+            </p>
+
+
+            <div class="security-note">
+
+                <i class="fa-solid fa-lock"></i>
+
+                Your information is securely protected.
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="js/register.js"></script>
+
+</body>
+
+</html>
