@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Find Parking | ParkWise AI</title>
+
+    <link rel="stylesheet" href="css/find-parking.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="logo-section">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-square-parking"></i>
+            </div>
+
+            <div class="logo-text">
+                <h2>ParkWise</h2>
+                <span>AI Parking</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-heading">MAIN MENU</p>
+
+            <a href="user-dashboard.html" class="nav-link">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="find-parking.html" class="nav-link active">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Find Parking</span>
+            </a>
+
+            <a href="#" class="nav-link" onclick="showMessage('Predictive Heatmap coming soon')">
+                <i class="fa-solid fa-fire"></i>
+                <span>Predictive Heatmap</span>
+            </a>
+
+            <a href="#" class="nav-link" onclick="showMessage('AI Recommendation coming soon')">
+                <i class="fa-solid fa-robot"></i>
+                <span>AI Recommendation</span>
+            </a>
+
+
+            <p class="nav-heading">ACTIVITY</p>
+
+            <a href="#" class="nav-link" onclick="showMessage('Parking History coming soon')">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>Parking History</span>
+            </a>
+
+            <a href="#" class="nav-link" onclick="showMessage('Saved Locations coming soon')">
+                <i class="fa-solid fa-bookmark"></i>
+                <span>Saved Locations</span>
+            </a>
+
+
+            <p class="nav-heading">ACCOUNT</p>
+
+            <a href="#" class="nav-link" onclick="showMessage('Profile coming soon')">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+
+            <a href="#" class="nav-link" onclick="showMessage('Settings coming soon')">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="help-box">
+
+                <div class="help-icon">
+                    <i class="fa-solid fa-circle-question"></i>
+                </div>
+
+                <div>
+                    <strong>Need Help?</strong>
+                    <span>Contact support</span>
+                </div>
+
+            </div>
+
+            <button class="logout-btn" onclick="logout()">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>Logout</span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+        <!-- TOP HEADER -->
+
+        <header class="top-header">
+
+            <button class="mobile-menu" id="mobileMenu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+
+            <div class="page-title">
+
+                <h1>Find Parking</h1>
+
+                <p>
+                    Find the best parking spot near your destination
+                </p>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button class="notification-btn" onclick="toggleNotifications()">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span class="notification-dot"></span>
+
+                </button>
+
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        K
+                    </div>
+
+                    <div class="profile-details">
+
+                        <strong>Kalyani</strong>
+                        <span>User</span>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================================
+             PAGE CONTENT
+        ====================================================== -->
+
+        <section class="page-content">
+
+
+            <!-- SEARCH SECTION -->
+
+            <div class="search-section">
+
+                <div class="search-title">
+
+                    <div>
+
+                        <span class="ai-badge">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            AI POWERED
+                        </span>
+
+                        <h2>Where do you want to park?</h2>
+
+                        <p>
+                            Search a destination and we'll find the best parking options for you.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="search-box">
+
+                    <div class="search-input-wrapper">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        <input
+                            type="text"
+                            id="destinationInput"
+                            placeholder="Enter destination, landmark or area..."
+                            autocomplete="off">
+
+                        <button class="clear-btn" id="clearSearch">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+
+                    </div>
+
+
+                    <button class="current-location-btn"
+                        onclick="useCurrentLocation()">
+
+                        <i class="fa-solid fa-crosshairs"></i>
+
+                        <span>Use my location</span>
+
+                    </button>
+
+
+                    <button class="search-btn"
+                        onclick="searchParking()">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        Search
+
+                    </button>
+
+                </div>
+
+
+                <!-- QUICK LOCATIONS -->
+
+                <div class="quick-search">
+
+                    <span>Popular:</span>
+
+                    <button onclick="quickSearch('City Mall')">
+                        City Mall
+                    </button>
+
+                    <button onclick="quickSearch('Railway Station')">
+                        Railway Station
+                    </button>
+
+                    <button onclick="quickSearch('Airport')">
+                        Airport
+                    </button>
+
+                    <button onclick="quickSearch('Market')">
+                        Market
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- FILTER BAR -->
+
+            <div class="filter-bar">
+
+                <div class="result-count">
+
+                    <strong id="resultCount">
+                        7
+                    </strong>
+
+                    parking areas found
+
+                </div>
+
+
+                <div class="filters">
+
+                    <button class="filter-btn active"
+                        onclick="filterParking('all', this)">
+
+                        <i class="fa-solid fa-layer-group"></i>
+
+                        All
+
+                    </button>
+
+
+                    <button class="filter-btn"
+                        onclick="filterParking('available', this)">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        Available
+
+                    </button>
+
+
+                    <button class="filter-btn"
+                        onclick="filterParking('cheap', this)">
+
+                        <i class="fa-solid fa-indian-rupee-sign"></i>
+
+                        Budget
+
+                    </button>
+
+
+                    <button class="filter-btn"
+                        onclick="filterParking('nearby', this)">
+
+                        <i class="fa-solid fa-location-arrow"></i>
+
+                        Nearest
+
+                    </button>
+
+                </div>
+
+
+                <button class="sort-btn"
+                    onclick="toggleSortMenu()">
+
+                    <i class="fa-solid fa-arrow-down-wide-short"></i>
+
+                    Sort
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </button>
+
+
+                <div class="sort-menu" id="sortMenu">
+
+                    <button onclick="sortParking('distance')">
+                        Nearest first
+                    </button>
+
+                    <button onclick="sortParking('price')">
+                        Lowest price
+                    </button>
+
+                    <button onclick="sortParking('availability')">
+                        Most available
+                    </button>
+
+                    <button onclick="sortParking('rating')">
+                        Highest rated
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 PARKING CONTENT
+            ====================================================== -->
+
+            <div class="parking-layout">
+
+
+                <!-- MAP -->
+
+                <div class="map-container">
+
+                    <div class="map-header">
+
+                        <div>
+
+                            <h3>
+                                Parking Map
+                            </h3>
+
+                            <span>
+                                Showing nearby parking locations
+                            </span>
+
+                        </div>
+
+                        <button class="map-location-btn"
+                            onclick="useCurrentLocation()">
+
+                            <i class="fa-solid fa-crosshairs"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="map" id="parkingMap">
+
+                        <!-- Roads -->
+
+                        <div class="road road-horizontal road-h1"></div>
+                        <div class="road road-horizontal road-h2"></div>
+                        <div class="road road-horizontal road-h3"></div>
+
+                        <div class="road road-vertical road-v1"></div>
+                        <div class="road road-vertical road-v2"></div>
+                        <div class="road road-vertical road-v3"></div>
+
+
+                        <!-- Map areas -->
+
+                        <div class="map-area area-one">
+                            CITY MALL
+                        </div>
+
+                        <div class="map-area area-two">
+                            CENTRAL MARKET
+                        </div>
+
+                        <div class="map-area area-three">
+                            METRO
+                        </div>
+
+
+                        <!-- User Location -->
+
+                        <div class="user-location">
+
+                            <div class="location-pulse"></div>
+
+                            <div class="user-dot">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Parking Markers -->
+
+                        <button class="map-marker available-marker"
+                            style="left:22%; top:29%;"
+                            onclick="selectParking(1)">
+
+                            <i class="fa-solid fa-square-parking"></i>
+                            <span>24</span>
+
+                        </button>
+
+
+                        <button class="map-marker available-marker"
+                            style="left:47%; top:23%;"
+                            onclick="selectParking(2)">
+
+                            <i class="fa-solid fa-square-parking"></i>
+                            <span>18</span>
+
+                        </button>
+
+
+                        <button class="map-marker limited-marker"
+                            style="left:67%; top:42%;"
+                            onclick="selectParking(3)">
+
+                            <i class="fa-solid fa-square-parking"></i>
+                            <span>6</span>
+
+                        </button>
+
+
+                        <button class="map-marker available-marker"
+                            style="left:32%; top:64%;"
+                            onclick="selectParking(4)">
+
+                            <i class="fa-solid fa-square-parking"></i>
+                            <span>31</span>
+
+                        </button>
+
+
+                        <button class="map-marker full-marker"
+                            style="left:73%; top:70%;"
+                            onclick="selectParking(5)">
+
+                            <i class="fa-solid fa-square-parking"></i>
+                            <span>0</span>
+
+                        </button>
+
+
+                        <button class="map-marker available-marker"
+                            style="left:82%; top:27%;"
+                            onclick="selectParking(6)">
+
+                            <i class="fa-solid fa-square-parking"></i>
+                            <span>14</span>
+
+                        </button>
+
+
+                        <!-- Map Controls -->
+
+                        <div class="map-controls">
+
+                            <button onclick="zoomMap('in')">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+
+                            <button onclick="zoomMap('out')">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+
+                        </div>
+
+
+                        <!-- Legend -->
+
+                        <div class="map-legend">
+
+                            <div>
+                                <span class="legend-dot available"></span>
+                                Available
+                            </div>
+
+                            <div>
+                                <span class="legend-dot limited"></span>
+                                Limited
+                            </div>
+
+                            <div>
+                                <span class="legend-dot full"></span>
+                                Full
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================================================
+                     PARKING LIST
+                ====================================================== -->
+
+                <div class="parking-list-section">
+
+                    <div class="list-header">
+
+                        <div>
+
+                            <h3>
+                                Nearby Parking
+                            </h3>
+
+                            <p>
+                                Best options based on your preferences
+                            </p>
+
+                        </div>
+
+                        <span class="live-status">
+
+                            <span></span>
+
+                            Live
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- AI RECOMMENDATION -->
+
+                    <div class="ai-recommendation">
+
+                        <div class="ai-top">
+
+                            <div class="ai-icon">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+
+                            <div>
+
+                                <span>AI RECOMMENDATION</span>
+
+                                <h4>
+                                    Best choice for you
+                                </h4>
+
+                            </div>
+
+                            <i class="fa-solid fa-sparkles sparkle"></i>
+
+                        </div>
+
+
+                        <div class="recommended-place">
+
+                            <div class="recommend-icon">
+                                <i class="fa-solid fa-square-parking"></i>
+                            </div>
+
+                            <div class="recommend-info">
+
+                                <strong>
+                                    City Mall Parking
+                                </strong>
+
+                                <span>
+                                    0.4 km away • 3 min walk
+                                </span>
+
+                            </div>
+
+                            <div class="recommend-score">
+                                94%
+                                <small>match</small>
+                            </div>
+
+                        </div>
+
+
+                        <button class="recommend-btn"
+                            onclick="selectParking(1)">
+
+                            View Recommendation
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- PARKING CARDS -->
+
+                    <div class="parking-cards" id="parkingCards">
+
+
+                        <!-- CARD 1 -->
+
+                        <div class="parking-card"
+                            data-status="available"
+                            data-price="40"
+                            data-distance="0.4"
+                            data-availability="24"
+                            data-rating="4.8">
+
+                            <div class="parking-card-top">
+
+                                <div class="parking-type-icon">
+                                    <i class="fa-solid fa-square-parking"></i>
+                                </div>
+
+                                <div class="parking-main-info">
+
+                                    <h4>
+                                        City Mall Parking
+                                    </h4>
+
+                                    <div class="rating">
+
+                                        <i class="fa-solid fa-star"></i>
+
+                                        <strong>4.8</strong>
+
+                                        <span>
+                                            (124)
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                                <span class="status available-status">
+                                    Available
+                                </span>
+
+                            </div>
+
+
+                            <div class="parking-details">
+
+                                <span>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    0.4 km
+                                </span>
+
+                                <span>
+                                    <i class="fa-regular fa-clock"></i>
+                                    3 min
+                                </span>
+
+                                <span>
+                                    <i class="fa-solid fa-car"></i>
+                                    24 spots
+                                </span>
+
+                            </div>
+
+
+                            <div class="parking-card-bottom">
+
+                                <div class="price">
+
+                                    <strong>₹40</strong>
+
+                                    <span>/ hour</span>
+
+                                </div>
+
+                                <button onclick="getDirections('City Mall Parking')">
+
+                                    Directions
+
+                                    <i class="fa-solid fa-diamond-turn-right"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- CARD 2 -->
+
+                        <div class="parking-card"
+                            data-status="available"
+                            data-price="30"
+                            data-distance="0.7"
+                            data-availability="18"
+                            data-rating="4.6">
+
+                            <div class="parking-card-top">
+
+                                <div class="parking-type-icon">
+                                    <i class="fa-solid fa-square-parking"></i>
+                                </div>
+
+                                <div class="parking-main-info">
+
+                                    <h4>
+                                        Metro Station Parking
+                                    </h4>
+
+                                    <div class="rating">
+
+                                        <i class="fa-solid fa-star"></i>
+
+                                        <strong>4.6</strong>
+
+                                        <span>
+                                            (98)
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                                <span class="status available-status">
+                                    Available
+                                </span>
+
+                            </div>
+
+
+                            <div class="parking-details">
+
+                                <span>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    0.7 km
+                                </span>
+
+                                <span>
+                                    <i class="fa-regular fa-clock"></i>
+                                    5 min
+                                </span>
+
+                                <span>
+                                    <i class="fa-solid fa-car"></i>
+                                    18 spots
+                                </span>
+
+                            </div>
+
+
+                            <div class="parking-card-bottom">
+
+                                <div class="price">
+
+                                    <strong>₹30</strong>
+
+                                    <span>/ hour</span>
+
+                                </div>
+
+                                <button onclick="getDirections('Metro Station Parking')">
+
+                                    Directions
+
+                                    <i class="fa-solid fa-diamond-turn-right"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- CARD 3 -->
+
+                        <div class="parking-card"
+                            data-status="limited"
+                            data-price="50"
+                            data-distance="0.9"
+                            data-availability="6"
+                            data-rating="4.7">
+
+                            <div class="parking-card-top">
+
+                                <div class="parking-type-icon">
+                                    <i class="fa-solid fa-square-parking"></i>
+                                </div>
+
+                                <div class="parking-main-info">
+
+                                    <h4>
+                                        Central Plaza Parking
+                                    </h4>
+
+                                    <div class="rating">
+
+                                        <i class="fa-solid fa-star"></i>
+
+                                        <strong>4.7</strong>
+
+                                        <span>
+                                            (76)
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                                <span class="status limited-status">
+                                    Limited
+                                </span>
+
+                            </div>
+
+
+                            <div class="parking-details">
+
+                                <span>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    0.9 km
+                                </span>
+
+                                <span>
+                                    <i class="fa-regular fa-clock"></i>
+                                    7 min
+                                </span>
+
+                                <span>
+                                    <i class="fa-solid fa-car"></i>
+                                    6 spots
+                                </span>
+
+                            </div>
+
+
+                            <div class="parking-card-bottom">
+
+                                <div class="price">
+
+                                    <strong>₹50</strong>
+
+                                    <span>/ hour</span>
+
+                                </div>
+
+                                <button onclick="getDirections('Central Plaza Parking')">
+
+                                    Directions
+
+                                    <i class="fa-solid fa-diamond-turn-right"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- CARD 4 -->
+
+                        <div class="parking-card"
+                            data-status="available"
+                            data-price="35"
+                            data-distance="1.1"
+                            data-availability="31"
+                            data-rating="4.5">
+
+                            <div class="parking-card-top">
+
+                                <div class="parking-type-icon">
+                                    <i class="fa-solid fa-square-parking"></i>
+                                </div>
+
+                                <div class="parking-main-info">
+
+                                    <h4>
+                                        Market Parking
+                                    </h4>
+
+                                    <div class="rating">
+
+                                        <i class="fa-solid fa-star"></i>
+
+                                        <strong>4.5</strong>
+
+                                        <span>
+                                            (64)
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                                <span class="status available-status">
+                                    Available
+                                </span>
+
+                            </div>
+
+
+                            <div class="parking-details">
+
+                                <span>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    1.1 km
+                                </span>
+
+                                <span>
+                                    <i class="fa-regular fa-clock"></i>
+                                    8 min
+                                </span>
+
+                                <span>
+                                    <i class="fa-solid fa-car"></i>
+                                    31 spots
+                                </span>
+
+                            </div>
+
+
+                            <div class="parking-card-bottom">
+
+                                <div class="price">
+
+                                    <strong>₹35</strong>
+
+                                    <span>/ hour</span>
+
+                                </div>
+
+                                <button onclick="getDirections('Market Parking')">
+
+                                    Directions
+
+                                    <i class="fa-solid fa-diamond-turn-right"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- CARD 5 -->
+
+                        <div class="parking-card"
+                            data-status="full"
+                            data-price="45"
+                            data-distance="1.4"
+                            data-availability="0"
+                            data-rating="4.3">
+
+                            <div class="parking-card-top">
+
+                                <div class="parking-type-icon">
+                                    <i class="fa-solid fa-square-parking"></i>
+                                </div>
+
+                                <div class="parking-main-info">
+
+                                    <h4>
+                                        Downtown Parking
+                                    </h4>
+
+                                    <div class="rating">
+
+                                        <i class="fa-solid fa-star"></i>
+
+                                        <strong>4.3</strong>
+
+                                        <span>
+                                            (41)
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                                <span class="status full-status">
+                                    Full
+                                </span>
+
+                            </div>
+
+
+                            <div class="parking-details">
+
+                                <span>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    1.4 km
+                                </span>
+
+                                <span>
+                                    <i class="fa-regular fa-clock"></i>
+                                    10 min
+                                </span>
+
+                                <span>
+                                    <i class="fa-solid fa-car"></i>
+                                    0 spots
+                                </span>
+
+                            </div>
+
+
+                            <div class="parking-card-bottom">
+
+                                <div class="price">
+
+                                    <strong>₹45</strong>
+
+                                    <span>/ hour</span>
+
+                                </div>
+
+                                <button class="disabled-btn" disabled>
+                                    Full
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         PARKING DETAILS MODAL
+    ====================================================== -->
+
+    <div class="modal-overlay" id="parkingModal">
+
+        <div class="parking-modal">
+
+            <button class="modal-close" onclick="closeModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+
+            <div class="modal-icon">
+                <i class="fa-solid fa-square-parking"></i>
+            </div>
+
+
+            <span class="modal-label">
+                PARKING DETAILS
+            </span>
+
+            <h2 id="modalTitle">
+                City Mall Parking
+            </h2>
+
+            <p id="modalAddress">
+                City Mall, Main Road
+            </p>
+
+
+            <div class="modal-stats">
+
+                <div>
+                    <strong id="modalSpots">24</strong>
+                    <span>Available</span>
+                </div>
+
+                <div>
+                    <strong id="modalPrice">₹40</strong>
+                    <span>Per hour</span>
+                </div>
+
+                <div>
+                    <strong id="modalDistance">0.4 km</strong>
+                    <span>Distance</span>
+                </div>
+
+            </div>
+
+
+            <div class="modal-features">
+
+                <span>
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Secure
+                </span>
+
+                <span>
+                    <i class="fa-solid fa-video"></i>
+                    CCTV
+                </span>
+
+                <span>
+                    <i class="fa-solid fa-clock"></i>
+                    24/7
+                </span>
+
+            </div>
+
+
+            <button class="modal-directions"
+                onclick="getDirections(document.getElementById('modalTitle').textContent)">
+
+                <i class="fa-solid fa-diamond-turn-right"></i>
+
+                Get Directions
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Toast -->
+
+    <div class="toast" id="toast">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        <span id="toastMessage">
+            Done
+        </span>
+
+    </div>
+
+
+    <script src="find-parking.js"></script>
+
+</body>
+
+</html>
