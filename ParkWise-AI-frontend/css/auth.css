@@ -1,371 +1,546 @@
-/* =========================================
-   AUTH PAGE
-========================================= */
+/* =========================================================
+   PARKWISE AI
+   AUTH.CSS
+   Login + Registration
+   ========================================================= */
+
+
+/* =========================================================
+   1. GLOBAL
+   ========================================================= */
 
 .auth-page {
-    background: #f8fafc;
     min-height: 100vh;
+    margin: 0;
+    padding: 0;
+
+    background: #ffffff;
+    color: #172033;
+
+    font-family: "Inter", Arial, sans-serif;
+
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+.auth-page *,
+.auth-page *::before,
+.auth-page *::after {
+    box-sizing: border-box;
 }
 
 
-/* =========================================
-   AUTH NAVBAR
-========================================= */
+/* =========================================================
+   2. NAVBAR
+   ========================================================= */
+
+.auth-page .navbar {
+    width: 100%;
+    height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e5eaf1;
+
+    position: relative;
+    z-index: 10;
+}
+
+
+/* Logo */
+
+.auth-page .logo {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    color: #172033;
+
+    text-decoration: none;
+
+    font-size: 23px;
+    font-weight: 800;
+
+    letter-spacing: -0.5px;
+}
+
+
+.auth-page .logo-icon {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-size: 20px;
+}
+
+
+.auth-page .logo-ai {
+    color: #2563eb;
+}
+
+
+/* Navbar right */
 
 .auth-nav {
     display: flex;
     align-items: center;
+
     gap: 18px;
 
     color: #64748b;
-    font-size: 13px;
+
+    font-size: 14px;
 }
 
+
 .auth-signup-btn {
-    padding: 10px 18px;
+    min-width: 88px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 20px;
 
     border: 1px solid #2563eb;
+    border-radius: 9px;
 
-    border-radius: 8px;
+    background: #ffffff;
 
     color: #2563eb;
 
+    text-decoration: none;
+
+    font-size: 14px;
     font-weight: 600;
 
-    transition: 0.3s;
+    transition: 0.2s ease;
 }
+
 
 .auth-signup-btn:hover {
     background: #2563eb;
-    color: white;
+    color: #ffffff;
 }
 
 
-/* =========================================
-   MAIN CONTAINER
-========================================= */
+/* =========================================================
+   3. MAIN AUTH CONTAINER
+   ========================================================= */
 
-.auth-container {
-    min-height: calc(100vh - 76px);
+.auth-page .auth-container {
+    width: 100%;
+
+    min-height: calc(100vh - 82px);
 
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 50% 50%;
+
+    margin: 0;
+    padding: 0;
 }
 
 
-/* =========================================
-   LEFT INFORMATION SECTION
-========================================= */
+/* =========================================================
+   4. LEFT INFORMATION PANEL
+   ========================================================= */
 
-.auth-info {
+.auth-page .auth-info {
+    min-height: calc(100vh - 82px);
+
     display: flex;
     align-items: center;
+    justify-content: center;
 
     padding: 70px 8%;
 
     background:
         radial-gradient(
-            circle at 20% 30%,
-            #dbeafe 0,
-            transparent 35%
+            circle at 15% 15%,
+            rgba(219, 234, 254, 0.95),
+            transparent 42%
         ),
-        #f8fafc;
+        linear-gradient(
+            135deg,
+            #f8fbff 0%,
+            #eef5ff 100%
+        );
 }
 
-.auth-info-content {
-    max-width: 570px;
+
+.auth-page .auth-info-content {
+    width: 100%;
+    max-width: 560px;
 }
 
+
+/* Badge */
 
 .auth-badge {
     display: inline-flex;
-
     align-items: center;
 
-    gap: 8px;
+    padding: 9px 17px;
 
-    padding: 8px 14px;
+    margin-bottom: 25px;
 
-    background: #eff6ff;
+    border-radius: 30px;
+
+    background: #ffffff;
 
     color: #2563eb;
 
-    border-radius: 50px;
-
-    font-size: 11px;
-
+    font-size: 12px;
     font-weight: 700;
 
-    margin-bottom: 24px;
+    box-shadow:
+        0 4px 15px rgba(37, 99, 235, 0.08);
 }
 
 
-.auth-info h1 {
-    font-size: clamp(40px, 4vw, 58px);
-
-    line-height: 1.08;
-
-    letter-spacing: -1.5px;
-
-    margin-bottom: 22px;
+.auth-badge i {
+    margin-right: 7px;
 }
 
 
-.auth-info h1 span {
+/* Heading */
+
+.auth-page .auth-info h1 {
+    margin: 0 0 22px;
+
+    color: #101828;
+
+    font-size: clamp(42px, 4.5vw, 64px);
+
+    line-height: 1.05;
+
+    font-weight: 800;
+
+    letter-spacing: -2px;
+}
+
+
+.auth-page .auth-info h1 span {
     color: #2563eb;
 }
 
 
-.auth-info > .auth-info-content > p {
-    max-width: 510px;
+/* Description */
 
-    color: #475569;
+.auth-page .auth-info-content > p {
+    max-width: 540px;
 
-    font-size: 15px;
+    margin: 0 0 38px;
+
+    color: #526581;
+
+    font-size: 16px;
 
     line-height: 1.8;
-
-    margin-bottom: 38px;
 }
 
 
-/* =========================================
-   BENEFITS
-========================================= */
+/* =========================================================
+   5. BENEFITS
+   ========================================================= */
 
 .auth-benefits {
     display: flex;
-
     flex-direction: column;
 
     gap: 20px;
 }
 
 
-.benefit {
+.auth-page .benefit {
     display: flex;
-
     align-items: center;
 
     gap: 15px;
 }
 
 
-.benefit-icon {
-    min-width: 45px;
-    height: 45px;
+.auth-page .benefit-icon {
+    width: 43px;
+    height: 43px;
+
+    flex-shrink: 0;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
-
-    background: white;
-
-    color: #2563eb;
-
-    border: 1px solid #dbeafe;
 
     border-radius: 11px;
 
-    box-shadow:
-        0 5px 15px rgba(15, 23, 42, 0.05);
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-size: 15px;
 }
 
 
-.benefit h3 {
+.auth-page .benefit h3 {
+    margin: 0 0 3px;
+
+    color: #172033;
+
     font-size: 14px;
-
-    margin-bottom: 2px;
+    font-weight: 700;
 }
 
 
-.benefit p {
-    color: #64748b;
+.auth-page .benefit p {
+    margin: 0;
 
-    font-size: 11px;
+    color: #718096;
+
+    font-size: 12px;
+
+    line-height: 1.5;
 }
 
 
-/* =========================================
-   FORM SECTION
-========================================= */
+/* =========================================================
+   6. RIGHT FORM SECTION
+   ========================================================= */
 
-.auth-form-section {
+.auth-page .auth-form-section {
+    min-height: calc(100vh - 82px);
+
     display: flex;
-
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 
-    padding: 50px 7%;
+    padding: 48px 7%;
 
-    background: white;
+    background: #ffffff;
+
+    overflow-y: auto;
 }
 
 
-.auth-card {
-    width: 100%;
+/* General auth card */
 
+.auth-page .auth-card {
+    width: 100%;
+    max-width: 540px;
+
+    margin: 0 auto;
+}
+
+
+/* Register card */
+
+.auth-page .register-card {
+    width: 100%;
+    max-width: 540px;
+
+    margin: 0 auto;
+}
+
+
+/* Login card */
+
+.auth-page .login-card {
+    width: 100%;
     max-width: 450px;
 
-    padding: 15px;
+    margin: 0 auto;
 }
 
 
-/* =========================================
-   FORM HEADING
-========================================= */
+/* =========================================================
+   7. AUTH HEADING
+   ========================================================= */
 
-.auth-heading {
-    margin-bottom: 30px;
+.auth-page .auth-heading {
+    margin-bottom: 25px;
 }
 
 
-.mobile-logo {
-    display: none;
+.auth-page .auth-heading h2 {
+    margin: 0 0 8px;
+
+    color: #101828;
+
+    font-size: 32px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    letter-spacing: -0.7px;
 }
 
 
-.auth-heading h2 {
-    font-size: 31px;
+.auth-page .auth-heading p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   8. FORM
+   ========================================================= */
+
+.auth-page form {
+    width: 100%;
+}
+
+
+.auth-page .form-group {
+    width: 100%;
+
+    margin-bottom: 17px;
+}
+
+
+.auth-page .form-group > label {
+    display: block;
 
     margin-bottom: 7px;
 
-    letter-spacing: -0.5px;
-}
-
-
-.auth-heading p {
-    color: #64748b;
-
-    font-size: 13px;
-}
-
-
-/* =========================================
-   FORM MESSAGE
-========================================= */
-
-.form-message {
-    display: none;
-
-    align-items: center;
-
-    gap: 9px;
-
-    padding: 12px 14px;
-
-    border-radius: 8px;
-
-    font-size: 12px;
-
-    margin-bottom: 20px;
-}
-
-
-.error-message {
-    color: #dc2626;
-
-    background: #fef2f2;
-
-    border: 1px solid #fecaca;
-}
-
-
-/* =========================================
-   FORM GROUP
-========================================= */
-
-.form-group {
-    margin-bottom: 21px;
-}
-
-
-.form-group label {
-    display: block;
-
-    color: #1e293b;
+    color: #172033;
 
     font-size: 12px;
 
     font-weight: 600;
-
-    margin-bottom: 8px;
 }
 
 
-.label-row {
-    display: flex;
+/* =========================================================
+   9. FORM ROW
+   ========================================================= */
 
-    justify-content: space-between;
+.auth-page .form-row {
+    width: 100%;
 
-    align-items: center;
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 14px;
 }
 
 
-.label-row a {
-    color: #2563eb;
+/* =========================================================
+   10. INPUT WRAPPER
+   ========================================================= */
 
-    font-size: 11px;
-
-    font-weight: 600;
-}
-
-
-.input-wrapper {
+.auth-page .input-wrapper {
     position: relative;
 
-    display: flex;
-
-    align-items: center;
+    width: 100%;
 }
 
 
-.input-wrapper > i {
+/* =========================================================
+   11. INPUT ICON
+   ========================================================= */
+
+.auth-page .input-wrapper > i {
     position: absolute;
 
     left: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 16px;
+    height: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     color: #94a3b8;
 
-    font-size: 14px;
+    font-size: 13px;
+
+    line-height: 1;
 
     pointer-events: none;
+
+    z-index: 2;
 }
 
 
-.input-wrapper input {
-    width: 100%;
+/* =========================================================
+   12. INPUTS
+   IMPORTANT:
+   Left padding = 44px so text never overlaps icon.
+   ========================================================= */
 
+.auth-page .input-wrapper input[type="text"],
+.auth-page .input-wrapper input[type="email"],
+.auth-page .input-wrapper input[type="tel"],
+.auth-page .input-wrapper input[type="password"],
+.auth-page .input-wrapper input[type="number"] {
+
+    width: 100%;
     height: 48px;
 
-    padding: 0 43px;
+    display: block;
+
+    padding: 0 44px !important;
 
     border: 1px solid #dbe2ea;
-
     border-radius: 9px;
 
     outline: none;
 
-    color: #0f172a;
+    background: #ffffff;
 
-    background: white;
+    color: #334155;
 
     font-family: inherit;
 
-    font-size: 13px;
+    font-size: 12px;
 
-    transition: 0.2s;
+    line-height: 48px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 
-.input-wrapper input::placeholder {
-    color: #a0aec0;
+/* Placeholder */
+
+.auth-page .input-wrapper input::placeholder {
+    color: #9aabc1;
+
+    opacity: 1;
 }
 
 
-.input-wrapper input:focus {
+/* Input focus */
+
+.auth-page .input-wrapper input:focus {
     border-color: #2563eb;
 
     box-shadow:
@@ -373,14 +548,27 @@
 }
 
 
-/* =========================================
-   PASSWORD TOGGLE
-========================================= */
+/* =========================================================
+   13. PASSWORD TOGGLE
+   ========================================================= */
 
-.password-toggle {
+.auth-page .input-wrapper .password-toggle {
+
     position: absolute;
 
-    right: 12px;
+    right: 11px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
 
     border: none;
 
@@ -388,65 +576,324 @@
 
     color: #94a3b8;
 
+    font-size: 13px;
+
     cursor: pointer;
 
-    padding: 5px;
+    z-index: 3;
 }
 
 
-.password-toggle:hover {
+.auth-page .input-wrapper .password-toggle:hover {
     color: #2563eb;
 }
 
 
-/* =========================================
-   FIELD ERROR
-========================================= */
+/* =========================================================
+   14. SELECT WRAPPER
+   ========================================================= */
 
-.field-error {
+.auth-page .select-wrapper {
+    position: relative;
+
+    width: 100%;
+}
+
+
+/* Select icon */
+
+.auth-page .select-wrapper > i {
+    position: absolute;
+
+    left: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 16px;
+    height: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #94a3b8;
+
+    font-size: 13px;
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+/* Select */
+
+.auth-page .select-wrapper select {
+
+    width: 100%;
+    height: 48px;
+
+    padding: 0 40px 0 44px !important;
+
+    border: 1px solid #dbe2ea;
+    border-radius: 9px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #334155;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.auth-page .select-wrapper select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+
+/* =========================================================
+   15. ACCOUNT TYPE SELECTOR
+   REGISTER PAGE
+   ========================================================= */
+
+.account-type-section {
+    width: 100%;
+
+    margin-bottom: 24px;
+}
+
+
+.account-type-title {
     display: block;
 
-    color: #dc2626;
+    margin: 0 0 10px;
+
+    color: #172033;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.account-type-selector {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+}
+
+
+/* Individual option */
+
+.account-type-selector .type-option {
+    position: relative;
+
+    display: block;
+
+    margin: 0;
+    padding: 0;
+
+    cursor: pointer;
+}
+
+
+/* Hide actual radio */
+
+.account-type-selector
+.type-option input[type="radio"] {
+
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+/* Card */
+
+.account-type-selector
+.type-option-content {
+
+    width: 100%;
+    min-height: 68px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px 14px;
+
+    border: 1px solid #dbe2ea;
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    transition: all 0.2s ease;
+}
+
+
+.account-type-selector
+.type-option-content:hover {
+
+    border-color: #93c5fd;
+
+    background: #f8fbff;
+}
+
+
+/* Selected */
+
+.account-type-selector
+.type-option input[type="radio"]:checked
++ .type-option-content {
+
+    border-color: #2563eb;
+
+    background: #eff6ff;
+
+    box-shadow:
+        0 0 0 1px #2563eb;
+}
+
+
+/* Account icon */
+
+.account-type-selector .type-icon {
+
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 15px;
+}
+
+
+/* Account title */
+
+.account-type-selector
+.type-option-content strong {
+
+    display: block;
+
+    margin: 0;
+
+    color: #172033;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+/* Account description */
+
+.account-type-selector
+.type-option-content small {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #64748b;
 
     font-size: 10px;
 
-    margin-top: 5px;
-
-    min-height: 13px;
+    line-height: 1.4;
 }
 
 
-/* =========================================
-   REMEMBER
-========================================= */
+/* =========================================================
+   16. FORM SECTION TITLE
+   ========================================================= */
 
-.remember-row {
-    margin: 4px 0 20px;
-}
+.form-section-title {
 
-
-.checkbox-label {
-    display: flex !important;
+    display: flex;
 
     align-items: center;
 
     gap: 8px;
 
-    cursor: pointer;
+    margin: 0 0 16px;
 
-    color: #64748b !important;
+    color: #334155;
 
-    font-size: 11px !important;
+    font-size: 12px;
 
-    font-weight: 400 !important;
-
-    margin: 0 !important;
+    font-weight: 700;
 }
 
 
-.checkbox-label input {
+.form-section-title i {
+    color: #2563eb;
+}
+
+
+/* =========================================================
+   17. CHECKBOX / TERMS
+   ========================================================= */
+
+.auth-page .checkbox-label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    font-weight: 400;
+
+    cursor: pointer;
+}
+
+
+.auth-page .checkbox-label input[type="checkbox"] {
+
     width: 15px;
     height: 15px;
+
+    margin: 0;
+
+    flex-shrink: 0;
 
     accent-color: #2563eb;
 
@@ -454,14 +901,54 @@
 }
 
 
-/* =========================================
-   SUBMIT BUTTON
-========================================= */
+.auth-page .terms-label {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    margin: 3px 0 20px;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    font-weight: 400;
+
+    line-height: 1.5;
+}
+
+
+.auth-page .terms-label input[type="checkbox"] {
+    margin-top: 2px;
+}
+
+
+.auth-page .terms-label a {
+
+    color: #2563eb;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+
+.auth-page .terms-label a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   18. SUBMIT BUTTON
+   ========================================================= */
 
 .auth-submit-btn {
-    width: 100%;
 
-    height: 49px;
+    width: 100%;
+    height: 50px;
 
     display: flex;
 
@@ -470,13 +957,14 @@
 
     gap: 10px;
 
-    border: none;
+    padding: 0 20px;
 
+    border: none;
     border-radius: 9px;
 
     background: #2563eb;
 
-    color: white;
+    color: #ffffff;
 
     font-family: inherit;
 
@@ -486,203 +974,485 @@
 
     cursor: pointer;
 
-    transition: 0.3s;
+    transition: all 0.2s ease;
 }
 
 
 .auth-submit-btn:hover {
+
     background: #1d4ed8;
 
     transform: translateY(-1px);
+
+    box-shadow:
+        0 6px 15px rgba(37, 99, 235, 0.18);
 }
 
 
-.auth-submit-btn:disabled {
-    opacity: 0.7;
-
-    cursor: not-allowed;
-
-    transform: none;
+.auth-submit-btn:active {
+    transform: translateY(0);
 }
 
 
-/* =========================================
-   DIVIDER
-========================================= */
+.auth-submit-btn i {
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   19. LOGIN PAGE
+   ========================================================= */
+
+.forgot-password {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    margin-top: -7px;
+
+    margin-bottom: 20px;
+}
+
+
+.forgot-password a {
+
+    color: #2563eb;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+
+/* Login divider */
 
 .auth-divider {
+
     display: flex;
 
     align-items: center;
 
     gap: 12px;
 
-    margin: 28px 0 20px;
+    margin: 23px 0;
 
     color: #94a3b8;
 
-    font-size: 10px;
+    font-size: 11px;
 }
 
 
 .auth-divider::before,
 .auth-divider::after {
-    content: "";
 
-    height: 1px;
+    content: "";
 
     flex: 1;
 
-    background: #e2e8f0;
+    height: 1px;
+
+    background: #e5eaf1;
 }
 
 
-/* =========================================
-   SOCIAL LOGIN
-========================================= */
+/* =========================================================
+   20. LOGIN / REGISTER BOTTOM TEXT
+   ========================================================= */
 
-.social-login {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 10px;
-}
-
-
-.social-btn {
-    height: 43px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 8px;
-
-    background: white;
-
-    border: 1px solid #dbe2ea;
-
-    border-radius: 8px;
-
-    color: #334155;
-
-    font-family: inherit;
-
-    font-size: 11px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-
-.social-btn:hover {
-    border-color: #2563eb;
-
-    color: #2563eb;
-}
-
-
-.social-btn i {
-    font-size: 14px;
-}
-
-
-/* =========================================
-   REGISTER TEXT
-========================================= */
-
+.login-text,
 .register-text {
+
+    margin: 20px 0 14px;
+
     text-align: center;
 
     color: #64748b;
 
-    font-size: 11px;
-
-    margin-top: 25px;
+    font-size: 12px;
 }
 
 
+.login-text a,
 .register-text a {
+
     color: #2563eb;
 
     font-weight: 700;
+
+    text-decoration: none;
 }
 
 
-/* =========================================
-   SECURITY
-========================================= */
+.login-text a:hover,
+.register-text a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   21. SECURITY NOTE
+   ========================================================= */
 
 .security-note {
+
     display: flex;
 
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
-    gap: 6px;
+    gap: 7px;
 
     color: #94a3b8;
 
     font-size: 10px;
-
-    margin-top: 25px;
 }
 
 
-/* =========================================
-   RESPONSIVE
-========================================= */
+.security-note i {
+    color: #64748b;
+}
 
-@media (max-width: 900px) {
 
-    .auth-container {
+/* =========================================================
+   22. ERROR / SUCCESS MESSAGE
+   ========================================================= */
+
+.form-message {
+
+    display: none;
+
+    align-items: center;
+
+    gap: 8px;
+
+    width: 100%;
+
+    padding: 11px 13px;
+
+    margin-bottom: 17px;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+}
+
+
+.error-message {
+
+    background: #fef2f2;
+
+    border: 1px solid #fecaca;
+
+    color: #dc2626;
+}
+
+
+.success-message {
+
+    background: #f0fdf4;
+
+    border: 1px solid #bbf7d0;
+
+    color: #16a34a;
+}
+
+
+/* =========================================================
+   23. FIELD ERROR
+   ========================================================= */
+
+.field-error {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color: #dc2626;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   24. LOADING BUTTON
+   ========================================================= */
+
+.auth-submit-btn.loading {
+
+    opacity: 0.75;
+
+    cursor: not-allowed;
+
+    pointer-events: none;
+}
+
+
+.auth-submit-btn.loading::after {
+
+    content: "";
+
+    width: 14px;
+    height: 14px;
+
+    margin-left: 8px;
+
+    border: 2px solid rgba(255, 255, 255, 0.4);
+
+    border-top-color: #ffffff;
+
+    border-radius: 50%;
+
+    animation: authSpinner 0.7s linear infinite;
+}
+
+
+@keyframes authSpinner {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   25. TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .auth-page .navbar {
+        padding: 0 5%;
+    }
+
+
+    .auth-page .auth-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .auth-page .auth-info {
+        padding: 55px 7%;
+    }
+
+
+    .auth-page .auth-form-section {
+        padding: 45px 6%;
+    }
+
+
+    .auth-page .auth-info h1 {
+
+        font-size: 46px;
+
+        letter-spacing: -1.5px;
+    }
+
+
+    .auth-page .auth-info-content > p {
+        font-size: 14px;
+    }
+}
+
+
+/* =========================================================
+   26. MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /* Navbar */
+
+    .auth-page .navbar {
+
+        height: 70px;
+
+        padding: 0 5%;
+    }
+
+
+    .auth-page .logo {
+
+        font-size: 19px;
+    }
+
+
+    .auth-page .logo-icon {
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 17px;
+    }
+
+
+    .auth-nav > span {
+        display: none;
+    }
+
+
+    .auth-signup-btn {
+
+        height: 40px;
+
+        min-width: auto;
+
+        padding: 0 16px;
+
+        font-size: 12px;
+    }
+
+
+    /* Main */
+
+    .auth-page .auth-container {
+
+        display: block;
+
+        min-height: auto;
+    }
+
+
+    /* Left */
+
+    .auth-page .auth-info {
+
+        min-height: auto;
+
+        padding: 55px 7%;
+    }
+
+
+    .auth-page .auth-info h1 {
+
+        font-size: 42px;
+
+        letter-spacing: -1.5px;
+    }
+
+
+    .auth-page .auth-info-content > p {
+
+        font-size: 14px;
+
+        line-height: 1.7;
+    }
+
+
+    /* Form */
+
+    .auth-page .auth-form-section {
+
+        min-height: auto;
+
+        padding: 45px 7% 60px;
+
+        overflow: visible;
+    }
+
+
+    .auth-page .auth-heading h2 {
+
+        font-size: 28px;
+    }
+
+
+    /* Account selector */
+
+    .account-type-selector {
+
         grid-template-columns: 1fr;
     }
 
-    .auth-info {
-        display: none;
-    }
 
-    .auth-form-section {
-        min-height: calc(100vh - 76px);
-    }
+    /* Form rows */
 
-}
+    .auth-page .form-row {
 
+        grid-template-columns: 1fr;
 
-@media (max-width: 600px) {
-
-    .auth-nav span {
-        display: none;
-    }
-
-    .auth-nav {
         gap: 0;
     }
-
-    .auth-signup-btn {
-        padding: 9px 13px;
-
-        font-size: 11px;
-    }
-
-    .auth-form-section {
-        padding: 35px 5%;
-    }
-
-    .auth-card {
-        padding: 0;
-    }
-
-    .mobile-logo {
-        display: flex;
-
-        margin-bottom: 18px;
-    }
-
 }
+
+
+/* =========================================================
+   27. SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 450px) {
+
+    .auth-page .navbar {
+        padding: 0 4%;
+    }
+
+
+    .auth-page .auth-info {
+
+        padding: 45px 6%;
+    }
+
+
+    .auth-page .auth-info h1 {
+
+        font-size: 36px;
+    }
+
+
+    .auth-page .auth-form-section {
+
+        padding: 40px 6% 50px;
+    }
+
+
+    .auth-page .auth-heading h2 {
+
+        font-size: 25px;
+    }
+
+
+    .account-type-selector {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .auth-page .benefit {
+
+        gap: 11px;
+    }
+
+
+    .auth-page .benefit-icon {
+
+        width: 38px;
+        height: 38px;
+    }
+
+
+    .auth-page .input-wrapper input[type="text"],
+    .auth-page .input-wrapper input[type="email"],
+    .auth-page .input-wrapper input[type="tel"],
+    .auth-page .input-wrapper input[type="password"],
+    .auth-page .input-wrapper input[type="number"] {
+
+        padding-left: 44px !important;
+        padding-right: 44px !important;
+    }
+}
+
+
+/* =========================================================
+   END
+   ========================================================= */
