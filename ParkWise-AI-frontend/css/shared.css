@@ -1,0 +1,79 @@
+/* ParkWise shared design system: loaded after page-specific styles. */
+:root {
+  --pw-primary: #2563eb;
+  --pw-ink: #172033;
+  --pw-muted: #64748b;
+  --pw-surface: #ffffff;
+  --pw-page: #f7f9fc;
+  --pw-border: #e5eaf1;
+  --pw-sidebar: 250px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: Inter, Arial, sans-serif; background: var(--pw-page); color: var(--pw-ink); }
+
+/* Signed-in application shell */
+.app-layout { min-height: 100vh; }
+.sidebar {
+  position: fixed !important; inset: 0 auto 0 0; width: var(--pw-sidebar) !important;
+  min-width: var(--pw-sidebar) !important; height: 100vh; overflow-y: auto;
+  background: var(--pw-surface); border-right: 1px solid var(--pw-border); z-index: 100;
+}
+.shared-sidebar { display: flex !important; flex-direction: column; }
+.app-brand {
+  min-height: 82px; padding: 0 22px; display: flex; align-items: center; gap: 11px;
+  color: var(--pw-ink); border-bottom: 1px solid var(--pw-border); font-size: 19px; font-weight: 800; text-decoration: none;
+}
+.app-brand strong { color: var(--pw-primary); }
+.app-brand-icon { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 9px; background: var(--pw-primary); color: #fff; font-size: 18px; }
+.shared-sidebar .nav-menu { flex: 1; }
+.shared-sidebar .sidebar-footer { margin-top: auto; padding: 14px; border-top: 1px solid var(--pw-border); }
+.sidebar-nav, .nav-menu { padding: 20px 14px !important; }
+.nav-title, .nav-heading { margin: 14px 12px 8px !important; padding: 0 !important; color: #94a3b8 !important; font-size: 10px !important; font-weight: 700; letter-spacing: .08em; }
+.nav-link, .nav-item {
+  display: flex; align-items: center; gap: 12px; min-height: 44px; margin: 3px 0 !important;
+  padding: 0 13px !important; border-radius: 8px; color: var(--pw-muted) !important;
+  font-size: 13px !important; text-decoration: none; transition: .18s ease;
+}
+.nav-link:hover, .nav-item:hover { background: #eff6ff !important; color: var(--pw-primary) !important; }
+.nav-link.active, .nav-item.active { background: #eff6ff !important; color: var(--pw-primary) !important; font-weight: 700; }
+.nav-link i, .nav-item i { width: 18px; text-align: center; }
+
+.main-content, .dashboard-main { margin-left: var(--pw-sidebar) !important; min-height: 100vh; width: calc(100% - var(--pw-sidebar)); }
+.top-header, .dashboard-header {
+  min-height: 82px; padding: 18px 32px !important; background: rgba(255,255,255,.92);
+  border-bottom: 1px solid var(--pw-border); display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.top-header h1, .dashboard-header h1 { color: var(--pw-ink); font-size: clamp(20px, 2vw, 26px) !important; line-height: 1.2; }
+.subtitle, .header-subtitle { color: var(--pw-muted); margin-top: 5px; font-size: 13px; }
+.shared-header .page-title p { margin: 5px 0 0; color: var(--pw-muted); font-size: 13px; }
+.shared-header .mobile-menu { display: none; }
+.shared-profile { display: flex; align-items: center; gap: 10px; color: var(--pw-ink); font-size: 13px; font-weight: 700; }
+.shared-profile .notification-btn { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid var(--pw-border); border-radius: 9px; background: #fff; color: var(--pw-muted); }
+.shared-profile .profile-avatar { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; background: var(--pw-primary); color: #fff; font-weight: 700; }
+.page-content, .dashboard-content { padding: 30px 32px !important; }
+
+/* Authentication and marketing pages share the same typography and controls. */
+.navbar, .auth-header { min-height: 72px; padding-inline: clamp(20px, 5vw, 72px) !important; border-bottom: 1px solid var(--pw-border); background: #fff; }
+.logo, .brand { color: var(--pw-ink); text-decoration: none; }
+button, input, select { font: inherit; }
+
+@media (max-width: 800px) {
+  .sidebar { position: static !important; width: 100% !important; min-width: 0 !important; height: auto; max-height: none; border-right: 0; border-bottom: 1px solid var(--pw-border); }
+  .sidebar-nav, .nav-menu { display: flex; flex-wrap: wrap; gap: 4px; padding: 10px 14px !important; }
+  .nav-title, .nav-heading { display: none; }
+  .sidebar-footer, .sidebar-bottom { display: block; padding: 0 14px 10px; }
+  .nav-link, .nav-item { min-height: 38px; margin: 0 !important; padding: 0 10px !important; }
+  .main-content, .dashboard-main { margin-left: 0 !important; width: 100%; }
+  .top-header, .dashboard-header { padding: 18px 20px !important; }
+  .shared-header .mobile-menu { display: none; }
+  .page-content, .dashboard-content { padding: 22px 20px !important; }
+}
+
+@media (max-width: 520px) {
+  .sidebar .brand, .sidebar-logo, .logo-section, .app-brand { min-height: 64px; height: 64px; }
+  .nav-link span, .nav-item span { font-size: 12px; }
+  .top-header, .dashboard-header { align-items: flex-start; }
+  .shared-header .mobile-menu { display: inline-grid; place-items: center; width: 34px; height: 34px; margin: 0 0 8px; border: 1px solid var(--pw-border); border-radius: 7px; background: #fff; color: var(--pw-primary); }
+  .profile-name { display: none; }
+}
