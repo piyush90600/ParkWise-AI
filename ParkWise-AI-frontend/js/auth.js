@@ -16,7 +16,6 @@ const errorText = document.getElementById("errorText");
 const loginButton = document.getElementById("loginButton");
 const loginButtonText = document.getElementById("loginButtonText");
 
-
 // ==========================================
 // PASSWORD VISIBILITY
 // ==========================================
@@ -61,7 +60,6 @@ if (togglePassword) {
 
 }
 
-
 // ==========================================
 // EMAIL VALIDATION
 // ==========================================
@@ -73,7 +71,6 @@ function validateEmail() {
     const emailPattern =
         /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-
     if (email === "") {
 
         emailError.textContent =
@@ -82,7 +79,6 @@ function validateEmail() {
         return false;
 
     }
-
 
     if (!emailPattern.test(email)) {
 
@@ -93,12 +89,10 @@ function validateEmail() {
 
     }
 
-
     emailError.textContent = "";
 
     return true;
 }
-
 
 // ==========================================
 // PASSWORD VALIDATION
@@ -107,7 +101,6 @@ function validateEmail() {
 function validatePassword() {
 
     const password = passwordInput.value;
-
 
     if (password === "") {
 
@@ -118,7 +111,6 @@ function validatePassword() {
 
     }
 
-
     if (password.length < 6) {
 
         passwordError.textContent =
@@ -128,12 +120,10 @@ function validatePassword() {
 
     }
 
-
     passwordError.textContent = "";
 
     return true;
 }
-
 
 // ==========================================
 // LIVE VALIDATION
@@ -149,7 +139,6 @@ passwordInput.addEventListener(
     validatePassword
 );
 
-
 // ==========================================
 // LOGIN SUBMIT
 // ==========================================
@@ -157,7 +146,6 @@ passwordInput.addEventListener(
 loginForm.addEventListener("submit", async (event) => {
 
     event.preventDefault();
-
 
     // Validate
 
@@ -167,16 +155,13 @@ loginForm.addEventListener("submit", async (event) => {
     const validPassword =
         validatePassword();
 
-
     if (!validEmail || !validPassword) {
         return;
     }
 
-
     // Hide previous error
 
     loginError.style.display = "none";
-
 
     // Loading state
 
@@ -185,36 +170,7 @@ loginForm.addEventListener("submit", async (event) => {
     loginButtonText.textContent =
         "Signing in...";
 
-
     try {
-
-        /*
-         * ======================================
-         * FUTURE FASTAPI CONNECTION
-         * ======================================
-         *
-         * const response = await fetch(
-         *     "http://localhost:8000/login",
-         *     {
-         *         method: "POST",
-         *         headers: {
-         *             "Content-Type":
-         *                 "application/json"
-         *         },
-         *         body: JSON.stringify({
-         *             email:
-         *                 emailInput.value,
-         *             password:
-         *                 passwordInput.value
-         *         })
-         *     }
-         * );
-         *
-         * const data =
-         *     await response.json();
-         *
-         */
-
 
         // Temporary demo delay
 
@@ -222,17 +178,8 @@ loginForm.addEventListener("submit", async (event) => {
             setTimeout(resolve, 1000)
         );
 
-
-        /*
-         * TEMPORARY DEMO
-         *
-         * We will remove this when
-         * your backend is connected.
-         */
-
         const email =
             emailInput.value.trim();
-
 
         if (email) {
 
@@ -241,7 +188,6 @@ loginForm.addEventListener("submit", async (event) => {
 
         }
 
-
     } catch (error) {
 
         console.error(
@@ -249,13 +195,11 @@ loginForm.addEventListener("submit", async (event) => {
             error
         );
 
-
         errorText.textContent =
             "Unable to sign in. Please try again.";
 
         loginError.style.display =
             "flex";
-
 
     } finally {
 

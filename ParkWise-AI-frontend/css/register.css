@@ -1,7 +1,3 @@
-/* =========================================================
-   PARKWISE AI - REGISTER PAGE
-   ========================================================= */
-
 * {
     margin: 0;
     padding: 0;
@@ -20,11 +16,6 @@ body.auth-page {
     background: #ffffff;
 }
 
-
-/* =========================================================
-   NAVBAR
-   ========================================================= */
-
 .auth-page .navbar {
     width: 100%;
     height: 82px;
@@ -40,9 +31,6 @@ body.auth-page {
     border-bottom: 1px solid #e7ebf0;
 }
 
-
-/* LOGO */
-
 .auth-page .logo {
     display: flex;
     align-items: center;
@@ -56,7 +44,6 @@ body.auth-page {
     font-size: 25px;
     font-weight: 700;
 }
-
 
 .auth-page .logo-icon {
     width: 46px;
@@ -75,13 +62,9 @@ body.auth-page {
     font-size: 21px;
 }
 
-
 .auth-page .logo-ai {
     color: #2563eb;
 }
-
-
-/* NAV RIGHT */
 
 .auth-page .auth-nav {
     display: flex;
@@ -93,7 +76,6 @@ body.auth-page {
 
     font-size: 13px;
 }
-
 
 .auth-page .auth-signup-btn {
     height: 44px;
@@ -120,16 +102,10 @@ body.auth-page {
     transition: all 0.2s ease;
 }
 
-
 .auth-page .auth-signup-btn:hover {
     background: #2563eb;
     color: #ffffff;
 }
-
-
-/* =========================================================
-   MAIN CONTAINER
-   ========================================================= */
 
 .auth-page .auth-container {
     min-height: calc(100vh - 82px);
@@ -138,11 +114,6 @@ body.auth-page {
 
     grid-template-columns: 50% 50%;
 }
-
-
-/* =========================================================
-   LEFT INFORMATION SECTION
-   ========================================================= */
 
 .auth-page .auth-info {
     min-height: calc(100vh - 82px);
@@ -161,14 +132,10 @@ body.auth-page {
         );
 }
 
-
 .auth-page .auth-info-content {
     width: 100%;
     max-width: 610px;
 }
-
-
-/* BADGE */
 
 .auth-page .auth-badge {
     display: inline-flex;
@@ -190,13 +157,9 @@ body.auth-page {
     font-weight: 700;
 }
 
-
 .auth-page .auth-badge i {
     font-size: 12px;
 }
-
-
-/* LEFT HEADING */
 
 .auth-page .auth-info h1 {
     margin-bottom: 23px;
@@ -212,15 +175,11 @@ body.auth-page {
     font-weight: 800;
 }
 
-
 .auth-page .auth-info h1 span {
     display: block;
 
     color: #2563eb;
 }
-
-
-/* DESCRIPTION */
 
 .auth-page .auth-info-content > p {
     max-width: 570px;
@@ -234,11 +193,6 @@ body.auth-page {
     line-height: 1.8;
 }
 
-
-/* =========================================================
-   BENEFITS
-   ========================================================= */
-
 .auth-page .auth-benefits {
     display: flex;
     flex-direction: column;
@@ -246,14 +200,12 @@ body.auth-page {
     gap: 18px;
 }
 
-
 .auth-page .benefit {
     display: flex;
     align-items: center;
 
     gap: 15px;
 }
-
 
 .auth-page .benefit-icon {
     width: 46px;
@@ -274,7 +226,6 @@ body.auth-page {
     font-size: 17px;
 }
 
-
 .auth-page .benefit h3 {
     margin-bottom: 4px;
 
@@ -284,7 +235,6 @@ body.auth-page {
     font-weight: 700;
 }
 
-
 .auth-page .benefit p {
     color: #7185a3;
 
@@ -292,11 +242,6 @@ body.auth-page {
 
     line-height: 1.5;
 }
-
-
-/* =========================================================
-   RIGHT FORM SECTION
-   ========================================================= */
 
 .auth-page .auth-form-section {
     min-height: calc(100vh - 82px);
@@ -311,21 +256,14 @@ body.auth-page {
     overflow-y: auto;
 }
 
-
 .auth-page .auth-card {
     width: 100%;
     max-width: 650px;
 }
 
-
-/* =========================================================
-   FORM HEADING
-   ========================================================= */
-
 .auth-page .auth-heading {
     margin-bottom: 25px;
 }
-
 
 .auth-page .auth-heading h2 {
     margin-bottom: 8px;
@@ -341,7 +279,6 @@ body.auth-page {
     font-weight: 800;
 }
 
-
 .auth-page .auth-heading p {
     color: #64748b;
 
@@ -350,15 +287,9 @@ body.auth-page {
     line-height: 1.6;
 }
 
-
-/* =========================================================
-   ACCOUNT TYPE
-   ========================================================= */
-
 .auth-page .account-type-section {
     margin-bottom: 23px;
 }
-
 
 .auth-page .account-type-title {
     display: block;
@@ -372,7 +303,6 @@ body.auth-page {
     font-weight: 600;
 }
 
-
 .auth-page .account-type-selector {
     display: grid;
 
@@ -380,7 +310,6 @@ body.auth-page {
 
     gap: 12px;
 }
-
 
 .auth-page .type-option {
     position: relative;
@@ -390,7 +319,6 @@ body.auth-page {
     cursor: pointer;
 }
 
-
 .auth-page .type-option input {
     position: absolute;
 
@@ -399,7 +327,6 @@ body.auth-page {
     width: 0;
     height: 0;
 }
-
 
 .auth-page .type-option-content {
     min-height: 68px;
@@ -420,11 +347,9 @@ body.auth-page {
     transition: all 0.2s ease;
 }
 
-
 .auth-page .type-option:hover .type-option-content {
     border-color: #93b4f5;
 }
-
 
 .auth-page .type-option input:checked
 + .type-option-content {
@@ -435,9 +360,6 @@ body.auth-page {
     box-shadow:
         0 0 0 2px rgba(37, 99, 235, 0.08);
 }
-
-
-/* ACCOUNT ICON */
 
 .auth-page .type-icon {
     width: 40px;
@@ -458,7 +380,6 @@ body.auth-page {
     font-size: 16px;
 }
 
-
 .auth-page .type-option strong {
     display: block;
 
@@ -469,17 +390,11 @@ body.auth-page {
     font-size: 12px;
 }
 
-
 .auth-page .type-option small {
     color: #7185a3;
 
     font-size: 10px;
 }
-
-
-/* =========================================================
-   ERROR MESSAGE
-   ========================================================= */
 
 .auth-page .form-message {
     display: none;
@@ -497,7 +412,6 @@ body.auth-page {
     font-size: 11px;
 }
 
-
 .auth-page .error-message {
     color: #dc2626;
 
@@ -506,15 +420,9 @@ body.auth-page {
     border: 1px solid #fecaca;
 }
 
-
-/* =========================================================
-   FORM
-   ========================================================= */
-
 .auth-page .register-form {
     width: 100%;
 }
-
 
 .auth-page .form-section-title {
     display: flex;
@@ -530,22 +438,15 @@ body.auth-page {
     font-weight: 700;
 }
 
-
 .auth-page .form-section-title i {
     color: #2563eb;
 }
-
-
-/* =========================================================
-   FORM GROUP
-   ========================================================= */
 
 .auth-page .form-group {
     width: 100%;
 
     margin-bottom: 15px;
 }
-
 
 .auth-page .form-group label {
     display: block;
@@ -559,11 +460,6 @@ body.auth-page {
     font-weight: 600;
 }
 
-
-/* =========================================================
-   TWO COLUMN ROW
-   ========================================================= */
-
 .auth-page .form-row {
     display: grid;
 
@@ -572,20 +468,12 @@ body.auth-page {
     gap: 14px;
 }
 
-
-/* =========================================================
-   INPUT WRAPPER
-   ========================================================= */
-
 .auth-page .input-wrapper,
 .auth-page .select-wrapper {
     position: relative;
 
     width: 100%;
 }
-
-
-/* INPUT ICON */
 
 .auth-page .input-wrapper > i,
 .auth-page .select-wrapper > i {
@@ -604,11 +492,6 @@ body.auth-page {
 
     pointer-events: none;
 }
-
-
-/* =========================================================
-   INPUT
-   ========================================================= */
 
 .auth-page .input-wrapper input,
 .auth-page .select-wrapper select {
@@ -634,11 +517,9 @@ body.auth-page {
     transition: all 0.2s ease;
 }
 
-
 .auth-page .input-wrapper input::placeholder {
     color: #9aabc1;
 }
-
 
 .auth-page .input-wrapper input:focus,
 .auth-page .select-wrapper select:focus {
@@ -648,11 +529,6 @@ body.auth-page {
         0 0 0 3px rgba(37, 99, 235, 0.08);
 }
 
-
-/* =========================================================
-   SELECT
-   ========================================================= */
-
 .auth-page .select-wrapper select {
     padding-right: 12px;
 
@@ -660,11 +536,6 @@ body.auth-page {
 
     cursor: pointer;
 }
-
-
-/* =========================================================
-   PASSWORD TOGGLE
-   ========================================================= */
 
 .auth-page .password-toggle {
     position: absolute;
@@ -694,17 +565,11 @@ body.auth-page {
     z-index: 3;
 }
 
-
 .auth-page .password-toggle:hover {
     background: #f1f5f9;
 
     color: #2563eb;
 }
-
-
-/* =========================================================
-   FIELD ERROR
-   ========================================================= */
 
 .auth-page .field-error {
     display: block;
@@ -718,11 +583,6 @@ body.auth-page {
     font-size: 9px;
 }
 
-
-/* =========================================================
-   CHECKBOX
-   ========================================================= */
-
 .auth-page .checkbox-label {
     display: flex;
     align-items: flex-start;
@@ -731,7 +591,6 @@ body.auth-page {
 
     cursor: pointer;
 }
-
 
 .auth-page .checkbox-label input {
     width: 15px;
@@ -746,7 +605,6 @@ body.auth-page {
     cursor: pointer;
 }
 
-
 .auth-page .terms-label {
     margin: 16px 0;
 
@@ -757,7 +615,6 @@ body.auth-page {
     line-height: 1.5;
 }
 
-
 .auth-page .terms-label a {
     color: #2563eb;
 
@@ -766,15 +623,9 @@ body.auth-page {
     text-decoration: none;
 }
 
-
 .auth-page .terms-label a:hover {
     text-decoration: underline;
 }
-
-
-/* =========================================================
-   SUBMIT BUTTON
-   ========================================================= */
 
 .auth-page .auth-submit-btn {
     width: 100%;
@@ -805,7 +656,6 @@ body.auth-page {
     transition: all 0.2s ease;
 }
 
-
 .auth-page .auth-submit-btn:hover {
     background: #1d4ed8;
 
@@ -814,11 +664,6 @@ body.auth-page {
     box-shadow:
         0 7px 18px rgba(37, 99, 235, 0.18);
 }
-
-
-/* =========================================================
-   LOGIN TEXT
-   ========================================================= */
 
 .auth-page .register-text {
     margin-top: 18px;
@@ -830,7 +675,6 @@ body.auth-page {
     font-size: 10px;
 }
 
-
 .auth-page .register-text a {
     color: #2563eb;
 
@@ -839,15 +683,9 @@ body.auth-page {
     text-decoration: none;
 }
 
-
 .auth-page .register-text a:hover {
     text-decoration: underline;
 }
-
-
-/* =========================================================
-   SECURITY NOTE
-   ========================================================= */
 
 .auth-page .security-note {
     display: flex;
@@ -863,24 +701,13 @@ body.auth-page {
     font-size: 9px;
 }
 
-
 .auth-page .security-note i {
     color: #64748b;
 }
 
-
-/* =========================================================
-   PARK OWNER FORM
-   ========================================================= */
-
 #ownerRegisterForm {
     width: 100%;
 }
-
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
 
 @media (max-width: 1050px) {
 
@@ -900,7 +727,6 @@ body.auth-page {
         padding: 55px 8%;
     }
 }
-
 
 @media (max-width: 650px) {
 

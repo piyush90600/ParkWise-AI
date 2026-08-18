@@ -1,13 +1,8 @@
-/* =========================================================
-   PARKWISE AI - USER DASHBOARD
-   ========================================================= */
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-
 
 body {
     font-family: "Inter", Arial, sans-serif;
@@ -18,11 +13,6 @@ body {
 
     min-height: 100vh;
 }
-
-
-/* =========================================================
-   SIDEBAR
-   ========================================================= */
 
 .sidebar {
 
@@ -44,9 +34,6 @@ body {
     z-index: 100;
 }
 
-
-/* Logo */
-
 .sidebar-logo {
 
     height: 82px;
@@ -64,7 +51,6 @@ body {
 
     font-weight: 800;
 }
-
 
 .sidebar-logo-icon {
 
@@ -84,13 +70,9 @@ body {
     font-size: 18px;
 }
 
-
 .sidebar-logo strong {
     color: #2563eb;
 }
-
-
-/* Navigation */
 
 .sidebar-nav {
 
@@ -98,7 +80,6 @@ body {
 
     padding: 27px 14px;
 }
-
 
 .nav-title {
 
@@ -114,7 +95,6 @@ body {
 
     letter-spacing: 1px;
 }
-
 
 .nav-item {
 
@@ -142,7 +122,6 @@ body {
     transition: 0.2s ease;
 }
 
-
 .nav-item i {
 
     width: 18px;
@@ -152,14 +131,12 @@ body {
     font-size: 13px;
 }
 
-
 .nav-item:hover {
 
     background: #f1f5ff;
 
     color: #2563eb;
 }
-
 
 .nav-item.active {
 
@@ -170,18 +147,12 @@ body {
     font-weight: 700;
 }
 
-
-/* Sidebar bottom */
-
 .sidebar-bottom {
 
     padding: 15px;
 
     border-top: 1px solid #eef1f5;
 }
-
-
-/* Help */
 
 .help-box {
 
@@ -199,7 +170,6 @@ body {
 
     background: #f8fafc;
 }
-
 
 .help-icon {
 
@@ -219,14 +189,12 @@ body {
     font-size: 13px;
 }
 
-
 .help-box strong {
 
     display: block;
 
     font-size: 10px;
 }
-
 
 .help-box p {
 
@@ -236,9 +204,6 @@ body {
 
     font-size: 9px;
 }
-
-
-/* Logout */
 
 .logout-btn {
 
@@ -261,7 +226,6 @@ body {
     border-radius: 8px;
 }
 
-
 .logout-btn:hover {
 
     color: #ef4444;
@@ -269,22 +233,12 @@ body {
     background: #fef2f2;
 }
 
-
-/* =========================================================
-   MAIN
-   ========================================================= */
-
 .dashboard-main {
 
     margin-left: 245px;
 
     min-height: 100vh;
 }
-
-
-/* =========================================================
-   TOPBAR
-   ========================================================= */
 
 .dashboard-topbar {
 
@@ -302,7 +256,6 @@ body {
     border-bottom: 1px solid #e5eaf1;
 }
 
-
 .topbar-left {
 
     display: flex;
@@ -311,7 +264,6 @@ body {
 
     gap: 14px;
 }
-
 
 .menu-btn {
 
@@ -331,7 +283,6 @@ body {
     cursor: pointer;
 }
 
-
 .welcome-small {
 
     margin-bottom: 3px;
@@ -341,16 +292,12 @@ body {
     font-size: 10px;
 }
 
-
 .topbar-left h1 {
 
     font-size: 20px;
 
     font-weight: 750;
 }
-
-
-/* Top right */
 
 .topbar-right {
 
@@ -360,7 +307,6 @@ body {
 
     gap: 20px;
 }
-
 
 .notification-btn {
 
@@ -380,7 +326,6 @@ body {
     cursor: pointer;
 }
 
-
 .notification-dot {
 
     position: absolute;
@@ -398,7 +343,6 @@ body {
     border: 1px solid white;
 }
 
-
 .user-profile {
 
     display: flex;
@@ -409,7 +353,6 @@ body {
 
     cursor: pointer;
 }
-
 
 .user-avatar {
 
@@ -432,7 +375,6 @@ body {
     font-weight: 700;
 }
 
-
 .user-info strong {
 
     display: block;
@@ -442,7 +384,6 @@ body {
     font-size: 11px;
 }
 
-
 .user-info span {
 
     color: #94a3b8;
@@ -450,18 +391,12 @@ body {
     font-size: 9px;
 }
 
-
 .user-profile > i {
 
     color: #94a3b8;
 
     font-size: 9px;
 }
-
-
-/* =========================================================
-   CONTENT
-   ========================================================= */
 
 .dashboard-content {
 
@@ -471,11 +406,6 @@ body {
 
     padding: 30px 35px 50px;
 }
-
-
-/* =========================================================
-   SEARCH
-   ========================================================= */
 
 .search-section {
 
@@ -492,7 +422,6 @@ body {
 
     border: 1px solid #e3edff;
 }
-
 
 .section-badge {
 
@@ -517,7 +446,6 @@ body {
     font-weight: 700;
 }
 
-
 .search-heading h2 {
 
     margin-bottom: 6px;
@@ -526,7 +454,6 @@ body {
 
     font-size: 22px;
 }
-
 
 .search-heading p {
 
@@ -539,9 +466,6 @@ body {
     line-height: 1.6;
 }
 
-
-/* Search bar */
-
 .parking-search {
 
     display: flex;
@@ -551,14 +475,12 @@ body {
     margin-top: 22px;
 }
 
-
 .search-input {
 
     position: relative;
 
     flex: 1;
 }
-
 
 .search-input i {
 
@@ -573,7 +495,6 @@ body {
 
     font-size: 13px;
 }
-
 
 .search-input input {
 
@@ -596,14 +517,12 @@ body {
     font-size: 11px;
 }
 
-
 .search-input input:focus {
 
     border-color: #2563eb;
 
     box-shadow: 0 0 0 3px rgba(37,99,235,.08);
 }
-
 
 .search-btn {
 
@@ -630,16 +549,10 @@ body {
     transition: 0.2s;
 }
 
-
 .search-btn:hover {
 
     background: #1d4ed8;
 }
-
-
-/* =========================================================
-   STATS
-   ========================================================= */
 
 .stats-grid {
 
@@ -652,7 +565,6 @@ body {
 
     margin-top: 20px;
 }
-
 
 .stat-card {
 
@@ -671,7 +583,6 @@ body {
     background: #ffffff;
 }
 
-
 .stat-icon {
 
     width: 40px;
@@ -689,13 +600,11 @@ body {
     font-size: 14px;
 }
 
-
 .stat-icon.blue {
 
     background: #eff6ff;
     color: #2563eb;
 }
-
 
 .stat-icon.green {
 
@@ -703,20 +612,17 @@ body {
     color: #10b981;
 }
 
-
 .stat-icon.orange {
 
     background: #fff7ed;
     color: #f97316;
 }
 
-
 .stat-icon.purple {
 
     background: #f5f3ff;
     color: #7c3aed;
 }
-
 
 .stat-details span {
 
@@ -729,7 +635,6 @@ body {
     font-size: 9px;
 }
 
-
 .stat-details strong {
 
     display: block;
@@ -741,7 +646,6 @@ body {
     font-size: 21px;
 }
 
-
 .stat-details small {
 
     color: #64748b;
@@ -749,22 +653,15 @@ body {
     font-size: 8px;
 }
 
-
 .stat-details small i {
 
     color: #10b981;
 }
 
-
 .stat-details .positive {
 
     color: #10b981;
 }
-
-
-/* =========================================================
-   MAIN GRID
-   ========================================================= */
 
 .main-grid {
 
@@ -778,7 +675,6 @@ body {
     margin-top: 20px;
 }
 
-
 .panel {
 
     padding: 22px;
@@ -790,9 +686,6 @@ body {
     background: #ffffff;
 }
 
-
-/* Panel header */
-
 .panel-header {
 
     display: flex;
@@ -803,7 +696,6 @@ body {
 
     margin-bottom: 18px;
 }
-
 
 .panel-label {
 
@@ -820,12 +712,10 @@ body {
     letter-spacing: .7px;
 }
 
-
 .panel-label i {
 
     margin-right: 4px;
 }
-
 
 .panel-header h3 {
 
@@ -833,7 +723,6 @@ body {
 
     font-size: 15px;
 }
-
 
 .more-btn {
 
@@ -845,7 +734,6 @@ body {
 
     cursor: pointer;
 }
-
 
 .panel-header select {
 
@@ -864,11 +752,6 @@ body {
     outline: none;
 }
 
-
-/* =========================================================
-   RECOMMENDATION
-   ========================================================= */
-
 .recommendation-card {
 
     padding: 17px;
@@ -885,7 +768,6 @@ body {
         );
 }
 
-
 .recommendation-top {
 
     display: flex;
@@ -894,7 +776,6 @@ body {
 
     gap: 11px;
 }
-
 
 .parking-icon {
 
@@ -915,12 +796,10 @@ body {
     font-size: 16px;
 }
 
-
 .parking-name {
 
     flex: 1;
 }
-
 
 .parking-name h4 {
 
@@ -929,14 +808,12 @@ body {
     font-size: 12px;
 }
 
-
 .parking-name p {
 
     color: #94a3b8;
 
     font-size: 9px;
 }
-
 
 .parking-name p i {
 
@@ -945,12 +822,10 @@ body {
     margin-right: 3px;
 }
 
-
 .match-score {
 
     text-align: right;
 }
-
 
 .match-score strong {
 
@@ -961,16 +836,12 @@ body {
     font-size: 20px;
 }
 
-
 .match-score span {
 
     color: #64748b;
 
     font-size: 8px;
 }
-
-
-/* Meta */
 
 .parking-meta {
 
@@ -991,7 +862,6 @@ body {
     font-size: 9px;
 }
 
-
 .parking-meta i {
 
     margin-right: 3px;
@@ -999,12 +869,10 @@ body {
     color: #94a3b8;
 }
 
-
 .parking-meta span:nth-child(2) i {
 
     color: #f59e0b;
 }
-
 
 .parking-meta strong {
 
@@ -1014,9 +882,6 @@ body {
 
     font-size: 12px;
 }
-
-
-/* Reason */
 
 .recommendation-reason {
 
@@ -1033,14 +898,12 @@ body {
     background: #eff6ff;
 }
 
-
 .recommendation-reason i {
 
     color: #2563eb;
 
     font-size: 11px;
 }
-
 
 .recommendation-reason p {
 
@@ -1050,9 +913,6 @@ body {
 
     line-height: 1.5;
 }
-
-
-/* Button */
 
 .view-parking-btn {
 
@@ -1079,16 +939,10 @@ body {
     cursor: pointer;
 }
 
-
 .view-parking-btn i {
 
     margin-left: 7px;
 }
-
-
-/* =========================================================
-   OCCUPANCY
-   ========================================================= */
 
 .occupancy-main {
 
@@ -1100,7 +954,6 @@ body {
 
     margin-bottom: 18px;
 }
-
 
 .occupancy-circle {
 
@@ -1123,7 +976,6 @@ body {
     position: relative;
 }
 
-
 .occupancy-circle::after {
 
     content: "";
@@ -1138,7 +990,6 @@ body {
     background: #ffffff;
 }
 
-
 .occupancy-circle div {
 
     position: relative;
@@ -1147,7 +998,6 @@ body {
 
     text-align: center;
 }
-
 
 .occupancy-circle strong {
 
@@ -1158,7 +1008,6 @@ body {
     font-size: 19px;
 }
 
-
 .occupancy-circle span {
 
     color: #94a3b8;
@@ -1166,12 +1015,10 @@ body {
     font-size: 8px;
 }
 
-
 .occupancy-info {
 
     flex: 1;
 }
-
 
 .prediction-status {
 
@@ -1186,7 +1033,6 @@ body {
     font-size: 11px;
 }
 
-
 .status-dot {
 
     width: 7px;
@@ -1197,7 +1043,6 @@ body {
     background: #f59e0b;
 }
 
-
 .occupancy-info p {
 
     color: #64748b;
@@ -1207,9 +1052,6 @@ body {
     line-height: 1.5;
 }
 
-
-/* Prediction bars */
-
 .prediction-bars {
 
     display: flex;
@@ -1218,7 +1060,6 @@ body {
 
     gap: 10px;
 }
-
 
 .prediction-item {
 
@@ -1235,7 +1076,6 @@ body {
     color: #94a3b8;
 }
 
-
 .prediction-item strong {
 
     color: #526581;
@@ -1244,7 +1084,6 @@ body {
 
     text-align: right;
 }
-
 
 .bar {
 
@@ -1257,7 +1096,6 @@ body {
     background: #edf1f6;
 }
 
-
 .bar div {
 
     height: 100%;
@@ -1267,16 +1105,10 @@ body {
     background: #2563eb;
 }
 
-
-/* =========================================================
-   NEARBY PARKING
-   ========================================================= */
-
 .nearby-section {
 
     margin-top: 24px;
 }
-
 
 .section-header {
 
@@ -1289,7 +1121,6 @@ body {
     margin-bottom: 14px;
 }
 
-
 .section-header h3 {
 
     margin-bottom: 4px;
@@ -1297,14 +1128,12 @@ body {
     font-size: 16px;
 }
 
-
 .section-header p {
 
     color: #94a3b8;
 
     font-size: 9px;
 }
-
 
 .section-header a {
 
@@ -1317,14 +1146,10 @@ body {
     text-decoration: none;
 }
 
-
 .section-header a i {
 
     margin-left: 5px;
 }
-
-
-/* Parking grid */
 
 .parking-grid {
 
@@ -1335,9 +1160,6 @@ body {
 
     gap: 14px;
 }
-
-
-/* Parking card */
 
 .parking-card {
 
@@ -1352,7 +1174,6 @@ body {
     transition: 0.2s ease;
 }
 
-
 .parking-card:hover {
 
     transform: translateY(-2px);
@@ -1362,7 +1183,6 @@ body {
     box-shadow:
         0 8px 25px rgba(15,23,42,.05);
 }
-
 
 .parking-card-top {
 
@@ -1374,7 +1194,6 @@ body {
 
     margin-bottom: 13px;
 }
-
 
 .small-parking-icon {
 
@@ -1395,7 +1214,6 @@ body {
     font-size: 13px;
 }
 
-
 .available-badge,
 .busy-badge {
 
@@ -1408,14 +1226,12 @@ body {
     font-weight: 700;
 }
 
-
 .available-badge {
 
     background: #ecfdf5;
 
     color: #10b981;
 }
-
 
 .busy-badge {
 
@@ -1424,14 +1240,12 @@ body {
     color: #f97316;
 }
 
-
 .parking-card h4 {
 
     margin-bottom: 6px;
 
     font-size: 11px;
 }
-
 
 .parking-location {
 
@@ -1440,14 +1254,10 @@ body {
     font-size: 8px;
 }
 
-
 .parking-location i {
 
     margin-right: 3px;
 }
-
-
-/* Details */
 
 .parking-card-details {
 
@@ -1464,18 +1274,15 @@ body {
     font-size: 8px;
 }
 
-
 .parking-card-details i {
 
     margin-right: 2px;
 }
 
-
 .parking-card-details span:nth-child(2) i {
 
     color: #f59e0b;
 }
-
 
 .parking-card-details strong {
 
@@ -1485,9 +1292,6 @@ body {
 
     font-size: 10px;
 }
-
-
-/* Card button */
 
 .card-btn {
 
@@ -1516,18 +1320,12 @@ body {
     transition: 0.2s;
 }
 
-
 .card-btn:hover {
 
     background: #eff6ff;
 
     border-color: #bfdbfe;
 }
-
-
-/* =========================================================
-   TABLET
-   ========================================================= */
 
 @media (max-width: 1100px) {
 
@@ -1536,12 +1334,10 @@ body {
         width: 210px;
     }
 
-
     .dashboard-main {
 
         margin-left: 210px;
     }
-
 
     .stats-grid {
 
@@ -1549,24 +1345,17 @@ body {
             repeat(2, 1fr);
     }
 
-
     .parking-grid {
 
         grid-template-columns:
             repeat(2, 1fr);
     }
 
-
     .main-grid {
 
         grid-template-columns: 1fr;
     }
 }
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
 
 @media (max-width: 768px) {
 
@@ -1579,7 +1368,6 @@ body {
         transition: 0.25s ease;
     }
 
-
     .sidebar.open {
 
         left: 0;
@@ -1588,24 +1376,20 @@ body {
             8px 0 30px rgba(15,23,42,.12);
     }
 
-
     .dashboard-main {
 
         margin-left: 0;
     }
-
 
     .dashboard-topbar {
 
         padding: 0 18px;
     }
 
-
     .menu-btn {
 
         display: block;
     }
-
 
     .user-info,
     .user-profile > i {
@@ -1613,47 +1397,36 @@ body {
         display: none;
     }
 
-
     .dashboard-content {
 
         padding: 20px 18px 40px;
     }
-
 
     .search-section {
 
         padding: 22px;
     }
 
-
     .parking-search {
 
         flex-direction: column;
     }
-
 
     .search-btn {
 
         width: 100%;
     }
 
-
     .stats-grid {
 
         grid-template-columns: 1fr 1fr;
     }
-
 
     .parking-grid {
 
         grid-template-columns: 1fr 1fr;
     }
 }
-
-
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
 
 @media (max-width: 480px) {
 
@@ -1662,12 +1435,10 @@ body {
         grid-template-columns: 1fr;
     }
 
-
     .parking-grid {
 
         grid-template-columns: 1fr;
     }
-
 
     .occupancy-main {
 
@@ -1675,7 +1446,6 @@ body {
 
         align-items: flex-start;
     }
-
 
     .search-heading h2 {
 

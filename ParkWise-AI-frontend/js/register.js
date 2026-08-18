@@ -17,7 +17,6 @@ const ownerForm =
         "ownerRegisterForm"
     );
 
-
 accountTypes.forEach((radio) => {
 
     radio.addEventListener("change", () => {
@@ -29,7 +28,6 @@ accountTypes.forEach((radio) => {
             ownerForm.style.display = "none";
 
         }
-
 
         if (radio.value === "owner") {
 
@@ -43,7 +41,6 @@ accountTypes.forEach((radio) => {
 
 });
 
-
 // ==========================================
 // PASSWORD VISIBILITY
 // ==========================================
@@ -52,7 +49,6 @@ const passwordButtons =
     document.querySelectorAll(
         ".password-toggle"
     );
-
 
 passwordButtons.forEach((button) => {
 
@@ -66,7 +62,6 @@ passwordButtons.forEach((button) => {
 
         const icon =
             button.querySelector("i");
-
 
         if (input.type === "password") {
 
@@ -98,7 +93,6 @@ passwordButtons.forEach((button) => {
 
 });
 
-
 // ==========================================
 // EMAIL VALIDATION
 // ==========================================
@@ -109,7 +103,6 @@ function validEmail(email) {
         .test(email);
 
 }
-
 
 // ==========================================
 // PHONE VALIDATION
@@ -122,7 +115,6 @@ function validPhone(phone) {
 
 }
 
-
 // ==========================================
 // USER REGISTRATION
 // ==========================================
@@ -132,7 +124,6 @@ userForm.addEventListener(
     async (event) => {
 
         event.preventDefault();
-
 
         const name =
             document.getElementById(
@@ -169,7 +160,6 @@ userForm.addEventListener(
                 "userTerms"
             ).checked;
 
-
         // Validation
 
         if (name.length < 3) {
@@ -182,7 +172,6 @@ userForm.addEventListener(
 
         }
 
-
         if (!validEmail(email)) {
 
             alert(
@@ -192,7 +181,6 @@ userForm.addEventListener(
             return;
 
         }
-
 
         if (!validPhone(phone)) {
 
@@ -204,7 +192,6 @@ userForm.addEventListener(
 
         }
 
-
         if (!vehicle) {
 
             alert(
@@ -214,7 +201,6 @@ userForm.addEventListener(
             return;
 
         }
-
 
         if (password.length < 8) {
 
@@ -226,7 +212,6 @@ userForm.addEventListener(
 
         }
 
-
         if (password !== confirmPassword) {
 
             alert(
@@ -237,7 +222,6 @@ userForm.addEventListener(
 
         }
 
-
         if (!terms) {
 
             alert(
@@ -247,7 +231,6 @@ userForm.addEventListener(
             return;
 
         }
-
 
         // Data for backend
 
@@ -267,12 +250,10 @@ userForm.addEventListener(
 
         };
 
-
         console.log(
             "User Registration:",
             userData
         );
-
 
         // Temporary
 
@@ -280,13 +261,11 @@ userForm.addEventListener(
             "User account created successfully!"
         );
 
-
         window.location.href =
             "login.html";
 
     }
 );
-
 
 // ==========================================
 // PARK OWNER REGISTRATION
@@ -297,7 +276,6 @@ ownerForm.addEventListener(
     async (event) => {
 
         event.preventDefault();
-
 
         const ownerName =
             document.getElementById(
@@ -349,7 +327,6 @@ ownerForm.addEventListener(
                 "ownerTerms"
             ).checked;
 
-
         // Validation
 
         if (ownerName.length < 3) {
@@ -362,7 +339,6 @@ ownerForm.addEventListener(
 
         }
 
-
         if (!validEmail(email)) {
 
             alert(
@@ -372,7 +348,6 @@ ownerForm.addEventListener(
             return;
 
         }
-
 
         if (!validPhone(phone)) {
 
@@ -384,7 +359,6 @@ ownerForm.addEventListener(
 
         }
 
-
         if (parkingName === "") {
 
             alert(
@@ -394,7 +368,6 @@ ownerForm.addEventListener(
             return;
 
         }
-
 
         if (location === "") {
 
@@ -406,7 +379,6 @@ ownerForm.addEventListener(
 
         }
 
-
         if (!capacity || capacity < 1) {
 
             alert(
@@ -416,7 +388,6 @@ ownerForm.addEventListener(
             return;
 
         }
-
 
         if (!parkingType) {
 
@@ -428,7 +399,6 @@ ownerForm.addEventListener(
 
         }
 
-
         if (password.length < 8) {
 
             alert(
@@ -438,7 +408,6 @@ ownerForm.addEventListener(
             return;
 
         }
-
 
         if (password !== confirmPassword) {
 
@@ -450,7 +419,6 @@ ownerForm.addEventListener(
 
         }
 
-
         if (!terms) {
 
             alert(
@@ -460,7 +428,6 @@ ownerForm.addEventListener(
             return;
 
         }
-
 
         // Data for backend
 
@@ -486,19 +453,16 @@ ownerForm.addEventListener(
 
         };
 
-
         console.log(
             "Park Owner Registration:",
             ownerData
         );
-
 
         // Temporary
 
         alert(
             "Park Owner account created successfully!"
         );
-
 
         window.location.href =
             "login.html";

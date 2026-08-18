@@ -1,7 +1,3 @@
-/* =========================================
-   GLOBAL
-========================================= */
-
 * {
     margin: 0;
     padding: 0;
@@ -50,11 +46,6 @@ button {
         0 10px 30px rgba(15, 23, 42, 0.08);
 }
 
-
-/* =========================================
-   NAVBAR
-========================================= */
-
 .navbar {
     height: 76px;
 
@@ -74,9 +65,6 @@ button {
 
     backdrop-filter: blur(10px);
 }
-
-
-/* Logo */
 
 .logo {
     display: flex;
@@ -107,9 +95,6 @@ button {
     color: var(--primary);
 }
 
-
-/* Navigation */
-
 .nav-links {
     display: flex;
     gap: 35px;
@@ -127,9 +112,6 @@ button {
 .nav-links a.active {
     color: var(--primary);
 }
-
-
-/* Navbar Buttons */
 
 .nav-buttons {
     display: flex;
@@ -175,11 +157,6 @@ button {
     cursor: pointer;
 }
 
-
-/* =========================================
-   HERO
-========================================= */
-
 .hero {
     min-height: 680px;
 
@@ -200,9 +177,6 @@ button {
         ),
         #f8fafc;
 }
-
-
-/* Hero Content */
 
 .hero-content {
     max-width: 600px;
@@ -251,9 +225,6 @@ button {
 
     margin-bottom: 32px;
 }
-
-
-/* Hero Buttons */
 
 .hero-buttons {
     display: flex;
@@ -304,9 +275,6 @@ button {
     color: var(--primary);
 }
 
-
-/* Hero Stats */
-
 .hero-stats {
     display: flex;
     gap: 45px;
@@ -326,11 +294,6 @@ button {
 
     font-size: 12px;
 }
-
-
-/* =========================================
-   HERO DASHBOARD PREVIEW
-========================================= */
 
 .hero-visual {
     display: flex;
@@ -354,9 +317,6 @@ button {
 
     transform: none;
 }
-
-
-/* Preview Header */
 
 .preview-header {
     display: flex;
@@ -394,9 +354,6 @@ button {
     border-radius: 10px;
 }
 
-
-/* Search */
-
 .search-box {
     display: flex;
 
@@ -418,9 +375,6 @@ button {
 
     margin-bottom: 16px;
 }
-
-
-/* Parking Card */
 
 .parking-preview-card {
     display: flex;
@@ -516,9 +470,6 @@ button {
     font-size: 10px;
 }
 
-
-/* AI Card */
-
 .ai-card {
     display: flex;
 
@@ -575,11 +526,6 @@ button {
     margin: 0;
 }
 
-
-/* =========================================
-   SECTION COMMON
-========================================= */
-
 .features-section,
 .how-section {
     padding: 100px 7%;
@@ -620,11 +566,6 @@ button {
 
     font-size: 15px;
 }
-
-
-/* =========================================
-   FEATURES
-========================================= */
 
 .features-section {
     background: white;
@@ -714,11 +655,6 @@ button {
     font-weight: 700;
 }
 
-
-/* =========================================
-   HOW IT WORKS
-========================================= */
-
 .how-section {
     background: #f8fafc;
 }
@@ -786,11 +722,6 @@ button {
 
     font-size: 13px;
 }
-
-
-/* =========================================
-   CTA
-========================================= */
 
 .cta-section {
     padding: 90px 7%;
@@ -861,11 +792,6 @@ button {
 
     font-size: 14px;
 }
-
-
-/* =========================================
-   FOOTER
-========================================= */
 
 footer {
     background: #0f172a;
@@ -951,11 +877,6 @@ footer {
     color: white;
 }
 
-
-/* =========================================
-   RESPONSIVE
-========================================= */
-
 @media (max-width: 1000px) {
 
     .nav-links {
@@ -995,7 +916,6 @@ footer {
     }
 
 }
-
 
 @media (max-width: 700px) {
 

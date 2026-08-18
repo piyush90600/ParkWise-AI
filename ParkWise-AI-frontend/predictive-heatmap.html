@@ -7,7 +7,6 @@
 
     <title>Predictive Heatmap | ParkWise AI</title>
 
-    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -15,17 +14,14 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
 
-    <!-- Font Awesome -->
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Leaflet -->
     <link
         rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
-    <!-- Page CSS -->
     <link rel="stylesheet" href="css/predictive-heatmap.css">
     <link rel="stylesheet" href="css/shared.css">
 </head>
@@ -34,11 +30,8 @@
 
 <div class="app-layout">
 
-    <!-- ================= SIDEBAR ================= -->
-
     <aside class="sidebar">
 
-        <!-- Logo -->
         <div class="brand">
 
             <div class="brand-logo">
@@ -52,8 +45,6 @@
 
         </div>
 
-
-        <!-- Navigation -->
         <nav class="sidebar-nav">
 
             <div class="nav-section">
@@ -82,7 +73,6 @@
 
             </div>
 
-
             <div class="nav-section">
 
                 <p class="nav-title">ACTIVITY</p>
@@ -98,7 +88,6 @@
                 </a>
 
             </div>
-
 
             <div class="nav-section">
 
@@ -118,8 +107,6 @@
 
         </nav>
 
-
-        <!-- Sidebar Bottom -->
         <div class="sidebar-bottom">
 
             <div class="help-card">
@@ -135,7 +122,6 @@
 
             </div>
 
-
             <a href="login.html" class="logout-link">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
                 <span>Logout</span>
@@ -145,13 +131,7 @@
 
     </aside>
 
-
-    <!-- ================= MAIN CONTENT ================= -->
-
     <main class="main-content">
-
-
-        <!-- ================= HEADER ================= -->
 
         <header class="top-header">
 
@@ -169,14 +149,12 @@
 
             </div>
 
-
             <div class="header-right">
 
                 <button class="notification-btn">
                     <i class="fa-regular fa-bell"></i>
                     <span></span>
                 </button>
-
 
                 <div class="profile">
 
@@ -197,13 +175,7 @@
 
         </header>
 
-
-        <!-- ================= PAGE BODY ================= -->
-
         <div class="page-body">
-
-
-            <!-- Page intro -->
 
             <div class="page-intro">
 
@@ -223,16 +195,12 @@
 
                 </div>
 
-
                 <div class="prediction-status">
                     <span class="status-dot"></span>
                     AI Prediction Active
                 </div>
 
             </div>
-
-
-            <!-- ================= CONTROLS ================= -->
 
             <section class="controls-card">
 
@@ -265,7 +233,6 @@
 
                 </div>
 
-
                 <button
                     class="refresh-btn"
                     id="refreshHeatmapBtn">
@@ -278,13 +245,7 @@
 
             </section>
 
-
-            <!-- ================= MAP + SIDE PANEL ================= -->
-
             <section class="heatmap-layout">
-
-
-                <!-- MAP -->
 
                 <div class="map-card">
 
@@ -303,14 +264,10 @@
 
                     </div>
 
-
                     <div
                         id="heatmapMap"
                         class="heatmap-map">
                     </div>
-
-
-                    <!-- Legend -->
 
                     <div class="map-legend">
 
@@ -337,13 +294,7 @@
 
                 </div>
 
-
-                <!-- RIGHT PANEL -->
-
                 <div class="insights-panel">
-
-
-                    <!-- High congestion -->
 
                     <div class="insight-card">
 
@@ -373,9 +324,6 @@
 
                     </div>
 
-
-                    <!-- Best availability -->
-
                     <div class="insight-card">
 
                         <div class="insight-icon success">
@@ -403,9 +351,6 @@
                         </div>
 
                     </div>
-
-
-                    <!-- AI Insight -->
 
                     <div class="ai-insight">
 
@@ -439,12 +384,7 @@
 
 </div>
 
-
-<!-- Leaflet JS -->
-
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-<!-- Page JS -->
 
 <script src="js/shared-layout.js"></script>
 <script src="js/predictive-heatmap.js"></script>

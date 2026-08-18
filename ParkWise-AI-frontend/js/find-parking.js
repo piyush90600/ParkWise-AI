@@ -1,7 +1,3 @@
-/* =========================================================
-   PARKING DATA
-========================================================= */
-
 const parkingData = {
 
     1: {
@@ -60,11 +56,6 @@ const parkingData = {
 
 };
 
-
-/* =========================================================
-   DOM ELEMENTS
-========================================================= */
-
 const destinationInput =
     document.getElementById("destinationInput");
 
@@ -83,11 +74,6 @@ const toastMessage =
 const parkingCards =
     document.querySelectorAll(".parking-card");
 
-
-/* =========================================================
-   SEARCH INPUT
-========================================================= */
-
 destinationInput.addEventListener("input", function () {
 
     if (this.value.trim() !== "") {
@@ -102,11 +88,6 @@ destinationInput.addEventListener("input", function () {
 
 });
 
-
-/* =========================================================
-   CLEAR SEARCH
-========================================================= */
-
 clearSearch.addEventListener("click", function () {
 
     destinationInput.value = "";
@@ -116,11 +97,6 @@ clearSearch.addEventListener("click", function () {
     destinationInput.focus();
 
 });
-
-
-/* =========================================================
-   SEARCH PARKING
-========================================================= */
 
 function searchParking() {
 
@@ -138,11 +114,9 @@ function searchParking() {
         return;
     }
 
-
     showToast(
         `Searching parking near ${destination}...`
     );
-
 
     setTimeout(() => {
 
@@ -154,11 +128,6 @@ function searchParking() {
 
 }
 
-
-/* =========================================================
-   ENTER KEY SEARCH
-========================================================= */
-
 destinationInput.addEventListener("keydown", function (event) {
 
     if (event.key === "Enter") {
@@ -168,11 +137,6 @@ destinationInput.addEventListener("keydown", function (event) {
     }
 
 });
-
-
-/* =========================================================
-   QUICK SEARCH
-========================================================= */
 
 function quickSearch(location) {
 
@@ -184,15 +148,9 @@ function quickSearch(location) {
 
 }
 
-
-/* =========================================================
-   CURRENT LOCATION
-========================================================= */
-
 function useCurrentLocation() {
 
     showToast("Detecting your current location...");
-
 
     if (!navigator.geolocation) {
 
@@ -202,7 +160,6 @@ function useCurrentLocation() {
 
         return;
     }
-
 
     navigator.geolocation.getCurrentPosition(
 
@@ -214,13 +171,11 @@ function useCurrentLocation() {
             const longitude =
                 position.coords.longitude;
 
-
             destinationInput.value =
                 "My Current Location";
 
             clearSearch.style.display =
                 "block";
-
 
             showToast(
                 "Current location detected."
@@ -247,11 +202,6 @@ function useCurrentLocation() {
 
 }
 
-
-/* =========================================================
-   FILTER PARKING
-========================================================= */
-
 function filterParking(filter, button) {
 
     document
@@ -262,12 +212,9 @@ function filterParking(filter, button) {
 
         });
 
-
     button.classList.add("active");
 
-
     let visibleCount = 0;
-
 
     parkingCards.forEach(card => {
 
@@ -280,9 +227,7 @@ function filterParking(filter, button) {
         const distance =
             Number(card.dataset.distance);
 
-
         let show = true;
-
 
         if (filter === "available") {
 
@@ -291,7 +236,6 @@ function filterParking(filter, button) {
 
         }
 
-
         else if (filter === "cheap") {
 
             show =
@@ -299,14 +243,12 @@ function filterParking(filter, button) {
 
         }
 
-
         else if (filter === "nearby") {
 
             show =
                 distance <= 1;
 
         }
-
 
         if (show) {
 
@@ -322,21 +264,14 @@ function filterParking(filter, button) {
 
     });
 
-
     document.getElementById("resultCount")
         .textContent = visibleCount;
-
 
     showToast(
         `${visibleCount} parking areas found.`
     );
 
 }
-
-
-/* =========================================================
-   SORT MENU
-========================================================= */
 
 function toggleSortMenu() {
 
@@ -347,9 +282,6 @@ function toggleSortMenu() {
 
 }
 
-
-/* Close sort menu */
-
 document.addEventListener("click", function (event) {
 
     const sortMenu =
@@ -357,7 +289,6 @@ document.addEventListener("click", function (event) {
 
     const sortButton =
         document.querySelector(".sort-btn");
-
 
     if (
         !sortMenu.contains(event.target) &&
@@ -370,11 +301,6 @@ document.addEventListener("click", function (event) {
 
 });
 
-
-/* =========================================================
-   SORT PARKING
-========================================================= */
-
 function sortParking(type) {
 
     const container =
@@ -384,7 +310,6 @@ function sortParking(type) {
         Array.from(
             container.querySelectorAll(".parking-card")
         );
-
 
     cards.sort((a, b) => {
 
@@ -397,7 +322,6 @@ function sortParking(type) {
 
         }
 
-
         if (type === "price") {
 
             return (
@@ -407,7 +331,6 @@ function sortParking(type) {
 
         }
 
-
         if (type === "availability") {
 
             return (
@@ -416,7 +339,6 @@ function sortParking(type) {
             );
 
         }
-
 
         if (type === "rating") {
 
@@ -429,18 +351,15 @@ function sortParking(type) {
 
     });
 
-
     cards.forEach(card => {
 
         container.appendChild(card);
 
     });
 
-
     document
         .getElementById("sortMenu")
         .classList.remove("show");
-
 
     showToast(
         "Parking list sorted successfully."
@@ -448,16 +367,10 @@ function sortParking(type) {
 
 }
 
-
-/* =========================================================
-   SELECT PARKING
-========================================================= */
-
 function selectParking(id) {
 
     const parking =
         parkingData[id];
-
 
     if (!parking) {
 
@@ -465,39 +378,27 @@ function selectParking(id) {
 
     }
 
-
     document.getElementById("modalTitle")
         .textContent = parking.name;
-
 
     document.getElementById("modalAddress")
         .textContent = parking.address;
 
-
     document.getElementById("modalSpots")
         .textContent = parking.spots;
-
 
     document.getElementById("modalPrice")
         .textContent = parking.price;
 
-
     document.getElementById("modalDistance")
         .textContent = parking.distance;
 
-
     parkingModal.classList.add("show");
-
 
     document.body.style.overflow =
         "hidden";
 
 }
-
-
-/* =========================================================
-   CLOSE MODAL
-========================================================= */
 
 function closeModal() {
 
@@ -507,9 +408,6 @@ function closeModal() {
         "";
 
 }
-
-
-/* Close modal by clicking outside */
 
 parkingModal.addEventListener("click", function (event) {
 
@@ -521,9 +419,6 @@ parkingModal.addEventListener("click", function (event) {
 
 });
 
-
-/* ESC key */
-
 document.addEventListener("keydown", function (event) {
 
     if (event.key === "Escape") {
@@ -534,32 +429,19 @@ document.addEventListener("keydown", function (event) {
 
 });
 
-
-/* =========================================================
-   DIRECTIONS
-========================================================= */
-
 function getDirections(destination) {
 
     showToast(
         `Opening directions to ${destination}...`
     );
 
-
-    /*
-       For the final project you can replace this
-       with Google Maps / Mapbox / Leaflet routing.
-    */
-
     setTimeout(() => {
 
         const encodedDestination =
             encodeURIComponent(destination);
 
-
         const mapsURL =
             `https://www.google.com/maps/search/?api=1&query=${encodedDestination}`;
-
 
         window.open(
             mapsURL,
@@ -570,19 +452,12 @@ function getDirections(destination) {
 
 }
 
-
-/* =========================================================
-   MAP ZOOM
-========================================================= */
-
 let mapScale = 1;
-
 
 function zoomMap(direction) {
 
     const map =
         document.getElementById("parkingMap");
-
 
     if (direction === "in") {
 
@@ -596,13 +471,11 @@ function zoomMap(direction) {
 
     }
 
-
     if (mapScale < 0.8) {
 
         mapScale = 0.8;
 
     }
-
 
     if (mapScale > 1.4) {
 
@@ -610,10 +483,8 @@ function zoomMap(direction) {
 
     }
 
-
     map.style.backgroundSize =
         `${55 * mapScale}px ${55 * mapScale}px`;
-
 
     showToast(
         direction === "in"
@@ -623,25 +494,16 @@ function zoomMap(direction) {
 
 }
 
-
-/* =========================================================
-   TOAST
-========================================================= */
-
 let toastTimer;
-
 
 function showToast(message) {
 
     toastMessage.textContent =
         message;
 
-
     toast.classList.add("show");
 
-
     clearTimeout(toastTimer);
-
 
     toastTimer = setTimeout(() => {
 
@@ -651,26 +513,17 @@ function showToast(message) {
 
 }
 
-
-/* =========================================================
-   SIDEBAR MOBILE
-========================================================= */
-
 const mobileMenu =
     document.getElementById("mobileMenu");
 
 const sidebar =
     document.getElementById("sidebar");
 
-
 mobileMenu.addEventListener("click", function () {
 
     sidebar.classList.toggle("open");
 
 });
-
-
-/* Close sidebar after navigation */
 
 document
     .querySelectorAll(".nav-link")
@@ -690,11 +543,6 @@ document
 
     });
 
-
-/* =========================================================
-   NOTIFICATIONS
-========================================================= */
-
 function toggleNotifications() {
 
     showToast(
@@ -703,21 +551,11 @@ function toggleNotifications() {
 
 }
 
-
-/* =========================================================
-   OTHER NAVIGATION
-========================================================= */
-
 function showMessage(message) {
 
     showToast(message);
 
 }
-
-
-/* =========================================================
-   LOGOUT
-========================================================= */
 
 function logout() {
 
@@ -726,13 +564,7 @@ function logout() {
             "Are you sure you want to logout?"
         );
 
-
     if (confirmLogout) {
-
-        /*
-           Change this to your actual
-           login page filename if needed.
-        */
 
         window.location.href =
             "login.html";
@@ -740,11 +572,6 @@ function logout() {
     }
 
 }
-
-
-/* =========================================================
-   INITIALIZATION
-========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 

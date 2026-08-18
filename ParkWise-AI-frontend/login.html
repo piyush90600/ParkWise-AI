@@ -13,8 +13,6 @@
 
 <body class="auth-page">
 
-    <!-- ================= HEADER ================= -->
-
     <header class="auth-header">
 
         <a href="landingpage.html" class="brand">
@@ -32,12 +30,7 @@
 
     </header>
 
-
-    <!-- ================= MAIN ================= -->
-
     <main class="auth-main">
-
-        <!-- ================= LEFT SECTION ================= -->
 
         <section class="auth-intro">
 
@@ -48,20 +41,15 @@
                     Secure Parking Platform
                 </div>
 
-
                 <h1>
                     Welcome back to
                     <span>ParkWise AI.</span>
                 </h1>
 
-
                 <p class="intro-description">
                     Sign in to find smarter parking, get AI-powered
                     recommendations and predict parking availability.
                 </p>
-
-
-                <!-- Feature 1 -->
 
                 <div class="feature-item">
 
@@ -79,9 +67,6 @@
 
                 </div>
 
-
-                <!-- Feature 2 -->
-
                 <div class="feature-item">
 
                     <div class="feature-icon">
@@ -97,9 +82,6 @@
                     </div>
 
                 </div>
-
-
-                <!-- Feature 3 -->
 
                 <div class="feature-item">
 
@@ -121,19 +103,13 @@
 
         </section>
 
-
-        <!-- ================= RIGHT SECTION ================= -->
-
         <section class="auth-form-section">
 
             <div class="login-card">
 
-                <!-- Login logo -->
-
                 <div class="login-logo">
                     P
                 </div>
-
 
                 <div class="login-heading">
 
@@ -145,13 +121,7 @@
 
                 </div>
 
-
-                <!-- ================= LOGIN FORM ================= -->
-
                 <form id="loginForm">
-
-
-                    <!-- EMAIL -->
 
                     <div class="form-group">
 
@@ -177,9 +147,6 @@
 
                     </div>
 
-
-                    <!-- PASSWORD -->
-
                     <div class="form-group">
 
                         <div class="password-label-row">
@@ -193,7 +160,6 @@
                             </a>
 
                         </div>
-
 
                         <div class="input-wrapper">
 
@@ -222,9 +188,6 @@
 
                     </div>
 
-
-                    <!-- REMEMBER ME -->
-
                     <div class="login-options">
 
                         <label class="remember-me">
@@ -240,9 +203,6 @@
 
                     </div>
 
-
-                    <!-- SIGN IN -->
-
                     <button
                         type="submit"
                         class="auth-submit-btn"
@@ -251,17 +211,11 @@
                         <span class="button-arrow">→</span>
                     </button>
 
-
-                    <!-- DIVIDER -->
-
                     <div class="auth-divider">
 
                         <span>or continue with</span>
 
                     </div>
-
-
-                    <!-- SOCIAL LOGIN -->
 
                     <div class="social-login">
 
@@ -272,7 +226,6 @@
                             <span class="google-icon">G</span>
                             <span>Google</span>
                         </button>
-
 
                         <button
                             type="button"
@@ -287,9 +240,6 @@
 
                     </div>
 
-
-                    <!-- CREATE ACCOUNT -->
-
                     <p class="register-text">
 
                         Don't have an account?
@@ -299,9 +249,6 @@
                         </a>
 
                     </p>
-
-
-                    <!-- SECURITY -->
 
                     <div class="security-note">
 
@@ -321,9 +268,6 @@
 
     </main>
 
-
-    <!-- ================= JAVASCRIPT ================= -->
-
     <script>
 
         /* ==========================================
@@ -335,7 +279,6 @@
 
         const password =
             document.getElementById("password");
-
 
         togglePassword.addEventListener("click", function () {
 
@@ -364,7 +307,6 @@
 
         });
 
-
         /* ==========================================
            LOGIN
            
@@ -377,18 +319,15 @@
         const loginForm =
             document.getElementById("loginForm");
 
-
         loginForm.addEventListener("submit", function (event) {
 
             event.preventDefault();
-
 
             const email =
                 document.getElementById("email").value.trim();
 
             const passwordValue =
                 document.getElementById("password").value.trim();
-
 
             /* Empty email */
 
@@ -401,7 +340,6 @@
                 return;
             }
 
-
             /* Empty password */
 
             if (passwordValue === "") {
@@ -412,7 +350,6 @@
 
                 return;
             }
-
 
             /*
                 TEMPORARY:

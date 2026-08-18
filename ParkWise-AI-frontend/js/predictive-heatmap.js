@@ -1,14 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =====================================================
-       MAP INITIALIZATION
-       ===================================================== */
-
     const map = L.map("heatmapMap").setView(
         [28.6692, 77.4538],
         13
     );
-
 
     L.tileLayer(
         "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -17,21 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     ).addTo(map);
 
-
-    /* =====================================================
-       ELEMENTS
-       ===================================================== */
-
     const refreshBtn =
         document.getElementById("refreshHeatmapBtn");
 
     const timeSelect =
         document.getElementById("timeRangeSelect");
-
-
-    /* =====================================================
-       PARKING DATA
-       ===================================================== */
 
     const locations = [
 
@@ -77,17 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     ];
 
-
-    /* =====================================================
-       MAP CIRCLES
-       ===================================================== */
-
     let circles = [];
-
-
-    /* =====================================================
-       OCCUPANCY COLOR
-       ===================================================== */
 
     function getColor(occupancy) {
 
@@ -102,17 +77,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return "#22c55e";
     }
 
-
-    /* =====================================================
-       SIMULATED TIME FORECAST
-       ===================================================== */
-
     function applyTimeForecast(baseOccupancy) {
 
         const selectedTime = timeSelect.value;
 
         let occupancy = baseOccupancy;
-
 
         if (selectedTime === "1hr") {
 
@@ -128,33 +97,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
-
-        /* Keep value between 5 and 98 */
-
         occupancy = Math.max(
             5,
             Math.min(98, occupancy)
         );
 
-
         return occupancy;
     }
 
-
-    /* =====================================================
-       LOAD HEATMAP
-       ===================================================== */
-
     async function loadHeatmap() {
-
-        /* Button animation */
 
         refreshBtn.classList.add("loading");
 
         refreshBtn.disabled = true;
-
-
-        /* Remove old circles */
 
         circles.forEach(circle => {
 
@@ -164,18 +119,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         circles = [];
 
-
-        /* Process locations */
-
         for (const location of locations) {
 
             let occupancy =
                 applyTimeForecast(location.baseOcc);
-
-
-            /* =================================================
-               FASTAPI ML PREDICTION
-               ================================================= */
 
             try {
 
@@ -201,12 +148,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 );
 
-
                 if (response.ok) {
 
                     const data =
                         await response.json();
-
 
                     if (
                         data.predicted_occupancy !==
@@ -218,8 +163,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                 data.predicted_occupancy
                             );
 
-                        /* Apply forecast */
-
                         occupancy =
                             applyTimeForecast(
                                 occupancy
@@ -229,25 +172,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             } catch (error) {
 
-                /*
-                    If FastAPI is not running,
-                    the frontend uses the sample
-                    occupancy values automatically.
-                */
-
                 console.log(
                     "ML API unavailable. Using sample prediction."
                 );
             }
 
-
-            /* =================================================
-               CREATE CIRCLE
-               ================================================= */
-
             const color =
                 getColor(occupancy);
-
 
             const circle =
                 L.circle(
@@ -269,11 +200,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     }
                 ).addTo(map);
-
-
-            /* =================================================
-               POPUP
-               ================================================= */
 
             circle.bindPopup(`
 
@@ -325,13 +251,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             `);
 
-
             circles.push(circle);
 
         }
-
-
-        /* Button animation off */
 
         setTimeout(() => {
 
@@ -343,30 +265,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-
-    /* =====================================================
-       REFRESH BUTTON
-       ===================================================== */
-
     refreshBtn.addEventListener(
         "click",
         loadHeatmap
     );
 
-
-    /* =====================================================
-       TIME WINDOW CHANGE
-       ===================================================== */
-
     timeSelect.addEventListener(
         "change",
         loadHeatmap
     );
-
-
-    /* =====================================================
-       INITIAL LOAD
-       ===================================================== */
 
     loadHeatmap();
 

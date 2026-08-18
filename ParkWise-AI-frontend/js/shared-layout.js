@@ -1,4 +1,3 @@
-/* Shared signed-in navigation. Keep this file loaded on every application page. */
 (function () {
   const sidebar = document.querySelector('.sidebar');
   if (!sidebar) return;

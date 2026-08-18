@@ -11,23 +11,17 @@
     <link rel="stylesheet" href="css/find-parking.css">
     <link rel="stylesheet" href="css/shared.css">
 
-    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
 
-    <!-- Font Awesome -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
-
-    <!-- =====================================================
-         SIDEBAR
-    ====================================================== -->
 
     <aside class="sidebar" id="sidebar">
 
@@ -43,7 +37,6 @@
             </div>
 
         </div>
-
 
         <nav class="sidebar-nav">
 
@@ -69,7 +62,6 @@
                 <span>AI Recommendation</span>
             </a>
 
-
             <p class="nav-heading">ACTIVITY</p>
 
             <a href="parking-history.html" class="nav-link" >
@@ -81,7 +73,6 @@
                 <i class="fa-solid fa-bookmark"></i>
                 <span>Saved Locations</span>
             </a>
-
 
             <p class="nav-heading">ACCOUNT</p>
 
@@ -96,7 +87,6 @@
             </a>
 
         </nav>
-
 
         <div class="sidebar-bottom">
 
@@ -125,21 +115,13 @@
 
     </aside>
 
-
-    <!-- =====================================================
-         MAIN CONTENT
-    ====================================================== -->
-
     <main class="main-content">
-
-        <!-- TOP HEADER -->
 
         <header class="top-header">
 
             <button class="mobile-menu" id="mobileMenu">
                 <i class="fa-solid fa-bars"></i>
             </button>
-
 
             <div class="page-title">
 
@@ -151,7 +133,6 @@
 
             </div>
 
-
             <div class="header-actions">
 
                 <button class="notification-btn" onclick="toggleNotifications()">
@@ -161,7 +142,6 @@
                     <span class="notification-dot"></span>
 
                 </button>
-
 
                 <div class="profile">
 
@@ -184,15 +164,7 @@
 
         </header>
 
-
-        <!-- =====================================================
-             PAGE CONTENT
-        ====================================================== -->
-
         <section class="page-content">
-
-
-            <!-- SEARCH SECTION -->
 
             <div class="search-section">
 
@@ -215,7 +187,6 @@
 
                 </div>
 
-
                 <div class="search-box">
 
                     <div class="search-input-wrapper">
@@ -234,7 +205,6 @@
 
                     </div>
 
-
                     <button class="current-location-btn"
                         onclick="useCurrentLocation()">
 
@@ -243,7 +213,6 @@
                         <span>Use my location</span>
 
                     </button>
-
 
                     <button class="search-btn"
                         onclick="searchParking()">
@@ -255,9 +224,6 @@
                     </button>
 
                 </div>
-
-
-                <!-- QUICK LOCATIONS -->
 
                 <div class="quick-search">
 
@@ -283,9 +249,6 @@
 
             </div>
 
-
-            <!-- FILTER BAR -->
-
             <div class="filter-bar">
 
                 <div class="result-count">
@@ -298,7 +261,6 @@
 
                 </div>
 
-
                 <div class="filters">
 
                     <button class="filter-btn active"
@@ -310,7 +272,6 @@
 
                     </button>
 
-
                     <button class="filter-btn"
                         onclick="filterParking('available', this)">
 
@@ -320,7 +281,6 @@
 
                     </button>
 
-
                     <button class="filter-btn"
                         onclick="filterParking('cheap', this)">
 
@@ -329,7 +289,6 @@
                         Budget
 
                     </button>
-
 
                     <button class="filter-btn"
                         onclick="filterParking('nearby', this)">
@@ -342,7 +301,6 @@
 
                 </div>
 
-
                 <button class="sort-btn"
                     onclick="toggleSortMenu()">
 
@@ -353,7 +311,6 @@
                     <i class="fa-solid fa-chevron-down"></i>
 
                 </button>
-
 
                 <div class="sort-menu" id="sortMenu">
 
@@ -377,15 +334,7 @@
 
             </div>
 
-
-            <!-- =====================================================
-                 PARKING CONTENT
-            ====================================================== -->
-
             <div class="parking-layout">
-
-
-                <!-- MAP -->
 
                 <div class="map-container">
 
@@ -412,10 +361,7 @@
 
                     </div>
 
-
                     <div class="map" id="parkingMap">
-
-                        <!-- Roads -->
 
                         <div class="road road-horizontal road-h1"></div>
                         <div class="road road-horizontal road-h2"></div>
@@ -424,9 +370,6 @@
                         <div class="road road-vertical road-v1"></div>
                         <div class="road road-vertical road-v2"></div>
                         <div class="road road-vertical road-v3"></div>
-
-
-                        <!-- Map areas -->
 
                         <div class="map-area area-one">
                             CITY MALL
@@ -440,9 +383,6 @@
                             METRO
                         </div>
 
-
-                        <!-- User Location -->
-
                         <div class="user-location">
 
                             <div class="location-pulse"></div>
@@ -453,9 +393,6 @@
 
                         </div>
 
-
-                        <!-- Parking Markers -->
-
                         <button class="map-marker available-marker"
                             style="left:22%; top:29%;"
                             onclick="selectParking(1)">
@@ -464,7 +401,6 @@
                             <span>24</span>
 
                         </button>
-
 
                         <button class="map-marker available-marker"
                             style="left:47%; top:23%;"
@@ -475,7 +411,6 @@
 
                         </button>
 
-
                         <button class="map-marker limited-marker"
                             style="left:67%; top:42%;"
                             onclick="selectParking(3)">
@@ -484,7 +419,6 @@
                             <span>6</span>
 
                         </button>
-
 
                         <button class="map-marker available-marker"
                             style="left:32%; top:64%;"
@@ -495,7 +429,6 @@
 
                         </button>
 
-
                         <button class="map-marker full-marker"
                             style="left:73%; top:70%;"
                             onclick="selectParking(5)">
@@ -505,7 +438,6 @@
 
                         </button>
 
-
                         <button class="map-marker available-marker"
                             style="left:82%; top:27%;"
                             onclick="selectParking(6)">
@@ -514,9 +446,6 @@
                             <span>14</span>
 
                         </button>
-
-
-                        <!-- Map Controls -->
 
                         <div class="map-controls">
 
@@ -529,9 +458,6 @@
                             </button>
 
                         </div>
-
-
-                        <!-- Legend -->
 
                         <div class="map-legend">
 
@@ -555,11 +481,6 @@
                     </div>
 
                 </div>
-
-
-                <!-- =====================================================
-                     PARKING LIST
-                ====================================================== -->
 
                 <div class="parking-list-section">
 
@@ -587,9 +508,6 @@
 
                     </div>
 
-
-                    <!-- AI RECOMMENDATION -->
-
                     <div class="ai-recommendation">
 
                         <div class="ai-top">
@@ -611,7 +529,6 @@
                             <i class="fa-solid fa-sparkles sparkle"></i>
 
                         </div>
-
 
                         <div class="recommended-place">
 
@@ -638,7 +555,6 @@
 
                         </div>
 
-
                         <button class="recommend-btn"
                             onclick="selectParking(1)">
 
@@ -650,13 +566,7 @@
 
                     </div>
 
-
-                    <!-- PARKING CARDS -->
-
                     <div class="parking-cards" id="parkingCards">
-
-
-                        <!-- CARD 1 -->
 
                         <div class="parking-card"
                             data-status="available"
@@ -697,7 +607,6 @@
 
                             </div>
 
-
                             <div class="parking-details">
 
                                 <span>
@@ -716,7 +625,6 @@
                                 </span>
 
                             </div>
-
 
                             <div class="parking-card-bottom">
 
@@ -739,9 +647,6 @@
                             </div>
 
                         </div>
-
-
-                        <!-- CARD 2 -->
 
                         <div class="parking-card"
                             data-status="available"
@@ -782,7 +687,6 @@
 
                             </div>
 
-
                             <div class="parking-details">
 
                                 <span>
@@ -801,7 +705,6 @@
                                 </span>
 
                             </div>
-
 
                             <div class="parking-card-bottom">
 
@@ -824,9 +727,6 @@
                             </div>
 
                         </div>
-
-
-                        <!-- CARD 3 -->
 
                         <div class="parking-card"
                             data-status="limited"
@@ -867,7 +767,6 @@
 
                             </div>
 
-
                             <div class="parking-details">
 
                                 <span>
@@ -886,7 +785,6 @@
                                 </span>
 
                             </div>
-
 
                             <div class="parking-card-bottom">
 
@@ -909,9 +807,6 @@
                             </div>
 
                         </div>
-
-
-                        <!-- CARD 4 -->
 
                         <div class="parking-card"
                             data-status="available"
@@ -952,7 +847,6 @@
 
                             </div>
 
-
                             <div class="parking-details">
 
                                 <span>
@@ -971,7 +865,6 @@
                                 </span>
 
                             </div>
-
 
                             <div class="parking-card-bottom">
 
@@ -994,9 +887,6 @@
                             </div>
 
                         </div>
-
-
-                        <!-- CARD 5 -->
 
                         <div class="parking-card"
                             data-status="full"
@@ -1037,7 +927,6 @@
 
                             </div>
 
-
                             <div class="parking-details">
 
                                 <span>
@@ -1056,7 +945,6 @@
                                 </span>
 
                             </div>
-
 
                             <div class="parking-card-bottom">
 
@@ -1086,11 +974,6 @@
 
     </main>
 
-
-    <!-- =====================================================
-         PARKING DETAILS MODAL
-    ====================================================== -->
-
     <div class="modal-overlay" id="parkingModal">
 
         <div class="parking-modal">
@@ -1099,11 +982,9 @@
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
-
             <div class="modal-icon">
                 <i class="fa-solid fa-square-parking"></i>
             </div>
-
 
             <span class="modal-label">
                 PARKING DETAILS
@@ -1116,7 +997,6 @@
             <p id="modalAddress">
                 City Mall, Main Road
             </p>
-
 
             <div class="modal-stats">
 
@@ -1137,7 +1017,6 @@
 
             </div>
 
-
             <div class="modal-features">
 
                 <span>
@@ -1157,7 +1036,6 @@
 
             </div>
 
-
             <button class="modal-directions"
                 onclick="getDirections(document.getElementById('modalTitle').textContent)">
 
@@ -1171,9 +1049,6 @@
 
     </div>
 
-
-    <!-- Toast -->
-
     <div class="toast" id="toast">
 
         <i class="fa-solid fa-circle-check"></i>
@@ -1183,7 +1058,6 @@
         </span>
 
     </div>
-
 
     <script src="js/shared-layout.js"></script>
     <script src="js/find-parking.js"></script>
