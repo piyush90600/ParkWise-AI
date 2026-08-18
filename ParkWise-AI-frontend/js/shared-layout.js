@@ -25,6 +25,9 @@
       <p class="nav-heading">MAIN MENU</p>${navigation}
     </nav>
     <div class="sidebar-footer">
+      <a href="saved-locations.html" class="nav-link${page === 'saved-locations.html' ? ' active' : ''}"><i class="fa-solid fa-bookmark" aria-hidden="true"></i><span>Saved Locations</span></a>
+      <a href="profile.html" class="nav-link${page === 'profile.html' ? ' active' : ''}"><i class="fa-solid fa-user" aria-hidden="true"></i><span>Profile</span></a>
+      <a href="settings.html" class="nav-link${page === 'settings.html' ? ' active' : ''}"><i class="fa-solid fa-gear" aria-hidden="true"></i><span>Settings</span></a>
       <a href="login.html" class="nav-link logout"><i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i><span>Logout</span></a>
     </div>`;
 
@@ -33,7 +36,10 @@
     'find-parking.html': ['Find Parking', 'Find the best parking spot near your destination'],
     'predictive-heatmap.html': ['Predictive Heatmap', 'Explore parking demand and predicted availability'],
     'ai-recommendations.html': ['AI Recommendations', 'Ranked matches based on price, distance, and availability'],
-    'parking-history.html': ['Parking History', 'Review your past parking sessions and charges']
+    'parking-history.html': ['Parking History', 'Review your past parking sessions and charges'],
+    'saved-locations.html': ['Saved Locations', 'Your favourite destinations for faster parking searches'],
+    'profile.html': ['Profile', 'Manage your ParkWise account details'],
+    'settings.html': ['Settings', 'Control your parking preferences and notifications']
   };
   const header = document.querySelector('.top-header, .dashboard-topbar');
   const [title, subtitle] = titles[page] || titles['user-dashboard.html'];
