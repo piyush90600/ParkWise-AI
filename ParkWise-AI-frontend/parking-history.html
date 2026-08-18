@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking History | ParkWise AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="css/parking-history.css">
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="brand">
+                <i class="fa-solid fa-square-parking brand-icon"></i>
+                <span class="brand-name">ParkWise<span> AI</span></span>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="user-dashboard.html" class="nav-link">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="find-parking.html" class="nav-link">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Find Parking</span>
+                </a>
+                <a href="predictive-heatmap.html" class="nav-link">
+                    <i class="fa-solid fa-fire"></i>
+                    <span>Predictive Heatmap</span>
+                </a>
+                <a href="ai-recommendations.html" class="nav-link">
+                    <i class="fa-solid fa-robot"></i>
+                    <span>AI Recommendation</span>
+                </a>
+                <a href="parking-history.html" class="nav-link active">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>Parking History</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="login.html" class="nav-link logout">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div>
+                    <h1>Parking History & Receipts</h1>
+                    <p class="subtitle">Review your past sessions, duration, and charges</p>
+                </div>
+                <div class="header-profile">
+                    <i class="fa-regular fa-bell icon-btn"></i>
+                    <div class="avatar">KM</div>
+                </div>
+            </header>
+
+            <div class="table-card">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Location</th>
+                            <th>Date & Time</th>
+                            <th>Duration</th>
+                            <th>Total Cost</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>City Center Mall</strong>
+                                <span class="sub-location">Slot A-14</span>
+                            </td>
+                            <td>Aug 16, 2026 • 04:30 PM</td>
+                            <td>2 hrs 15 mins</td>
+                            <td>₹90</td>
+                            <td><span class="badge completed">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Metro Hub Station</strong>
+                                <span class="sub-location">Slot P-08</span>
+                            </td>
+                            <td>Aug 14, 2026 • 09:10 AM</td>
+                            <td>6 hrs 40 mins</td>
+                            <td>₹140</td>
+                            <td><span class="badge completed">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Central Plaza</strong>
+                                <span class="sub-location">Slot B-02</span>
+                            </td>
+                            <td>Aug 11, 2026 • 01:20 PM</td>
+                            <td>1 hr 05 mins</td>
+                            <td>₹50</td>
+                            <td><span class="badge completed">Completed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
