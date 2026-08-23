@@ -74,6 +74,17 @@ const toastMessage =
 const parkingCards =
     document.querySelectorAll(".parking-card");
 
+parkingCards.forEach(card => {
+
+    card.addEventListener("click", function (event) {
+
+        if (event.target.closest("button")) return;
+
+        selectParking(Number(card.dataset.parkingId));
+    });
+
+});
+
 destinationInput.addEventListener("input", function () {
 
     if (this.value.trim() !== "") {
@@ -367,7 +378,42 @@ function sortParking(type) {
 
 }
 
+let selectedParkingId = 1;
+
 function selectParking(id) {
+
+    const parking = parkingData[id];
+
+    if (!parking) return;
+
+    selectedParkingId = id;
+
+    const statusLabel = parking.status === "full"
+        ? "Currently full"
+        : parking.status === "limited"
+            ? "Limited availability"
+            : "Available now";
+
+    document.getElementById("selectedStatus").textContent = statusLabel;
+    document.getElementById("selectedName").textContent = parking.name;
+    document.getElementById("selectedSummary").textContent =
+        `${parking.spots} spaces · ${parking.distance} · ${parking.price}/hr`;
+
+    document.querySelectorAll(".map-marker").forEach(marker => {
+        marker.classList.toggle("selected", Number(marker.dataset.parkingId) === id);
+    });
+
+    parkingCards.forEach(card => {
+        card.classList.toggle("selected", Number(card.dataset.parkingId) === id);
+    });
+}
+
+function openSelectedParking() {
+
+    openParkingModal(selectedParkingId);
+}
+
+function openParkingModal(id) {
 
     const parking =
         parkingData[id];
@@ -397,6 +443,8 @@ function selectParking(id) {
 
     document.body.style.overflow =
         "hidden";
+
+    parkingModal.querySelector(".modal-close").focus();
 
 }
 
@@ -574,6 +622,8 @@ function logout() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+
+    selectParking(selectedParkingId);
 
     console.log(
         "ParkWise AI - Find Parking loaded successfully."

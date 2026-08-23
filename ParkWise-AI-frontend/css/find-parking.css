@@ -2363,3 +2363,54 @@ a {
         padding: 23px;
     }
 }
+
+/* Map-first selection keeps the next action visible without interrupting
+   the comparison flow with a modal. */
+.map-selection {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-top: 1px solid var(--border);
+    background: #ffffff;
+}
+
+.map-selection-icon {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.map-selection-copy { min-width: 0; flex: 1; }
+.map-selection-copy > span { display: block; color: var(--green); font-size: 11px; font-weight: 700; }
+.map-selection-copy h4 { margin: 2px 0; overflow: hidden; color: var(--dark); font-size: 14px; text-overflow: ellipsis; white-space: nowrap; }
+.map-selection-copy p { color: var(--muted); font-size: 12px; }
+
+.selected-details-btn {
+    min-height: 38px;
+    padding: 0 12px;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.selected-details-btn:hover { border-color: var(--primary); background: var(--primary); color: #ffffff; }
+.map-marker.selected { outline: 3px solid rgba(37, 99, 235, .28); outline-offset: 3px; transform: translate(-50%, -50%) scale(1.16); z-index: 31; }
+.parking-card.selected { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37, 99, 235, .12), 0 8px 20px rgba(37, 99, 235, .08); }
+
+@media (max-width: 700px) {
+    .map-selection { padding: 12px 14px; }
+}
+
+@media (max-width: 450px) {
+    .map-selection { align-items: flex-start; }
+    .selected-details-btn { padding: 0 10px; font-size: 11px; }
+}

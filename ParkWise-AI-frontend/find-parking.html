@@ -393,54 +393,54 @@
 
                         </div>
 
-                        <button class="map-marker available-marker"
+                        <button class="map-marker available-marker" type="button" data-parking-id="1"
                             style="left:22%; top:29%;"
-                            onclick="selectParking(1)">
+                            onclick="selectParking(1)" aria-label="City Mall Parking, 24 spaces available">
 
                             <i class="fa-solid fa-square-parking"></i>
                             <span>24</span>
 
                         </button>
 
-                        <button class="map-marker available-marker"
+                        <button class="map-marker available-marker" type="button" data-parking-id="2"
                             style="left:47%; top:23%;"
-                            onclick="selectParking(2)">
+                            onclick="selectParking(2)" aria-label="Metro Station Parking, 18 spaces available">
 
                             <i class="fa-solid fa-square-parking"></i>
                             <span>18</span>
 
                         </button>
 
-                        <button class="map-marker limited-marker"
+                        <button class="map-marker limited-marker" type="button" data-parking-id="3"
                             style="left:67%; top:42%;"
-                            onclick="selectParking(3)">
+                            onclick="selectParking(3)" aria-label="Central Plaza Parking, 6 spaces available">
 
                             <i class="fa-solid fa-square-parking"></i>
                             <span>6</span>
 
                         </button>
 
-                        <button class="map-marker available-marker"
+                        <button class="map-marker available-marker" type="button" data-parking-id="4"
                             style="left:32%; top:64%;"
-                            onclick="selectParking(4)">
+                            onclick="selectParking(4)" aria-label="Market Parking, 31 spaces available">
 
                             <i class="fa-solid fa-square-parking"></i>
                             <span>31</span>
 
                         </button>
 
-                        <button class="map-marker full-marker"
+                        <button class="map-marker full-marker" type="button" data-parking-id="5"
                             style="left:73%; top:70%;"
-                            onclick="selectParking(5)">
+                            onclick="selectParking(5)" aria-label="Downtown Parking, currently full">
 
                             <i class="fa-solid fa-square-parking"></i>
                             <span>0</span>
 
                         </button>
 
-                        <button class="map-marker available-marker"
+                        <button class="map-marker available-marker" type="button" data-parking-id="6"
                             style="left:82%; top:27%;"
-                            onclick="selectParking(6)">
+                            onclick="selectParking(6)" aria-label="Airport Parking, 14 spaces available">
 
                             <i class="fa-solid fa-square-parking"></i>
                             <span>14</span>
@@ -479,6 +479,16 @@
                         </div>
 
                     </div>
+
+                    <section class="map-selection" id="mapSelection" aria-live="polite" aria-label="Selected parking location">
+                        <div class="map-selection-icon"><i class="fa-solid fa-square-parking" aria-hidden="true"></i></div>
+                        <div class="map-selection-copy">
+                            <span id="selectedStatus">Available now</span>
+                            <h4 id="selectedName">City Mall Parking</h4>
+                            <p id="selectedSummary">24 spaces · 0.4 km · ₹40/hr</p>
+                        </div>
+                        <button class="selected-details-btn" type="button" onclick="openSelectedParking()">View details</button>
+                    </section>
 
                 </div>
 
@@ -520,7 +530,7 @@
 
                                 <span>AI RECOMMENDATION</span>
 
-                                <h4>
+                                <h4 id="recommendationHeading">
                                     Best choice for you
                                 </h4>
 
@@ -538,25 +548,31 @@
 
                             <div class="recommend-info">
 
-                                <strong>
+                                <strong id="recommendationName">
                                     City Mall Parking
                                 </strong>
 
-                                <span>
+                                <span id="recommendationMeta">
                                     0.4 km away • 3 min walk
                                 </span>
 
                             </div>
 
-                            <div class="recommend-score">
+                            <div class="recommend-score" id="recommendationScore">
                                 94%
                                 <small>match</small>
                             </div>
 
                         </div>
 
+                        <div class="recommend-reasons" id="recommendationReasons" aria-label="Why this is recommended">
+                            <span><i class="fa-solid fa-person-walking" aria-hidden="true"></i>3 min walk</span>
+                            <span><i class="fa-solid fa-indian-rupee-sign" aria-hidden="true"></i>₹40/hr</span>
+                            <span><i class="fa-solid fa-car" aria-hidden="true"></i>24 spots open</span>
+                        </div>
+
                         <button class="recommend-btn"
-                            onclick="selectParking(1)">
+                            type="button" onclick="selectRecommendedParking()">
 
                             View Recommendation
 
@@ -569,6 +585,7 @@
                     <div class="parking-cards" id="parkingCards">
 
                         <div class="parking-card"
+                            data-parking-id="1"
                             data-status="available"
                             data-price="40"
                             data-distance="0.4"
@@ -649,6 +666,7 @@
                         </div>
 
                         <div class="parking-card"
+                            data-parking-id="2"
                             data-status="available"
                             data-price="30"
                             data-distance="0.7"
@@ -729,6 +747,7 @@
                         </div>
 
                         <div class="parking-card"
+                            data-parking-id="3"
                             data-status="limited"
                             data-price="50"
                             data-distance="0.9"
@@ -809,6 +828,7 @@
                         </div>
 
                         <div class="parking-card"
+                            data-parking-id="4"
                             data-status="available"
                             data-price="35"
                             data-distance="1.1"
@@ -889,6 +909,7 @@
                         </div>
 
                         <div class="parking-card"
+                            data-parking-id="5"
                             data-status="full"
                             data-price="45"
                             data-distance="1.4"
