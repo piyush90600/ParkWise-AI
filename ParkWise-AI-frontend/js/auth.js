@@ -172,21 +172,27 @@ loginForm.addEventListener("submit", async (event) => {
 
     try {
 
-        // Temporary demo delay
+    const response = await fetch("http://127.0.0.1:8000/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email: emailInput.value.trim(),
+            password: passwordInput.value
+        })
+    });
 
-        await new Promise(resolve =>
-            setTimeout(resolve, 1000)
-        );
+    const result = await response.json();
 
-        const email =
-            emailInput.value.trim();
+    if (response.ok && result.status === "success") {
+        window.location.href = "user-dashboard.html";
+    } else {
+        errorText.textContent =
+            result.message || "Invalid email or password";
 
-        if (email) {
-
-            window.location.href =
-                "user-dashboard.html";
-
-        }
+        loginError.style.display = "flex";
+    }
 
     } catch (error) {
 

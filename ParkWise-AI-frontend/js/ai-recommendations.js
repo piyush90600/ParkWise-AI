@@ -12,39 +12,106 @@ document.addEventListener("DOMContentLoaded", () => {
         { name: "Metro Hub Express Lot", price: 15, dist: 1.8, rating: 4.6, baseOccupancy: 15 }
     ];
 
-    function calculateAndSort() {
-        const priority = prioritySelect.value;
-        const sortedSpots = [...parkingLots];
+    async function calculateAndSort() {
+    const priority = prioritySelect.value;
+    const sortedSpots = [...parkingLots];
 
-        // Dynamic sorting and match score calculation based on priority
-        sortedSpots.forEach(spot => {
-            let score = 0;
+    // Get ML predicted occupancy for every parking spot
+    await Promise.all(
+        sortedSpots.map(async (spot) => {
+            try {
+                const response = await fetch("http://127.0.0.1:8000/predict", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        price: spot.price,
+                        avg_rating: spot.rating,
+                        distance_km: spot.dist
+                    })
+                });
 
-            if (priority === "price") {
-                // Lower price gives higher score
-                score = Math.max(60, Math.round(100 - (spot.price * 1.5)));
-            } else if (priority === "distance") {
-                // Closer distance gives higher score
-                score = Math.max(60, Math.round(100 - (spot.dist * 12)));
-            } else if (priority === "availability") {
-                // Lower occupancy gives higher score
-                score = Math.max(60, Math.round(100 - spot.baseOccupancy));
-            } else {
-                // Balanced ML scoring (Rating + low price + short distance)
-                const priceFactor = (50 - spot.price) * 0.4;
-                const distFactor = (3 - spot.dist) * 8;
-                const ratingFactor = spot.rating * 10;
-                score = Math.min(99, Math.max(65, Math.round(ratingFactor + priceFactor + distFactor)));
+                if (!response.ok) {
+                    throw new Error("Prediction API failed");
+                }
+
+                const data = await response.json();
+
+                spot.predictedOccupancy = Number(data.predicted_occupancy);
+
+            } catch (error) {
+                console.error("ML prediction error:", error);
+
+                // Fallback to existing value if backend is unavailable
+                spot.predictedOccupancy = spot.baseOccupancy;
             }
+        })
+    );
 
-            spot.calculatedScore = score;
-        });
+    // Calculate recommendation score
+    sortedSpots.forEach((spot) => {
+        let score = 0;
 
-        // Sort descending by calculated score
-        sortedSpots.sort((a, b) => b.calculatedScore - a.calculatedScore);
+        if (priority === "price") {
 
-        renderCards(sortedSpots);
-    }
+            // Lower price gives higher score
+            score = Math.max(
+                60,
+                Math.round(100 - (spot.price * 1.5))
+            );
+
+        } else if (priority === "distance") {
+
+            // Closer distance gives higher score
+            score = Math.max(
+                60,
+                Math.round(100 - (spot.dist * 12))
+            );
+
+        } else if (priority === "availability") {
+
+            // ML predicted lower occupancy = better availability
+            score = Math.max(
+                60,
+                Math.round(100 - spot.predictedOccupancy)
+            );
+
+        } else {
+
+            // Balanced recommendation
+            const priceFactor = (50 - spot.price) * 0.4;
+            const distFactor = (3 - spot.dist) * 8;
+            const ratingFactor = spot.rating * 10;
+
+            // Include ML predicted availability
+            const availabilityFactor =
+                (100 - spot.predictedOccupancy) * 0.15;
+
+            score = Math.min(
+                99,
+                Math.max(
+                    65,
+                    Math.round(
+                        ratingFactor +
+                        priceFactor +
+                        distFactor +
+                        availabilityFactor
+                    )
+                )
+            );
+        }
+
+        spot.calculatedScore = score;
+    });
+
+    // Sort highest score first
+    sortedSpots.sort(
+        (a, b) => b.calculatedScore - a.calculatedScore
+    );
+
+    renderCards(sortedSpots);
+}
 
     function renderCards(spots) {
         list.innerHTML = "";
@@ -69,12 +136,44 @@ document.addEventListener("DOMContentLoaded", () => {
                         <span class="score">${spot.calculatedScore}%</span>
                         <span class="label">AI Match Score</span>
                     </div>
-                    <button class="btn-book" onclick="alert('Proceeding to reserve spot at ${spot.name}')">Book Now</button>
+                    <button class="btn-book" onclick="bookParking('${spot.name}')">Book Now</button>
                 </div>
             `;
             list.appendChild(card);
         });
     }
+    // Real-time parking availability
+async function refreshParkingAvailability() {
+    try {
+        const response = await fetch("http://127.0.0.1:8000/parking-spots");
+
+        if (!response.ok) {
+            throw new Error("Parking availability API failed");
+        }
+
+        const data = await response.json();
+
+        if (data.status === "success") {
+            parkingLots.forEach((spot) => {
+                if (data.spots[spot.name]) {
+                    spot.availableSlots =
+                        data.spots[spot.name].available_slots;
+
+                    spot.totalSlots =
+                        data.spots[spot.name].total_slots;
+                }
+            });
+
+            // Refresh recommendations/cards
+            await calculateAndSort();
+        }
+    } catch (error) {
+        console.error("Real-time availability error:", error);
+    }
+}
+
+// Refresh every 5 seconds
+setInterval(refreshParkingAvailability, 5000);
 
     // Trigger on button click and dropdown selection change
     recalculateBtn.addEventListener("click", calculateAndSort);
@@ -83,3 +182,28 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initial render
     calculateAndSort();
 });
+async function bookParking(spotName) {
+    try {
+        const response = await fetch("http://127.0.0.1:8000/book", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                spot_name: spotName
+            })
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            alert(result.message);
+        } else {
+            alert("Booking failed");
+        }
+
+    } catch (error) {
+        console.error(error);
+        alert("Backend connection failed");
+    }
+}
