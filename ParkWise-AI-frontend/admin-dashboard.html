@@ -1,3 +1,290 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Admin Dashboard | ParkWise AI</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"><link rel="stylesheet" href="css/shared.css"><link rel="stylesheet" href="css/admin.css"></head>
-<body><div class="app-layout"><aside class="sidebar"></aside><main class="main-content"><header class="top-header"></header><section class="admin-page"><div class="admin-stats"><article class="admin-stat warning"><i class="fa-solid fa-user-clock"></i><span>Pending owner reviews</span><strong>8</strong></article><article class="admin-stat"><i class="fa-solid fa-user-check"></i><span>Verified owners</span><strong>42</strong></article><article class="admin-stat"><i class="fa-solid fa-square-parking"></i><span>Active parking lots</span><strong>67</strong></article><article class="admin-stat"><i class="fa-solid fa-flag"></i><span>Open reports</span><strong>3</strong></article></div><div class="admin-grid"><section class="admin-card"><div class="admin-card-header"><h2>Verification queue</h2><a href="owner-verifications.html">View all applications</a></div><article class="verification"><span class="verification-icon"><i class="fa-solid fa-file-shield"></i></span><div><h3>City Mall Parking Pvt Ltd</h3><p>Business registration and lot documents submitted</p></div><time>12 min ago</time></article><article class="verification"><span class="verification-icon"><i class="fa-solid fa-file-shield"></i></span><div><h3>MetroHub Operators</h3><p>Ownership proof awaiting review</p></div><time>38 min ago</time></article><article class="verification"><span class="verification-icon"><i class="fa-solid fa-file-shield"></i></span><div><h3>Green Park Services</h3><p>Business registration and tax ID submitted</p></div><time>1 hr ago</time></article></section><aside class="admin-card"><div class="admin-card-header"><h2>Verification policy</h2></div><div class="admin-note"><i class="fa-solid fa-circle-info"></i>Approve only after matching the business registration, owner ID, and parking-lot address.</div><div class="admin-card-header" style="margin-top:24px"><h2>Recently approved</h2></div><div class="admin-list"><div class="admin-list-item"><strong>Central Plaza Parking</strong><span>Approved today at 10:42 AM</span></div><div class="admin-list-item"><strong>Airport Parking Solutions</strong><span>Approved yesterday at 4:18 PM</span></div></div></aside></div></section></main></div><script src="js/admin-layout.js"></script></body></html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | ParkWise AI</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Project CSS -->
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Header -->
+            <header class="top-header">
+            </header>
+
+            <!-- Admin Page -->
+            <section class="admin-page">
+
+                <!-- Dashboard Stats -->
+                <div class="admin-stats">
+
+                    <article class="admin-stat warning">
+
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-user-clock"></i>
+                        </div>
+
+                        <span>Pending owner reviews</span>
+
+                        <strong id="pendingOwners">0</strong>
+
+                        <small id="pendingOwnersLabel">
+                            Awaiting verification
+                        </small>
+
+                    </article>
+
+
+                    <article class="admin-stat">
+
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-user-check"></i>
+                        </div>
+
+                        <span>Verified owners</span>
+
+                        <strong id="verifiedOwners">0</strong>
+
+                        <small>
+                            Approved owners
+                        </small>
+
+                    </article>
+
+
+                    <article class="admin-stat">
+
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-square-parking"></i>
+                        </div>
+
+                        <span>Active parking lots</span>
+
+                        <strong id="activeParkingLots">0</strong>
+
+                        <small>
+                            Currently active
+                        </small>
+
+                    </article>
+
+
+                    <article class="admin-stat">
+
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-flag"></i>
+                        </div>
+
+                        <span>Open reports</span>
+
+                        <strong id="openReports">0</strong>
+
+                        <small>
+                            Requiring attention
+                        </small>
+
+                    </article>
+
+                </div>
+
+                <div class="admin-grid">
+
+                    <!-- Verification Queue -->
+                    <section class="admin-card">
+
+                        <div class="admin-card-header">
+
+                            <div>
+                                <span class="admin-section-label">
+                                    ADMIN ACTIVITY
+                                </span>
+
+                                <h2>Verification Queue</h2>
+                            </div>
+
+                            <a href="owner-verifications.html">
+                                View applications
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+
+                       <div
+                        class="verification-queue"
+                        id="verificationQueue"
+                    >
+
+                        <div
+                            class="admin-empty-state"
+                            id="verificationEmptyState"
+                        >
+
+                            <div class="admin-empty-icon">
+                                <i class="fa-solid fa-spinner fa-spin"></i>
+                            </div>
+
+                            <h3>
+                                Loading verification queue...
+                            </h3>
+
+                            <p>
+                                Fetching the latest owner applications
+                                from the database.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    </section>
+
+
+                    <!-- Right Side -->
+                    <aside class="admin-card">
+
+                        <div class="admin-card-header">
+
+                            <div>
+                                <span class="admin-section-label">
+                                    ADMIN GUIDELINES
+                                </span>
+
+                                <h2>Verification Policy</h2>
+                            </div>
+
+                            <span class="policy-icon">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </span>
+
+                        </div>
+
+
+                        <div class="admin-note verification-policy">
+
+                            <i class="fa-solid fa-shield-halved"></i>
+
+                            <div>
+
+                                <strong>Admin Verification Policy</strong>
+
+                                <p>
+                                    Every owner application must be reviewed
+                                    before approval. Verify the owner's identity,
+                                    business registration, parking-lot details
+                                    and submitted documents.
+                                </p>
+
+                                <ul class="policy-list">
+
+                                    <li>
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        Check owner identity and contact details
+                                    </li>
+
+                                    <li>
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        Verify business registration information
+                                    </li>
+
+                                    <li>
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        Verify parking-lot and capacity details
+                                    </li>
+
+                                    <li>
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        Approve only after all information is valid
+                                    </li>
+
+                                    <li>
+                                        <i class="fa-solid fa-circle-xmark"></i>
+                                        Reject applications containing invalid details
+                                    </li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="admin-card-header admin-sub-header">
+
+                            <div>
+                                <span class="admin-section-label">
+                                    ACTIVITY
+                                </span>
+
+                                <h2>Recently Approved</h2>
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="recently-approved-list"
+                            id="recentlyApprovedList"
+                        >
+
+                            <div class="admin-empty-small">
+
+                                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                                <span>
+                                    Loading approved owners...
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </aside>
+
+                </div>
+
+
+                </section>
+
+
+        </main>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script src="js/admin-layout.js"></script>
+    <script src="js/admin-dashboard.js"></script>
+</body>
+
+</html>

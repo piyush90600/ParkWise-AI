@@ -415,14 +415,7 @@ a {
     border: 1px solid white;
 }
 
-.profile {
-    display: flex;
-    align-items: center;
 
-    gap: 9px;
-
-    cursor: pointer;
-}
 
 .profile-avatar {
     width: 38px;
@@ -458,13 +451,7 @@ a {
     color: var(--muted);
 }
 
-.profile > i {
-    color: #94a3b8;
 
-    font-size: 10px;
-
-    margin-left: 3px;
-}
 
 .mobile-menu {
     display: none;
@@ -500,7 +487,15 @@ a {
 
     position: relative;
 
-    overflow: hidden;
+    /* IMPORTANT */
+    overflow: visible;
+
+    /* Suggestions ke liye */
+    z-index: 50;
+
+    transition:
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
 }
 
 .search-section::before {
@@ -585,6 +580,8 @@ a {
 }
 
 .search-input-wrapper {
+    position: relative;
+
     height: 48px;
 
     display: flex;
@@ -598,9 +595,17 @@ a {
 
     border: 1px solid var(--border);
 
-    border-radius: 9px;
+    border-radius: 10px;
 
-    transition: 0.25s;
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+
+    /* IMPORTANT */
+    overflow: visible;
+
+    z-index: 100;
 }
 
 .search-input-wrapper:focus-within {
@@ -721,46 +726,13 @@ a {
     box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
 }
 
-.quick-search {
-    display: flex;
-    align-items: center;
 
-    flex-wrap: wrap;
 
-    gap: 8px;
 
-    color: var(--muted);
 
-    font-size: 11px;
-}
 
-.quick-search > span {
-    margin-right: 2px;
-}
 
-.quick-search button {
-    padding: 6px 11px;
 
-    border: 1px solid var(--border);
-
-    background: white;
-
-    color: var(--text);
-
-    border-radius: 50px;
-
-    font-size: 10px;
-
-    transition: 0.2s;
-}
-
-.quick-search button:hover {
-    color: var(--primary);
-
-    border-color: #bfdbfe;
-
-    background: var(--primary-light);
-}
 
 .filter-bar {
     position: relative;
@@ -1015,166 +987,37 @@ a {
     background-size: 35px 35px;
 }
 
-.road {
-    position: absolute;
 
-    background: #ffffff;
 
-    box-shadow: 0 0 0 1px #d8e1d8;
-}
 
-.road-horizontal {
-    width: 100%;
 
-    height: 30px;
 
-    left: 0;
 
-    transform: rotate(-8deg);
-}
 
-.road-h1 {
-    top: 18%;
-}
 
-.road-h2 {
-    top: 48%;
 
-    transform: rotate(7deg);
-}
 
-.road-h3 {
-    top: 76%;
 
-    transform: rotate(-5deg);
-}
 
-.road-vertical {
-    width: 30px;
 
-    height: 100%;
 
-    top: 0;
 
-    transform: rotate(7deg);
-}
 
-.road-v1 {
-    left: 20%;
-}
 
-.road-v2 {
-    left: 52%;
 
-    transform: rotate(-8deg);
-}
 
-.road-v3 {
-    left: 78%;
 
-    transform: rotate(6deg);
-}
 
-.map-area {
-    position: absolute;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
-    background: rgba(187, 247, 208, 0.55);
 
-    border: 1px solid rgba(134, 239, 172, 0.8);
 
-    color: #4d7c5b;
 
-    font-size: 8px;
 
-    font-weight: 800;
 
-    letter-spacing: 0.7px;
 
-    border-radius: 5px;
 
-    z-index: 1;
-}
 
-.area-one {
-    left: 4%;
-    top: 6%;
-
-    width: 27%;
-    height: 18%;
-}
-
-.area-two {
-    right: 5%;
-    top: 45%;
-
-    width: 27%;
-    height: 20%;
-}
-
-.area-three {
-    left: 38%;
-    bottom: 5%;
-
-    width: 22%;
-    height: 16%;
-}
-
-.user-location {
-    position: absolute;
-
-    left: 48%;
-    top: 53%;
-
-    width: 30px;
-    height: 30px;
-
-    z-index: 15;
-}
-
-.location-pulse {
-    position: absolute;
-
-    width: 42px;
-    height: 42px;
-
-    left: -6px;
-    top: -6px;
-
-    background: rgba(37, 99, 235, 0.15);
-
-    border: 1px solid rgba(37, 99, 235, 0.2);
-
-    border-radius: 50%;
-
-    animation: pulse 2s infinite;
-}
-
-.user-dot {
-    position: absolute;
-
-    width: 30px;
-    height: 30px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: var(--primary);
-
-    color: white;
-
-    border: 3px solid white;
-
-    border-radius: 50%;
-
-    box-shadow: 0 3px 10px rgba(37, 99, 235, 0.35);
-
-    font-size: 12px;
-}
 
 @keyframes pulse {
     0% {
@@ -1193,60 +1036,19 @@ a {
     }
 }
 
-.map-marker {
-    position: absolute;
 
-    transform: translate(-50%, -50%);
 
-    min-width: 42px;
-    height: 32px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
-    gap: 3px;
 
-    border: 2px solid white;
 
-    border-radius: 9px;
 
-    color: white;
 
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
 
-    z-index: 20;
 
-    transition: 0.2s;
-}
 
-.map-marker i {
-    font-size: 11px;
-}
 
-.map-marker span {
-    font-size: 10px;
 
-    font-weight: 800;
-}
-
-.map-marker:hover {
-    transform: translate(-50%, -50%) scale(1.12);
-
-    z-index: 30;
-}
-
-.available-marker {
-    background: var(--primary);
-}
-
-.limited-marker {
-    background: #f59e0b;
-}
-
-.full-marker {
-    background: #ef4444;
-}
 
 .map-controls {
     position: absolute;
@@ -1624,31 +1426,11 @@ a {
     gap: 10px;
 }
 
-.parking-card {
-    background: white;
 
-    border: 1px solid var(--border);
 
-    border-radius: 12px;
 
-    padding: 14px;
 
-    transition: 0.25s;
 
-    cursor: pointer;
-}
-
-.parking-card:hover {
-    border-color: #bfdbfe;
-
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.08);
-
-    transform: translateY(-2px);
-}
-
-.parking-card.hidden {
-    display: none;
-}
 
 .parking-card-top {
     display: flex;
@@ -1731,23 +1513,11 @@ a {
     white-space: nowrap;
 }
 
-.available-status {
-    color: var(--green);
 
-    background: var(--green-light);
-}
 
-.limited-status {
-    color: #d97706;
 
-    background: #fffbeb;
-}
 
-.full-status {
-    color: var(--red);
 
-    background: var(--red-light);
-}
 
 .parking-details {
     display: flex;
@@ -2294,9 +2064,7 @@ a {
         gap: 15px;
     }
 
-    .parking-card {
-        padding: 12px;
-    }
+    
 }
 
 @media (max-width: 450px) {
@@ -2315,13 +2083,9 @@ a {
         padding: 16px;
     }
 
-    .quick-search {
-        gap: 5px;
-    }
+    
 
-    .quick-search button {
-        padding: 5px 8px;
-    }
+    
 
     .map-header {
         padding: 0 13px;
@@ -2413,4 +2177,1563 @@ a {
 @media (max-width: 450px) {
     .map-selection { align-items: flex-start; }
     .selected-details-btn { padding: 0 10px; font-size: 11px; }
+}
+
+
+/* ==========================================
+   PARKWISE AI - FIND PARKING MODERN UI
+   ========================================== */
+
+.empty-parking-state,
+.parking-loading {
+
+    width: 100%;
+
+    min-height: 300px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 40px 25px;
+
+    border: 1px dashed #cbd5e1;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f8fbff
+        );
+
+}
+
+
+.empty-parking-icon {
+
+    width: 68px;
+    height: 68px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 27px;
+
+    margin-bottom: 18px;
+
+    box-shadow:
+        0 10px 25px
+        rgba(37, 99, 235, .10);
+
+}
+
+
+.empty-parking-state h3,
+.parking-loading h3 {
+
+    margin: 0;
+
+    color: #172033;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+}
+
+
+.empty-parking-state p,
+.parking-loading p {
+
+    max-width: 430px;
+
+    margin: 9px 0 20px;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+
+}
+
+
+.empty-features {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 8px;
+
+}
+
+
+.empty-features span {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 8px 11px;
+
+    border-radius: 9px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e5e7eb;
+
+    color: #64748b;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+}
+
+
+.empty-features i {
+
+    color: #2563eb;
+
+}
+
+
+/* ==========================================
+   LOADING
+   ========================================== */
+
+.parking-loading {
+
+    border-style: solid;
+
+    border-color: #e5eaf1;
+
+}
+
+
+.loading-spinner {
+
+    width: 54px;
+    height: 54px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 22px;
+
+    margin-bottom: 16px;
+
+}
+
+
+/* ==========================================
+   DYNAMIC PARKING CARDS
+   ========================================== */
+
+
+
+
+
+
+
+@keyframes parkingCardIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(10px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* ==========================================
+   MAP EMPTY STATE
+   ========================================== */
+
+.map-empty-state {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    pointer-events: none;
+
+    padding: 20px;
+
+}
+
+
+.map-empty-icon {
+
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background: rgba(
+        255,
+        255,
+        255,
+        .92
+    );
+
+    color: #2563eb;
+
+    font-size: 23px;
+
+    margin-bottom: 12px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(15, 23, 42, .10);
+
+}
+
+
+.map-empty-state strong {
+
+    color: #172033;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+}
+
+
+.map-empty-state span {
+
+    margin-top: 5px;
+
+    color: #64748b;
+
+    font-size: 10px;
+
+}
+
+
+/* ==========================================
+   DYNAMIC MAP MARKERS
+   ========================================== */
+
+#mapMarkers {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.map-marker.selected {
+
+    outline:
+        4px solid
+        rgba(37, 99, 235, .20);
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.18);
+
+}
+
+
+/* ==========================================
+   AI RECOMMENDATION
+   ========================================== */
+
+.ai-recommendation {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    border: 1px solid #dbeafe;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff,
+            #ffffff
+        );
+
+    box-shadow:
+        0 10px 30px
+        rgba(37, 99, 235, .07);
+
+}
+
+
+.ai-recommendation::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 140px;
+    height: 140px;
+
+    right: -55px;
+    top: -70px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(
+            37,
+            99,
+            235,
+            .08
+        );
+
+}
+
+
+.recommend-score {
+
+    min-width: 55px;
+
+    padding: 7px 9px;
+
+    border-radius: 11px;
+
+    background: #ffffff;
+
+    color: #2563eb;
+
+    font-size: 15px;
+
+    font-weight: 900;
+
+    text-align: center;
+
+    box-shadow:
+        0 5px 15px
+        rgba(37, 99, 235, .08);
+
+}
+
+
+.recommend-score small {
+
+    display: block;
+
+    margin-top: 1px;
+
+    color: #94a3b8;
+
+    font-size: 7px;
+
+    font-weight: 600;
+
+}
+
+
+.recommend-btn {
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+
+}
+
+
+.recommend-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(37, 99, 235, .18);
+
+}
+
+
+/* ==========================================================
+   PARKWISE AI - LOCATION + ML UI
+   ========================================================== */
+
+
+
+
+.selected-location-info.show {
+
+    display: flex;
+
+}
+
+
+@keyframes locationSlide {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(6px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+.location-success-icon {
+
+    width: 38px;
+
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 10px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 6px 15px
+        rgba(
+            37,
+            99,
+            235,
+            .20
+        );
+
+}
+
+
+.location-success-content {
+
+    flex: 1;
+
+    min-width: 0;
+
+}
+
+
+.location-success-content span {
+
+    display: block;
+
+    margin-bottom: 2px;
+
+    color: #2563eb;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+}
+
+
+.location-success-content strong {
+
+    display: block;
+
+    color: #172033;
+
+    font-size: 11px;
+
+}
+
+
+.location-success-content small {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #64748b;
+
+    font-size: 9px;
+
+}
+
+
+.location-ai-badge {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 6px 9px;
+
+    border-radius: 50px;
+
+    background: #ffffff;
+
+    border: 1px solid #dbeafe;
+
+    color: #2563eb;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+
+}
+
+
+/* ==========================================================
+   AI PREDICTION CARD
+   ========================================================== */
+
+.ai-prediction-box {
+
+    margin-top: 13px;
+
+    padding: 12px;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fbff,
+            #eff6ff
+        );
+
+    border: 1px solid #dbeafe;
+
+}
+
+
+.prediction-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 9px;
+
+}
+
+
+.prediction-header span {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    color: #2563eb;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: .7px;
+
+}
+
+
+.prediction-header strong {
+
+    color: #2563eb;
+
+    font-size: 14px;
+
+}
+
+
+.prediction-header small {
+
+    font-size: 8px;
+
+    color: #64748b;
+
+    font-weight: 500;
+
+}
+
+
+.prediction-content {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 10px;
+
+}
+
+
+.prediction-stat {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+
+}
+
+
+.prediction-stat span {
+
+    color: #64748b;
+
+    font-size: 9px;
+
+}
+
+
+.prediction-stat strong {
+
+    font-size: 13px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+.prediction-bar {
+
+    height: 5px;
+
+    margin-top: 10px;
+
+    overflow: hidden;
+
+    border-radius: 50px;
+
+    background: #dbeafe;
+
+}
+
+
+.prediction-bar span {
+
+    display: block;
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #22c55e,
+            #eab308,
+            #ef4444
+        );
+
+    transition:
+        width .6s ease;
+
+}
+
+
+.prediction-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin-top: 8px;
+
+    color: #64748b;
+
+    font-size: 9px;
+
+}
+
+
+/* ==========================================================
+   BETTER PARKING CARD
+   ========================================================== */
+
+
+
+
+
+
+
+.parking-card.selected {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(
+            37,
+            99,
+            235,
+            .08
+        ),
+        0 12px 30px
+        rgba(
+            37,
+            99,
+            235,
+            .10
+        );
+
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (
+    max-width: 650px
+) {
+
+    
+
+
+    .location-ai-badge {
+
+        display: none;
+
+    }
+
+
+    .prediction-content {
+
+        grid-template-columns:
+            1fr;
+
+    }
+}
+
+
+/* =========================================================
+   LOCATION AUTOCOMPLETE / SUGGESTIONS
+   ========================================================= */
+
+.search-input-wrapper {
+    position: relative;
+    overflow: visible !important;
+    z-index: 100;
+}
+
+/* Main suggestion dropdown */
+.location-suggestions {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    top: calc(100% + 10px);
+
+    width: 100%;
+    max-height: 430px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    display: none;
+
+    padding: 8px;
+
+    background: rgba(255, 255, 255, 0.98);
+
+    border: 1px solid #dbeafe;
+    border-radius: 16px;
+
+    box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.14),
+        0 4px 12px rgba(37, 99, 235, 0.08);
+
+    backdrop-filter: blur(16px);
+
+    z-index: 99999;
+
+    animation: suggestionDrop 0.18s ease;
+}
+
+.location-suggestions.show {
+    display: block;
+}
+
+/* Dropdown animation */
+@keyframes suggestionDrop {
+
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   EACH SUGGESTION
+   ========================================================= */
+
+.location-suggestion {
+    width: 100%;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 13px;
+
+    padding: 13px 14px;
+
+    margin-bottom: 4px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: transparent;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.location-suggestion:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Hover */
+.location-suggestion:hover,
+.location-suggestion.active {
+    background: #eff6ff;
+
+    transform: translateX(2px);
+
+    box-shadow:
+        inset 3px 0 0 #2563eb;
+}
+
+
+/* =========================================================
+   LOCATION ICON
+   ========================================================= */
+
+.suggestion-icon {
+    width: 40px;
+    height: 40px;
+
+    min-width: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: linear-gradient(
+        135deg,
+        #eff6ff,
+        #dbeafe
+    );
+
+    color: #2563eb;
+
+    font-size: 15px;
+
+    box-shadow:
+        0 3px 8px rgba(37, 99, 235, 0.10);
+
+    transition: 0.2s;
+}
+
+.location-suggestion:hover .suggestion-icon {
+    background: #2563eb;
+
+    color: white;
+
+    transform: scale(1.05);
+}
+
+
+/* =========================================================
+   TEXT AREA
+   ========================================================= */
+
+.suggestion-content {
+    flex: 1;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    padding-top: 1px;
+}
+
+
+/* Location name */
+.suggestion-title {
+    display: block;
+
+    width: 100%;
+
+    color: #0f172a;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    line-height: 1.35;
+
+    white-space: normal;
+
+    overflow: visible;
+
+    text-overflow: clip;
+
+    word-break: normal;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* Full address */
+.suggestion-address {
+    display: block;
+
+    width: 100%;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    font-weight: 400;
+
+    line-height: 1.5;
+
+    white-space: normal;
+
+    overflow: visible;
+
+    text-overflow: clip;
+
+    word-break: normal;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   RIGHT ARROW
+   ========================================================= */
+
+.suggestion-arrow {
+    flex-shrink: 0;
+
+    margin-top: 13px;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+
+    transition: 0.2s;
+}
+
+.location-suggestion:hover .suggestion-arrow {
+    color: #2563eb;
+
+    transform: translateX(3px);
+}
+
+
+/* =========================================================
+   SEARCHING STATE
+   ========================================================= */
+
+.location-searching {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    min-height: 65px;
+
+    padding: 15px;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    font-weight: 500;
+}
+
+.location-searching i {
+    color: #2563eb;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.location-empty {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    color: #94a3b8;
+
+    font-size: 12px;
+}
+
+.location-empty i {
+    margin-bottom: 8px;
+
+    color: #cbd5e1;
+
+    font-size: 24px;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+.location-suggestions::-webkit-scrollbar {
+    width: 6px;
+}
+
+.location-suggestions::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.location-suggestions::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+
+    border-radius: 20px;
+}
+
+.location-suggestions::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+
+/* Firefox */
+.location-suggestions {
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        #cbd5e1
+        transparent;
+}
+
+
+/* =========================================================
+   MOBILE RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .location-suggestions {
+        max-height: 350px;
+
+        border-radius: 13px;
+
+        padding: 6px;
+    }
+
+    .location-suggestion {
+        padding: 11px;
+
+        gap: 10px;
+    }
+
+    .suggestion-icon {
+        width: 36px;
+        height: 36px;
+
+        min-width: 36px;
+
+        font-size: 13px;
+    }
+
+    .suggestion-title {
+        font-size: 13px;
+    }
+
+    .suggestion-address {
+        font-size: 11px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .location-suggestions {
+        left: 0;
+        right: 0;
+
+        width: 100%;
+
+        max-height: 300px;
+    }
+
+    .suggestion-title {
+        font-size: 12px;
+    }
+
+    .suggestion-address {
+        font-size: 10px;
+    }
+
+}
+
+
+/* =========================================
+   FIND PARKING DASHBOARD STATS
+========================================= */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 24px 0;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e8edf3);
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+    transition: 0.25s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.stat-icon {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+.stat-icon.blue {
+    background: rgba(59, 130, 246, 0.12);
+    color: #3b82f6;
+}
+
+.stat-icon.green {
+    background: rgba(34, 197, 94, 0.12);
+    color: #22c55e;
+}
+
+.stat-icon.orange {
+    background: rgba(249, 115, 22, 0.12);
+    color: #f97316;
+}
+
+.stat-details {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.stat-details > span {
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.stat-details strong {
+    font-size: 26px;
+    font-weight: 800;
+    color: #172033;
+}
+
+.stat-details small {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #94a3b8;
+    font-size: 11px;
+}
+
+.stat-details small.positive {
+    color: #22c55e;
+}
+
+
+/* =========================================
+   FIND PARKING DASHBOARD CONTENT
+========================================= */
+
+.find-parking-dashboard-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 24px;
+    margin-top: 24px;
+}
+
+
+/* =========================================
+   OCCUPANCY PANEL
+========================================= */
+
+.occupancy-panel {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e8edf3);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.occupancy-panel .panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.occupancy-panel .panel-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #6366f1;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+}
+
+.occupancy-panel h3 {
+    margin: 5px 0 0;
+    font-size: 20px;
+    color: #172033;
+}
+
+.occupancy-panel select {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 9px 12px;
+    background: #fff;
+    color: #475569;
+    font-weight: 600;
+    outline: none;
+}
+
+.occupancy-main {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.occupancy-circle {
+    width: 145px;
+    height: 145px;
+    min-width: 145px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle at center,
+        #ffffff 57%,
+        transparent 58%),
+        conic-gradient(
+            #6366f1 0deg,
+            #6366f1 250deg,
+            #e9edf5 250deg,
+            #e9edf5 360deg
+        );
+}
+
+.occupancy-circle > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.occupancy-circle strong {
+    font-size: 30px;
+    font-weight: 800;
+    color: #172033;
+}
+
+.occupancy-circle span {
+    font-size: 11px;
+    color: #94a3b8;
+}
+
+.occupancy-info {
+    flex: 1;
+}
+
+.prediction-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #22c55e;
+}
+
+.prediction-status strong {
+    font-size: 15px;
+    color: #334155;
+}
+
+.occupancy-info p {
+    margin: 0;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   NEARBY PARKING
+========================================= */
+
+.nearby-section {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e8edf3);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.section-header h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #172033;
+}
+
+.section-header p {
+    margin: 5px 0 0;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.section-header a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #6366f1;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.parking-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.empty-parking {
+    text-align: center;
+    padding: 30px 15px;
+    border: 1px dashed #dbe2ea;
+    border-radius: 16px;
+}
+
+.empty-parking > i {
+    font-size: 28px;
+    color: #6366f1;
+    margin-bottom: 10px;
+}
+
+.empty-parking h4 {
+    margin: 5px 0;
+    color: #334155;
+}
+
+.empty-parking p {
+    margin: 0;
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .find-parking-dashboard-content {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .stat-card {
+        padding: 16px;
+    }
+
+    .occupancy-main {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .prediction-status {
+        justify-content: center;
+    }
+
+    .section-header {
+        align-items: flex-start;
+    }
+
 }

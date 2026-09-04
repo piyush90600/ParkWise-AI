@@ -104,603 +104,216 @@
 
         <header class="dashboard-topbar">
 
-            <div class="topbar-left">
-
-                <button class="menu-btn" id="menuBtn">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-
-                <div>
-                    <p class="welcome-small">Welcome back 👋</p>
-
-                    <h1>Dashboard</h1>
-                </div>
-
-            </div>
-
-            <div class="topbar-right">
-
-                <button class="notification-btn">
-
-                    <i class="fa-regular fa-bell"></i>
-
-                    <span class="notification-dot"></span>
-
-                </button>
-
-                <div class="user-profile">
-
-                    <div class="user-avatar">
-                        K
-                    </div>
-
-                    <div class="user-info">
-
-                        <strong>Kalyani</strong>
-
-                        <span>User</span>
-
-                    </div>
-
-                    <i class="fa-solid fa-chevron-down"></i>
-
-                </div>
-
-            </div>
-
         </header>
 
         <section class="dashboard-content">
 
-            <div class="search-section">
+            <!-- Welcome / Hero Section -->
+            <div class="dashboard-welcome">
 
-                <div class="search-heading">
+                <div class="welcome-content">
 
-                    <div>
+                    <span class="section-badge">
+                        <i class="fa-solid fa-sparkles"></i>
+                        PARKWISE AI
+                    </span>
 
-                        <span class="section-badge">
+                    <h1>Park smarter. Drive better.</h1>
+
+                    <p>
+                        Find nearby parking, get AI-powered recommendations,
+                        and save time on every journey.
+                    </p>
+
+                    <div class="welcome-actions">
+
+                        <a href="find-parking.html" class="primary-action">
+                            <i class="fa-solid fa-location-dot"></i>
+                            Find Parking
+                        </a>
+
+                        <a href="ai-recommendations.html" class="secondary-action">
                             <i class="fa-solid fa-wand-magic-sparkles"></i>
-                            AI Powered
-                        </span>
-
-                        <h2>Find your perfect parking spot</h2>
-
-                        <p>
-                            Search nearby parking and get intelligent
-                            recommendations based on availability,
-                            distance and price.
-                        </p>
+                            AI Recommendations
+                        </a>
 
                     </div>
 
                 </div>
 
-                <div class="parking-search">
+                <div class="welcome-visual">
 
-                    <div class="search-input">
-
-                        <i class="fa-solid fa-location-dot"></i>
-
-                        <input
-                            type="text"
-                            id="locationInput"
-                            placeholder="Where do you want to park?"
-                        >
-
-                    </div>
-
-                    <button
-                        class="search-btn"
-                        id="searchBtn"
-                    >
-
-                        <i class="fa-solid fa-magnifying-glass"></i>
-
-                        Find Parking
-
-                    </button>
-
-                </div>
-
-            </div>
-
-            <div class="stats-grid">
-
-                <div class="stat-card">
-
-                    <div class="stat-icon blue">
+                    <div class="parking-visual-circle">
                         <i class="fa-solid fa-square-parking"></i>
                     </div>
 
-                    <div class="stat-details">
-
-                        <span>Nearby Parking</span>
-
-                        <strong>24</strong>
-
-                        <small>
-                            <i class="fa-solid fa-arrow-up"></i>
-                            12% available
-                        </small>
-
+                    <div class="floating-card floating-card-one">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div>
+                            <strong>Smart Parking</strong>
+                            <span>AI Powered</span>
+                        </div>
                     </div>
 
-                </div>
-
-                <div class="stat-card">
-
-                    <div class="stat-icon green">
-                        <i class="fa-solid fa-car"></i>
-                    </div>
-
-                    <div class="stat-details">
-
-                        <span>Available Spots</span>
-
-                        <strong>186</strong>
-
-                        <small class="positive">
-                            Currently available
-                        </small>
-
-                    </div>
-
-                </div>
-
-                <div class="stat-card">
-
-                    <div class="stat-icon orange">
-                        <i class="fa-solid fa-chart-pie"></i>
-                    </div>
-
-                    <div class="stat-details">
-
-                        <span>Avg. Occupancy</span>
-
-                        <strong>68%</strong>
-
-                        <small>
-                            <i class="fa-solid fa-arrow-down"></i>
-                            4% from yesterday
-                        </small>
-
-                    </div>
-
-                </div>
-
-                <div class="stat-card">
-
-                    <div class="stat-icon purple">
-                        <i class="fa-solid fa-bookmark"></i>
-                    </div>
-
-                    <div class="stat-details">
-
-                        <span>Saved Places</span>
-
-                        <strong>5</strong>
-
-                        <small>
-                            Your favourite parking
-                        </small>
-
+                    <div class="floating-card floating-card-two">
+                        <i class="fa-solid fa-bolt"></i>
+                        <div>
+                            <strong>Save Time</strong>
+                            <span>Find faster</span>
+                        </div>
                     </div>
 
                 </div>
 
             </div>
 
-            <div class="main-grid">
 
-                <div class="panel recommendation-panel">
-
-                    <div class="panel-header">
-
-                        <div>
-
-                            <span class="panel-label">
-                                <i class="fa-solid fa-wand-magic-sparkles"></i>
-                                AI RECOMMENDATION
-                            </span>
-
-                            <h3>Best parking for you</h3>
-
-                        </div>
-
-                        <button class="more-btn">
-                            <i class="fa-solid fa-ellipsis"></i>
-                        </button>
-
-                    </div>
-
-                    <div class="recommendation-card">
-
-                        <div class="recommendation-top">
-
-                            <div class="parking-icon">
-                                <i class="fa-solid fa-square-parking"></i>
-                            </div>
-
-                            <div class="parking-name">
-
-                                <h4>City Centre Parking</h4>
-
-                                <p>
-                                    <i class="fa-solid fa-location-dot"></i>
-                                    0.5 km away
-                                </p>
-
-                            </div>
-
-                            <div class="match-score">
-
-                                <strong>96%</strong>
-
-                                <span>Match</span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="parking-meta">
-
-                            <span>
-                                <i class="fa-solid fa-car"></i>
-                                18 spots available
-                            </span>
-
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                4.7
-                            </span>
-
-                            <strong>₹30/hr</strong>
-
-                        </div>
-
-                        <div class="recommendation-reason">
-
-                            <i class="fa-solid fa-lightbulb"></i>
-
-                            <p>
-                                Recommended based on distance,
-                                price and current availability.
-                            </p>
-
-                        </div>
-
-                        <button class="view-parking-btn">
-
-                            View Parking
-
-                            <i class="fa-solid fa-arrow-right"></i>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-                <div class="panel occupancy-panel">
-
-                    <div class="panel-header">
-
-                        <div>
-
-                            <span class="panel-label">
-                                <i class="fa-solid fa-chart-line"></i>
-                                AI PREDICTION
-                            </span>
-
-                            <h3>Occupancy Prediction</h3>
-
-                        </div>
-
-                        <select id="timeSelect">
-
-                            <option>Today</option>
-
-                            <option>Tomorrow</option>
-
-                            <option>Next 7 Days</option>
-
-                        </select>
-
-                    </div>
-
-                    <div class="occupancy-main">
-
-                        <div class="occupancy-circle">
-
-                            <div>
-
-                                <strong>68%</strong>
-
-                                <span>Occupancy</span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="occupancy-info">
-
-                            <div class="prediction-status">
-
-                                <span class="status-dot"></span>
-
-                                <strong>Moderate</strong>
-
-                            </div>
-
-                            <p>
-                                Parking availability is expected
-                                to remain moderate.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <div class="prediction-bars">
-
-                        <div class="prediction-item">
-
-                            <span>10 AM</span>
-
-                            <div class="bar">
-                                <div style="width: 42%;"></div>
-                            </div>
-
-                            <strong>42%</strong>
-
-                        </div>
-
-                        <div class="prediction-item">
-
-                            <span>12 PM</span>
-
-                            <div class="bar">
-                                <div style="width: 68%;"></div>
-                            </div>
-
-                            <strong>68%</strong>
-
-                        </div>
-
-                        <div class="prediction-item">
-
-                            <span>2 PM</span>
-
-                            <div class="bar">
-                                <div style="width: 82%;"></div>
-                            </div>
-
-                            <strong>82%</strong>
-
-                        </div>
-
-                        <div class="prediction-item">
-
-                            <span>4 PM</span>
-
-                            <div class="bar">
-                                <div style="width: 61%;"></div>
-                            </div>
-
-                            <strong>61%</strong>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="nearby-section">
+            <!-- Quick Actions -->
+            <div class="quick-section">
 
                 <div class="section-header">
-
                     <div>
+                        <span class="panel-label">
+                            <i class="fa-solid fa-bolt"></i>
+                            QUICK ACTIONS
+                        </span>
 
-                        <h3>Nearby Parking</h3>
-
-                        <p>
-                            Parking spaces available near you
-                        </p>
-
+                        <h3>What would you like to do?</h3>
                     </div>
+                </div>
 
-                    <a href="find-parking.html">
-                        View all
-                        <i class="fa-solid fa-arrow-right"></i>
+
+                <div class="quick-actions-grid">
+
+                    <a href="find-parking.html" class="quick-action-card">
+
+                        <div class="quick-action-icon blue">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+
+                        <div>
+                            <h4>Find Parking</h4>
+                            <p>Discover available parking near you</p>
+                        </div>
+
+                        <i class="fa-solid fa-arrow-right action-arrow"></i>
+
+                    </a>
+
+
+                    <a href="ai-recommendations.html" class="quick-action-card">
+
+                        <div class="quick-action-icon purple">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+
+                        <div>
+                            <h4>AI Recommendations</h4>
+                            <p>Get the best parking suggestion</p>
+                        </div>
+
+                        <i class="fa-solid fa-arrow-right action-arrow"></i>
+
+                    </a>
+
+
+                    <a href="parking-history.html" class="quick-action-card">
+
+                        <div class="quick-action-icon green">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </div>
+
+                        <div>
+                            <h4>Parking History</h4>
+                            <p>Check your previous parking activity</p>
+                        </div>
+
+                        <i class="fa-solid fa-arrow-right action-arrow"></i>
+
                     </a>
 
                 </div>
 
-                <div class="parking-grid">
+            </div>
 
-                    <div class="parking-card">
 
-                        <div class="parking-card-top">
+            <!-- Why ParkWise AI -->
+            <div class="why-section">
 
-                            <div class="small-parking-icon">
-                                <i class="fa-solid fa-square-parking"></i>
-                            </div>
+                <div class="section-header">
+                    <div>
+                        <span class="panel-label">
+                            <i class="fa-solid fa-star"></i>
+                            PARKWISE AI
+                        </span>
 
-                            <span class="available-badge">
-                                Available
-                            </span>
+                        <h3>Parking made smarter</h3>
+                    </div>
+                </div>
 
+
+                <div class="feature-grid">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-brain"></i>
                         </div>
 
-                        <h4>City Centre Parking</h4>
+                        <h4>AI Powered</h4>
 
-                        <p class="parking-location">
-
-                            <i class="fa-solid fa-location-dot"></i>
-
-                            Main Road · 0.5 km
-
+                        <p>
+                            Intelligent recommendations help you choose
+                            the most suitable parking spot.
                         </p>
-
-                        <div class="parking-card-details">
-
-                            <span>
-                                <i class="fa-solid fa-car"></i>
-                                18 spots
-                            </span>
-
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                4.7
-                            </span>
-
-                            <strong>₹30/hr</strong>
-
-                        </div>
-
-                        <button class="card-btn">
-                            View Details
-                        </button>
 
                     </div>
 
-                    <div class="parking-card">
 
-                        <div class="parking-card-top">
+                    <div class="feature-card">
 
-                            <div class="small-parking-icon">
-                                <i class="fa-solid fa-square-parking"></i>
-                            </div>
-
-                            <span class="available-badge">
-                                Available
-                            </span>
-
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-location-crosshairs"></i>
                         </div>
 
-                        <h4>Mall Road Parking</h4>
+                        <h4>Nearby Locations</h4>
 
-                        <p class="parking-location">
-
-                            <i class="fa-solid fa-location-dot"></i>
-
-                            Mall Road · 1.2 km
-
+                        <p>
+                            Quickly discover parking locations close to
+                            your destination.
                         </p>
-
-                        <div class="parking-card-details">
-
-                            <span>
-                                <i class="fa-solid fa-car"></i>
-                                32 spots
-                            </span>
-
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                4.5
-                            </span>
-
-                            <strong>₹40/hr</strong>
-
-                        </div>
-
-                        <button class="card-btn">
-                            View Details
-                        </button>
 
                     </div>
 
-                    <div class="parking-card">
 
-                        <div class="parking-card-top">
+                    <div class="feature-card">
 
-                            <div class="small-parking-icon">
-                                <i class="fa-solid fa-square-parking"></i>
-                            </div>
-
-                            <span class="busy-badge">
-                                Busy
-                            </span>
-
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-clock"></i>
                         </div>
 
-                        <h4>Station Parking</h4>
+                        <h4>Save Your Time</h4>
 
-                        <p class="parking-location">
-
-                            <i class="fa-solid fa-location-dot"></i>
-
-                            Station Road · 1.8 km
-
+                        <p>
+                            Spend less time searching and more time
+                            reaching your destination.
                         </p>
-
-                        <div class="parking-card-details">
-
-                            <span>
-                                <i class="fa-solid fa-car"></i>
-                                6 spots
-                            </span>
-
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                4.3
-                            </span>
-
-                            <strong>₹25/hr</strong>
-
-                        </div>
-
-                        <button class="card-btn">
-                            View Details
-                        </button>
 
                     </div>
 
-                    <div class="parking-card">
 
-                        <div class="parking-card-top">
+                    <div class="feature-card">
 
-                            <div class="small-parking-icon">
-                                <i class="fa-solid fa-square-parking"></i>
-                            </div>
-
-                            <span class="available-badge">
-                                Available
-                            </span>
-
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-chart-line"></i>
                         </div>
 
-                        <h4>Market Parking</h4>
+                        <h4>Smart Insights</h4>
 
-                        <p class="parking-location">
-
-                            <i class="fa-solid fa-location-dot"></i>
-
-                            Market Area · 2.1 km
-
+                        <p>
+                            Use parking availability and occupancy insights
+                            to make better decisions.
                         </p>
-
-                        <div class="parking-card-details">
-
-                            <span>
-                                <i class="fa-solid fa-car"></i>
-                                24 spots
-                            </span>
-
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                4.6
-                            </span>
-
-                            <strong>₹20/hr</strong>
-
-                        </div>
-
-                        <button class="card-btn">
-                            View Details
-                        </button>
 
                     </div>
 
@@ -713,7 +326,6 @@
     </main>
 
     <script src="js/shared-layout.js"></script>
-    <script src="js/dashboard.js"></script>
 
 </body>
 

@@ -788,3 +788,83 @@ body.auth-page {
         gap: 0;
     }
 }
+
+
+/* ==========================================
+   REGISTER LOGIN SWITCH
+   ========================================== */
+
+.auth-page .register-text {
+    margin-top: 18px;
+    padding: 13px 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    color: #64748b;
+
+    font-size: 10px;
+
+    transition: all 0.2s ease;
+}
+
+.auth-page .register-text:hover {
+    border-color: #bfdbfe;
+    background: #f8fbff;
+}
+
+.auth-page .register-text a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    color: #2563eb;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+.auth-page .register-text a:hover {
+    color: #1d4ed8;
+    transform: translateX(2px);
+}
+
+.auth-page .register-text a i {
+    font-size: 8px;
+}
+
+
+/* ==========================================
+   REGISTER HEADER HOME LINK
+   ========================================== */
+
+.auth-page .auth-home-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #64748b;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+.auth-page .auth-home-link:hover {
+    color: #2563eb;
+    transform: translateX(-2px);
+}

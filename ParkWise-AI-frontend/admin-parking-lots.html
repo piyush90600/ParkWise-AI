@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Parking Lots | ParkWise Admin
+    </title>
+
+    <!-- Google Fonts -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- SAME CSS AS ADMIN DASHBOARD -->
+    <link
+        rel="stylesheet"
+        href="css/shared.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/admin.css"
+    >
+
+
+    <!-- ONLY PARKING LOT PAGE CSS -->
+    <link
+        rel="stylesheet"
+        href="css/admin-parking-lots.css"
+>
+
+</head>
+
+
+<body>
+
+    <div class="app-layout">
+
+        <!-- ==========================================
+             SAME SIDEBAR AS ADMIN DASHBOARD
+        =========================================== -->
+
+        <aside class="sidebar"></aside>
+
+
+            <!-- ==========================================
+                SAME MAIN CONTENT AREA AS ADMIN DASHBOARD
+            =========================================== -->
+
+            <main class="main-content">
+
+
+                <!-- ======================================
+                    SAME TOP HEADER AS ADMIN DASHBOARD
+                ======================================= -->
+
+                <header class="top-header"></header>
+
+
+                <!-- ======================================
+                    PARKING LOT PAGE
+                ======================================= -->
+
+                <section class="admin-page parking-lots-page">
+
+                    <!-- YOUR EXISTING PARKING LOT CONTENT
+                        STARTS HERE -->
+
+
+
+                    <!-- PAGE INTRO -->
+
+                    <section class="parking-page-intro">
+
+                        <div>
+
+                            <span class="parking-eyebrow">
+                                PARKING MANAGEMENT
+                            </span>
+
+                            <h2>
+                                All Parking Lots
+                            </h2>
+
+                            <p>
+                                Monitor and manage every parking lot
+                                registered on ParkWise AI.
+                            </p>
+
+                        </div>
+
+
+
+                    </section>
+
+
+                    <!-- ==================================
+                        STAT CARDS
+                    =================================== -->
+
+                    <section class="parking-summary">
+
+
+                        <div class="parking-summary-card">
+
+                            <div class="summary-icon">
+                                <i class="fa-solid fa-square-parking"></i>
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Total Parking Lots
+                                </span>
+
+                                <strong id="totalLots">
+                                    0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="parking-summary-card active">
+
+                            <div class="summary-icon">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Active Lots
+                                </span>
+
+                                <strong id="activeLots">
+                                    0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="parking-summary-card">
+
+                            <div class="summary-icon">
+                                <i class="fa-solid fa-car"></i>
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Total Slots
+                                </span>
+
+                                <strong id="totalSlots">
+                                    0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="parking-summary-card occupancy">
+
+                            <div class="summary-icon">
+                                <i class="fa-solid fa-chart-simple"></i>
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Current Occupancy
+                                </span>
+
+                                <strong id="overallOccupancy">
+                                    0%
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                    </section>
+
+
+                    <!-- ==================================
+                        TOOLBAR
+                    =================================== -->
+
+                    <section class="parking-toolbar">
+
+
+                        <div class="parking-search">
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                            <input
+                                type="text"
+                                id="parkingSearch"
+                                placeholder="Search parking lot, owner or location..."
+                            >
+
+                        </div>
+
+
+                        <select
+                            id="statusFilter"
+                            class="parking-filter"
+                        >
+
+                            <option value="all">
+                                All Status
+                            </option>
+
+                            <option value="approved">
+                                Approved
+                            </option>
+
+                            <option value="pending">
+                                Pending
+                            </option>
+
+                            <option value="rejected">
+                                Rejected
+                            </option>
+
+                        </select>
+
+
+                        <button
+                            type="button"
+                            id="refreshParking"
+                            class="refresh-button"
+                        >
+
+                            <i class="fa-solid fa-rotate"></i>
+
+                            Refresh
+
+                        </button>
+
+
+                    </section>
+
+
+                    <!-- ==================================
+                        TABLE CARD
+                    =================================== -->
+
+                    <section class="parking-table-card">
+
+
+                        <div class="parking-table-header">
+
+                            <div>
+
+                                <span class="parking-eyebrow">
+                                    DATABASE RECORDS
+                                </span>
+
+                                <h3>
+                                    Parking Lot Directory
+                                </h3>
+
+                            </div>
+
+
+                            <span
+                                id="resultCount"
+                                class="result-count"
+                            >
+                                0 parking lots
+                            </span>
+
+                        </div>
+
+
+                        <!-- LOADING -->
+
+                        <div
+                            id="parkingLoading"
+                            class="parking-loading"
+                        >
+
+                            <i class="fa-solid fa-spinner fa-spin"></i>
+
+                            <span>
+                                Loading parking lots from database...
+                            </span>
+
+                        </div>
+
+
+                        <!-- TABLE -->
+
+                        <div class="parking-table-wrapper">
+
+                            <table
+                                class="parking-table"
+                            >
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th>
+                                            PARKING LOT
+                                        </th>
+
+                                        <th>
+                                            OWNER
+                                        </th>
+
+                                        <th>
+                                            LOCATION
+                                        </th>
+
+                                        <th>
+                                            PRICE
+                                        </th>
+
+                                        <th>
+                                            SLOTS
+                                        </th>
+
+                                        <th>
+                                            VEHICLE
+                                        </th>
+
+                                        <th>
+                                            TIMING
+                                        </th>
+
+                                        <th>
+                                            STATUS
+                                        </th>
+
+                                        <th>
+                                            ACTION
+                                        </th>
+
+                                    </tr>
+
+                                </thead>
+
+
+                                <tbody
+                                    id="parkingTableBody"
+                                >
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                        <!-- ==================================
+                                SLOT DETAILS
+                        ======================================= -->
+
+                            <section
+                                id="slotDetailsSection"
+                                class="parking-table-card"
+                                hidden
+                            >
+
+                                <div class="parking-table-header">
+
+                                    <div>
+
+                                        <span class="parking-eyebrow">
+                                            DATABASE RECORDS
+                                        </span>
+
+                                        <h3 id="selectedLotName">
+                                            Parking Slots
+                                        </h3>
+
+                                    </div>
+
+                                    <span
+                                        id="slotResultCount"
+                                        class="result-count"
+                                    >
+                                        0 slots
+                                    </span>
+
+                                </div>
+
+
+                                <!-- SLOT LOADING -->
+
+                                <div
+                                    id="slotLoading"
+                                    class="parking-loading"
+                                    hidden
+                                >
+
+                                    <i class="fa-solid fa-spinner fa-spin"></i>
+
+                                    <span>
+                                        Loading slots from database...
+                                    </span>
+
+                                </div>
+
+
+                                <!-- SLOT TABLE -->
+
+                                <div class="parking-table-wrapper">
+
+                                    <table class="parking-table">
+
+                                        <thead>
+
+                                            <tr>
+
+                                                <th>
+                                                    SLOT ID
+                                                </th>
+
+                                                <th>
+                                                    SLOT NUMBER
+                                                </th>
+
+                                                <th>
+                                                    VEHICLE
+                                                </th>
+
+                                                <th>
+                                                    STATUS
+                                                </th>
+
+                                            </tr>
+
+                                        </thead>
+
+                                        <tbody
+                                            id="slotTableBody"
+                                        >
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+
+                                <!-- SLOT EMPTY -->
+
+                                <div
+                                    id="slotEmpty"
+                                    class="parking-empty"
+                                    hidden
+                                >
+
+                                    <div class="parking-empty-icon">
+
+                                        <i class="fa-solid fa-square-parking"></i>
+
+                                    </div>
+
+                                    <h3>
+                                        No Slots Found
+                                    </h3>
+
+                                    <p>
+                                        No slots are available for this parking lot.
+                                    </p>
+
+                                </div>
+
+                            </section>
+
+
+                        <!-- EMPTY -->
+
+                        <div
+                            id="parkingEmpty"
+                            class="parking-empty"
+                            hidden
+                        >
+
+                            <div class="parking-empty-icon">
+
+                                <i class="fa-solid fa-square-parking"></i>
+
+                            </div>
+
+                            <h3>
+                                No Parking Lots Found
+                            </h3>
+
+                            <p>
+                                No parking lots match your current
+                                search or filter.
+                            </p>
+
+                        </div>
+
+
+                    </section>
+                    
+                </section>
+
+            </main>
+        
+    </div>
+
+
+    <!-- ======================================
+         JAVASCRIPT
+    ======================================= -->
+
+    <script src="js/admin-layout.js"></script>
+
+    <script src="js/admin-parking-lots.js"></script>
+
+
+</body>
+
+</html>

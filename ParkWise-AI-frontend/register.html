@@ -49,18 +49,17 @@
 
     <div class="auth-nav">
 
-        <span>
-            Already have an account?
-        </span>
+        <a href="landingpage.html" class="auth-home-link">
 
-        <a href="login.html"
-           class="auth-signup-btn">
+            <i class="fa-solid fa-arrow-left"></i>
 
-            Sign In
+            Back to Home
 
         </a>
 
     </div>
+
+
 
 </header>
 
@@ -271,54 +270,77 @@
 
             </div>
 
-            <form id="userRegisterForm"
-                  class="register-form">
+                <form id="userRegisterForm"
+                    class="register-form">
 
-                <div class="form-section-title">
-                    <i class="fa-solid fa-user"></i>
-                    Personal Information
-                </div> 
+                    <div class="form-section-title">
+                        <i class="fa-solid fa-user"></i>
+                        Personal Information
+                    </div> 
 
-                <div class="form-group">
-                    <label for="userName">
-                        Full Name
-                    </label>
-                    <div class="input-wrapper">
+                    <div class="form-group">
+                        <label for="userName">
+                            Full Name
+                        </label>
+                        <div class="input-wrapper">
 
-                        <i class="fa-regular fa-user"></i>
+                            <i class="fa-regular fa-user"></i>
 
-                        <input
-                            type="text"
-                            id="userName"
-                            placeholder="Enter your full name"
-                            required>
+                            <input
+                                type="text"
+                                id="userName"
+                                placeholder="Enter your full name"
+                                required>
+
+                        </div>
+
+                        <small
+                            class="field-error"
+                            id="userNameError">
+                        </small>
 
                     </div>
 
-                    <small
-                        class="field-error"
-                        id="userNameError">
-                    </small>
+                    <div class="form-row">
 
-                </div>
+                        <div class="form-group">
 
-                <div class="form-row">
+                            <label for="userEmail">
+                                Email Address
+                            </label>
 
-                    <div class="form-group">
+                            <div class="input-wrapper">
 
-                        <label for="userEmail">
-                            Email Address
-                        </label>
+                                <i class="fa-regular fa-envelope"></i>
 
-                        <div class="input-wrapper">
+                                <input
+                                    type="email"
+                                    id="userEmail"
+                                    placeholder="Enter email"
+                                    required>
 
-                            <i class="fa-regular fa-envelope"></i>
+                            </div>
 
-                            <input
-                                type="email"
-                                id="userEmail"
-                                placeholder="Enter email"
-                                required>
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="userPhone">
+                                Phone Number
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <i class="fa-solid fa-phone"></i>
+
+                                <input
+                                    type="tel"
+                                    id="userPhone"
+                                    placeholder="10-digit number"
+                                    maxlength="10"
+                                    required>
+
+                            </div>
 
                         </div>
 
@@ -326,318 +348,35 @@
 
                     <div class="form-group">
 
-                        <label for="userPhone">
-                            Phone Number
-                        </label>
-
-                        <div class="input-wrapper">
-
-                            <i class="fa-solid fa-phone"></i>
-
-                            <input
-                                type="tel"
-                                id="userPhone"
-                                placeholder="10-digit number"
-                                maxlength="10"
-                                required>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="vehicleType">
-                        Vehicle Type
-                    </label>
-
-                    <div class="select-wrapper">
-
-                        <i class="fa-solid fa-car"></i>
-
-                        <select id="vehicleType"
-                                required>
-
-                            <option value="">
-                                Select vehicle type
-                            </option>
-
-                            <option value="car">
-                                Car
-                            </option>
-
-                            <option value="bike">
-                                Bike
-                            </option>
-
-                            <option value="suv">
-                                SUV
-                            </option>
-
-                            <option value="ev">
-                                Electric Vehicle
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                </div>
-
-                <div class="form-row">
-
-                    <div class="form-group">
-
-                        <label for="userPassword">
-                            Password
-                        </label>
-
-                        <div class="input-wrapper">
-
-                            <i class="fa-solid fa-lock"></i>
-
-                            <input
-                                type="password"
-                                id="userPassword"
-                                placeholder="Create password"
-                                required>
-
-                            <button
-                                type="button"
-                                class="password-toggle"
-                                data-target="userPassword">
-
-                                <i class="fa-regular fa-eye"></i>
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="userConfirmPassword">
-                            Confirm Password
-                        </label>
-
-                        <div class="input-wrapper">
-
-                            <i class="fa-solid fa-lock"></i>
-
-                            <input
-                                type="password"
-                                id="userConfirmPassword"
-                                placeholder="Confirm password"
-                                required>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <label class="checkbox-label terms-label">
-
-                    <input
-                        type="checkbox"
-                        id="userTerms"
-                        required>
-
-                    <span>
-                        I agree to the
-                        <a href="#">Terms & Conditions</a>
-                        and
-                        <a href="#">Privacy Policy</a>
-                    </span>
-
-                </label>
-
-                <button
-                    type="submit"
-                    class="auth-submit-btn">
-
-                    Create User Account
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </button>
-
-            </form>
-
-            <form id="ownerRegisterForm"
-                  class="register-form"
-                  style="display: none;">
-
-                <div class="form-section-title">
-
-                    <i class="fa-solid fa-square-parking"></i>
-
-                    Parking Owner Information
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="ownerName">
-                        Owner / Business Name
-                    </label>
-
-                    <div class="input-wrapper">
-
-                        <i class="fa-regular fa-user"></i>
-
-                        <input
-                            type="text"
-                            id="ownerName"
-                            placeholder="Enter owner or business name"
-                            required>
-
-                    </div>
-
-                </div>
-
-                <div class="form-row">
-
-                    <div class="form-group">
-
-                        <label for="ownerEmail">
-                            Email Address
-                        </label>
-
-                        <div class="input-wrapper">
-
-                            <i class="fa-regular fa-envelope"></i>
-
-                            <input
-                                type="email"
-                                id="ownerEmail"
-                                placeholder="Enter email"
-                                required>
-
-                        </div>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="ownerPhone">
-                            Phone Number
-                        </label>
-
-                        <div class="input-wrapper">
-
-                            <i class="fa-solid fa-phone"></i>
-
-                            <input
-                                type="tel"
-                                id="ownerPhone"
-                                placeholder="10-digit number"
-                                maxlength="10"
-                                required>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="parkingName">
-                        Parking Area Name
-                    </label>
-
-                    <div class="input-wrapper">
-
-                        <i class="fa-solid fa-square-parking"></i>
-
-                        <input
-                            type="text"
-                            id="parkingName"
-                            placeholder="e.g. City Mall Parking"
-                            required>
-
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="parkingLocation">
-                        Parking Location
-                    </label>
-
-                    <div class="input-wrapper">
-
-                        <i class="fa-solid fa-location-dot"></i>
-
-                        <input
-                            type="text"
-                            id="parkingLocation"
-                            placeholder="Enter parking location"
-                            required>
-
-                    </div>
-
-                </div>
-
-                <div class="form-row">
-
-                    <div class="form-group">
-
-                        <label for="parkingCapacity">
-                            Total Capacity
-                        </label>
-
-                        <div class="input-wrapper">
-
-                            <i class="fa-solid fa-car"></i>
-
-                            <input
-                                type="number"
-                                id="parkingCapacity"
-                                placeholder="Total spaces"
-                                min="1"
-                                required>
-
-                        </div>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="parkingType">
-                            Parking Type
+                        <label for="vehicleType">
+                            Vehicle Type
                         </label>
 
                         <div class="select-wrapper">
 
-                            <i class="fa-solid fa-building"></i>
+                            <i class="fa-solid fa-car"></i>
 
-                            <select id="parkingType"
+                            <select id="vehicleType"
                                     required>
 
                                 <option value="">
-                                    Select type
+                                    Select vehicle type
                                 </option>
 
-                                <option value="mall">
-                                    Mall
+                                <option value="car">
+                                    All
                                 </option>
 
-                                <option value="street">
-                                    Street Parking
+                                <option value="car">
+                                    Car
                                 </option>
 
-                                <option value="private">
-                                    Private Parking
+                                <option value="bike">
+                                    Bike
                                 </option>
 
-                                <option value="commercial">
-                                    Commercial
+                                <option value="ev">
+                                    Electric Vehicle
                                 </option>
 
                             </select>
@@ -646,106 +385,278 @@
 
                     </div>
 
-                </div>
+                    <div class="form-row">
 
-                <div class="form-row">
+                        <div class="form-group">
 
-                    <div class="form-group">
+                            <label for="userPassword">
+                                Password
+                            </label>
 
-                        <label for="ownerPassword">
-                            Password
-                        </label>
+                            <div class="input-wrapper">
 
-                        <div class="input-wrapper">
+                                <i class="fa-solid fa-lock"></i>
 
-                            <i class="fa-solid fa-lock"></i>
+                                <input
+                                    type="password"
+                                    id="userPassword"
+                                    placeholder="Create password"
+                                    required>
 
-                            <input
-                                type="password"
-                                id="ownerPassword"
-                                placeholder="Create password"
-                                required>
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    data-target="userPassword">
 
-                            <button
-                                type="button"
-                                class="password-toggle"
-                                data-target="ownerPassword">
+                                    <i class="fa-regular fa-eye"></i>
 
-                                <i class="fa-regular fa-eye"></i>
+                                </button>
 
-                            </button>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="userConfirmPassword">
+                                Confirm Password
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <i class="fa-solid fa-lock"></i>
+
+                                <input
+                                    type="password"
+                                    id="userConfirmPassword"
+                                    placeholder="Confirm password"
+                                    required>
+
+                            </div>
 
                         </div>
 
                     </div>
 
+                    <label class="checkbox-label terms-label">
+
+                        <input
+                            type="checkbox"
+                            id="userTerms"
+                            required>
+
+                        <span>
+                            I agree to the
+                            <a href="#">Terms & Conditions</a>
+                            and
+                            <a href="#">Privacy Policy</a>
+                        </span>
+
+                    </label>
+
+                    <button
+                        type="submit"
+                        class="auth-submit-btn">
+
+                        Create User Account
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                    <p class="register-text user-register-switch">
+
+                        Already have a User account?
+
+                        <a href="user_login.html">
+
+                            Sign In
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </p>
+
+                </form>
+                
+            
+
+                <form id="ownerRegisterForm"
+                    class="register-form"
+                    style="display: none;">
+
+                    <div class="form-section-title">
+
+                        <i class="fa-solid fa-square-parking"></i>
+
+                        Parking Owner Information
+
+                    </div>
+
                     <div class="form-group">
 
-                        <label for="ownerConfirmPassword">
-                            Confirm Password
+                        <label for="ownerName">
+                            Owner Name
                         </label>
 
                         <div class="input-wrapper">
 
-                            <i class="fa-solid fa-lock"></i>
+                            <i class="fa-regular fa-user"></i>
 
                             <input
-                                type="password"
-                                id="ownerConfirmPassword"
-                                placeholder="Confirm password"
+                                type="text"
+                                id="ownerName"
+                                placeholder="Enter owner or business name"
                                 required>
 
                         </div>
 
                     </div>
 
-                </div>
+                    <div class="form-row">
 
-                <label class="checkbox-label terms-label">
+                        <div class="form-group">
 
-                    <input
-                        type="checkbox"
-                        id="ownerTerms"
-                        required>
+                            <label for="ownerEmail">
+                                Email Address
+                            </label>
 
-                    <span>
+                            <div class="input-wrapper">
 
-                        I agree to the
-                        <a href="#">Terms & Conditions</a>
-                        and
-                        <a href="#">Privacy Policy</a>
+                                <i class="fa-regular fa-envelope"></i>
 
-                    </span>
+                                <input
+                                    type="email"
+                                    id="ownerEmail"
+                                    placeholder="Enter email"
+                                    required>
 
-                </label>
+                            </div>
 
-                <button
-                    type="submit"
-                    class="auth-submit-btn">
+                        </div>
 
-                    Register Parking
+                        <div class="form-group">
 
-                    <i class="fa-solid fa-arrow-right"></i>
+                            <label for="ownerPhone">
+                                Phone Number
+                            </label>
 
-                </button>
+                            <div class="input-wrapper">
 
-            </form>
+                                <i class="fa-solid fa-phone"></i>
 
-            <p class="register-text">
+                                <input
+                                    type="tel"
+                                    id="ownerPhone"
+                                    placeholder="10-digit number"
+                                    maxlength="10"
+                                    required>
 
-                Already have an account?
+                            </div>
 
-                <a href="login.html">
-                    Sign in
-                </a>
+                        </div>
 
-            </p>
+                    </div>
 
-            <div class="security-note">
 
-                <i class="fa-solid fa-lock"></i>
 
-                Your information is securely protected.
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="ownerPassword">
+                                Password
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <i class="fa-solid fa-lock"></i>
+
+                                <input
+                                    type="password"
+                                    id="ownerPassword"
+                                    placeholder="Create password"
+                                    required>
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    data-target="ownerPassword">
+
+                                    <i class="fa-regular fa-eye"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="ownerConfirmPassword">
+                                Confirm Password
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <i class="fa-solid fa-lock"></i>
+
+                                <input
+                                    type="password"
+                                    id="ownerConfirmPassword"
+                                    placeholder="Confirm password"
+                                    required>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <label class="checkbox-label terms-label">
+
+                        <input
+                            type="checkbox"
+                            id="ownerTerms"
+                            required>
+
+                        <span>
+
+                            I agree to the
+                            <a href="#">Terms & Conditions</a>
+                            and
+                            <a href="#">Privacy Policy</a>
+
+                        </span>
+
+                    </label>
+
+                    <button
+                        type="submit"
+                        class="auth-submit-btn">
+
+                        Register Parking
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                    <p class="register-text owner-register-switch">
+
+                        Already have a Park Owner account?
+
+                        <a href="owner_login.html">
+
+                            Sign In
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </p>
+
+                </form>
 
             </div>
 

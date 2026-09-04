@@ -14,54 +14,234 @@
         <aside class="sidebar"></aside>
         <main class="main-content">
             <header class="top-header"></header>
-            <section class="admin-page"><section class="admin-card">
-                <div class="verification-toolbar">
-                    <input type="search" placeholder="Search owner or parking lot">
-                    <select class="filter-select"><option>Pending review</option>
-                        <option>Approved</option><option>Rejected</option>
-                    </select>
+            <section class="admin-page">
+
+                <!-- ==========================================
+                    VERIFICATION SUMMARY
+                    ========================================== -->
+
+                <div class="verification-summary">
+
+                    <div class="verification-summary-card pending">
+
+                        <div class="summary-icon">
+                            <i class="fa-solid fa-hourglass-half"></i>
+                        </div>
+
+                        <div>
+                            <span>Pending Review</span>
+                            <strong id="pendingCount">0</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="verification-summary-card approved">
+
+                        <div class="summary-icon">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+
+                        <div>
+                            <span>Approved</span>
+                            <strong id="approvedCount">0</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="verification-summary-card rejected">
+
+                        <div class="summary-icon">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </div>
+
+                        <div>
+                            <span>Rejected</span>
+                            <strong id="rejectedCount">0</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="verification-summary-card total">
+
+                        <div class="summary-icon">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+
+                        <div>
+                            <span>Total Owners</span>
+                            <strong id="totalOwnersCount">0</strong>
+                        </div>
+
+                    </div>
+
                 </div>
-                <table class="verification-table">
-                    <thead>
-                        <tr>
-                            <th>OWNER / BUSINESS</th>
-                            <th>PARKING LOT</th>
-                            <th>SUBMITTED</th>
-                            <th>STATUS</th>
-                            <th>ACTIONS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <strong>City Mall Parking Pvt Ltd</strong>
-                                <span>admin@citymallparking.in</span>
-                            </td>
-                            <td>City Mall Parking</td>
-                            <td>Today, 10:24 AM</td>
-                            <td><span class="status-pending">Pending</span></td>
-                            <td class="verification-actions"><a class="action-button" href="verification-detail.html">Review</a></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>MetroHub Operators</strong>
-                                <span>contact@metrohub.in</span>
-                            </td>
-                            <td>Metro Hub P2</td>
-                            <td>Today, 09:58 AM</td>
-                            <td><span class="status-pending">Pending</span></td>
-                            <td class="verification-actions"><a class="action-button" href="verification-detail.html">Review</a></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Green Park Services</strong><span>hello@greenpark.in</span></td>
-                            <td>Green Park Lot</td>
-                            <td>Yesterday, 05:12 PM</td>
-                            <td><span class="status-pending">Pending</span></td>
-                            <td class="verification-actions"><a class="action-button" href="verification-detail.html">Review</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section></section>
+
+
+                <!-- ==========================================
+                    MAIN VERIFICATION CARD
+                    ========================================== -->
+
+                <section class="admin-card verification-card">
+
+                    <div class="verification-card-heading">
+
+                        <div>
+
+                            <span class="card-eyebrow">
+                                OWNER MANAGEMENT
+                            </span>
+
+                            <h2>
+                                All Owner Verifications
+                            </h2>
+
+                            <p>
+                                Review and monitor every owner verification
+                                request submitted to ParkWise AI.
+                            </p>
+
+                        </div>
+
+
+                        <div class="live-indicator">
+
+                            <span class="live-dot"></span>
+
+                            Live Database
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==========================================
+                        TOOLBAR
+                        ========================================== -->
+
+                    <div class="verification-toolbar">
+
+                        <div class="verification-search">
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                            <input
+                                type="search"
+                                id="verificationSearch"
+                                placeholder="Search owner, business, email or parking lot..."
+                                autocomplete="off"
+                            >
+
+                        </div>
+
+
+                        <select
+                            class="filter-select"
+                            id="verificationStatusFilter"
+                        >
+
+                            <option value="all">
+                                All Verifications
+                            </option>
+
+                            <option value="pending">
+                                Pending Review
+                            </option>
+
+                            <option value="approved">
+                                Approved
+                            </option>
+
+                            <option value="rejected">
+                                Rejected
+                            </option>
+
+                        </select>
+
+
+                        <button
+                            type="button"
+                            class="refresh-verifications"
+                            id="refreshVerifications"
+                        >
+
+                            <i class="fa-solid fa-rotate"></i>
+
+                            Refresh
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- ==========================================
+                        TABLE
+                        ========================================== -->
+
+                    <div class="verification-table-wrapper">
+
+                        <table class="verification-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        OWNER / BUSINESS
+                                    </th>
+
+                                    <th>
+                                        PARKING LOT
+                                    </th>
+
+                                    <th>
+                                        SUBMITTED
+                                    </th>
+
+                                    <th>
+                                        STATUS
+                                    </th>
+
+                                    <th>
+                                        ACTIONS
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="verificationTableBody">
+
+                                <tr>
+
+                                    <td colspan="5">
+
+                                        <div class="verification-loading">
+
+                                            <i class="fa-solid fa-spinner fa-spin"></i>
+
+                                            <span>
+                                                Loading owner verifications...
+                                            </span>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+            </section>
         </main>
     </div>
     <script src="js/admin-layout.js"></script>

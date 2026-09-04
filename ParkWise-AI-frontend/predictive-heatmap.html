@@ -149,30 +149,6 @@
 
             </div>
 
-            <div class="header-right">
-
-                <button class="notification-btn">
-                    <i class="fa-regular fa-bell"></i>
-                    <span></span>
-                </button>
-
-                <div class="profile">
-
-                    <div class="profile-avatar">
-                        K
-                    </div>
-
-                    <div class="profile-info">
-                        <strong>Kalyani</strong>
-                        <small>User</small>
-                    </div>
-
-                    <i class="fa-solid fa-chevron-down profile-arrow"></i>
-
-                </div>
-
-            </div>
-
         </header>
 
         <div class="page-body">
@@ -213,20 +189,8 @@
 
                     <select id="timeRangeSelect">
 
-                        <option value="now">
-                            Current Real-Time
-                        </option>
-
-                        <option value="1hr">
-                            +1 Hour Forecast
-                        </option>
-
-                        <option value="3hr">
-                            +3 Hours Forecast
-                        </option>
-
-                        <option value="peak">
-                            Peak Hours
+                        <option value="ml">
+                            AI / ML Prediction
                         </option>
 
                     </select>
@@ -308,45 +272,99 @@
                                 HIGH CONGESTION
                             </span>
 
-                            <h3>
-                                City Center Plaza
-                            </h3>
-
-                            <p>
-                                Predicted occupancy
-                            </p>
-
-                            <strong class="danger-text">
-                                89%
-                            </strong>
+                            
 
                         </div>
 
                     </div>
 
-                    <div class="insight-card">
+                    <div class="insights-panel" id="insightsPanel">
 
-                        <div class="insight-icon success">
-                            <i class="fa-solid fa-circle-check"></i>
+                        <div class="insight-card loading-insight">
+
+                            <div class="insight-icon">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+
+                            <div class="insight-content">
+
+                                <span class="insight-label">
+                                    ML ANALYSIS
+                                </span>
+
+                                <h3 id="highCongestionName">
+                                    Loading...
+                                </h3>
+
+                                <p>
+                                    Highest predicted occupancy
+                                </p>
+
+                                <strong
+                                    id="highCongestionValue"
+                                    class="danger-text">
+                                    --
+                                </strong>
+
+                            </div>
+
                         </div>
 
-                        <div class="insight-content">
 
-                            <span class="insight-label">
-                                BEST AVAILABILITY
-                            </span>
+                        <div class="insight-card">
 
-                            <h3>
-                                Metro Hub P2
-                            </h3>
+                            <div class="insight-icon success">
 
-                            <p>
-                                Predicted occupancy
-                            </p>
+                                <i class="fa-solid fa-circle-check"></i>
 
-                            <strong class="success-text">
-                                24%
-                            </strong>
+                            </div>
+
+                            <div class="insight-content">
+
+                                <span class="insight-label">
+                                    BEST AVAILABILITY
+                                </span>
+
+                                <h3 id="bestAvailabilityName">
+                                    Loading...
+                                </h3>
+
+                                <p>
+                                    Lowest predicted occupancy
+                                </p>
+
+                                <strong
+                                    id="bestAvailabilityValue"
+                                    class="success-text">
+                                    --
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="ai-insight">
+
+                            <div class="ai-insight-icon">
+
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    AI INSIGHT
+                                </span>
+
+                                <p id="aiInsightText">
+                                    ParkWise AI is analysing parking
+                                    occupancy using MongoDB data
+                                    and the ML model.
+                                </p>
+
+                            </div>
 
                         </div>
 

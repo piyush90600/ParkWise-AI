@@ -1,3 +1,710 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Owner Verification | ParkWise AI</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"><link rel="stylesheet" href="css/shared.css"><link rel="stylesheet" href="css/owner-dashboard.css"></head>
-<body><div class="app-layout"><aside class="sidebar"></aside><main class="main-content"><header class="top-header"></header><section class="owner-page"><div class="owner-grid"><section class="owner-card"><div class="owner-card-header"><h2>Business verification application</h2></div><p style="color:#64748b;font-size:13px;margin:0 0 20px">Your account will be reviewed after you submit all required documents.</p><form class="verification-form"><div class="form-field"><label for="businessName">Registered business name</label><input id="businessName" placeholder="e.g. City Mall Parking Pvt Ltd"></div><div class="form-field"><label for="registration">Business registration number</label><input id="registration" placeholder="Enter registration number"></div><div class="form-field full"><label for="address">Registered business address</label><textarea id="address" placeholder="Enter the full business address"></textarea></div><div class="form-field"><label for="ownerName">Owner full name</label><input id="ownerName" placeholder="Enter owner name"></div><div class="form-field"><label for="phone">Business phone number</label><input id="phone" type="tel" placeholder="Enter phone number"></div><div class="form-field full"><label for="identity">Owner identity document</label><div class="upload-box"><i class="fa-solid fa-cloud-arrow-up"></i><p>Upload Aadhaar, PAN, or government-issued ID (PDF, JPG, PNG)</p><input id="identity" type="file" accept=".pdf,.jpg,.jpeg,.png"></div></div><div class="form-field full"><label for="businessDoc">Business registration document</label><div class="upload-box"><i class="fa-solid fa-file-arrow-up"></i><p>Upload registration certificate or trade licence</p><input id="businessDoc" type="file" accept=".pdf,.jpg,.jpeg,.png"></div></div><div class="form-field full"><label for="lotProof">Parking-lot ownership proof</label><div class="upload-box"><i class="fa-solid fa-file-contract"></i><p>Upload ownership, lease, or authorized-operation proof</p><input id="lotProof" type="file" accept=".pdf,.jpg,.jpeg,.png"></div></div></form><button class="owner-action" type="button">Submit for verification</button></section><aside class="owner-card"><div class="owner-card-header"><h2>Verification process</h2></div><div class="verification-steps"><div class="verification-step active"><i class="fa-solid fa-1"></i><span>Submit business and owner information</span></div><div class="verification-step"><i class="fa-solid fa-2"></i><span>Admin checks your documents and parking-lot proof</span></div><div class="verification-step"><i class="fa-solid fa-3"></i><span>Receive approval and start managing your lots</span></div></div><div class="admin-note" style="margin-top:24px"><i class="fa-solid fa-circle-info"></i>Review usually takes one to two business days. You will be notified of the result.</div></aside></div></section></main></div><script src="js/owner-layout.js"></script></body></html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Owner Verification | ParkWise AI</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Project CSS -->
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/owner-dashboard.css">
+    <link rel="stylesheet" href="css/owner-verification.css">
+
+
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Header -->
+            <header class="top-header">
+            </header>
+
+            <!-- Owner Verification Page -->
+            <section class="owner-page">
+
+                <!-- Verification Hero -->
+                <div class="verification-hero">
+
+                    <div class="verification-hero-content">
+
+                        <div class="verification-hero-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+
+                        <div>
+                            <span class="verification-eyebrow">
+                                OWNER VERIFICATION
+                            </span>
+
+                            <h1>
+                                Verify your business
+                            </h1>
+
+                            <p>
+                                Complete your verification to build trust and
+                                start managing your parking lots on ParkWise AI.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="verification-secure-badge">
+                        <i class="fa-solid fa-lock"></i>
+                        Secure & Protected
+                    </div>
+
+                </div>
+
+
+                <div class="verification-info-strip">
+
+                    <div class="verification-info-item">
+                        <div class="info-strip-icon">
+                            <i class="fa-solid fa-file-circle-check"></i>
+                        </div>
+
+                        <div>
+                            <strong>Required documents</strong>
+                            <span>3 documents needed</span>
+                        </div>
+                    </div>
+
+
+                    <div class="verification-info-item">
+                        <div class="info-strip-icon">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+
+                        <div>
+                            <strong>Review time</strong>
+                            <span>1–2 business days</span>
+                        </div>
+                    </div>
+
+
+                    <div class="verification-info-item">
+                        <div class="info-strip-icon">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </div>
+
+                        <div>
+                            <strong>Your data is safe</strong>
+                            <span>Encrypted & protected</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="owner-grid">
+
+                    <!-- Business Verification Form -->
+                    <section class="owner-card">
+
+                        <div class="owner-card-header verification-card-heading">
+
+                            <div>
+                                <span class="card-eyebrow">
+                                    APPLICATION DETAILS
+                                </span>
+
+                                <h2>Business verification application</h2>
+
+                                <p>
+                                    Provide accurate information and upload
+                                    all required documents.
+                                </p>
+                            </div>
+
+                            <div class="card-heading-icon">
+                                <i class="fa-solid fa-building-circle-check"></i>
+                            </div>
+
+                        </div>
+
+                    
+                        <form
+                            class="verification-form"
+                            id="verificationForm"
+                            enctype="multipart/form-data"
+                            autocomplete="off"
+                        >
+
+                            <!-- ==========================================
+                                PARKING LOT INFORMATION
+                                ========================================== -->
+
+                            <div class="form-section-title full">
+                                <div class="section-title-icon">
+                                    <i class="fa-solid fa-square-parking"></i>
+                                </div>
+
+                                <div>
+                                    <strong>Parking Lot Information</strong>
+                                    <span>Enter details exactly as they should appear on ParkWise AI.</span>
+                                </div>
+                            </div>
+
+
+                            <!-- Parking Lot Name -->
+
+                            <div class="form-field">
+                                <label for="parkingName">
+                                    <i class="fa-solid fa-square-parking"></i>
+                                    Parking lot name
+                                </label>
+
+                                <input
+                                    id="parkingName"
+                                    name="name"
+                                    type="text"
+                                    placeholder="e.g. Rohini Parking A"
+                                    required
+                                >
+                            </div>
+
+
+                            <!-- Owner Name -->
+
+                            <div class="form-field">
+                                <label for="ownerName">
+                                    <i class="fa-solid fa-user"></i>
+                                    Owner full name
+                                </label>
+
+                                <input
+                                    id="ownerName"
+                                    name="owner_name"
+                                    type="text"
+                                    placeholder="Enter owner full name"
+                                    required
+                                >
+                            </div>
+
+
+                            <!-- Parking Location -->
+
+                            <div class="form-field full location-field">
+
+                                <label for="address">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    Parking lot address
+                                </label>
+
+                                <div class="location-input-wrapper">
+
+                                    <textarea
+                                        id="address"
+                                        name="address"
+                                        placeholder="Enter complete parking lot address..."
+                                        required
+                                    ></textarea>
+
+                                    <button
+                                        type="button"
+                                        class="current-location-btn"
+                                        id="useCurrentLocation"
+                                    >
+                                        <i class="fa-solid fa-location-crosshairs"></i>
+                                        Use My Current Location
+                                    </button>
+
+                                </div>
+
+                                <div
+                                    id="locationStatus"
+                                    class="location-status"
+                                >
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    Enter an address or use your current location.
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-field coordinate-field">
+
+                                <label for="latitude">
+                                    <i class="fa-solid fa-globe"></i>
+                                    Latitude
+                                </label>
+
+                                <div class="coordinate-input">
+                                    <i class="fa-solid fa-location-dot"></i>
+
+                                    <input
+                                        id="latitude"
+                                        name="latitude"
+                                        type="number"
+                                        step="any"
+                                        placeholder="Automatically detected"
+                                        readonly
+                                        required
+                                    >
+                                </div>
+
+                            </div>
+
+
+                            <!-- Longitude -->
+
+                            <div class="form-field coordinate-field">
+
+                                <label for="longitude">
+                                    <i class="fa-solid fa-globe"></i>
+                                    Longitude
+                                </label>
+
+                                <div class="coordinate-input">
+                                    <i class="fa-solid fa-location-dot"></i>
+
+                                    <input
+                                        id="longitude"
+                                        name="longitude"
+                                        type="number"
+                                        step="any"
+                                        placeholder="Automatically detected"
+                                        readonly
+                                        required
+                                    >
+                                </div>
+
+                            </div>
+
+
+                            <!-- Price -->
+
+                            <div class="form-field">
+                                <label for="pricePerHour">
+                                    <i class="fa-solid fa-indian-rupee-sign"></i>
+                                    Price per hour
+                                </label>
+
+                                <div class="input-with-prefix">
+                                    <span>₹</span>
+
+                                    <input
+                                        id="pricePerHour"
+                                        name="price_per_hour"
+                                        type="number"
+                                        min="0"
+                                        step="0.01"
+                                        placeholder="20.00"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+
+                            <!-- Total Slots -->
+
+                            <div class="form-field">
+                                <label for="totalSlots">
+                                    <i class="fa-solid fa-layer-group"></i>
+                                    Total parking slots
+                                </label>
+
+                                <input
+                                    id="totalSlots"
+                                    name="total_slots"
+                                    type="number"
+                                    min="1"
+                                    placeholder="e.g. 50"
+                                    required
+                                >
+                            </div>
+
+
+                            <!-- Vehicle Type -->
+
+                            <div class="form-field">
+                                <label for="vehicleType">
+                                    <i class="fa-solid fa-car"></i>
+                                    Vehicle type
+                                </label>
+
+                                <select
+                                    id="vehicleType"
+                                    name="vehicle_type"
+                                    required
+                                >
+                                    <option value="all">All Vehicles</option>
+                                    <option value="car">Car</option>
+                                    <option value="bike">Bike</option>
+                                    <option value="ev">EV</option>
+                                </select>
+                            </div>
+
+
+                            <!-- Timing Start -->
+
+                            <div class="form-field">
+                                <label for="timingStart">
+                                    <i class="fa-solid fa-clock"></i>
+                                    Opening time
+                                </label>
+
+                                <input
+                                    id="timingStart"
+                                    name="timing_start"
+                                    type="time"
+                                    value="06:00"
+                                    required
+                                >
+                            </div>
+
+
+                            <!-- Timing End -->
+
+                            <div class="form-field">
+                                <label for="timingEnd">
+                                    <i class="fa-solid fa-clock"></i>
+                                    Closing time
+                                </label>
+
+                                <input
+                                    id="timingEnd"
+                                    name="timing_end"
+                                    type="time"
+                                    value="23:00"
+                                    required
+                                >
+                            </div>
+
+
+                            <!-- ==========================================
+                                DOCUMENTS
+                                DO NOT REMOVE
+                                ========================================== -->
+
+                            <div class="form-section-title full document-heading">
+                                <div class="section-title-icon">
+                                    <i class="fa-solid fa-file-shield"></i>
+                                </div>
+
+                                <div>
+                                    <strong>Verification Documents</strong>
+                                    <span>Upload all three required documents for admin review.</span>
+                                </div>
+                            </div>
+
+
+                            <!-- Owner Identity Document -->
+
+                            <div class="form-field full">
+
+                                <label for="identity">
+                                    <i class="fa-solid fa-id-card"></i>
+                                    Owner identity document
+                                </label>
+
+                                <div class="upload-box">
+
+                                    <div class="upload-icon">
+                                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    </div>
+
+                                    <div class="upload-content">
+
+                                        <strong>
+                                            Upload identity document
+                                        </strong>
+
+                                        <p>
+                                            Aadhaar, PAN or government-issued ID
+                                        </p>
+
+                                        <span>
+                                            PDF, JPG or PNG • Max 5MB
+                                        </span>
+
+                                    </div>
+
+                                    <label
+                                        for="identity"
+                                        class="upload-button"
+                                    >
+                                        <i class="fa-solid fa-upload"></i>
+                                        Choose file
+                                    </label>
+
+                                    <input
+                                        id="identity"
+                                        name="identity"
+                                        type="file"
+                                        accept=".pdf,.jpg,.jpeg,.png"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Business Registration -->
+
+                            <div class="form-field full">
+
+                                <label for="businessDoc">
+                                    <i class="fa-solid fa-certificate"></i>
+                                    Business registration document
+                                </label>
+
+                                <div class="upload-box">
+
+                                    <div class="upload-icon">
+                                        <i class="fa-solid fa-file-lines"></i>
+                                    </div>
+
+                                    <div class="upload-content">
+
+                                        <strong>
+                                            Upload registration document
+                                        </strong>
+
+                                        <p>
+                                            Registration certificate or trade licence
+                                        </p>
+
+                                        <span>
+                                            PDF, JPG or PNG • Max 5MB
+                                        </span>
+
+                                    </div>
+
+                                    <label
+                                        for="businessDoc"
+                                        class="upload-button"
+                                    >
+                                        <i class="fa-solid fa-upload"></i>
+                                        Choose file
+                                    </label>
+
+                                    <input
+                                        id="businessDoc"
+                                        name="businessDoc"
+                                        type="file"
+                                        accept=".pdf,.jpg,.jpeg,.png"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Parking Ownership Proof -->
+
+                            <div class="form-field full">
+
+                                <label for="lotProof">
+                                    <i class="fa-solid fa-file-contract"></i>
+                                    Parking-lot ownership proof
+                                </label>
+
+                                <div class="upload-box">
+
+                                    <div class="upload-icon">
+                                        <i class="fa-solid fa-file-shield"></i>
+                                    </div>
+
+                                    <div class="upload-content">
+
+                                        <strong>
+                                            Upload parking ownership proof
+                                        </strong>
+
+                                        <p>
+                                            Ownership, lease or authorized-operation proof
+                                        </p>
+
+                                        <span>
+                                            PDF, JPG or PNG • Max 5MB
+                                        </span>
+
+                                    </div>
+
+                                    <label
+                                        for="lotProof"
+                                        class="upload-button"
+                                    >
+                                        <i class="fa-solid fa-upload"></i>
+                                        Choose file
+                                    </label>
+
+                                    <input
+                                        id="lotProof"
+                                        name="lotProof"
+                                        type="file"
+                                        accept=".pdf,.jpg,.jpeg,.png"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Status message -->
+
+                            <div
+                                id="verificationMessage"
+                                class="verification-message full"
+                            ></div>
+
+                        </form>
+
+
+
+                        <!-- Submit Button -->
+                        <button
+                            class="owner-action verification-submit"
+                            id="submitVerification"
+                            type="submit"
+                            form="verificationForm"
+                        >
+                            <i class="fa-solid fa-paper-plane"></i>
+                            Submit for verification
+                            <i class="fa-solid fa-arrow-right submit-arrow"></i>
+                        </button>
+
+                    </section>
+
+
+                    <!-- Verification Process -->
+                    <aside class="owner-card">
+
+                        <div class="owner-card-header verification-card-heading">
+
+                            <div>
+                                <span class="card-eyebrow">
+                                    HOW IT WORKS
+                                </span>
+
+                                <h2>Verification process</h2>
+
+                                <p>
+                                    Follow these simple steps to get verified.
+                                </p>
+                            </div>
+
+                            <div class="card-heading-icon">
+                                <i class="fa-solid fa-list-check"></i>
+                            </div>
+
+                        </div>
+
+                        <div class="verification-steps">
+
+                            <!-- Step 1 -->
+                            <div class="verification-step active">
+
+                                <div class="step-number">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+
+                                <div class="step-content">
+                                    <strong>Submit information</strong>
+                                    <span>
+                                        Provide your business and owner details.
+                                    </span>
+                                </div>
+
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div class="verification-step">
+
+                                <div class="step-number">
+                                    2
+                                </div>
+
+                                <div class="step-content">
+                                    <strong>Document review</strong>
+                                    <span>
+                                        Admin verifies your documents and parking proof.
+                                    </span>
+                                </div>
+
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="verification-step">
+
+                                <div class="step-number">
+                                    3
+                                </div>
+
+                                <div class="step-content">
+                                    <strong>Get approved</strong>
+                                    <span>
+                                        Start managing your parking lots after approval.
+                                    </span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Information Note -->
+                        <div class="admin-note verification-note">
+
+                            <div class="note-icon">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+
+                            <div>
+                                <strong>Good to know</strong>
+
+                                <span>
+                                    Review usually takes one to two business days.
+                                    You will be notified once the verification status
+                                    changes.
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/owner-layout.js"></script>
+    <script src="js/owner-verification.js"></script>
+
+</body>
+
+</html>

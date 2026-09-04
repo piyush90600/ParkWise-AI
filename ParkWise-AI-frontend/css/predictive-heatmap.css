@@ -323,13 +323,7 @@ body {
     display: none;
 }
 
-.header-right {
-    display: flex;
 
-    align-items: center;
-
-    gap: 18px;
-}
 
 .notification-btn {
     width: 43px;
@@ -368,15 +362,7 @@ body {
     right: 10px;
 }
 
-.profile {
-    display: flex;
 
-    align-items: center;
-
-    gap: 10px;
-
-    cursor: pointer;
-}
 
 .profile-avatar {
     width: 42px;
@@ -397,24 +383,11 @@ body {
     font-size: 14px;
 }
 
-.profile-info {
-    display: flex;
-    flex-direction: column;
-}
 
-.profile-info strong {
-    font-size: 13px;
 
-    color: #17233a;
-}
 
-.profile-info small {
-    margin-top: 3px;
 
-    font-size: 10px;
 
-    color: #91a0b4;
-}
 
 .profile-arrow {
     font-size: 10px;
@@ -701,21 +674,11 @@ body {
     z-index: 1;
 }
 
-.leaflet-control-zoom a {
-    color: #26354d !important;
-}
 
-.leaflet-popup-content-wrapper {
-    border-radius: 10px;
-}
 
-.leaflet-popup-content {
-    font-family: "Inter", sans-serif;
 
-    font-size: 12px;
 
-    line-height: 1.6;
-}
+
 
 .map-legend {
     display: flex;
@@ -1062,4 +1025,150 @@ body {
 
         gap: 10px;
     }
+}
+
+/* ==========================================================
+   PARKWISE AI - PREDICTIVE HEATMAP
+   ========================================================== */
+
+.map-card,
+.insight-card,
+.ai-insight {
+
+    box-shadow:
+        0 10px 30px
+        rgba(
+            15,
+            23,
+            42,
+            .05
+        );
+
+}
+
+
+.insight-card {
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+
+}
+
+
+.insight-card:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 14px 30px
+        rgba(
+            15,
+            23,
+            42,
+            .08
+        );
+
+}
+
+
+.ai-insight {
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff,
+            #ffffff
+        );
+
+    border: 1px solid #dbeafe;
+
+}
+
+
+.ai-insight::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    right: -60px;
+    bottom: -60px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(
+            37,
+            99,
+            235,
+            .07
+        );
+
+}
+
+
+.heatmap-popup {
+
+    min-width: 190px;
+
+    font-family:
+        "Inter",
+        sans-serif;
+
+    color: #334155;
+
+    line-height: 1.8;
+
+}
+
+
+.heatmap-popup strong {
+
+    color: #172033;
+
+    font-size: 14px;
+
+}
+
+
+.heatmap-popup hr {
+
+    border: 0;
+
+    border-top:
+        1px solid #e5e7eb;
+
+    margin: 7px 0;
+
+}
+
+
+
+
+
+
+
+
+.refresh-btn.loading {
+
+    opacity: .75;
+
+    pointer-events: none;
+
+}
+
+
+@media (max-width: 700px) {
+
+    
+
 }

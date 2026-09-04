@@ -1,3 +1,375 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Verification Review | ParkWise AI</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"><link rel="stylesheet" href="css/shared.css"><link rel="stylesheet" href="css/admin.css"></head>
-<body><div class="app-layout"><aside class="sidebar"></aside><main class="main-content"><header class="top-header"></header><section class="admin-page"><div class="admin-grid"><section class="admin-card"><div class="admin-card-header"><h2>Application details</h2><span class="status-pending">Pending review</span></div><div class="detail-list"><div class="detail-item"><span>Business name</span><strong>City Mall Parking Pvt Ltd</strong></div><div class="detail-item"><span>Business registration</span><strong>U74999KA2022PTC123456</strong></div><div class="detail-item"><span>Owner</span><strong>Rohan Mehta</strong></div><div class="detail-item"><span>Contact</span><strong>admin@citymallparking.in<br>+91 98765 43210</strong></div><div class="detail-item"><span>Registered address</span><strong>12 Main Road, Bengaluru, Karnataka</strong></div><div class="detail-item"><span>Parking lot</span><strong>City Mall Parking<br>120 spaces</strong></div></div></section><aside class="admin-card"><div class="admin-card-header"><h2>Submitted documents</h2></div><div class="admin-list"><a href="#" class="document-link"><span><i class="fa-solid fa-file-pdf"></i> Business registration.pdf</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a><a href="#" class="document-link"><span><i class="fa-solid fa-file-pdf"></i> Owner identity.pdf</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a><a href="#" class="document-link"><span><i class="fa-solid fa-file-pdf"></i> Parking ownership.pdf</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div><div class="decision-actions"><button class="action-button approve" type="button">Approve owner</button><button class="action-button reject" type="button">Reject</button></div></aside></div></section></main></div><script src="js/admin-layout.js"></script></body></html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Verification Review | ParkWise AI</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Project CSS -->
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/owner-verification.css">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar"></aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="main-content">
+
+        <!-- Admin Header -->
+        <header class="top-header"></header>
+
+
+        <!-- ================= PAGE ================= -->
+        <section class="admin-page verification-detail-page">
+
+            <!-- Page Intro -->
+            <div class="verification-detail-intro">
+
+                <div>
+                    <span class="admin-section-label">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        OWNER VERIFICATION
+                    </span>
+
+                    <h2>Verification Details</h2>
+
+                    <p>
+                        Review the submitted owner information and documents
+                        before making a verification decision.
+                    </p>
+                </div>
+
+                <span class="status-pending" id="verificationStatus">
+                    Pending review
+                </span>
+
+            </div>
+
+
+            <!-- ================= EMPTY STATE ================= -->
+
+            <div
+                class="verification-detail-empty"
+                id="verificationEmpty"
+            >
+
+                <div class="verification-detail-empty-icon">
+                    <i class="fa-solid fa-file-circle-question"></i>
+                </div>
+
+                <h2>No verification request selected</h2>
+
+                <p>
+                    There is no owner verification data available to review.
+                    Select a verification request from the Owner
+                    Verifications page.
+                </p>
+
+                <a
+                    href="owner-verifications.html"
+                    class="admin-empty-button"
+                >
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Back to Verifications
+                </a>
+
+            </div>
+
+
+            <!-- ================= VERIFICATION DATA ================= -->
+
+            <div
+                class="verification-detail-content"
+                id="verificationContent"
+                style="display:none;"
+            >
+
+                <div class="verification-detail-grid">
+
+
+                    <!-- ================= OWNER DETAILS ================= -->
+
+                    <section class="admin-card verification-main-card">
+
+                        <div class="admin-card-header">
+
+                            <div>
+                                <span class="card-eyebrow">
+                                    OWNER INFORMATION
+                                </span>
+
+                                <h2>Owner Details</h2>
+
+                                <p class="verification-card-subtitle">
+                                    Complete information submitted by the parking owner
+                                </p>
+                            </div>
+
+                            <span class="detail-card-icon">
+                                <i class="fa-solid fa-user-shield"></i>
+                            </span>
+
+                        </div>
+
+
+                        <div class="verification-info-grid">
+
+                            <div class="verification-info-box">
+                                <span>
+                                    <i class="fa-solid fa-id-card"></i>
+                                    Owner ID
+                                </span>
+
+                                <strong id="ownerId">—</strong>
+                            </div>
+
+
+                            <div class="verification-info-box">
+                                <span>
+                                    <i class="fa-solid fa-user"></i>
+                                    Owner Name
+                                </span>
+
+                                <strong id="ownerName">—</strong>
+                            </div>
+
+
+                            <div class="verification-info-box">
+                                <span>
+                                    <i class="fa-solid fa-envelope"></i>
+                                    Email
+                                </span>
+
+                                <strong id="ownerEmail">—</strong>
+                            </div>
+
+
+                            <div class="verification-info-box">
+                                <span>
+                                    <i class="fa-solid fa-phone"></i>
+                                    Phone
+                                </span>
+
+                                <strong id="ownerPhone">—</strong>
+                            </div>
+
+
+                            
+
+
+                            <div class="verification-info-box">
+                                <span>
+                                    <i class="fa-solid fa-calendar"></i>
+                                    Submitted
+                                </span>
+
+                                <strong id="submittedDate">—</strong>
+                            </div>
+
+
+                            <div class="verification-info-box">
+                                <span>
+                                    <i class="fa-solid fa-clock-rotate-left"></i>
+                                    Last Updated
+                                </span>
+
+                                <strong id="updatedDate">—</strong>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <!-- ================= PARKING LOT DETAILS ================= -->
+
+                    <section class="admin-card parking-verification-card">
+
+                        <div class="admin-card-header">
+
+                            <div>
+                                <span class="card-eyebrow">
+                                    PARKING LOT
+                                </span>
+
+                                <h2>Parking Lot Details</h2>
+
+                                <p class="verification-card-subtitle">
+                                    Complete parking facility information
+                                </p>
+                            </div>
+
+                            <span class="detail-card-icon parking">
+                                <i class="fa-solid fa-square-parking"></i>
+                            </span>
+
+                        </div>
+
+
+                        <div id="parkingLotsContainer">
+
+                            <!-- Parking lots inserted by JavaScript -->
+
+                        </div>
+
+
+                        <div
+                            class="parking-no-data"
+                            id="parkingNoData"
+                            style="display:none;"
+                        >
+
+                            <i class="fa-solid fa-square-parking"></i>
+
+                            <strong>No parking lot found</strong>
+
+                            <span>
+                                No parking lot is registered with this owner ID.
+                            </span>
+
+                        </div>
+
+                    </section>
+                    <!-- ================= DOCUMENTS ================= -->
+
+                    <aside class="admin-card">
+
+                        <div class="admin-card-header">
+
+                            <div>
+                                <span class="card-eyebrow">
+                                    DOCUMENTS
+                                </span>
+
+                                <h2>Submitted Documents</h2>
+                            </div>
+
+                            <span class="detail-card-icon document">
+                                <i class="fa-solid fa-folder-open"></i>
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="documents-container"
+                            id="documentsContainer"
+                        >
+
+                            <!-- Documents will be inserted by JS -->
+
+                        </div>
+
+
+                        <div class="document-empty" id="documentEmpty">
+
+                            <i class="fa-solid fa-folder-open"></i>
+
+                            <span>
+                                No documents submitted
+                            </span>
+
+                            <small>
+                                Uploaded verification documents
+                                will appear here.
+                            </small>
+
+                        </div>
+
+
+                        <!-- ================= ACTIONS ================= -->
+
+                        <div class="decision-actions">
+
+                            <button
+                                class="action-button approve"
+                                id="approveOwner"
+                                type="button"
+                            >
+                                <i class="fa-solid fa-circle-check"></i>
+                                Approve Owner
+                            </button>
+
+                            <button
+                                class="action-button reject"
+                                id="rejectOwner"
+                                type="button"
+                            >
+                                <i class="fa-solid fa-circle-xmark"></i>
+                                Reject
+                            </button>
+
+                        </div>
+
+                    </aside>
+
+                </div>
+
+
+                <!-- ================= REVIEW NOTE ================= -->
+
+                <section class="admin-card verification-review-note">
+
+                    <div class="admin-note">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                        <div>
+
+                            <strong>Verification reminder</strong>
+
+                            <p>
+                                Review the owner's submitted information, parking location,
+                                documents and availability details carefully before making a verification decision.
+                                Once an owner is approved, the approval cannot be reversed.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- Admin Layout -->
+<script src="js/admin-layout.js"></script>
+
+<!-- Verification Detail -->
+<script src="js/verification-detail.js"></script>
+
+
+</body>
+
+
+</html>

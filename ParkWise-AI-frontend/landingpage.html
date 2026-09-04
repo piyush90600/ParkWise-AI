@@ -42,8 +42,72 @@
     </nav>
 
     <div class="nav-buttons">
-        <a href="login.html" class="login-btn">Login</a>
-        <a href="register.html" class="signup-btn">Get Started</a>
+
+        <div class="login-menu">
+
+            <button
+                type="button"
+                class="login-btn login-trigger"
+                aria-haspopup="true"
+            >
+                Login
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <div class="login-dropdown">
+
+                <!-- USER LOGIN -->
+                <a href="user_login.html" class="login-option">
+
+                    <div class="login-option-icon user-icon">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div class="login-option-content">
+                        <strong>User Login</strong>
+                        <span>
+                            Find and book smart parking
+                        </span>
+                    </div>
+
+                    <i class="fa-solid fa-arrow-right login-arrow"></i>
+
+                </a>
+
+
+                <!-- OWNER LOGIN -->
+                <a href="owner_login.html" class="login-option">
+
+                    <div class="login-option-icon owner-icon">
+                        <i class="fa-solid fa-square-parking"></i>
+                    </div>
+
+                    <div class="login-option-content">
+                        <strong>Owner Login</strong>
+                        <span>
+                            Manage your parking business
+                        </span>
+                    </div>
+
+                    <i class="fa-solid fa-arrow-right login-arrow"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <a href="register.html" class="signup-btn">
+            Get Started
+        </a>
+
+        <a href="admin-login.html" class="admin-login-link">
+            <i class="fa-solid fa-user-shield"></i>
+            Admin Login
+        </a>
+
+
     </div>
 
     <button class="menu-btn" id="menuBtn">
@@ -73,7 +137,7 @@
 
         <div class="hero-buttons">
 
-            <a href="login.html" class="primary-btn">
+            <a href="user_login.html" class="primary-btn">
                 Find Parking
                 <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -108,87 +172,80 @@
 
     <div class="hero-visual">
 
-        <div class="dashboard-preview">
+    <div class="location-parking-panel">
 
-            <div class="preview-header">
+        <div class="location-panel-header">
 
-                <div>
-                    <span class="small-text">Nearby Parking</span>
-                    <h3>Find your spot</h3>
-                </div>
+            <div>
+                <span class="small-text">
+                    PARKING NEAR YOU
+                </span>
 
-                <div class="location-icon">
-                    <i class="fa-solid fa-location-dot"></i>
-                </div>
-
+                <h3 id="locationTitle">
+                    Finding your location...
+                </h3>
             </div>
 
-            <div class="search-box">
-
-                <i class="fa-solid fa-magnifying-glass"></i>
-
-                <span>Search parking location...</span>
-
+            <div class="location-icon">
+                <i class="fa-solid fa-location-crosshairs"></i>
             </div>
 
-            <div class="parking-preview-card">
+        </div>
 
-                <div class="parking-icon">
-                    <i class="fa-solid fa-square-parking"></i>
-                </div>
 
-                <div class="parking-info">
+        <button
+            class="location-btn"
+            id="findNearbyParkingBtn"
+            onclick="findNearbyParking()"
+        >
+            <i class="fa-solid fa-location-dot"></i>
+            Find Parking Near Me
+        </button>
 
-                    <h4>City Centre Parking</h4>
 
-                    <div class="parking-meta">
-                        <span>
-                            <i class="fa-solid fa-location-dot"></i>
-                            0.5 km
-                        </span>
+        <div
+            id="parkingLoading"
+            class="parking-loading"
+            style="display:none;"
+        >
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            Finding parking near you...
+        </div>
 
-                        <span>
-                            <i class="fa-solid fa-star"></i>
-                            4.7
-                        </span>
-                    </div>
 
-                    <div class="availability">
-                        <span class="available-dot"></span>
-                        18 spots available
-                    </div>
+        <div
+            id="parkingResults"
+            class="parking-results"
+        >
+            <div class="parking-empty">
 
-                </div>
+                <i class="fa-solid fa-location-dot"></i>
 
-                <div class="price">
-                    <strong>₹30</strong>
-                    <span>/hr</span>
-                </div>
+                <h4>Find parking near you</h4>
 
-            </div>
-
-            <div class="ai-card">
-
-                <div class="ai-icon">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                </div>
-
-                <div>
-
-                    <span class="ai-label">
-                        AI RECOMMENDATION
-                    </span>
-
-                    <h4>96% Match</h4>
-
-                    <p>
-                        Best option based on distance,
-                        price & availability.
-                    </p>
-
-                </div>
+                <p>
+                    Allow location access to see parking
+                    available near your current location.
+                </p>
 
             </div>
+        </div>
+
+
+        <div
+            id="noParking"
+            class="parking-empty no-parking"
+            style="display:none;"
+        >
+
+            <i class="fa-solid fa-square-parking"></i>
+
+            <h4>No Parking Available Near You</h4>
+
+            <p>
+                We couldn't find available parking
+                near your current location.
+            </p>
 
         </div>
 
@@ -432,7 +489,7 @@
 
             <div>
                 <h4>Account</h4>
-                <a href="login.html">Login</a>
+                <a href="user_login.html">Login</a>
                 <a href="register.html">Register</a>
             </div>
 

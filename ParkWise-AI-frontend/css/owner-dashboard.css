@@ -1,8 +1,1906 @@
-.owner-page { padding: 30px 32px; }.owner-overview { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-bottom: 24px; }.owner-stat { padding: 19px; border: 1px solid #e5eaf1; border-radius: 12px; background: #fff; }.owner-stat i { color: #2563eb; }.owner-stat span { display: block; margin-top: 14px; color: #64748b; font-size: 12px; }.owner-stat strong { display: block; margin-top: 4px; color: #172033; font-size: 25px; }.owner-stat .positive { color: #16a34a; font-size: 12px; }
-.owner-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(290px, .75fr); gap: 24px; max-width: 1180px; }.owner-card { padding: 22px; border: 1px solid #e5eaf1; border-radius: 14px; background: #fff; box-shadow: 0 6px 20px rgba(15,23,42,.04); }.owner-card-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }.owner-card h2 { margin: 0; font-size: 17px; }.owner-card-header a { color: #2563eb; font-size: 12px; font-weight: 700; text-decoration: none; }
-.owner-lot { display: flex; align-items: center; gap: 14px; padding: 16px 0; border-bottom: 1px solid #e5eaf1; }.owner-lot:last-child { border-bottom: 0; }.lot-icon { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 10px; background: #eff6ff; color: #2563eb; }.owner-lot h3 { margin: 0 0 4px; font-size: 14px; }.owner-lot p { margin: 0; color: #64748b; font-size: 12px; }.lot-status { margin-left: auto; text-align: right; }.lot-status strong { display: block; color: #16a34a; font-size: 13px; }.lot-status span { color: #64748b; font-size: 11px; }
-.booking-row { display: grid; grid-template-columns: 1.4fr 1fr .7fr .7fr; gap: 12px; align-items: center; padding: 14px 0; border-bottom: 1px solid #e5eaf1; color: #475569; font-size: 12px; }.booking-row:last-child { border: 0; }.booking-row strong { color: #172033; }.booking-row.header { padding-top: 0; color: #94a3b8; font-size: 10px; font-weight: 700; letter-spacing: .06em; }.booking-badge { width: fit-content; padding: 4px 8px; border-radius: 20px; background: #dcfce7; color: #15803d; font-size: 10px; font-weight: 700; }
-.occupancy { padding: 18px; border-radius: 12px; background: #f7f9fc; }.occupancy strong { font-size: 30px; color: #172033; }.occupancy p { margin: 4px 0 14px; color: #64748b; font-size: 12px; }.progress { height: 9px; border-radius: 20px; background: #e2e8f0; overflow: hidden; }.progress span { display: block; width: 72%; height: 100%; border-radius: inherit; background: #2563eb; }.owner-action { width: 100%; min-height: 42px; margin-top: 16px; border: 0; border-radius: 8px; background: #2563eb; color: #fff; font-weight: 700; cursor: pointer; }
-.owner-card .stat-list { display: grid; gap: 12px; }.owner-card .stat { padding: 14px; border-radius: 10px; background: #f7f9fc; }.owner-card .stat strong { display: block; color: #172033; font-size: 15px; }.owner-card .stat span { color: #64748b; font-size: 12px; }
-.verification-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }.verification-form .form-field.full { grid-column: 1 / -1; }.form-field label { display: block; margin-bottom: 7px; color: #475569; font-size: 12px; font-weight: 700; }.form-field input, .form-field select, .form-field textarea { width: 100%; min-height: 42px; padding: 10px 12px; border: 1px solid #d8e0ea; border-radius: 8px; color: #172033; background: #fff; font: inherit; }.form-field textarea { min-height: 84px; resize: vertical; }.upload-box { padding: 18px; border: 1px dashed #93c5fd; border-radius: 10px; background: #f8fbff; text-align: center; color: #2563eb; }.upload-box p { margin: 7px 0 0; color: #64748b; font-size: 12px; }.verification-steps { display: grid; gap: 12px; }.verification-step { display: flex; align-items: flex-start; gap: 10px; color: #64748b; font-size: 13px; }.verification-step i { width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; background: #dbeafe; color: #2563eb; font-size: 10px; }.verification-step.active { color: #172033; font-weight: 700; }.verification-step.active i { background: #2563eb; color: #fff; }
-@media (max-width: 1100px) { .owner-overview { grid-template-columns: repeat(2, 1fr); }.owner-grid { grid-template-columns: 1fr; } }.owner-mobile-menu { display: none; }@media (max-width: 800px) { .owner-page { padding: 22px 20px; } }.owner-mobile-menu { display: inline-grid; place-items: center; width: 34px; height: 34px; margin-bottom: 8px; border: 1px solid #e5eaf1; border-radius: 7px; background: #fff; color: #2563eb; }@media (max-width: 520px) { .owner-overview { grid-template-columns: 1fr; }.booking-row { grid-template-columns: 1.2fr .8fr; }.booking-row > :nth-child(3), .booking-row > :nth-child(4) { display: none; } }
+/* =========================================================
+   PARKWISE AI
+   OWNER DASHBOARD
+   ========================================================= */
+
+.owner-page {
+    padding: 30px 32px 50px;
+}
+
+
+/* =========================================================
+   WELCOME
+   ========================================================= */
+
+.owner-welcome {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 24px;
+    padding: 25px 28px;
+
+    border: 1px solid #dbeafe;
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff,
+            #ffffff
+        );
+
+    overflow: hidden;
+}
+
+
+.owner-welcome::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    right: -70px;
+    top: -90px;
+
+    border-radius: 50%;
+
+    background: rgba(
+        37,
+        99,
+        235,
+        .08
+    );
+}
+
+
+.welcome-label {
+    display: inline-block;
+
+    margin-bottom: 7px;
+
+    color: #2563eb;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.owner-welcome h2 {
+    margin: 0;
+
+    color: #172033;
+
+    font-size: 23px;
+    font-weight: 800;
+}
+
+
+.owner-welcome h2 span {
+    color: #2563eb;
+}
+
+
+.owner-welcome p {
+    margin: 7px 0 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+.welcome-icon {
+    position: relative;
+    z-index: 2;
+
+    width: 58px;
+    height: 58px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 16px;
+
+    background: #2563eb;
+    color: #fff;
+
+    font-size: 25px;
+
+    box-shadow:
+        0 12px 25px rgba(
+            37,
+            99,
+            235,
+            .22
+        );
+}
+
+
+/* =========================================================
+   STATISTICS
+   ========================================================= */
+
+.owner-overview {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap: 16px;
+
+    margin-bottom: 24px;
+}
+
+
+.owner-stat {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 20px;
+
+    border: 1px solid #e5eaf1;
+
+    border-radius: 14px;
+
+    background: #fff;
+
+    box-shadow:
+        0 6px 20px
+        rgba(
+            15,
+            23,
+            42,
+            .04
+        );
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+
+.owner-stat:hover {
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 12px 28px
+        rgba(
+            15,
+            23,
+            42,
+            .08
+        );
+}
+
+
+.stat-icon {
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 12px;
+
+    font-size: 17px;
+}
+
+
+.stat-icon.blue {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+
+.stat-icon.orange {
+    background: #fff7ed;
+    color: #ea580c;
+}
+
+
+.stat-icon.green {
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+
+.stat-icon.purple {
+    background: #faf5ff;
+    color: #9333ea;
+}
+
+
+.owner-stat span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #64748b;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+.owner-stat strong {
+    display: block;
+
+    color: #172033;
+
+    font-size: 23px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
+.owner-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(
+            0,
+            1.45fr
+        )
+        minmax(
+            290px,
+            .75fr
+        );
+
+    gap: 24px;
+
+    max-width: 1250px;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.owner-card {
+    padding: 22px;
+
+    border: 1px solid #e5eaf1;
+
+    border-radius: 16px;
+
+    background: #fff;
+
+    box-shadow:
+        0 6px 20px
+        rgba(
+            15,
+            23,
+            42,
+            .04
+        );
+}
+
+
+.owner-booking-card {
+    margin-top: 24px;
+}
+
+
+.owner-card-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 18px;
+}
+
+
+.owner-card-header h2 {
+    margin: 0;
+
+    color: #172033;
+
+    font-size: 17px;
+    font-weight: 800;
+}
+
+
+.owner-card-header p {
+    margin: 5px 0 0;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   BUTTON
+   ========================================================= */
+
+.owner-outline-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    min-height: 38px;
+
+    padding: 0 13px;
+
+    border: 1px solid #dbeafe;
+
+    border-radius: 9px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+
+.owner-outline-btn:hover {
+    background: #2563eb;
+    color: #fff;
+}
+
+
+.owner-action {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 12px;
+
+    min-height: 40px;
+
+    padding: 0 15px;
+
+    border: 0;
+
+    border-radius: 9px;
+
+    background: #2563eb;
+
+    color: #fff;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+
+.owner-action:hover {
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(
+            37,
+            99,
+            235,
+            .20
+        );
+}
+
+
+/* =========================================================
+   TEXT LINK
+   ========================================================= */
+
+.owner-text-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: #2563eb;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   PARKING LOT
+   ========================================================= */
+
+.owner-lot {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 17px 0;
+
+    border-bottom:
+        1px solid #eef2f7;
+}
+
+
+.owner-lot:last-child {
+    border-bottom: 0;
+}
+
+
+.lot-icon {
+    width: 45px;
+    height: 45px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 12px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 18px;
+}
+
+
+.lot-info {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.lot-info h3 {
+    margin: 0 0 5px;
+
+    color: #172033;
+
+    font-size: 14px;
+}
+
+
+.lot-info p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 11px;
+}
+
+
+.lot-info p i {
+    margin-right: 4px;
+
+    color: #94a3b8;
+}
+
+
+.lot-progress {
+    width: 155px;
+}
+
+
+.lot-progress > div:first-child {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 8px;
+
+    margin-bottom: 7px;
+}
+
+
+.lot-progress strong {
+    color: #16a34a;
+
+    font-size: 10px;
+}
+
+
+.lot-progress span {
+    color: #94a3b8;
+
+    font-size: 10px;
+}
+
+
+.mini-progress {
+    width: 100%;
+
+    height: 6px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: #e2e8f0;
+}
+
+
+.mini-progress span {
+    display: block;
+
+    height: 100%;
+
+    border-radius: 20px;
+
+    background: #2563eb;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.owner-empty-state {
+    padding: 35px 20px;
+
+    text-align: center;
+
+    border: 1px dashed #dbe3ee;
+
+    border-radius: 13px;
+
+    background: #fafcff;
+}
+
+
+.owner-empty-state.compact {
+    padding: 28px 20px;
+}
+
+
+.empty-icon {
+    width: 50px;
+    height: 50px;
+
+    margin: 0 auto 12px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 14px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 18px;
+}
+
+
+.owner-empty-state h3 {
+    margin: 0 0 6px;
+
+    color: #172033;
+
+    font-size: 14px;
+}
+
+
+.owner-empty-state p {
+    max-width: 360px;
+
+    margin: 0 auto;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   BOOKINGS
+   ========================================================= */
+
+.booking-table-head,
+.booking-row {
+    display: grid;
+
+    grid-template-columns:
+        1.5fr
+        1fr
+        .8fr;
+
+    gap: 15px;
+
+    align-items: center;
+}
+
+
+.booking-table-head {
+    padding:
+        0 0 10px;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: .06em;
+}
+
+
+.booking-row {
+    padding: 13px 0;
+
+    border-top:
+        1px solid #eef2f7;
+
+    color: #475569;
+
+    font-size: 11px;
+}
+
+
+.booking-driver {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+
+.booking-driver strong {
+    color: #172033;
+
+    font-size: 11px;
+}
+
+
+.booking-avatar {
+    width: 30px;
+    height: 30px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 10px;
+    font-weight: 800;
+}
+
+
+.booking-badge {
+    width: fit-content;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    background: #ecfdf5;
+
+    color: #15803d;
+
+    font-size: 9px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   OCCUPANCY
+   ========================================================= */
+
+.live-indicator {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 5px 8px;
+
+    border-radius: 20px;
+
+    background: #ecfdf5;
+
+    color: #15803d;
+
+    font-size: 8px;
+    font-weight: 800;
+}
+
+
+.live-indicator span {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+}
+
+
+.occupancy {
+    padding: 19px;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc,
+            #eff6ff
+        );
+}
+
+
+.occupancy-top {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.occupancy-top span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #64748b;
+
+    font-size: 11px;
+}
+
+
+.occupancy-top strong {
+    display: block;
+
+    color: #172033;
+
+    font-size: 31px;
+    font-weight: 800;
+}
+
+
+.occupancy-top i {
+    color: #2563eb;
+
+    font-size: 28px;
+}
+
+
+.occupancy p {
+    margin: 7px 0 15px;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+.progress {
+    height: 9px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: #dbe3ee;
+}
+
+
+.progress span {
+    display: block;
+
+    height: 100%;
+
+    border-radius: 20px;
+
+    background: #2563eb;
+
+    transition:
+        width .5s ease;
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+   ========================================================= */
+
+.quick-actions-card {
+    margin-top: 24px;
+}
+
+
+.quick-action {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 12px 0;
+
+    border-bottom:
+        1px solid #eef2f7;
+
+    color: inherit;
+
+    text-decoration: none;
+}
+
+
+.quick-action:last-child {
+    border-bottom: 0;
+}
+
+
+.quick-action > span {
+    width: 37px;
+    height: 37px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 13px;
+}
+
+
+.quick-action div {
+    flex: 1;
+}
+
+
+.quick-action strong {
+    display: block;
+
+    color: #172033;
+
+    font-size: 11px;
+}
+
+
+.quick-action small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+}
+
+
+.quick-action > i {
+    color: #cbd5e1;
+
+    font-size: 9px;
+
+    transition: .2s ease;
+}
+
+
+.quick-action:hover > i {
+    color: #2563eb;
+
+    transform:
+        translateX(3px);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .owner-overview {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+    }
+
+    .owner-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .owner-page {
+        padding:
+            22px 20px 35px;
+    }
+
+    .owner-welcome {
+        padding: 20px;
+    }
+
+    .owner-welcome h2 {
+        font-size: 19px;
+    }
+
+    .welcome-icon {
+        width: 48px;
+        height: 48px;
+
+        font-size: 19px;
+    }
+
+    .owner-lot {
+        align-items: flex-start;
+
+        flex-wrap: wrap;
+    }
+
+    .lot-progress {
+        width: 100%;
+
+        margin-left: 59px;
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .owner-overview {
+        grid-template-columns: 1fr;
+    }
+
+    .owner-card-header {
+        align-items: flex-start;
+    }
+
+    .owner-card-header .owner-outline-btn {
+        padding: 0 10px;
+    }
+
+    .booking-table-head,
+    .booking-row {
+        grid-template-columns:
+            1.4fr
+            1fr
+            .7fr;
+
+        gap: 8px;
+    }
+
+}
+
+
+/* =========================================================
+   OWNER VERIFICATION PAGE
+   ========================================================= */
+
+.verification-hero {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-bottom: 18px;
+    padding: 25px 28px;
+
+    border: 1px solid #dbeafe;
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff 0%,
+            #ffffff 70%
+        );
+
+    overflow: hidden;
+}
+
+
+.verification-hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 230px;
+    height: 230px;
+
+    right: -80px;
+    top: -130px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(37, 99, 235, .07);
+}
+
+
+.verification-hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    right: 110px;
+    bottom: -80px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(79, 70, 229, .05);
+}
+
+
+.verification-hero-content {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+}
+
+
+.verification-hero-icon {
+    width: 58px;
+    height: 58px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #4f46e5
+        );
+
+    color: #fff;
+
+    font-size: 22px;
+
+    box-shadow:
+        0 10px 24px
+        rgba(37, 99, 235, .20);
+}
+
+
+.verification-eyebrow {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #2563eb;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+}
+
+
+.verification-hero h1 {
+    margin: 0;
+
+    color: #172033;
+
+    font-size: 23px;
+    font-weight: 800;
+}
+
+
+.verification-hero p {
+    max-width: 650px;
+
+    margin: 6px 0 0;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+.verification-secure-badge {
+    position: relative;
+    z-index: 2;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 8px 12px;
+
+    border: 1px solid #bbf7d0;
+    border-radius: 20px;
+
+    background: #ecfdf5;
+
+    color: #15803d;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   INFO STRIP
+   ========================================================= */
+
+.verification-info-strip {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(0, 1fr)
+        );
+
+    gap: 14px;
+
+    margin-bottom: 24px;
+}
+
+
+.verification-info-item {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 14px 16px;
+
+    border: 1px solid #e5eaf1;
+    border-radius: 13px;
+
+    background: #fff;
+
+    box-shadow:
+        0 5px 16px
+        rgba(15, 23, 42, .035);
+
+    transition: .2s ease;
+}
+
+
+.verification-info-item:hover {
+    transform: translateY(-2px);
+
+    border-color: #dbeafe;
+
+    box-shadow:
+        0 9px 22px
+        rgba(37, 99, 235, .08);
+}
+
+
+.info-strip-icon {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 14px;
+}
+
+
+.verification-info-item strong {
+    display: block;
+
+    color: #172033;
+
+    font-size: 10px;
+    font-weight: 800;
+}
+
+
+.verification-info-item span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   VERIFICATION CARD HEADER
+   ========================================================= */
+
+.verification-card-heading {
+    align-items: flex-start;
+
+    padding-bottom: 17px;
+
+    margin-bottom: 20px;
+
+    border-bottom:
+        1px solid #eef2f7;
+}
+
+
+.card-eyebrow {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #2563eb;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+}
+
+
+.verification-card-heading h2 {
+    margin: 0;
+
+    color: #172033;
+
+    font-size: 17px;
+    font-weight: 800;
+}
+
+
+.verification-card-heading p {
+    margin: 5px 0 0;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+}
+
+
+.card-heading-icon {
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 11px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.verification-form {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
+    gap: 18px 16px;
+}
+
+
+.verification-form .form-field.full {
+    grid-column: 1 / -1;
+}
+
+
+.verification-form .form-field {
+    min-width: 0;
+}
+
+
+.verification-form .form-field label {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    margin-bottom: 7px;
+
+    color: #475569;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+.verification-form .form-field label i {
+    color: #2563eb;
+
+    font-size: 10px;
+}
+
+
+.verification-form input,
+.verification-form textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border: 1px solid #dbe3ee;
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    color: #334155;
+
+    font-family: inherit;
+    font-size: 11px;
+
+    outline: none;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
+
+
+.verification-form input {
+    height: 43px;
+
+    padding: 0 13px;
+}
+
+
+.verification-form textarea {
+    min-height: 90px;
+
+    padding: 12px 13px;
+
+    resize: vertical;
+}
+
+
+.verification-form input::placeholder,
+.verification-form textarea::placeholder {
+    color: #a3afbf;
+}
+
+
+.verification-form input:focus,
+.verification-form textarea:focus {
+    border-color: #93c5fd;
+
+    background: #fff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37, 99, 235, .08);
+}
+
+
+/* =========================================================
+   UPLOAD BOX
+   ========================================================= */
+
+.upload-box {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    min-height: 82px;
+
+    box-sizing: border-box;
+
+    padding: 14px;
+
+    border: 1px dashed #bfdbfe;
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fbff,
+            #ffffff
+        );
+
+    transition: .2s ease;
+}
+
+
+.upload-box:hover {
+    border-color: #60a5fa;
+
+    background: #f8fbff;
+
+    box-shadow:
+        0 7px 18px
+        rgba(37, 99, 235, .06);
+}
+
+
+.upload-icon {
+    width: 43px;
+    height: 43px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 11px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 15px;
+}
+
+
+.upload-content {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.upload-content strong {
+    display: block;
+
+    color: #172033;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+
+.upload-content p {
+    margin: 4px 0 3px;
+
+    color: #64748b;
+
+    font-size: 9px;
+}
+
+
+.upload-content span {
+    color: #94a3b8;
+
+    font-size: 8px;
+}
+
+
+.upload-box input[type="file"] {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+.upload-button {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    min-height: 32px;
+
+    padding: 0 10px;
+
+    border: 1px solid #dbeafe;
+    border-radius: 8px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition: .2s ease;
+}
+
+
+.upload-button:hover {
+    background: #2563eb;
+
+    color: #fff;
+
+    border-color: #2563eb;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+   ========================================================= */
+
+.verification-submit {
+    margin-top: 22px;
+
+    min-height: 44px;
+
+    padding: 0 18px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 8px 18px
+        rgba(37, 99, 235, .16);
+}
+
+
+.verification-submit:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 24px
+        rgba(37, 99, 235, .22);
+}
+
+
+.submit-arrow {
+    margin-left: 4px;
+
+    font-size: 9px;
+
+    transition: .2s ease;
+}
+
+
+.verification-submit:hover .submit-arrow {
+    transform: translateX(3px);
+}
+
+
+/* =========================================================
+   VERIFICATION STEPS
+   ========================================================= */
+
+.verification-steps {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 0;
+}
+
+
+.verification-steps::before {
+    content: "";
+
+    position: absolute;
+
+    left: 18px;
+    top: 28px;
+    bottom: 28px;
+
+    width: 1px;
+
+    background: #dbeafe;
+}
+
+
+.verification-step {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding: 12px 0;
+}
+
+
+.step-number {
+    width: 36px;
+    height: 36px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid #dbeafe;
+    border-radius: 50%;
+
+    background: #fff;
+
+    color: #64748b;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    box-shadow:
+        0 3px 10px
+        rgba(15, 23, 42, .05);
+}
+
+
+.verification-step.active .step-number {
+    border-color: #2563eb;
+
+    background: #2563eb;
+
+    color: #fff;
+
+    box-shadow:
+        0 7px 16px
+        rgba(37, 99, 235, .20);
+}
+
+
+.step-content {
+    padding-top: 3px;
+}
+
+
+.step-content strong {
+    display: block;
+
+    color: #172033;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+
+.step-content span {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   INFORMATION NOTE
+   ========================================================= */
+
+.verification-note {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-top: 20px !important;
+
+    padding: 13px;
+
+    border: 1px solid #dbeafe;
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff,
+            #f8fbff
+        );
+}
+
+
+.note-icon {
+    width: 30px;
+    height: 30px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 8px;
+
+    background: #dbeafe;
+
+    color: #2563eb;
+
+    font-size: 11px;
+}
+
+
+.verification-note strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #172033;
+
+    font-size: 10px;
+    font-weight: 800;
+}
+
+
+.verification-note span {
+    display: block;
+
+    color: #64748b;
+
+    font-size: 9px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .verification-info-strip {
+        grid-template-columns: 1fr;
+    }
+
+    .verification-hero {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .verification-secure-badge {
+        margin-left: 74px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .owner-page {
+        padding: 22px 20px 35px;
+    }
+
+    .verification-form {
+        grid-template-columns: 1fr;
+    }
+
+    .verification-form .form-field.full {
+        grid-column: auto;
+    }
+
+    .verification-hero {
+        padding: 20px;
+    }
+
+    .verification-hero h1 {
+        font-size: 19px;
+    }
+
+    .verification-hero-content {
+        align-items: flex-start;
+    }
+
+    .verification-secure-badge {
+        margin-left: 0;
+    }
+
+    .upload-box {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .upload-content {
+        min-width: calc(100% - 60px);
+    }
+
+    .upload-button {
+        margin-left: 56px;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .verification-hero-content {
+        flex-direction: column;
+    }
+
+    .verification-hero-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .verification-info-item {
+        padding: 12px;
+    }
+
+}
