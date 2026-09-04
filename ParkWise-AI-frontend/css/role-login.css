@@ -1,0 +1,1036 @@
+/* ==========================================
+   PARKWISE AI
+   ROLE LOGIN PAGE
+   ========================================== */
+
+
+/* ==========================================
+   GLOBAL
+   ========================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+
+body.role-login-page {
+
+    min-height: 100vh;
+
+    margin: 0;
+
+    font-family: "Inter", sans-serif;
+
+    color: #0f172a;
+
+    background:
+
+        radial-gradient(
+            circle at 8% 8%,
+            rgba(37, 99, 235, 0.14),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 92% 90%,
+            rgba(124, 58, 237, 0.10),
+            transparent 28%
+        ),
+
+        #f8fafc;
+}
+
+
+/* ==========================================
+   HEADER
+   ========================================== */
+
+.role-login-header {
+
+    height: 76px;
+
+    padding: 0 7%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background:
+        rgba(255, 255, 255, 0.90);
+
+    border-bottom:
+        1px solid #e2e8f0;
+
+    backdrop-filter:
+        blur(14px);
+}
+
+
+/* BRAND */
+
+.role-brand {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 21px;
+
+    font-weight: 800;
+
+    color: #0f172a;
+
+    text-decoration: none;
+}
+
+
+.role-brand strong {
+
+    color: #2563eb;
+}
+
+
+.role-brand-icon {
+
+    width: 40px;
+
+    height: 40px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 11px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+    box-shadow:
+        0 9px 20px
+        rgba(37, 99, 235, 0.22);
+}
+
+
+/* BACK */
+
+.back-home {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+
+.back-home:hover {
+
+    color: #2563eb;
+}
+
+
+/* ==========================================
+   MAIN
+   ========================================== */
+
+.role-login-main {
+
+    min-height:
+        calc(100vh - 76px);
+
+    padding:
+        55px 7%;
+
+    display: grid;
+
+    place-items: center;
+}
+
+
+/* ==========================================
+   LOGIN SHELL
+   ========================================== */
+
+.role-login-shell {
+
+    width:
+        min(1080px, 100%);
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 0.92fr;
+
+    overflow: hidden;
+
+    border:
+        1px solid #e2e8f0;
+
+    border-radius: 28px;
+
+    background:
+        rgba(255, 255, 255, 0.88);
+
+    box-shadow:
+        0 30px 90px
+        rgba(15, 23, 42, 0.11);
+}
+
+
+/* ==========================================
+   LEFT PANEL
+   ========================================== */
+
+.role-login-info {
+
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 58px;
+
+    color: white;
+
+    background:
+
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(255,255,255,.18),
+            transparent 26%
+        ),
+
+        linear-gradient(
+            145deg,
+            #1d4ed8,
+            #2563eb 55%,
+            #3b82f6
+        );
+}
+
+
+/* OWNER PURPLE */
+
+.role-login-info.owner {
+
+    background:
+
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(255,255,255,.20),
+            transparent 26%
+        ),
+
+        linear-gradient(
+            145deg,
+            #5b21b6,
+            #7c3aed 55%,
+            #8b5cf6
+        );
+}
+
+
+/* ==========================================
+   BADGE
+   ========================================== */
+
+.role-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding:
+        8px 12px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.22);
+
+    border-radius: 999px;
+
+    background:
+        rgba(255,255,255,.12);
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* ==========================================
+   LEFT HEADING
+   ========================================== */
+
+.role-login-info h1 {
+
+    margin:
+        25px 0 15px;
+
+    max-width: 480px;
+
+    font-size:
+        clamp(34px, 4vw, 52px);
+
+    line-height: 1.08;
+
+    letter-spacing:
+        -1.7px;
+}
+
+
+.role-login-info h1 span {
+
+    display: block;
+
+    color: #dbeafe;
+}
+
+
+.role-login-info.owner h1 span {
+
+    color: #ede9fe;
+}
+
+
+.role-login-info > p {
+
+    max-width: 500px;
+
+    margin:
+        0 0 32px;
+
+    color:
+        rgba(255,255,255,.82);
+
+    font-size: 14px;
+
+    line-height: 1.75;
+}
+
+
+/* ==========================================
+   BENEFITS
+   ========================================== */
+
+.role-benefits {
+
+    display: grid;
+
+    gap: 13px;
+}
+
+
+.role-benefit {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 12px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.13);
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,255,255,.08);
+}
+
+
+.role-benefit-icon {
+
+    width: 38px;
+
+    height: 38px;
+
+    flex: 0 0 38px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,.15);
+}
+
+
+.role-benefit strong {
+
+    display: block;
+
+    font-size: 12px;
+}
+
+
+.role-benefit small {
+
+    display: block;
+
+    margin-top: 2px;
+
+    color:
+        rgba(255,255,255,.70);
+
+    font-size: 10px;
+}
+
+
+/* DECORATION */
+
+.info-orb {
+
+    position: absolute;
+
+    width: 210px;
+
+    height: 210px;
+
+    right: -90px;
+
+    bottom: -90px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.18);
+
+    border-radius: 50%;
+}
+
+
+.info-orb::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 35px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.13);
+
+    border-radius: 50%;
+}
+
+
+/* ==========================================
+   FORM SECTION
+   ========================================== */
+
+.role-login-form {
+
+    padding: 58px;
+
+    background: #ffffff;
+}
+
+
+/* TOP ICON */
+
+.form-top-icon {
+
+    width: 52px;
+
+    height: 52px;
+
+    display: grid;
+
+    place-items: center;
+
+    margin-bottom: 18px;
+
+    border-radius: 15px;
+
+    color: #2563eb;
+
+    background: #eff6ff;
+
+    font-size: 20px;
+}
+
+
+.form-top-icon.owner-icon {
+
+    color: #7c3aed;
+
+    background: #f5f3ff;
+}
+
+
+/* HEADING */
+
+.role-login-form h2 {
+
+    margin:
+        0 0 7px;
+
+    font-size: 29px;
+
+    letter-spacing: -1px;
+}
+
+
+.form-subtitle {
+
+    margin:
+        0 0 28px;
+
+    color: #64748b;
+
+    font-size: 12px;
+}
+
+
+/* ==========================================
+   FORM GROUP
+   ========================================== */
+
+.role-form-group {
+
+    margin-bottom: 18px;
+}
+
+
+.role-form-group label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #334155;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* INPUT */
+
+.role-input {
+
+    position: relative;
+}
+
+
+.role-input > i {
+
+    position: absolute;
+
+    left: 14px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    color: #94a3b8;
+
+    font-size: 13px;
+
+    pointer-events: none;
+}
+
+
+.role-input input {
+
+    width: 100%;
+
+    height: 49px;
+
+    padding:
+        0 43px;
+
+    border:
+        1px solid #dbe3ec;
+
+    border-radius: 11px;
+
+    outline: none;
+
+    color: #1e293b;
+
+    background: #fff;
+
+    font:
+        500 12px "Inter", sans-serif;
+
+    transition: 0.2s ease;
+}
+
+
+.role-input input::placeholder {
+
+    color: #a0aec0;
+}
+
+
+.role-input input:focus {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(37,99,235,.08);
+}
+
+
+.owner-form
+.role-input input:focus {
+
+    border-color: #7c3aed;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(124,58,237,.08);
+}
+
+
+/* ==========================================
+   PASSWORD TOGGLE
+   ========================================== */
+
+.password-toggle {
+
+    position: absolute;
+
+    right: 5px;
+
+    top: 50%;
+
+    width: 36px;
+
+    height: 36px;
+
+    transform:
+        translateY(-50%);
+
+    display: grid;
+
+    place-items: center;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #94a3b8;
+
+    cursor: pointer;
+}
+
+
+.password-toggle:hover {
+
+    background: #f1f5f9;
+
+    color: #2563eb;
+}
+
+
+.owner-form
+.password-toggle:hover {
+
+    color: #7c3aed;
+}
+
+
+/* ==========================================
+   FIELD ERROR
+   ========================================== */
+
+.form-field-error {
+
+    display: block;
+
+    min-height: 16px;
+
+    margin-top: 5px;
+
+    color: #dc2626;
+
+    font-size: 10px;
+}
+
+
+/* ==========================================
+   GENERAL ERROR
+   ========================================== */
+
+.form-error {
+
+    display: none;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 16px;
+
+    padding: 11px 12px;
+
+    border:
+        1px solid #fecaca;
+
+    border-radius: 10px;
+
+    color: #b91c1c;
+
+    background: #fef2f2;
+
+    font-size: 11px;
+
+    line-height: 1.45;
+}
+
+
+.form-error.show {
+
+    display: flex;
+}
+
+
+/* ==========================================
+   OPTIONS
+   ========================================== */
+
+.role-form-options {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin:
+        3px 0 21px;
+}
+
+
+.remember {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #64748b;
+
+    font-size: 10px;
+}
+
+
+.remember input {
+
+    accent-color: #2563eb;
+}
+
+
+.forgot {
+
+    color: #2563eb;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+.owner-form .forgot {
+
+    color: #7c3aed;
+}
+
+
+/* ==========================================
+   SUBMIT
+   ========================================== */
+
+.role-submit {
+
+    width: 100%;
+
+    height: 49px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    color: white;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+    font:
+        700 12px "Inter", sans-serif;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 24px
+        rgba(37,99,235,.18);
+
+    transition: 0.2s ease;
+}
+
+
+.owner-form .role-submit {
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #6d28d9
+        );
+
+    box-shadow:
+        0 10px 24px
+        rgba(124,58,237,.18);
+}
+
+
+.role-submit:hover {
+
+    transform:
+        translateY(-2px);
+
+    filter:
+        brightness(1.03);
+}
+
+
+.role-submit:disabled {
+
+    opacity: 0.65;
+
+    cursor: wait;
+
+    transform: none;
+}
+
+
+/* ==========================================
+   SWITCH LINKS
+   ========================================== */
+
+.role-switch {
+
+    margin-top: 24px;
+
+    text-align: center;
+
+    color: #64748b;
+
+    font-size: 10px;
+}
+
+
+.role-switch a {
+
+    color: #2563eb;
+
+    font-weight: 800;
+
+    text-decoration: none;
+}
+
+
+.owner-form
+~ .role-switch a {
+
+    color: #7c3aed;
+}
+
+
+/* ==========================================
+   SECURITY
+   ========================================== */
+
+.security-note {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    margin-top: 18px;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 900px) {
+
+    .role-login-shell {
+
+        grid-template-columns: 1fr;
+
+        max-width: 620px;
+    }
+
+
+    .role-login-info {
+
+        padding: 42px;
+    }
+
+
+    .role-login-form {
+
+        padding: 42px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .role-login-header {
+
+        height: 68px;
+
+        padding: 0 5%;
+    }
+
+
+    .role-brand {
+
+        font-size: 18px;
+    }
+
+
+    .role-brand-icon {
+
+        width: 36px;
+
+        height: 36px;
+    }
+
+
+    .back-home span {
+
+        display: none;
+    }
+
+
+    .role-login-main {
+
+        padding:
+            25px 5%;
+    }
+
+
+    .role-login-info {
+
+        padding:
+            32px 25px;
+    }
+
+
+    .role-login-info h1 {
+
+        font-size: 35px;
+    }
+
+
+    .role-login-form {
+
+        padding:
+            32px 25px;
+    }
+
+}
+
+
+/* ==========================================
+   LOGIN LINK ENHANCEMENT
+   ========================================== */
+
+.role-switch {
+    padding: 10px 12px;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    border: 1px solid #edf2f7;
+
+    transition: all 0.2s ease;
+}
+
+.role-switch:hover {
+    border-color: #dbeafe;
+    background: #f8fbff;
+}
+
+.role-switch a {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 5px;
+}
+
+.role-switch a i {
+    font-size: 9px;
+
+    transition: transform 0.2s ease;
+}
+
+.role-switch a:hover i {
+    transform: translateX(3px);
+}
