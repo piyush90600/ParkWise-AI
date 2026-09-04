@@ -1,4 +1,4 @@
-id,name,email,password_hash,created_at
-e15f8e32-936b-4c2e-bfd3-7113f8bee151,Krishna Sharma,krishna.sharma0@parkwiseai.com,$2b$12$hash0000placeholder,2025-01-06T00:00:00
-f7d2ccdd-537c-4171-8c94-d0f574159e2e,Navya Nair,navya.nair1@parkwiseai.com,$2b$12$hash0001placeholder,2025-02-16T00:00:00
-aaedae5e-dbab-4c29-8b27-dfbb5b9adcbf,Kiara Kumar,kiara.kumar2@parkwiseai.com,$2b$12$hash0002placeholder,2025-02-09T00:00:00
+admins_id,name,email,password,created_at
+A101,Piyush Kumar,piyush90600@gmail.com,Piyush@123,2025-01-06T00:00:00
+A102,Kalyani Kumari,kalyani51103@gmail.com,Kalyani@123,2025-02-16T00:00:00
+A103,Balaji Thakur,balajithakur7372@gmail.com,Balaji@123,2025-02-09T00:00:00
