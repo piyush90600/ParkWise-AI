@@ -1,280 +1,804 @@
-document.addEventListener("DOMContentLoaded", () => {
+// ==========================================================
+// PARKWISE AI
+// PREDICTIVE HEATMAP
+// DATABASE POWERED
+// ==========================================================
 
-    const map = L.map("heatmapMap").setView(
-        [28.6692, 77.4538],
-        13
-    );
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-    L.tileLayer(
-        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        {
-            attribution: "&copy; OpenStreetMap contributors"
-        }
-    ).addTo(map);
+        const API_BASE_URL =
+            "http://127.0.0.1:8000";
 
-    const refreshBtn =
-        document.getElementById("refreshHeatmapBtn");
 
-    const timeSelect =
-        document.getElementById("timeRangeSelect");
+        // ==================================================
+        // MAP
+        // ==================================================
 
-    const locations = [
+        const map =
+            L.map("heatmapMap");
 
-        {
-            name: "City Center Plaza",
-            lat: 28.6720,
-            lng: 77.4480,
-            price: 40,
-            rating: 4.6,
-            distance: 0.8,
-            baseOcc: 89
-        },
 
-        {
-            name: "Metro Hub P2",
-            lat: 28.6650,
-            lng: 77.4580,
-            price: 20,
-            rating: 4.1,
-            distance: 1.4,
-            baseOcc: 24
-        },
-
-        {
-            name: "Central Market Zone",
-            lat: 28.6750,
-            lng: 77.4600,
-            price: 50,
-            rating: 4.7,
-            distance: 2.1,
-            baseOcc: 70
-        },
-
-        {
-            name: "Grand Vista Parking",
-            lat: 28.6620,
-            lng: 77.4500,
-            price: 25,
-            rating: 4.4,
-            distance: 1.7,
-            baseOcc: 48
-        }
-
-    ];
-
-    let circles = [];
-
-    function getColor(occupancy) {
-
-        if (occupancy > 75) {
-            return "#ef4444";
-        }
-
-        if (occupancy > 40) {
-            return "#eab308";
-        }
-
-        return "#22c55e";
-    }
-
-    function applyTimeForecast(baseOccupancy) {
-
-        const selectedTime = timeSelect.value;
-
-        let occupancy = baseOccupancy;
-
-        if (selectedTime === "1hr") {
-
-            occupancy += 5;
-
-        } else if (selectedTime === "3hr") {
-
-            occupancy += 10;
-
-        } else if (selectedTime === "peak") {
-
-            occupancy += 15;
-
-        }
-
-        occupancy = Math.max(
-            5,
-            Math.min(98, occupancy)
+        // No hardcoded city/location
+        map.setView(
+            [20.5937, 78.9629],
+            5
         );
 
-        return occupancy;
-    }
 
-    async function loadHeatmap() {
+        L.tileLayer(
+            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            {
+                attribution:
+                    "&copy; OpenStreetMap contributors"
+            }
+        ).addTo(map);
 
-        refreshBtn.classList.add("loading");
 
-        refreshBtn.disabled = true;
+        // ==================================================
+        // ELEMENTS
+        // ==================================================
 
-        circles.forEach(circle => {
+        const refreshBtn =
+            document.getElementById(
+                "refreshHeatmapBtn"
+            );
 
-            map.removeLayer(circle);
 
-        });
+        let circles = [];
 
-        circles = [];
+        let heatmapData = [];
 
-        for (const location of locations) {
 
-            let occupancy =
-                applyTimeForecast(location.baseOcc);
+        // ==================================================
+        // USER PROFILE
+        // ==================================================
+
+        function loadUserProfile() {
+
+            const name =
+                localStorage.getItem(
+                    "user_name"
+                ) || "User";
+
+
+            const role =
+                localStorage.getItem(
+                    "user_role"
+                ) || "User";
+
+
+            const profileName =
+                document.getElementById(
+                    "profileName"
+                );
+
+
+            const profileAvatar =
+                document.getElementById(
+                    "profileAvatar"
+                );
+
+
+            const profileRole =
+                document.getElementById(
+                    "profileRole"
+                );
+
+
+            if (profileName) {
+
+                profileName.textContent =
+                    name;
+
+            }
+
+
+            if (profileAvatar) {
+
+                profileAvatar.textContent =
+                    name
+                        .trim()
+                        .charAt(0)
+                        .toUpperCase();
+
+            }
+
+
+            if (profileRole) {
+
+                profileRole.textContent =
+                    role;
+
+            }
+
+        }
+
+
+        // ==================================================
+        // OCCUPANCY COLOR
+        // ==================================================
+
+        function getColor(
+            occupancy
+        ) {
+
+            if (occupancy >= 75) {
+
+                return "#ef4444";
+
+            }
+
+
+            if (occupancy >= 40) {
+
+                return "#eab308";
+
+            }
+
+
+            return "#22c55e";
+
+        }
+
+
+        // ==================================================
+        // CLEAR MAP
+        // ==================================================
+
+        function clearMap() {
+
+            circles.forEach(
+                circle => {
+
+                    map.removeLayer(
+                        circle
+                    );
+
+                }
+            );
+
+
+            circles = [];
+
+        }
+
+
+        // ==================================================
+        // LOAD HEATMAP FROM BACKEND
+        // ==================================================
+
+        async function loadHeatmap() {
+
+            refreshBtn.classList.add(
+                "loading"
+            );
+
+            refreshBtn.disabled = true;
+
+
+            clearMap();
+
 
             try {
 
-                const response = await fetch(
-                    "http://127.0.0.1:8000/predict",
-                    {
-                        method: "POST",
+                const response =
+                    await fetch(
+                        `${API_BASE_URL}/heatmap`
+                    );
 
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
 
-                        body: JSON.stringify({
+                if (!response.ok) {
 
-                            price: location.price,
+                    throw new Error(
+                        "Heatmap API failed"
+                    );
 
-                            avg_rating: location.rating,
-
-                            distance_km: location.distance
-
-                        })
-                    }
-                );
-
-                if (response.ok) {
-
-                    const data =
-                        await response.json();
-
-                    if (
-                        data.predicted_occupancy !==
-                        undefined
-                    ) {
-
-                        occupancy =
-                            Number(
-                                data.predicted_occupancy
-                            );
-
-                        occupancy =
-                            applyTimeForecast(
-                                occupancy
-                            );
-                    }
                 }
 
-            } catch (error) {
 
-                console.log(
-                    "ML API unavailable. Using sample prediction."
-                );
-            }
+                const data =
+                    await response.json();
 
-            const color =
-                getColor(occupancy);
 
-            const circle =
-                L.circle(
-                    [
-                        location.lat,
-                        location.lng
-                    ],
-                    {
+                heatmapData =
+                    Array.isArray(
+                        data.locations
+                    )
+                        ? data.locations
+                        : [];
 
-                        color: color,
 
-                        fillColor: color,
+                if (
+                    heatmapData.length === 0
+                ) {
 
-                        fillOpacity: 0.40,
+                    showEmptyHeatmap();
 
-                        weight: 2,
+                    updateInsights([]);
 
-                        radius: 450
+                    return;
+
+                }
+
+
+                const validLocations =
+                    heatmapData.filter(
+                        location =>
+
+                            Number.isFinite(
+                                Number(
+                                    location.lat
+                                )
+                            )
+
+                            &&
+
+                            Number.isFinite(
+                                Number(
+                                    location.lng
+                                )
+                            )
+                    );
+
+
+                if (
+                    validLocations.length === 0
+                ) {
+
+                    showEmptyHeatmap();
+
+                    updateInsights([]);
+
+                    return;
+
+                }
+
+
+                // ==========================================
+                // MAP BOUNDS
+                // ==========================================
+
+                const bounds = [];
+
+
+                validLocations.forEach(
+                    location => {
+
+                        const lat =
+                            Number(
+                                location.lat
+                            );
+
+                        const lng =
+                            Number(
+                                location.lng
+                            );
+
+
+                        const occupancy =
+                            Number(
+                                location.occupancy ||
+                                location.current_occupancy ||
+                                0
+                            );
+
+
+                        const color =
+                            getColor(
+                                occupancy
+                            );
+
+
+                        // ==================================
+                        // HEAT CIRCLE
+                        // ==================================
+
+                        const circle =
+                            L.circle(
+                                [
+                                    lat,
+                                    lng
+                                ],
+                                {
+
+                                    color:
+                                        color,
+
+                                    fillColor:
+                                        color,
+
+                                    fillOpacity:
+                                        0.40,
+
+                                    weight:
+                                        2,
+
+                                    radius:
+                                        450
+
+                                }
+                            ).addTo(map);
+
+
+                        // ==================================
+                        // POPUP
+                        // ==================================
+
+                        circle.bindPopup(`
+
+                            <div class="heatmap-popup">
+
+                                <strong>
+                                    ${escapeHTML(
+                                        location.name ||
+                                        "Parking Area"
+                                    )}
+                                </strong>
+
+                                <hr>
+
+                                <div>
+                                    Occupancy:
+                                    <b style="
+                                        color:${color};
+                                    ">
+                                        ${Math.round(
+                                            occupancy
+                                        )}%
+                                    </b>
+                                </div>
+
+                                <div>
+                                    Available Slots:
+                                    <b>
+                                        ${
+                                            Number(
+                                                location.available_slots ||
+                                                0
+                                            )
+                                        }
+                                    </b>
+                                </div>
+
+                                <div>
+                                    Total Slots:
+                                    <b>
+                                        ${
+                                            Number(
+                                                location.total_slots ||
+                                                0
+                                            )
+                                        }
+                                    </b>
+                                </div>
+
+                                <div>
+                                    Price:
+                                    <b>
+                                        ₹${
+                                            Number(
+                                                location.price ||
+                                                0
+                                            )
+                                        }/hr
+                                    </b>
+                                </div>
+
+                                <div>
+                                    Rating:
+                                    <b>
+                                        ⭐ ${
+                                            Number(
+                                                location.rating ||
+                                                0
+                                            ).toFixed(1)
+                                        }
+                                    </b>
+                                </div>
+
+                                <div>
+                                    Status:
+                                    <b>
+                                        ${
+                                            escapeHTML(
+                                                location.status ||
+                                                "Unknown"
+                                            )
+                                        }
+                                    </b>
+                                </div>
+
+                            </div>
+
+                        `);
+
+
+                        circles.push(
+                            circle
+                        );
+
+
+                        bounds.push([
+                            lat,
+                            lng
+                        ]);
 
                     }
-                ).addTo(map);
+                );
 
-            circle.bindPopup(`
 
-                <div style="
-                    min-width:180px;
-                    font-family:Inter,sans-serif;
-                ">
+                // ==========================================
+                // FIT MAP
+                // ==========================================
 
-                    <strong style="
-                        font-size:14px;
-                        color:#17243d;
-                    ">
-                        ${location.name}
-                    </strong>
+                if (
+                    bounds.length > 0
+                ) {
 
-                    <br><br>
+                    map.fitBounds(
+                        bounds,
+                        {
+                            padding: [
+                                30,
+                                30
+                            ]
+                        }
+                    );
 
-                    <span>
-                        Occupancy:
-                    </span>
+                }
 
-                    <strong style="
-                        color:${color};
-                    ">
-                        ${Math.round(occupancy)}%
-                    </strong>
 
-                    <br>
+                // ==========================================
+                // UPDATE AI INSIGHTS
+                // ==========================================
 
-                    <span>
-                        Parking Rate:
-                    </span>
+                updateInsights(
+                    heatmapData
+                );
 
-                    <strong>
-                        ₹${location.price}/hr
-                    </strong>
 
-                    <br>
+            }
 
-                    <span>
-                        Rating:
-                    </span>
+            catch (error) {
 
-                    <strong>
-                        ⭐ ${location.rating}
-                    </strong>
+                console.error(
+                    "Heatmap error:",
+                    error
+                );
 
-                </div>
 
-            `);
+                showErrorHeatmap();
 
-            circles.push(circle);
+
+                updateInsights([]);
+
+            }
+
+            finally {
+
+                refreshBtn.classList.remove(
+                    "loading"
+                );
+
+                refreshBtn.disabled =
+                    false;
+
+            }
 
         }
 
-        setTimeout(() => {
 
-            refreshBtn.classList.remove("loading");
+        // ==================================================
+        // AI INSIGHTS
+        // ==================================================
 
-            refreshBtn.disabled = false;
+        function updateInsights(
+            locations
+        ) {
 
-        }, 400);
+            const highName =
+                document.getElementById(
+                    "highCongestionName"
+                );
+
+
+            const highValue =
+                document.getElementById(
+                    "highCongestionValue"
+                );
+
+
+            const bestName =
+                document.getElementById(
+                    "bestAvailabilityName"
+                );
+
+
+            const bestValue =
+                document.getElementById(
+                    "bestAvailabilityValue"
+                );
+
+
+            const aiText =
+                document.getElementById(
+                    "aiInsightText"
+                );
+
+
+            if (
+                !locations ||
+                locations.length === 0
+            ) {
+
+                highName.textContent =
+                    "No parking data";
+
+
+                highValue.textContent =
+                    "--";
+
+
+                bestName.textContent =
+                    "No parking data";
+
+
+                bestValue.textContent =
+                    "--";
+
+
+                aiText.textContent =
+                    "No parking locations are currently available in the database.";
+
+                return;
+
+            }
+
+
+            // ==========================================
+            // HIGHEST OCCUPANCY
+            // ==========================================
+
+            const highest =
+                [...locations].sort(
+                    (a, b) =>
+
+                        Number(
+                            b.occupancy || 0
+                        )
+
+                        -
+
+                        Number(
+                            a.occupancy || 0
+                        )
+                )[0];
+
+
+            // ==========================================
+            // LOWEST OCCUPANCY
+            // ==========================================
+
+            const lowest =
+                [...locations].sort(
+                    (a, b) =>
+
+                        Number(
+                            a.occupancy || 0
+                        )
+
+                        -
+
+                        Number(
+                            b.occupancy || 0
+                        )
+                )[0];
+
+
+            highName.textContent =
+                highest.name ||
+                "Parking Area";
+
+
+            highValue.textContent =
+                `${Math.round(
+                    Number(
+                        highest.occupancy ||
+                        0
+                    )
+                )}%`;
+
+
+            bestName.textContent =
+                lowest.name ||
+                "Parking Area";
+
+
+            bestValue.textContent =
+                `${Math.round(
+                    Number(
+                        lowest.occupancy ||
+                        0
+                    )
+                )}%`;
+
+
+            // ==========================================
+            // AI MESSAGE
+            // ==========================================
+
+            const available =
+                Number(
+                    lowest.available_slots ||
+                    0
+                );
+
+
+            aiText.textContent =
+
+                `${lowest.name || "This parking"} ` +
+
+                `has the lowest occupancy ` +
+
+                `of ${Math.round(
+                    Number(
+                        lowest.occupancy ||
+                        0
+                    )
+                )}%. ` +
+
+                `It currently has ${available} ` +
+
+                `available slot(s), making it ` +
+
+                `a better availability option.`;
+
+        }
+
+
+        // ==================================================
+        // EMPTY MAP
+        // ==================================================
+
+        function showEmptyHeatmap() {
+
+            map.setView(
+                [20.5937, 78.9629],
+                5
+            );
+
+
+            showToast(
+                "No parking data found in database."
+            );
+
+        }
+
+
+        // ==================================================
+        // ERROR
+        // ==================================================
+
+        function showErrorHeatmap() {
+
+            showToast(
+                "Unable to load parking data."
+            );
+
+        }
+
+
+        // ==================================================
+        // HTML SECURITY
+        // ==================================================
+
+        function escapeHTML(
+            value
+        ) {
+
+            return String(
+                value || ""
+            ).replace(
+                /[&<>"']/g,
+                character => ({
+
+                    "&":
+                        "&amp;",
+
+                    "<":
+                        "&lt;",
+
+                    ">":
+                        "&gt;",
+
+                    '"':
+                        "&quot;",
+
+                    "'":
+                        "&#039;"
+
+                }[character])
+            );
+
+        }
+
+
+        // ==================================================
+        // TOAST
+        // ==================================================
+
+        function showToast(
+            message
+        ) {
+
+            let toast =
+                document.getElementById(
+                    "heatmapToast"
+                );
+
+
+            if (!toast) {
+
+                toast =
+                    document.createElement(
+                        "div"
+                    );
+
+                toast.id =
+                    "heatmapToast";
+
+                toast.className =
+                    "heatmap-toast";
+
+                document.body.appendChild(
+                    toast
+                );
+
+            }
+
+
+            toast.textContent =
+                message;
+
+
+            toast.classList.add(
+                "show"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    toast.classList.remove(
+                        "show"
+                    );
+
+                },
+                3000
+            );
+
+        }
+
+
+        // ==================================================
+        // EVENTS
+        // ==================================================
+
+        refreshBtn.addEventListener(
+            "click",
+            loadHeatmap
+        );
+
+
+        // ==================================================
+        // INITIAL LOAD
+        // ==================================================
+
+        loadUserProfile();
+
+        loadHeatmap();
 
     }
-
-    refreshBtn.addEventListener(
-        "click",
-        loadHeatmap
-    );
-
-    timeSelect.addEventListener(
-        "change",
-        loadHeatmap
-    );
-
-    loadHeatmap();
-
-});
+);

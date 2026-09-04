@@ -1,5 +1,6 @@
 // ==========================================
-// ACCOUNT TYPE SWITCHING
+// PARKWISE AI
+// REGISTER ACCOUNT TYPE SWITCHING
 // ==========================================
 
 const accountTypes = document.querySelectorAll(
@@ -14,20 +15,107 @@ const ownerForm = document.getElementById(
     "ownerRegisterForm"
 );
 
+
+// ==========================================
+// SHOW SELECTED ACCOUNT FORM
+// ==========================================
+
+function showRegistrationForm(type) {
+
+    if (!userForm || !ownerForm) {
+        return;
+    }
+
+    const userRadio = document.querySelector(
+        'input[name="accountType"][value="user"]'
+    );
+
+    const ownerRadio = document.querySelector(
+        'input[name="accountType"][value="owner"]'
+    );
+
+
+    if (type === "owner") {
+
+        userForm.style.display = "none";
+        ownerForm.style.display = "block";
+
+        if (ownerRadio) {
+            ownerRadio.checked = true;
+        }
+
+        document.body.classList.add("owner-register-mode");
+
+    } else {
+
+        userForm.style.display = "block";
+        ownerForm.style.display = "none";
+
+        if (userRadio) {
+            userRadio.checked = true;
+        }
+
+        document.body.classList.remove("owner-register-mode");
+    }
+}
+
+
+// ==========================================
+// ACCOUNT TYPE CLICK
+// ==========================================
+
 accountTypes.forEach((radio) => {
+
     radio.addEventListener("change", () => {
 
-        if (radio.value === "user") {
-            userForm.style.display = "block";
-            ownerForm.style.display = "none";
-        }
+        showRegistrationForm(
+            radio.value
+        );
 
-        if (radio.value === "owner") {
-            userForm.style.display = "none";
-            ownerForm.style.display = "block";
-        }
     });
+
 });
+
+
+// ==========================================
+// OPEN CORRECT FORM FROM URL
+//
+// register.html#user
+// register.html#owner
+// ==========================================
+
+function openFormFromHash() {
+
+    const hash =
+        window.location.hash
+            .replace("#", "")
+            .toLowerCase();
+
+
+    if (hash === "owner") {
+
+        showRegistrationForm("owner");
+
+    } else {
+
+        showRegistrationForm("user");
+
+    }
+
+}
+
+
+// Run when page loads
+
+openFormFromHash();
+
+
+// Also handle browser back/forward
+
+window.addEventListener(
+    "hashchange",
+    openFormFromHash
+);
 
 
 // ==========================================
@@ -208,9 +296,13 @@ if (userForm) {
                 result.status === "success"
             ) {
 
-                alert(result.message);
+                alert(
+                    "Account created successfully! Please sign in."
+                );
 
-                window.location.replace( "./login.html");
+                window.location.replace(
+                    "./user_login.html"
+                );
 
             } else {
 
@@ -411,9 +503,13 @@ if (ownerForm) {
                 result.status === "success"
             ) {
 
-                alert(result.message);
+                alert(
+                    "Park Owner account created successfully! Please sign in."
+                );
 
-                window.location.replace ( "./login.html");
+                window.location.replace(
+                    "./owner_login.html"
+                );
 
             } else {
 
