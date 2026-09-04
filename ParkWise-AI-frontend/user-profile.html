@@ -1,0 +1,201 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Profile | ParkWise AI</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/utility-pages.css">
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Header -->
+            <header class="top-header">
+            </header>
+
+            <!-- Profile Page -->
+            <section class="utility-page">
+
+                <div class="utility-grid">
+
+                    <!-- Personal Details Card -->
+                    <div class="utility-card">
+
+                        
+                        <!-- Personal Details -->
+                        <h2>Personal details</h2>
+
+                        <p>
+                            Keep your information up to date for a smoother
+                            parking experience.
+                        </p>
+
+                        <form class="form-grid">
+
+                            <!-- First Name -->
+                            <div class="field">
+                                <label for="firstName">
+                                    First name
+                                </label>
+
+                                <input
+                                    id="firstName"
+                                    type="text"
+                                    value=""
+                                    placeholder="Loading..."
+                                    readonly
+                                >
+                            </div>
+
+                            <!-- Last Name -->
+                            <div class="field">
+                                <label for="lastName">
+                                    Last name
+                                </label>
+
+                                <input
+                                    id="lastName"
+                                    type="text"
+                                    value=""
+                                    placeholder="Not provided"
+                                    readonly
+                                >
+                            </div>
+
+                            <!-- Email -->
+                            <div class="field full">
+                                <label for="email">
+                                    Email address
+                                </label>
+
+                                <input
+                                    id="email"
+                                    type="email"
+                                    value=""
+                                    placeholder="Loading..."
+                                    readonly
+                                >
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="field full">
+                                <label for="phone">
+                                    Phone number
+                                </label>
+
+                                <input
+                                    id="phone"
+                                    type="tel"
+                                    value=""
+                                    placeholder=""
+                                    readonly
+                                >
+                            </div>
+
+                            <div class="field full">
+
+                                <label for="vehicleType">
+                                    Vehicle type
+                                </label>
+
+                                <input
+                                    id="vehicleType"
+                                    type="text"
+                                    value=""
+                                    placeholder=""
+                                    readonly
+                                >
+
+                            </div>
+
+                        </form>
+
+                        <div class="profile-live-status">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            Profile synced with your ParkWise account
+
+                        </div>
+
+                    </div>
+
+                    <!-- Parking Summary Card -->
+                    <aside class="utility-card">
+
+                        <h2>Parking summary</h2>
+
+                        <p>
+                            Your activity with ParkWise AI.
+                        </p>
+
+                        <div class="stat-list">
+
+                            <!-- Parking Sessions -->
+                            <div class="stat">
+                                <strong id="sessionCount">0</strong>
+                                <span>Parking sessions</span>
+                            </div>
+
+                            <!-- Saved Locations -->
+                            <div class="stat">
+                                <strong id="savedCount">0</strong>
+                                <span>Saved locations</span>
+                            </div>
+
+                            <!-- Total Saved -->
+                            <div class="stat">
+                                <strong id="totalSpent">₹0</strong>
+                                <span>Total saved this month</span>
+                            </div>
+
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/shared-layout.js"></script>
+    <script src="js/user-profile.js"></script>
+
+</body>
+
+</html>
+```
