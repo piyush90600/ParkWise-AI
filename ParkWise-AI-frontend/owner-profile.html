@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Owner Profile | ParkWise AI</title>
+
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="css/shared.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/owner-profile.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="app-layout">
+
+
+    <aside class="sidebar"></aside>
+
+
+    <main class="main-content">
+
+
+        <header class="top-header"></header>
+
+
+        <section class="owner-profile-page">
+
+
+            <!-- PROFILE HERO -->
+
+            <section class="owner-profile-hero">
+
+
+                <div
+                    class="owner-profile-avatar"
+                    id="ownerProfileAvatar"
+                >
+                    O
+                </div>
+
+
+                <div class="owner-profile-info">
+
+                    <span>
+                        PARKING OWNER
+                    </span>
+
+                    <h2 id="ownerProfileName">
+                        Loading...
+                    </h2>
+
+                    <p id="ownerProfileEmail">
+                        Loading...
+                    </p>
+
+                </div>
+
+
+                <div class="verified-owner">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Owner Account
+
+                </div>
+
+            </section>
+
+
+
+            <!-- PROFILE DETAILS -->
+
+            <div class="owner-profile-grid">
+
+
+                <section class="owner-profile-card">
+
+
+                    <div class="profile-card-heading">
+
+                        <div>
+
+                            <h2>
+                                Personal details
+                            </h2>
+
+                            <p>
+                                Your owner account information.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+
+                    <div class="owner-profile-form">
+
+
+                        <div class="owner-field">
+
+                            <label>
+                                Full name
+                            </label>
+
+                            <input
+                                id="ownerNameField"
+                                type="text"
+                                readonly
+                            >
+
+                        </div>
+
+
+                        <div class="owner-field">
+
+                            <label>
+                                Email address
+                            </label>
+
+                            <input
+                                id="ownerEmailField"
+                                type="email"
+                                readonly
+                            >
+
+                        </div>
+
+
+                        <div class="owner-field">
+
+                            <label>
+                                Account role
+                            </label>
+
+                            <input
+                                type="text"
+                                value="Parking Owner"
+                                readonly
+                            >
+
+                        </div>
+
+
+                        <div class="owner-field">
+
+                            <label>
+                                Owner ID
+                            </label>
+
+                            <input
+                                id="ownerIdField"
+                                type="text"
+                                readonly
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="profile-sync">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        Your account information is
+                        loaded from your ParkWise login.
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- ACCOUNT SUMMARY -->
+
+                <aside class="owner-profile-card">
+
+
+                    <div class="profile-card-heading">
+
+                        <div>
+
+                            <h2>
+                                Account overview
+                            </h2>
+
+                            <p>
+                                Your owner portal activity.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-chart-pie"></i>
+
+                    </div>
+
+
+                    <div class="owner-profile-stats">
+
+
+                        <div>
+
+                            <strong id="profileLotCount">
+                                0
+                            </strong>
+
+                            <span>
+                                Parking lots
+                            </span>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong id="profileBookingCount">
+                                0
+                            </strong>
+
+                            <span>
+                                Bookings
+                            </span>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong id="profileRevenue">
+                                ₹0
+                            </strong>
+
+                            <span>
+                                Total revenue
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </aside>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script src="js/owner-layout.js"></script>
+
+<script src="js/owner-profile.js"></script>
+
+
+</body>
+
+</html>
