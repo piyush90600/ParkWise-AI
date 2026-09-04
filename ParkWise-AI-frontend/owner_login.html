@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Owner Login | ParkWise AI</title>
+
+
+    <!-- Google Font -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- Existing CSS -->
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/shared.css"
+    >
+
+
+    <!-- Login CSS -->
+
+    <link
+        rel="stylesheet"
+        href="css/role-login.css"
+    >
+
+</head>
+
+
+<body
+    class="role-login-page"
+    data-role="park_owner"
+>
+
+
+<!-- ==========================================
+     HEADER
+     ========================================== -->
+
+<header class="role-login-header">
+
+
+    <a
+        href="landingpage.html"
+        class="role-brand"
+    >
+
+        <span class="role-brand-icon">
+
+            <i
+                class="fa-solid fa-square-parking"
+            ></i>
+
+        </span>
+
+        <span>
+
+            ParkWise
+            <strong>AI</strong>
+
+        </span>
+
+    </a>
+
+
+    <a
+        href="landingpage.html"
+        class="back-home"
+    >
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        <span>
+            Back to Home
+        </span>
+
+    </a>
+
+</header>
+
+
+
+<!-- ==========================================
+     MAIN
+     ========================================== -->
+
+<main class="role-login-main">
+
+
+    <div class="role-login-shell">
+
+
+        <!-- ======================================
+             OWNER INTRO
+             ====================================== -->
+
+        <section
+            class="role-login-info owner"
+        >
+
+
+            <span class="role-badge">
+
+                <i
+                    class="fa-solid fa-square-parking"
+                ></i>
+
+                OWNER PORTAL
+
+            </span>
+
+
+            <h1>
+
+                Welcome back.
+
+                <span>
+                    Manage smarter.
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                Sign in to manage your parking
+                lots, monitor bookings and keep
+                your parking business running smarter.
+
+            </p>
+
+
+
+            <div class="role-benefits">
+
+
+                <!-- ANALYTICS -->
+
+                <div class="role-benefit">
+
+                    <span class="role-benefit-icon">
+
+                        <i
+                            class="fa-solid fa-chart-line"
+                        ></i>
+
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Parking Analytics
+                        </strong>
+
+                        <small>
+                            Track occupancy, bookings
+                            and performance.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PARKING MANAGEMENT -->
+
+                <div class="role-benefit">
+
+                    <span class="role-benefit-icon">
+
+                        <i
+                            class="fa-solid fa-square-parking"
+                        ></i>
+
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Parking Management
+                        </strong>
+
+                        <small>
+                            Manage your parking
+                            locations and capacity.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BOOKING CONTROL -->
+
+                <div class="role-benefit">
+
+                    <span class="role-benefit-icon">
+
+                        <i
+                            class="fa-solid fa-calendar-check"
+                        ></i>
+
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Booking Control
+                        </strong>
+
+                        <small>
+                            Keep track of reservations
+                            and activity.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <span class="info-orb"></span>
+
+        </section>
+
+
+
+        <!-- ======================================
+             OWNER LOGIN FORM
+             ====================================== -->
+
+        <section
+            class="role-login-form owner-form"
+        >
+
+
+            <div
+                class="form-top-icon owner-icon"
+            >
+
+                <i
+                    class="fa-solid fa-square-parking"
+                ></i>
+
+            </div>
+
+
+            <h2>
+                Owner Login
+            </h2>
+
+
+            <p class="form-subtitle">
+
+                Enter your owner account
+                details to continue.
+
+            </p>
+
+
+
+            <!-- ERROR -->
+
+            <div
+                id="formError"
+                class="form-error"
+            >
+
+                <i
+                    class="fa-solid fa-circle-exclamation"
+                ></i>
+
+                <span id="formErrorText"></span>
+
+            </div>
+
+
+
+            <form
+                id="roleLoginForm"
+                novalidate
+            >
+
+
+                <!-- EMAIL -->
+
+                <div class="role-form-group">
+
+                    <label for="loginEmail">
+
+                        Email Address
+
+                    </label>
+
+
+                    <div class="role-input">
+
+                        <i
+                            class="fa-regular fa-envelope"
+                        ></i>
+
+                        <input
+                            id="loginEmail"
+                            type="email"
+                            placeholder="Enter owner email"
+                            autocomplete="email"
+                        >
+
+                    </div>
+
+
+                    <small
+                        id="loginEmailError"
+                        class="form-field-error"
+                    ></small>
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="role-form-group">
+
+                    <label for="loginPassword">
+
+                        Password
+
+                    </label>
+
+
+                    <div class="role-input">
+
+                        <i
+                            class="fa-solid fa-lock"
+                        ></i>
+
+
+                        <input
+                            id="loginPassword"
+                            type="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                        >
+
+
+                        <button
+                            id="toggleLoginPassword"
+                            class="password-toggle"
+                            type="button"
+                            aria-label="Show password"
+                        >
+
+                            <i
+                                class="fa-regular fa-eye"
+                            ></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <small
+                        id="loginPasswordError"
+                        class="form-field-error"
+                    ></small>
+
+                </div>
+
+
+
+                <!-- OPTIONS -->
+
+                <div class="role-form-options">
+
+
+                    <label class="remember">
+
+                        <input
+                            type="checkbox"
+                        >
+
+                        <span>
+                            Remember me
+                        </span>
+
+                    </label>
+
+
+                    <a
+                        href="#"
+                        class="forgot"
+                    >
+
+                        Forgot Password?
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    id="loginSubmit"
+                    class="role-submit"
+                    type="submit"
+                >
+
+                    <span id="loginSubmitText">
+
+                        Sign In as Owner
+
+                    </span>
+
+                    <i
+                        class="fa-solid fa-arrow-right"
+                    ></i>
+
+                </button>
+
+            </form>
+
+
+
+            <!-- USER LOGIN -->
+
+            <p class="role-switch">
+
+                Looking for user login?
+
+                <a href="user_login.html">
+
+                    User Login
+
+                </a>
+
+            </p>
+
+
+
+            <!-- REGISTER -->
+
+            <p class="role-switch">
+
+                Don't have an account?
+
+                <a href="register.html">
+
+                    Create an account
+
+                </a>
+
+            </p>
+
+
+
+            <!-- SECURITY -->
+
+            <div class="security-note">
+
+                <i
+                    class="fa-solid fa-shield-halved"
+                ></i>
+
+                Securely protected by ParkWise AI
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<script src="js/role-login.js"></script>
+
+</body>
+
+</html>
