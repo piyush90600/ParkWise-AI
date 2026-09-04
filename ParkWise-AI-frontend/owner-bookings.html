@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Bookings | ParkWise AI</title>
+
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="css/shared.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/owner-dashboard.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/owner-bookings.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="app-layout">
+
+
+    <aside class="sidebar"></aside>
+
+
+    <main class="main-content">
+
+
+        <header class="top-header"></header>
+
+
+        <section class="owner-page">
+
+
+            <!-- HEADER -->
+
+            <div class="booking-page-intro">
+
+                <div>
+
+                    <span class="welcome-label">
+                        RESERVATIONS
+                    </span>
+
+                    <h2>
+                        Parking Bookings
+                    </h2>
+
+                    <p>
+                        View and manage bookings made
+                        at your parking locations.
+                    </p>
+
+                </div>
+
+
+                <div class="booking-page-icon">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FILTER -->
+
+            <section class="owner-card booking-filter-card">
+
+                <div class="booking-filter">
+
+                    <div class="booking-search">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            id="bookingSearch"
+                            type="search"
+                            placeholder="Search driver or parking lot..."
+                        >
+
+                    </div>
+
+
+                    <select id="bookingStatus">
+
+                        <option value="all">
+                            All statuses
+                        </option>
+
+                        <option value="active">
+                            Active
+                        </option>
+
+                        <option value="confirmed">
+                            Confirmed
+                        </option>
+
+                        <option value="completed">
+                            Completed
+                        </option>
+
+                        <option value="cancelled">
+                            Cancelled
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- BOOKINGS -->
+
+            <section class="owner-card bookings-main-card">
+
+
+                <div class="owner-card-header">
+
+                    <div>
+
+                        <h2>
+                            All bookings
+                        </h2>
+
+                        <p id="bookingCountText">
+                            No bookings available
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="bookingTableContainer"
+                    class="booking-table-container"
+                >
+
+                    <!-- JS -->
+
+                </div>
+
+
+            </section>
+
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script src="js/owner-layout.js"></script>
+
+<script src="js/owner-bookings.js"></script>
+
+
+</body>
+
+</html>
