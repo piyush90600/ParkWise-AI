@@ -535,25 +535,46 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    /* =====================================================
-       SUBMIT
-       ===================================================== */
+   /* =====================================================
+        SUBMIT OWNER VERIFICATION
+     ===================================================== */
 
-    form.addEventListener(
-        "submit",
-        async event => {
+    if (form && submitButton) {
+
+        form.addEventListener("submit", async function (event) {
 
             event.preventDefault();
 
+            // -----------------------------
+            // LOGIN CHECK
+            // -----------------------------
 
-            if (
-                !form.checkValidity()
-            ) {
+            if (!ownerId || !token) {
+
+                showMessage(
+                    "Your session has expired. Please login again.",
+                    "error"
+                );
+
+                window.location.href = "owner_login.html";
+
+                return;
+            }
+
+            // -----------------------------
+            // FORM VALIDATION
+            // -----------------------------
+
+            if (!form.checkValidity()) {
 
                 form.reportValidity();
 
                 return;
             }
+
+            // -----------------------------
+            // LOCATION VALIDATION
+            // -----------------------------
 
             if (
                 !latitudeInput.value ||
@@ -561,84 +582,184 @@ document.addEventListener("DOMContentLoaded", () => {
             ) {
 
                 showMessage(
-                    "Please enter the parking address or use your current location so latitude and longitude can be detected.",
+                    "Please use your current location or enter a valid parking address first.",
                     "error"
                 );
 
                 return;
             }
 
+            // -----------------------------
+            // FILE VALIDATION
+            // -----------------------------
+
+            const identity =
+                document.getElementById("identity");
+
+            const businessDoc =
+                document.getElementById("businessDoc");
+
+            const lotProof =
+                document.getElementById("lotProof");
+
+            if (
+                !identity.files.length ||
+                !businessDoc.files.length ||
+                !lotProof.files.length
+            ) {
+
+                showMessage(
+                    "Please upload all three verification documents.",
+                    "error"
+                );
+
+                return;
+            }
+
+            // -----------------------------
+            // CREATE FORM DATA
+            // -----------------------------
+
             const formData =
                 new FormData(form);
 
+            /*
+            * Make sure these values are explicitly
+            * present in FormData.
+            */
 
-            submitButton.disabled =
-                true;
+            formData.set(
+                "owner_name",
+                ownerNameInput.value.trim()
+            );
 
+            formData.set(
+                "latitude",
+                latitudeInput.value
+            );
+
+            formData.set(
+                "longitude",
+                longitudeInput.value
+            );
+
+            console.log(
+                "Submitting parking lot:",
+                Object.fromEntries(formData.entries())
+            );
+
+            // -----------------------------
+            // BUTTON LOADING
+            // -----------------------------
+
+            submitButton.disabled = true;
 
             submitButton.innerHTML = `
                 <i class="fa-solid fa-spinner fa-spin"></i>
                 Submitting...
             `;
 
-
             hideMessage();
-
 
             try {
 
-                const response =
-                    await fetch(
-                        `${API_BASE_URL}/owner/${ownerId}/verification`,
-                        {
-                            method: "POST",
+                // -----------------------------
+                // SEND TO FASTAPI
+                // -----------------------------
 
-                            headers: {
-                                "Authorization":
-                                    `Bearer ${token}`
-                            },
+                const response = await fetch(
+                    `${API_BASE_URL}/owner/${encodeURIComponent(ownerId)}/verification`,
+                    {
+                        method: "POST",
 
-                            body: formData
-                        }
-                    );
+                        headers: {
+                            "Authorization":
+                                `Bearer ${token}`
+                        },
 
+                        body: formData
+                    }
+                );
 
-                const data =
-                    await response.json();
+                // -----------------------------
+                // READ RESPONSE
+                // -----------------------------
 
+                const contentType =
+                    response.headers.get("content-type") || "";
+
+                let data;
 
                 if (
-                    !response.ok
+                    contentType.includes(
+                        "application/json"
+                    )
                 ) {
 
+                    data =
+                        await response.json();
+
+                } else {
+
+                    const text =
+                        await response.text();
+
                     throw new Error(
-                        data.detail ||
-                        "Verification submission failed."
+                        text ||
+                        `Server returned HTTP ${response.status}`
                     );
                 }
 
-
-                showMessage(
-                    `Application submitted successfully. Parking Lot ID ${data.parking_lot_id} has been generated automatically.`,
-                    "success"
+                console.log(
+                    "Verification response:",
+                    data
                 );
 
+                // -----------------------------
+                // ERROR
+                // -----------------------------
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.detail ||
+                        "Unable to submit verification."
+                    );
+                }
+
+                // -----------------------------
+                // SUCCESS
+                // -----------------------------
+
+                showMessage(
+                    `Parking lot submitted successfully. Parking Lot ID: ${data.parking_lot_id}. Status: Pending admin approval.`,
+                    "success"
+                );
 
                 submitButton.innerHTML = `
                     <i class="fa-solid fa-circle-check"></i>
                     Application Submitted
                 `;
 
+                /*
+                * Disable form after successful
+                * database submission.
+                */
 
                 form.querySelectorAll(
-                    "input, textarea, select"
+                    "input, textarea, select, button"
                 ).forEach(
                     element => {
-                        element.disabled =
-                            true;
+
+                        element.disabled = true;
+
                     }
                 );
 
+                console.log(
+                    "Parking lot successfully stored in database:",
+                    data.parking_lot_id
+                );
 
             } catch (error) {
 
@@ -647,28 +768,25 @@ document.addEventListener("DOMContentLoaded", () => {
                     error
                 );
 
-
                 showMessage(
                     error.message ||
-                    "Something went wrong. Please try again.",
+                    "Something went wrong while submitting the verification.",
                     "error"
                 );
 
-
                 submitButton.disabled =
                     false;
-
 
                 submitButton.innerHTML = `
                     <i class="fa-solid fa-paper-plane"></i>
                     Submit for verification
                     <i class="fa-solid fa-arrow-right submit-arrow"></i>
                 `;
-
             }
 
-        }
-    );
+        });
+
+}
 
 
     /* =====================================================
