@@ -25,20 +25,35 @@ def occupancy_prediction(price, rating, distance):
         except Exception: pass
     return 50.0
 
-def recommendation(lots, lat, lon, weights=None, vehicle_type=None):
+def recommendation(lots, lat, lon, weights=None, vehicle_type=None, radius_km=5):
     rows=[]
     for lot in lots:
         if lot.get("status") != "approved": continue
         if vehicle_type and lot.get("vehicle_type") not in ("all", vehicle_type): continue
-        d=distance_km(lat,lon,float(lot["latitude"]),float(lot["longitude"]))
-        if d > 5: continue
-        rating=lot_rating(lot["parking_lots_id"]); price=float(lot.get("price_per_hour",0)); occ=occupancy_prediction(price,rating,d)
+        try:
+            d=distance_km(lat,lon,float(lot["latitude"]),float(lot["longitude"]))
+        except (TypeError, ValueError, KeyError):
+            continue
+        if d > radius_km: continue
+        rating=lot_rating(lot["parking_lots_id"]); price=float(lot.get("price_per_hour",0) or 0); occ=occupancy_prediction(price,rating,d)
         rows.append({**lot,"distance_km":round(d,2),"avg_rating":rating,"predicted_occupancy_pct":round(occ,2),"predicted_available_pct":round(100-occ,2)})
     if not rows:return []
+
     def mm(k, reverse=False):
-        a=[r[k] for r in rows]; lo=min(a); hi=max(a); 
-        for r in rows:r[k+"_score"]=1 if hi==lo else ((r[k]-lo)/(hi-lo)); r[k+"_score"]=1-r[k+"_score"] if reverse else r[k+"_score"]
+        a=[r[k] for r in rows]; lo=min(a); hi=max(a)
+        for r in rows:
+            score = 1 if hi==lo else ((r[k]-lo)/(hi-lo))
+            r[k+"_score"] = 1-score if reverse else score
+
     mm("predicted_available_pct"); mm("avg_rating"); mm("distance_km",True); mm("price_per_hour",True)
     w=weights or {"availability":.40,"rating":.25,"distance":.20,"price":.15}
-    for r in rows:r["recommendation_score"]=round((w.get("availability",.40)*r["predicted_available_pct_score"]+w.get("rating",.25)*(r["avg_rating"]/5 if r["avg_rating"] else 0)+w.get("distance",.20)*r["distance_km_score"]+w.get("price",.15)*r["price_per_hour_score"])*100,2)
+    for r in rows:
+        rating_score = r["avg_rating"]/5 if r["avg_rating"] else 0
+        r["match_breakdown"]={
+            "availability": round(r["predicted_available_pct_score"]*100,1),
+            "rating": round(rating_score*100,1),
+            "distance": round(r["distance_km_score"]*100,1),
+            "price": round(r["price_per_hour_score"]*100,1),
+        }
+        r["recommendation_score"]=round((w.get("availability",.40)*r["predicted_available_pct_score"]+w.get("rating",.25)*rating_score+w.get("distance",.20)*r["distance_km_score"]+w.get("price",.15)*r["price_per_hour_score"])*100,2)
     return sorted(rows,key=lambda x:x["recommendation_score"],reverse=True)
