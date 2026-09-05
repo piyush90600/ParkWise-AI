@@ -30,14 +30,40 @@ app.add_middleware(
 
     allow_headers=["*"],
 )
-app.include_router(auth.router) 
-app.include_router(parking.router); app.include_router(users.router); app.include_router(admin.router)
-app.include_router(bookings.router)
+app.include_router(auth.router)
+app.include_router(parking.router)
+app.include_router(users.router)
+app.include_router(admin.router)
+
+
 @app.on_event("startup")
-def startup(): create_indexes()
+def startup():
+    create_indexes()
+
+
 @app.get("/")
-def root(): return {"name":"ParkWise AI API","status":"running","docs":"/docs"}
+def root():
+    return {
+        "name": "ParkWise AI API",
+        "status": "running",
+        "docs": "/docs"
+    }
+
+
 @app.get("/health")
 def health():
-    try: ping(); return {"status":"ok","mongodb":"connected"}
-    except Exception as e: return {"status":"error","mongodb":"disconnected","detail":str(e)}
+    try:
+        ping()
+        return {
+            "status": "ok",
+            "mongodb": "connected"
+        }
+    except Exception as e:
+        return {
+            "status": "error",
+            "mongodb": "disconnected",
+            "detail": str(e)
+        }
+
+
+app.include_router(bookings.router)
