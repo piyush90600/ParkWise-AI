@@ -92,7 +92,7 @@ const toastMessage =
     document.getElementById("toastMessage");
 
 const parkingCardsContainer =
-    document.getElementById("parkingCards");
+    document.getElementById("nearbyParkingGrid");
 
 const mapMarkers =
     document.getElementById("mapMarkers");
@@ -191,7 +191,7 @@ async function searchParking() {
     }
 
     if (!destination && !currentLatitude && !currentLongitude) {
-        showNotification("Enter destination first");
+        showToast("Enter destination first");
         return;
     }
     showLoadingState();
@@ -324,7 +324,7 @@ async function loadNearbyParking(
                 `${API_BASE_URL}/nearby-parking` +
                 `?latitude=${encodeURIComponent(latitude)}` +
                 `&longitude=${encodeURIComponent(longitude)}` +
-                `&radius_km=5`
+                `&radius_km=10`
             );
 
         if (!response.ok) {
@@ -518,6 +518,49 @@ function createParkingCard(
             parking.parking_name ||
             "Parking Area"
         );
+
+    const totalSlots =
+        Number(
+            parking.total_slots ??
+            parking.totalSpaces ??
+            0
+        );
+
+    const predictedOccupancy =
+        totalSlots > 0
+            ? Math.min(
+                100,
+                Math.max(
+                    0,
+                    Math.round(
+                        ((totalSlots - available) / totalSlots) * 100
+                    )
+                )
+            )
+            : (available > 0 ? 30 : 90);
+
+    const predictedAvailability =
+        100 - predictedOccupancy;
+
+    const aiMatchScore =
+        Math.min(
+            100,
+            Math.max(
+                0,
+                Math.round(
+                    (available > 0 ? 60 : 20) +
+                    (rating * 6) +
+                    Math.max(0, 15 - distance)
+                )
+            )
+        );
+
+    const predictionStatus =
+        predictedOccupancy >= 75
+            ? "High"
+            : predictedOccupancy >= 40
+                ? "Moderate"
+                : "Low";
 
     card.innerHTML = `
 
@@ -900,6 +943,56 @@ function selectParking(id) {
                 );
             }
         );
+}
+
+
+// ==========================================
+// CALCULATE PARKING SCORE
+// ==========================================
+
+function calculateParkingScore(parking) {
+
+    const available =
+        Number(
+            parking.available_slots ??
+            parking.availableSpaces ??
+            parking.available ??
+            0
+        );
+
+    const distance =
+        Number(
+            parking.distance_km ??
+            parking.distance ??
+            0
+        );
+
+    const rating =
+        Number(
+            parking.rating ??
+            0
+        );
+
+    const price =
+        Number(
+            parking.base_price ??
+            parking.price ??
+            0
+        );
+
+    // Higher score = better recommendation.
+    // Rewards: more available slots, higher rating, closer distance, lower price.
+    let score = 50;
+
+    score += Math.min(20, available * 2);
+
+    score += rating * 6;
+
+    score -= Math.min(20, distance * 2);
+
+    score -= Math.min(15, price / 10);
+
+    return Math.max(0, score);
 }
 
 
@@ -1326,6 +1419,61 @@ if (destinationInput) {
 // CURRENT LOCATION
 // ==========================================
 
+// ==========================================
+// REVERSE GEOCODE INTO SEARCH BAR
+// ==========================================
+
+async function reverseGeocodeToSearchBar(
+    latitude,
+    longitude
+) {
+
+    if (!destinationInput) {
+        return;
+    }
+
+    try {
+
+        const response =
+            await fetch(
+                `https://nominatim.openstreetmap.org/reverse` +
+                `?format=jsonv2` +
+                `&lat=${encodeURIComponent(latitude)}` +
+                `&lon=${encodeURIComponent(longitude)}`
+            );
+
+        if (!response.ok) {
+            return;
+        }
+
+        const data =
+            await response.json();
+
+        const address =
+            data.display_name;
+
+        if (address) {
+
+            destinationInput.value =
+                address;
+
+        }
+
+    } catch (error) {
+
+        // Silent fail — the search bar already
+        // has coordinates as a fallback, so a
+        // failed reverse-geocode call is not
+        // critical.
+
+        console.warn(
+            "Reverse geocoding failed:",
+            error
+        );
+    }
+}
+
+
 function useCurrentLocation() {
 
     if (!navigator.geolocation) {
@@ -1365,7 +1513,28 @@ function useCurrentLocation() {
             };
 
 
+            // Fill the search bar immediately with
+            // coordinates so it's never left empty,
+            // then try to upgrade it to a real address.
+
+            if (destinationInput) {
+
+                destinationInput.value =
+                    `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
+
+                if (clearSearchButton) {
+                    clearSearchButton.style.display = "block";
+                }
+            }
+
+
             showLocationCoordinates(
+                latitude,
+                longitude
+            );
+
+
+            reverseGeocodeToSearchBar(
                 latitude,
                 longitude
             );
@@ -1498,6 +1667,53 @@ function filterParking(
 
 
 // ==========================================
+// TOGGLE SORT MENU
+// ==========================================
+
+function toggleSortMenu() {
+
+    const sortMenu =
+        document.getElementById(
+            "sortMenu"
+        );
+
+    if (!sortMenu) {
+        return;
+    }
+
+    sortMenu.classList.toggle(
+        "show"
+    );
+}
+
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        const sortMenu =
+            document.getElementById(
+                "sortMenu"
+            );
+
+        if (!sortMenu) {
+            return;
+        }
+
+        if (
+            !event.target.closest(".sort-menu") &&
+            !event.target.closest(".sort-btn")
+        ) {
+
+            sortMenu.classList.remove(
+                "show"
+            );
+        }
+    }
+);
+
+
+// ==========================================
 // SORT
 // ==========================================
 
@@ -1505,7 +1721,7 @@ function sortParking(type) {
 
     const container =
         document.getElementById(
-            "parkingCards"
+            "nearbyParkingGrid"
         );
 
     if (!container) {
