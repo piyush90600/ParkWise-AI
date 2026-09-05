@@ -30,3 +30,9 @@ class BookingRequest(BaseModel):
 class RecommendationIn(BaseModel): latitude:float; longitude:float; radius_km:float=5; price_weight:float=.15; distance_weight:float=.20; rating_weight:float=.25; availability_weight:float=.40; vehicle_type:Optional[str]=None
 class ParkingLotIn(BaseModel): name:str; address:str; latitude:float; longitude:float; price_per_hour:float; total_slots:int; vehicle_type:str="all"; timing_start:str="06:00"; timing_end:str="23:00"
 class ProfileUpdate(BaseModel): name:Optional[str]=None; phone:Optional[str]=None; vehicle_type:Optional[str]=None; preferred_price:Optional[float]=None
+
+class ReviewIn(BaseModel):
+    lot_id: str
+    user_id: str
+    rating: float = Field(ge=1, le=5)
+    comment: Optional[str] = None

@@ -1,7 +1,7 @@
 import os
 import shutil
 from datetime import datetime, timezone, timedelta
-
+from app.schemas.api import RecommendationIn, BookingIn, ParkingLotIn, ReviewIn
 import httpx
 
 from fastapi import (
@@ -229,7 +229,87 @@ def recommendations(data: RecommendationIn):
     return {
         "recommendations": result
     }
+# ============================================================
+# REVIEWS & RATINGS
+# ============================================================
 
+@router.post("/reviews")
+def submit_review(data: ReviewIn):
+
+    lot = collection("parking_lots").find_one({
+        "parking_lots_id": data.lot_id
+    })
+
+    if not lot:
+        raise HTTPException(
+            status_code=404,
+            detail="Parking lot not found"
+        )
+
+    existing = collection("reviews").find_one({
+        "lot_id": data.lot_id,
+        "user_id": data.user_id
+    })
+
+    now = datetime.now(timezone.utc)
+
+    if existing:
+        collection("reviews").update_one(
+            {"_id": existing["_id"]},
+            {"$set": {
+                "rating": data.rating,
+                "comment": data.comment,
+                "updated_at": now
+            }}
+        )
+        review_id = existing.get("reviews_id")
+
+    else:
+        last_review = collection("reviews").find_one(
+            {"reviews_id": {"$regex": "^RV[0-9]+$"}},
+            sort=[("reviews_id", -1)]
+        )
+
+        if last_review and last_review.get("reviews_id"):
+            new_number = int(last_review["reviews_id"][2:]) + 1
+        else:
+            new_number = 101
+
+        review_id = f"RV{new_number}"
+
+        collection("reviews").insert_one({
+            "reviews_id": review_id,
+            "lot_id": data.lot_id,
+            "user_id": data.user_id,
+            "rating": data.rating,
+            "comment": data.comment,
+            "created_at": now
+        })
+
+    return {
+        "status": "success",
+        "message": "Review saved",
+        "reviews_id": review_id,
+        "avg_rating": lot_rating(data.lot_id)
+    }
+
+
+@router.get("/parking-lots/{lot_id}/reviews")
+def get_lot_reviews(lot_id: str):
+
+    reviews = [
+        serialize(r)
+        for r in collection("reviews")
+            .find({"lot_id": lot_id})
+            .sort("created_at", -1)
+    ]
+
+    return {
+        "lot_id": lot_id,
+        "avg_rating": lot_rating(lot_id),
+        "review_count": len(reviews),
+        "reviews": reviews
+    }
 
 # ============================================================
 # LOCATION SEARCH
