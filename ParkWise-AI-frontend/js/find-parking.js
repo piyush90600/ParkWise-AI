@@ -376,6 +376,20 @@ async function loadNearbyParking(
                 ? data.parking
                 : [];
 
+
+        // ==========================================
+        // UPDATE TOP STATISTICS
+        // ==========================================
+        updateParkingStatistics(currentParkingList);
+
+
+        // Debug - check backend data
+        console.log(
+            "Nearby parking data:",
+            currentParkingList
+        );
+
+
         // Reset previous data
         parkingData = {};
         selectedParkingId = null;
@@ -1296,6 +1310,7 @@ function showEmptyState() {
     }
 
     updateResultCount(0);
+    updateParkingStatistics([]);
 }
 
 
@@ -1348,6 +1363,263 @@ function updateResultCount(count) {
     }
 }
 
+
+// ==========================================
+// UPDATE DASHBOARD STATISTICS
+// ==========================================
+
+function updateParkingStatistics(parkingList) {
+
+    const nearbyParkingCount =
+        document.getElementById("nearbyParkingCount");
+
+    const availableSpotsCount =
+        document.getElementById("availableSpotsCount");
+
+    const averageOccupancy =
+        document.getElementById("averageOccupancy");
+
+
+    console.log(
+        "Updating statistics:",
+        parkingList
+    );
+
+
+    // ==========================================
+    // NO PARKING
+    // ==========================================
+
+    if (
+        !Array.isArray(parkingList) ||
+        parkingList.length === 0
+    ) {
+
+        if (nearbyParkingCount) {
+            nearbyParkingCount.textContent = "0";
+        }
+
+        if (availableSpotsCount) {
+            availableSpotsCount.textContent = "0";
+        }
+
+        if (averageOccupancy) {
+            averageOccupancy.textContent = "0%";
+        }
+
+        return;
+    }
+
+
+    // ==========================================
+    // 1. NEARBY PARKING
+    // ==========================================
+
+    const totalParking =
+        parkingList.length;
+
+
+    // ==========================================
+    // 2. AVAILABLE SPOTS
+    // ==========================================
+
+    let totalAvailableSpots = 0;
+
+    parkingList.forEach(parking => {
+
+        const available = Number(
+            parking.available_slots ??
+            parking.available_spots ??
+            parking.availableSpaces ??
+            parking.available_spaces ??
+            parking.available ??
+            parking.free_slots ??
+            parking.freeSpaces ??
+            parking.free_spaces ??
+            0
+        );
+
+        if (Number.isFinite(available)) {
+            totalAvailableSpots += available;
+        }
+
+    });
+
+
+    // ==========================================
+    // 3. OCCUPANCY
+    // ==========================================
+
+    let occupancyValues = [];
+
+
+    parkingList.forEach(parking => {
+
+        // First preference:
+        // backend/ML occupancy value
+
+        let occupancy =
+            parking.occupancy ??
+            parking.occupancy_percentage ??
+            parking.occupancy_percent ??
+            parking.predicted_occupancy ??
+            parking.predictedOccupancy ??
+            null;
+
+
+        if (
+            occupancy !== null &&
+            occupancy !== undefined &&
+            occupancy !== ""
+        ) {
+
+            occupancy = Number(occupancy);
+
+            if (Number.isFinite(occupancy)) {
+
+                // If backend gives 0-1
+                if (
+                    occupancy >= 0 &&
+                    occupancy <= 1
+                ) {
+                    occupancy *= 100;
+                }
+
+                occupancyValues.push(
+                    Math.min(
+                        100,
+                        Math.max(
+                            0,
+                            occupancy
+                        )
+                    )
+                );
+
+                return;
+            }
+        }
+
+
+        // ======================================
+        // FALLBACK:
+        // total slots - available slots
+        // ======================================
+
+        const totalSlots = Number(
+            parking.total_slots ??
+            parking.total_spots ??
+            parking.totalSpaces ??
+            parking.total_spaces ??
+            parking.capacity ??
+            parking.slots ??
+            0
+        );
+
+
+        const available = Number(
+            parking.available_slots ??
+            parking.available_spots ??
+            parking.availableSpaces ??
+            parking.available_spaces ??
+            parking.available ??
+            parking.free_slots ??
+            0
+        );
+
+
+        if (
+            totalSlots > 0 &&
+            Number.isFinite(available)
+        ) {
+
+            const calculatedOccupancy =
+                (
+                    (totalSlots - available) /
+                    totalSlots
+                ) * 100;
+
+
+            occupancyValues.push(
+                Math.min(
+                    100,
+                    Math.max(
+                        0,
+                        calculatedOccupancy
+                    )
+                )
+            );
+
+        }
+
+    });
+
+
+    // ==========================================
+    // AVERAGE OCCUPANCY
+    // ==========================================
+
+    let avgOccupancy = 0;
+
+
+    if (occupancyValues.length > 0) {
+
+        const totalOccupancy =
+            occupancyValues.reduce(
+                (sum, value) =>
+                    sum + value,
+                0
+            );
+
+        avgOccupancy =
+            Math.round(
+                totalOccupancy /
+                occupancyValues.length
+            );
+
+    }
+
+
+    // ==========================================
+    // UPDATE UI
+    // ==========================================
+
+    if (nearbyParkingCount) {
+
+        nearbyParkingCount.textContent =
+            totalParking;
+
+    }
+
+
+    if (availableSpotsCount) {
+
+        availableSpotsCount.textContent =
+            totalAvailableSpots;
+
+    }
+
+
+    if (averageOccupancy) {
+
+        averageOccupancy.textContent =
+            `${avgOccupancy}%`;
+
+    }
+
+
+    // ==========================================
+    // DEBUG
+    // ==========================================
+
+    console.log(
+        "Parking Statistics:",
+        {
+            nearbyParking: totalParking,
+            availableSpots: totalAvailableSpots,
+            averageOccupancy: avgOccupancy
+        }
+    );
+}
 
 // ==========================================
 // HTML SECURITY
