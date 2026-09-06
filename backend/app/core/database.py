@@ -6,10 +6,7 @@ load_dotenv()
 
 
 # MongoDB URI
-MONGO_URI = os.getenv(
-    "MONGO_URI",
-    "mongodb://localhost:27017"
-)
+MONGO_URI = os.getenv("MONGO_URI")
 
 # Database name
 DATABASE_NAME = os.getenv(
@@ -36,3 +33,11 @@ def collection(name: str):
         collection("owners")
     """
     return db[name]
+
+
+# Test MongoDB connection
+try:
+    client.admin.command("ping")
+    print("MongoDB connected successfully!")
+except Exception as e:
+    print("MongoDB connection failed:", e)
