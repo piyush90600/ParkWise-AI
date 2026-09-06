@@ -502,6 +502,7 @@ function createParkingCard(
 
     const price =
         Number(
+            parking.price_per_hour ??
             parking.base_price ??
             parking.price ??
             0
@@ -516,6 +517,7 @@ function createParkingCard(
 
     const rating =
         Number(
+            parking.avg_rating ??
             parking.rating ??
             0
         );
@@ -884,6 +886,7 @@ function selectParking(id) {
 
     const price =
         Number(
+            parking.price_per_hour ??
             parking.base_price ??
             parking.price ??
             0
@@ -1003,6 +1006,7 @@ function calculateParkingScore(parking) {
 
     const rating =
         Number(
+            parking.avg_rating ??
             parking.rating ??
             0
         );
@@ -1192,6 +1196,7 @@ function updateAIRecommendation(
 
         const recommendationPrice =
             Number(
+                recommended.price_per_hour ??
                 recommended.base_price ??
                 recommended.price ??
                 0
@@ -1888,6 +1893,7 @@ function openParkingModal(id) {
 
     const price =
         Number(
+            parking.price_per_hour ??
             parking.base_price ??
             parking.price ??
             0
@@ -2567,7 +2573,8 @@ function renderRealMapMarkers(
                         Rating:
                         <b>
                             ⭐ ${Number(
-                                parking.rating ||
+                                parking.avg_rating ??
+                                parking.rating ??
                                 0
                             ).toFixed(1)}
                         </b>
