@@ -172,11 +172,15 @@ def nearby_parking(
 
 
 # ============================================================
-# RECOMMENDATIONS
+# AI RECOMMENDATIONS
 # ============================================================
 
 @router.post("/recommendations")
 def recommendations(data: RecommendationIn):
+
+    # --------------------------------------------------------
+    # GET APPROVED PARKING LOTS
+    # --------------------------------------------------------
 
     lots = list(
         collection("parking_lots").find({
@@ -184,51 +188,167 @@ def recommendations(data: RecommendationIn):
         })
     )
 
+
+    # --------------------------------------------------------
+    # AI PRIORITY WEIGHTS
+    # --------------------------------------------------------
+
     weights = {
-        "availability": data.availability_weight,
-        "rating": data.rating_weight,
-        "distance": data.distance_weight,
-        "price": data.price_weight
+
+        "availability":
+            data.availability_weight,
+
+        "rating":
+            data.rating_weight,
+
+        "distance":
+            data.distance_weight,
+
+        "price":
+            data.price_weight
+
     }
 
+
+    # --------------------------------------------------------
+    # GET AI RECOMMENDATIONS
+    # --------------------------------------------------------
+
     rows = recommendation(
+
         lots,
+
         data.latitude,
+
         data.longitude,
+
         weights,
-        data.vehicle_type
+
+        data.vehicle_type,
+
+        data.radius_km
+
     )
+
 
     result = []
 
-    fields = [
-        "parking_lots_id",
-        "name",
-        "address",
-        "latitude",
-        "longitude",
-        "price_per_hour",
-        "total_slots",
-        "vehicle_type",
-        "distance_km",
-        "avg_rating",
-        "predicted_occupancy_pct",
-        "predicted_available_pct",
-        "recommendation_score"
-    ]
 
-    for row in rows[:5]:
+    # --------------------------------------------------------
+    # ADD REAL SLOT AVAILABILITY
+    # --------------------------------------------------------
 
-        item = {}
+    for row in rows[:10]:
 
-        for field in fields:
-            item[field] = row.get(field)
+        lot_id = row.get(
+            "parking_lots_id"
+        )
 
-        result.append(item)
+
+        if not lot_id:
+            continue
+
+
+        # Get real slot information
+
+        total_slots, available_slots = availability(
+            lot_id
+        )
+
+
+        item = {
+
+            "parking_lots_id":
+                lot_id,
+
+            "name":
+                row.get("name"),
+
+            "address":
+                row.get("address"),
+
+            "latitude":
+                row.get("latitude"),
+
+            "longitude":
+                row.get("longitude"),
+
+
+            # PRICE
+
+            "price_per_hour":
+                row.get(
+                    "price_per_hour",
+                    0
+                ),
+
+
+            # DISTANCE
+
+            "distance_km":
+                row.get(
+                    "distance_km",
+                    0
+                ),
+
+
+            # RATING
+
+            "avg_rating":
+                row.get(
+                    "avg_rating",
+                    0
+                ),
+
+
+            # ACTUAL SLOTS
+
+            "total_slots":
+                total_slots,
+
+            "available_slots":
+                available_slots,
+
+
+            # ML PREDICTION
+
+            "predicted_occupancy_pct":
+                row.get(
+                    "predicted_occupancy_pct",
+                    0
+                ),
+
+            "predicted_available_pct":
+                row.get(
+                    "predicted_available_pct",
+                    0
+                ),
+
+
+            # AI SCORE
+
+            "recommendation_score":
+                row.get(
+                    "recommendation_score",
+                    0
+                )
+
+        }
+
+
+        result.append(
+            item
+        )
+
 
     return {
-        "recommendations": result
+
+        "recommendations":
+            result
+
     }
+
+
 # ============================================================
 # REVIEWS & RATINGS
 # ============================================================

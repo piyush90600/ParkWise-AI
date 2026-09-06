@@ -1,113 +1,470 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const list = document.getElementById("recommendationsList");
-    const prioritySelect = document.getElementById("prioritySelect");
-    const recalculateBtn = document.getElementById("recalculateBtn");
+// ==========================================
+// PARKWISE AI - AI RECOMMENDATIONS
+// ==========================================
+
+const API_BASE_URL =
+    "http://127.0.0.1:8000";
 
 
-    const API_BASE_URL = "http://127.0.0.1:8000";
+// ==========================================
+// PAGE LOAD
+// ==========================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        const prioritySelect =
+            document.getElementById(
+                "prioritySelect"
+            );
+
+
+        const recalculateBtn =
+            document.getElementById(
+                "recalculateBtn"
+            );
+
+
+        // Load recommendations initially
+
+        loadRecommendations();
+
+
+        // Recalculate button
+
+        if (recalculateBtn) {
+
+            recalculateBtn.addEventListener(
+                "click",
+                () => {
+
+                    loadRecommendations();
+
+                }
+            );
+
+        }
+
+
+        // Automatically recalculate
+        // when priority changes
+
+        if (prioritySelect) {
+
+            prioritySelect.addEventListener(
+                "change",
+                () => {
+
+                    loadRecommendations();
+
+                }
+            );
+
+        }
+
+    }
+);
+
+
+// ==========================================
+// GET AI WEIGHTS BASED ON USER PRIORITY
+// ==========================================
+
+function getPriorityWeights(priority) {
+
+    // --------------------------------------
+    // BEST VALUE
+    // --------------------------------------
+
+    if (priority === "balanced") {
+
+        return {
+
+            price_weight: 0.25,
+
+            distance_weight: 0.25,
+
+            rating_weight: 0.15,
+
+            availability_weight: 0.35
+
+        };
+
+    }
+
+
+    // --------------------------------------
+    // LOWEST PRICE
+    // --------------------------------------
+
+    if (priority === "price") {
+
+        return {
+
+            price_weight: 0.60,
+
+            distance_weight: 0.15,
+
+            rating_weight: 0.05,
+
+            availability_weight: 0.20
+
+        };
+
+    }
+
+
+    // --------------------------------------
+    // SHORTEST DISTANCE
+    // --------------------------------------
+
+    if (priority === "distance") {
+
+        return {
+
+            price_weight: 0.10,
+
+            distance_weight: 0.60,
+
+            rating_weight: 0.05,
+
+            availability_weight: 0.25
+
+        };
+
+    }
+
+
+    // --------------------------------------
+    // HIGHEST AVAILABILITY
+    // --------------------------------------
+
+    if (priority === "availability") {
+
+        return {
+
+            price_weight: 0.10,
+
+            distance_weight: 0.15,
+
+            rating_weight: 0.05,
+
+            availability_weight: 0.70
+
+        };
+
+    }
+
+
+    // Default
+
+    return {
+
+        price_weight: 0.25,
+
+        distance_weight: 0.25,
+
+        rating_weight: 0.15,
+
+        availability_weight: 0.35
+
+    };
+
+}
+
+
+// ==========================================
+// LOAD RECOMMENDATIONS
+// ==========================================
 
 async function loadRecommendations() {
 
-    const list = document.getElementById("recommendationsList");
-
-    list.innerHTML = `
-        <div class="loading-state">
-            <i class="fa-solid fa-robot fa-spin"></i>
-            <h3>Finding the best parking...</h3>
-            <p>Comparing availability, price, distance and ratings.</p>
-        </div>
-    `;
-
-    const selectedLocation =
-        JSON.parse(
-            localStorage.getItem("parkwise_selected_location")
+    const list =
+        document.getElementById(
+            "recommendationsList"
         );
 
-    if (
-        !selectedLocation ||
-        !Number.isFinite(selectedLocation.latitude) ||
-        !Number.isFinite(selectedLocation.longitude)
-    ) {
 
-        list.innerHTML = `
-            <div class="empty-state">
-                <i class="fa-solid fa-location-dot"></i>
-                <h3>Location not selected</h3>
-                <p>Please select a destination from Find Parking first.</p>
+    const prioritySelect =
+        document.getElementById(
+            "prioritySelect"
+        );
 
-                <a href="find-parking.html" class="btn-book">
-                    Find Parking
-                </a>
-            </div>
-        `;
+
+    if (!list) {
+
+        console.error(
+            "recommendationsList not found"
+        );
 
         return;
+
     }
+
+
+    // --------------------------------------
+    // SHOW LOADING
+    // --------------------------------------
+
+    list.innerHTML = `
+
+        <div class="loading-state">
+
+            <i class="fa-solid fa-robot fa-spin"></i>
+
+            <h3>
+                AI is finding the best parking...
+            </h3>
+
+            <p>
+                Comparing price, distance,
+                availability and rating.
+            </p>
+
+        </div>
+
+    `;
+
+
+    // --------------------------------------
+    // GET LOCATION FROM FIND PARKING PAGE
+    // --------------------------------------
+
+    let selectedLocation = null;
+
 
     try {
 
-        const response = await fetch(
-            `${API_BASE_URL}/recommendations`,
-            {
-                method: "POST",
+        selectedLocation =
+            JSON.parse(
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                localStorage.getItem(
+                    "parkwise_selected_location"
+                )
 
-                body: JSON.stringify({
+            );
 
-                    latitude:
-                        selectedLocation.latitude,
+    } catch (error) {
 
-                    longitude:
-                        selectedLocation.longitude,
-
-                    radius_km: 5,
-
-                    price_weight: 0.20,
-
-                    distance_weight: 0.25,
-
-                    rating_weight: 0.20,
-
-                    availability_weight: 0.35
-
-                })
-            }
+        console.error(
+            "Location parsing error:",
+            error
         );
 
-        if (!response.ok) {
-            throw new Error(
-                "Recommendation API failed"
+    }
+
+
+    // --------------------------------------
+    // VALIDATE LOCATION
+    // --------------------------------------
+
+    if (
+
+        !selectedLocation ||
+
+        !Number.isFinite(
+            Number(selectedLocation.latitude)
+        ) ||
+
+        !Number.isFinite(
+            Number(selectedLocation.longitude)
+        )
+
+    ) {
+
+        list.innerHTML = `
+
+            <div class="empty-state">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                <h3>
+                    Location not selected
+                </h3>
+
+                <p>
+                    Please search a location
+                    from Find Parking first.
+                </p>
+
+                <a
+                    href="find-parking.html"
+                    class="btn-book"
+                >
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    Find Parking
+
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    // --------------------------------------
+    // GET USER PRIORITY
+    // --------------------------------------
+
+    const priority =
+        prioritySelect
+            ? prioritySelect.value
+            : "balanced";
+
+
+    // --------------------------------------
+    // GET AI WEIGHTS
+    // --------------------------------------
+
+    const weights =
+        getPriorityWeights(
+            priority
+        );
+
+
+    try {
+
+        // ----------------------------------
+        // CALL BACKEND AI API
+        // ----------------------------------
+
+        const response =
+            await fetch(
+
+                `${API_BASE_URL}/recommendations`,
+
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body: JSON.stringify({
+
+                        latitude:
+                            Number(
+                                selectedLocation.latitude
+                            ),
+
+                        longitude:
+                            Number(
+                                selectedLocation.longitude
+                            ),
+
+
+                        radius_km: 10,
+
+
+                        price_weight:
+                            weights.price_weight,
+
+
+                        distance_weight:
+                            weights.distance_weight,
+
+
+                        rating_weight:
+                            weights.rating_weight,
+
+
+                        availability_weight:
+                            weights.availability_weight
+
+                    })
+
+                }
+
             );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+
+                `Recommendation API failed: ${response.status}`
+
+            );
+
         }
+
 
         const data =
             await response.json();
 
+
+        console.log(
+            "AI Recommendations:",
+            data
+        );
+
+
         if (
+
             !data.recommendations ||
+
             data.recommendations.length === 0
+
         ) {
 
             list.innerHTML = `
+
                 <div class="empty-state">
-                    <i class="fa-solid fa-car"></i>
-                    <h3>No parking found</h3>
+
+                    <i class="fa-solid fa-square-parking"></i>
+
+                    <h3>
+                        No parking found
+                    </h3>
+
                     <p>
                         No suitable parking was found
-                        within 5 km.
+                        near your selected location.
                     </p>
+
                 </div>
+
             `;
 
             return;
+
         }
 
+
+        // ----------------------------------
+        // SORT DATA BASED ON USER PRIORITY
+        // ----------------------------------
+
+        const sortedParking =
+
+            sortRecommendations(
+
+                data.recommendations,
+
+                priority
+
+            );
+
+
+        // ----------------------------------
+        // RENDER
+        // ----------------------------------
+
         renderRecommendations(
-            data.recommendations
+            sortedParking,
+            priority
         );
+
 
     } catch (error) {
 
@@ -116,342 +473,527 @@ async function loadRecommendations() {
             error
         );
 
+
         list.innerHTML = `
+
             <div class="error-state">
+
                 <i class="fa-solid fa-triangle-exclamation"></i>
 
-                <h3>Unable to load recommendations</h3>
+                <h3>
+                    Unable to load recommendations
+                </h3>
 
                 <p>
                     Please make sure the FastAPI backend
                     and MongoDB are running.
                 </p>
+
             </div>
+
         `;
+
     }
+
 }
-    // Calculate recommendation score
-    sortedSpots.forEach((spot) => {
-        let score = 0;
 
-        if (priority === "price") {
 
-            // Lower price gives higher score
-            score = Math.max(
-                60,
-                Math.round(100 - (spot.price * 1.5))
-            );
+// ==========================================
+// SORT RECOMMENDATIONS
+// ==========================================
 
-        } else if (priority === "distance") {
+function sortRecommendations(
+    parking,
+    priority
+) {
 
-            // Closer distance gives higher score
-            score = Math.max(
-                60,
-                Math.round(100 - (spot.dist * 12))
-            );
+    const sorted =
+        [...parking];
 
-        } else if (priority === "availability") {
 
-            // Actual availability based score
-            score = Math.max(
-                60,
-                Math.round((Number(spot.available_slots || 0) / Math.max(1, Number(spot.total_slots || 1))) * 100)
-            );
+    // --------------------------------------
+    // LOWEST PRICE
+    // --------------------------------------
 
-        } else {
+    if (priority === "price") {
 
-            // Balanced recommendation
-            const priceFactor = (50 - spot.price) * 0.4;
-            const distFactor = (3 - spot.dist) * 8;
-            const ratingFactor = spot.rating * 10;
+        return sorted.sort(
 
-            // Include actual availability
-            const availabilityFactor =
-                (Number(spot.available_slots || 0) / Math.max(1, Number(spot.total_slots || 1))) * 15;
+            (a, b) =>
 
-            score = Math.min(
-                99,
-                Math.max(
-                    65,
-                    Math.round(
-                        ratingFactor +
-                        priceFactor +
-                        distFactor +
-                        availabilityFactor
-                    )
-                )
-            );
-        }
+                Number(a.price_per_hour || 0)
 
-        spot.calculatedScore = score;
-    });
+                -
 
-    // Sort highest score first
-    sortedSpots.sort(
-        (a, b) => b.calculatedScore - a.calculatedScore
+                Number(b.price_per_hour || 0)
+
+        );
+
+    }
+
+
+    // --------------------------------------
+    // SHORTEST DISTANCE
+    // --------------------------------------
+
+    if (priority === "distance") {
+
+        return sorted.sort(
+
+            (a, b) =>
+
+                Number(a.distance_km || 999)
+
+                -
+
+                Number(b.distance_km || 999)
+
+        );
+
+    }
+
+
+    // --------------------------------------
+    // HIGHEST AVAILABILITY
+    // --------------------------------------
+
+    if (priority === "availability") {
+
+        return sorted.sort(
+
+            (a, b) => {
+
+                const availabilityA =
+
+                    Number(a.available_slots || 0) /
+
+                    Math.max(
+                        1,
+                        Number(a.total_slots || 1)
+                    );
+
+
+                const availabilityB =
+
+                    Number(b.available_slots || 0) /
+
+                    Math.max(
+                        1,
+                        Number(b.total_slots || 1)
+                    );
+
+
+                return (
+                    availabilityB -
+                    availabilityA
+                );
+
+            }
+
+        );
+
+    }
+
+
+    // --------------------------------------
+    // BEST VALUE
+    // --------------------------------------
+
+    return sorted.sort(
+
+        (a, b) =>
+
+            Number(
+                b.recommendation_score || 0
+            )
+
+            -
+
+            Number(
+                a.recommendation_score || 0
+            )
+
     );
 
-    renderCards(sortedSpots);
-
-
-    function renderCards(spots) {
-        list.innerHTML = "";
-
-        spots.forEach((spot, idx) => {
-            const card = document.createElement("div");
-            card.className = "rec-card";
-            card.innerHTML = `
-                <div class="rec-main">
-                    <div class="rec-badge">#${idx + 1}</div>
-                    <div class="rec-details">
-                        <h3>${spot.name}</h3>
-                        <div class="rec-tags">
-                            <span><i class="fa-solid fa-indian-rupee-sign"></i> ₹${spot.price}/hr</span>
-                            <span><i class="fa-solid fa-route"></i> ${spot.dist} km away</span>
-                            <span><i class="fa-solid fa-star"></i> ${spot.rating}</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="rec-actions">
-                    <div class="match-score">
-                        <span class="score">${spot.calculatedScore}%</span>
-                        <span class="label">Match Score Score</span>
-                    </div>
-                    <button class="btn-book" onclick="bookParking('${spot.name}')">Book Now</button>
-                </div>
-            `;
-            list.appendChild(card);
-        });
-    }
-
-
-async function bookParking(spotName) {
-
-    const userId =
-        localStorage.getItem("user_id");
-
-    try {
-
-        const response =
-            await fetch(
-                "http://127.0.0.1:8000/book",
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
-
-                    body: JSON.stringify({
-
-                        spot_name:
-                            spotName,
-
-                        user_id:
-                            userId
-
-                    })
-                }
-            );
-
-        const result =
-            await response.json();
-
-        if (response.ok) {
-
-            alert(
-                result.message ||
-                "Parking booked successfully!"
-            );
-
-        } else {
-
-            alert(
-                result.detail ||
-                "Booking failed"
-            );
-
-        }
-
-    } catch (error) {
-
-        console.error(error);
-
-        alert(
-            "Backend connection failed"
-        );
-    }
 }
 
-function renderRecommendations(spots) {
+
+// ==========================================
+// GET PRIORITY LABEL
+// ==========================================
+
+function getPriorityLabel(priority) {
+
+    const labels = {
+
+        balanced:
+            "Best Value",
+
+        price:
+            "Lowest Price",
+
+        distance:
+            "Shortest Distance",
+
+        availability:
+            "Highest Availability"
+
+    };
+
+
+    return labels[priority] ||
+        "Best Value";
+
+}
+
+
+// ==========================================
+// RENDER RECOMMENDATIONS
+// ==========================================
+
+function renderRecommendations(
+    spots,
+    priority
+) {
 
     const list =
         document.getElementById(
             "recommendationsList"
         );
 
+
     list.innerHTML = "";
 
-    spots.slice(0, 5).forEach(
-        (spot, index) => {
 
-            const occupancy =
-                Number(
-                    spot.predicted_occupancy || 0
-                );
+    spots
+        .slice(0, 5)
+        .forEach(
 
-            const availability =
-                Number(
-                    spot.predicted_availability ||
-                    (100 - occupancy)
-                );
+            (spot, index) => {
 
-            const score =
-                Number(
-                    spot.recommendation_score || 0
-                );
 
-            const card =
-                document.createElement("div");
+                // ----------------------------------
+                // DATA
+                // ----------------------------------
 
-            card.className =
-                "rec-card";
+                const price =
+                    Number(
+                        spot.price_per_hour || 0
+                    );
 
-            card.innerHTML = `
 
-                <div class="rank-badge">
-                    #${index + 1}
-                </div>
+                const distance =
+                    Number(
+                        spot.distance_km || 0
+                    );
 
-                <div class="rec-main">
 
-                    <div class="rec-details">
+                const rating =
+                    Number(
+                        spot.avg_rating || 0
+                    );
 
-                        <div class="title-row">
 
-                            <h3>
-                                ${spot.name}
-                            </h3>
+                const totalSlots =
+                    Number(
+                        spot.total_slots || 0
+                    );
 
-                            ${
-                                index === 0
-                                ?
-                                `<span class="best-badge">
-                                    <i class="fa-solid fa-crown"></i>
-                                    Best Match
-                                </span>`
-                                :
-                                ""
-                            }
 
-                        </div>
+                const availableSlots =
+                    Number(
+                        spot.available_slots || 0
+                    );
 
-                        <p class="address">
-                            <i class="fa-solid fa-location-dot"></i>
-                            ${spot.address || "Location available"}
-                        </p>
 
-                        <div class="rec-tags">
+                const predictedOccupancy =
+                    Number(
+                        spot.predicted_occupancy_pct || 0
+                    );
 
-                            <span>
-                                <i class="fa-solid fa-indian-rupee-sign"></i>
-                                ₹${Number(spot.price).toFixed(0)}/hr
-                            </span>
 
-                            <span>
-                                <i class="fa-solid fa-route"></i>
-                                ${Number(spot.distance_km).toFixed(2)} km
-                            </span>
+                const availabilityPercent =
 
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                ${Number(spot.rating).toFixed(1)}
-                            </span>
+                    totalSlots > 0
 
-                        </div>
+                    ?
 
-                        <div class="ml-section">
+                    (
+                        availableSlots /
+                        totalSlots
+                    ) * 100
 
-                            <div class="ml-header">
+                    :
 
-                                <span>
-                                    <i class="fa-solid fa-brain"></i>
-                                    Current Occupancy
-                                </span>
+                    Number(
+                        spot.predicted_available_pct || 0
+                    );
 
-                                <strong>
-                                    ${occupancy.toFixed(1)}%
-                                </strong>
+
+                const score =
+                    Number(
+                        spot.recommendation_score || 0
+                    );
+
+
+                // ----------------------------------
+                // CREATE CARD
+                // ----------------------------------
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "rec-card";
+
+
+                card.innerHTML = `
+
+                    <div class="rank-badge">
+
+                        #${index + 1}
+
+                    </div>
+
+
+                    <div class="rec-main">
+
+                        <div class="rec-details">
+
+
+                            <div class="title-row">
+
+                                <h3>
+                                    ${spot.name || "Parking Area"}
+                                </h3>
+
+
+                                ${
+
+                                    index === 0
+
+                                    ?
+
+                                    `
+
+                                    <span class="best-badge">
+
+                                        <i class="fa-solid fa-crown"></i>
+
+                                        ${getPriorityLabel(priority)}
+
+                                    </span>
+
+                                    `
+
+                                    :
+
+                                    ""
+
+                                }
 
                             </div>
 
-                            <div class="progress-bar">
 
-                                <div
-                                    class="progress-fill"
-                                    style="width:${occupancy}%">
+                            <p class="address">
+
+                                <i class="fa-solid fa-location-dot"></i>
+
+                                ${
+                                    spot.address ||
+                                    "Address not available"
+                                }
+
+                            </p>
+
+
+                            <div class="rec-tags">
+
+
+                                <span>
+
+                                    <i class="fa-solid fa-indian-rupee-sign"></i>
+
+                                    ₹${price.toFixed(0)}/hr
+
+                                </span>
+
+
+                                <span>
+
+                                    <i class="fa-solid fa-route"></i>
+
+                                    ${distance.toFixed(2)} km away
+
+                                </span>
+
+
+                                <span>
+
+                                    <i class="fa-solid fa-star"></i>
+
+                                    ${rating.toFixed(1)}
+
+                                </span>
+
+
+                            </div>
+
+
+                            <div class="ml-section">
+
+
+                                <div class="ml-header">
+
+                                    <span>
+
+                                        <i class="fa-solid fa-brain"></i>
+
+                                        Predicted Occupancy
+
+                                    </span>
+
+
+                                    <strong>
+
+                                        ${predictedOccupancy.toFixed(1)}%
+
+                                    </strong>
+
                                 </div>
 
+
+                                <div class="progress-bar">
+
+                                    <div
+
+                                        class="progress-fill"
+
+                                        style="
+                                            width:
+                                            ${Math.min(
+                                                100,
+                                                predictedOccupancy
+                                            )}%
+                                        "
+
+                                    >
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="availability-text">
+
+                                    <span>
+
+                                        <i class="fa-solid fa-square-parking"></i>
+
+                                        Available Slots
+
+                                    </span>
+
+
+                                    <strong>
+
+                                        ${availableSlots}
+                                        /
+                                        ${totalSlots}
+
+                                        (${availabilityPercent.toFixed(0)}%)
+
+                                    </strong>
+
+                                </div>
+
+
                             </div>
 
-                            <div class="availability-text">
-
-                                <span>
-                                    Current Availability
-                                </span>
-
-                                <strong>
-                                    ${availability.toFixed(1)}%
-                                </strong>
-
-                            </div>
 
                         </div>
 
                     </div>
 
-                </div>
 
-                <div class="rec-actions">
+                    <div class="rec-actions">
 
-                    <div class="match-score">
 
-                        <span class="score">
-                            ${score.toFixed(0)}%
-                        </span>
+                        <div class="match-score">
 
-                        <span class="label">
-                            Match Score
-                        </span>
+                            <span class="score">
+
+                                ${score.toFixed(0)}%
+
+                            </span>
+
+
+                            <span class="label">
+
+                                AI Match Score
+
+                            </span>
+
+                        </div>
+
+
+                        <button
+
+                            class="btn-book"
+
+                            onclick="
+                                bookParking(
+                                    '${spot.parking_lots_id}'
+                                )
+                            "
+
+                        >
+
+                            <i class="fa-solid fa-calendar-check"></i>
+
+                            Book Now
+
+                        </button>
+
 
                     </div>
 
-                    <div class="slot-info">
+                `;
 
-                        <i class="fa-solid fa-square-parking"></i>
 
-                        ${spot.available_slots}
-                        /
-                        ${spot.total_slots}
-                        slots available
+                list.appendChild(
+                    card
+                );
 
-                    </div>
+            }
 
-                    <button
-                        class="btn-book"
-                        onclick="bookParking('${spot.name}')">
+        );
 
-                        <i class="fa-solid fa-calendar-check"></i>
-                        Book Now
+}
 
-                    </button>
 
-                </div>
+// ==========================================
+// BOOK PARKING
+// ==========================================
 
-            `;
+function bookParking(lotId) {
 
-            list.appendChild(card);
-        }
+    localStorage.setItem(
+        "selected_parking_lot_id",
+        lotId
     );
+
+
+    alert(
+        "Parking selected successfully!"
+    );
+
+
+    // You can redirect to booking page here
+
+    // window.location.href = "booking.html";
+
 }

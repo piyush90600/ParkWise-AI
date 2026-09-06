@@ -367,6 +367,649 @@ body {
 }
 
 
+/* ==========================================
+   AI RECOMMENDATION CARDS
+   ========================================== */
+
+.recommendations-container {
+    max-width: 1380px;
+    margin: 22px auto 0;
+    padding: 0 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Main recommendation card */
+.rec-card {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    gap: 18px;
+
+    min-height: 185px;
+    padding: 20px;
+
+    background: #ffffff;
+    border: 1px solid #e7edf5;
+    border-radius: 16px;
+
+    box-shadow: 0 5px 18px rgba(15, 23, 42, 0.05);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.rec-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 4px;
+
+    background: #2563eb;
+}
+
+.rec-card:hover {
+    transform: translateY(-3px);
+
+    border-color: #bfdbfe;
+
+    box-shadow:
+        0 12px 30px rgba(37, 99, 235, 0.10);
+}
+
+
+/* ==========================================
+   RANK
+   ========================================== */
+
+.rank-badge {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff,
+            #dbeafe
+        );
+
+    color: #2563eb;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    border: 1px solid #dbeafe;
+}
+
+
+/* ==========================================
+   MAIN CONTENT
+   ========================================== */
+
+.rec-main {
+    display: flex;
+    align-items: flex-start;
+
+    flex: 1;
+    min-width: 0;
+}
+
+.rec-details {
+    width: 100%;
+    min-width: 0;
+}
+
+
+/* ==========================================
+   TITLE
+   ========================================== */
+
+.title-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 9px;
+
+    margin-bottom: 6px;
+}
+
+.rec-details h3 {
+    color: #172033;
+
+    font-size: 16px;
+    font-weight: 800;
+
+    line-height: 1.3;
+}
+
+.best-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    background: #eff6ff;
+    color: #2563eb;
+
+    border: 1px solid #dbeafe;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+    letter-spacing: .3px;
+}
+
+.best-badge i {
+    font-size: 8px;
+}
+
+
+/* ==========================================
+   ADDRESS
+   ========================================== */
+
+.address {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    margin-bottom: 14px;
+
+    color: #7b8ba3;
+
+    font-size: 10px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.address i {
+    color: #2563eb;
+    font-size: 10px;
+}
+
+
+/* ==========================================
+   PRICE / DISTANCE / RATING
+   ========================================== */
+
+.rec-tags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-bottom: 15px;
+}
+
+.rec-tags span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    min-height: 29px;
+
+    padding: 6px 10px;
+
+    border-radius: 8px;
+
+    background: #f8fafc;
+
+    border: 1px solid #edf1f6;
+
+    color: #526581;
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.rec-tags i {
+    margin: 0;
+
+    font-size: 9px;
+}
+
+.rec-tags span:first-child i {
+    color: #2563eb;
+}
+
+.rec-tags span:nth-child(2) i {
+    color: #10b981;
+}
+
+.rec-tags span:nth-child(3) i {
+    color: #f59e0b;
+}
+
+
+/* ==========================================
+   ML OCCUPANCY SECTION
+   ========================================== */
+
+.ml-section {
+    max-width: 720px;
+
+    padding: 12px 14px;
+
+    background: #f8fbff;
+
+    border: 1px solid #e5efff;
+
+    border-radius: 11px;
+}
+
+.ml-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+}
+
+.ml-header span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    color: #64748b;
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.ml-header span i {
+    color: #2563eb;
+}
+
+.ml-header strong {
+    color: #2563eb;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+
+/* Progress */
+.progress-bar {
+    width: 100%;
+    height: 7px;
+
+    overflow: hidden;
+
+    background: #e8eef7;
+
+    border-radius: 10px;
+
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #60a5fa
+        );
+
+    transition: width 0.7s ease;
+}
+
+
+/* Available slots */
+.availability-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+.availability-text span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    color: #7b8ba3;
+
+    font-size: 8px;
+}
+
+.availability-text span i {
+    color: #10b981;
+}
+
+.availability-text strong {
+    color: #172033;
+
+    font-size: 9px;
+    font-weight: 700;
+}
+
+
+/* ==========================================
+   RIGHT SIDE
+   ========================================== */
+
+.rec-actions {
+    width: 145px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    padding-left: 18px;
+
+    border-left: 1px solid #eef2f7;
+}
+
+
+/* AI score circle */
+.match-score {
+    width: 82px;
+    height: 82px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #ffffff 54%,
+            #eff6ff 55%,
+            #eff6ff 100%
+        );
+
+    border: 5px solid #dbeafe;
+
+    box-shadow:
+        0 4px 15px rgba(37, 99, 235, 0.08);
+}
+
+.match-score .score {
+    display: block;
+
+    margin: 0;
+
+    color: #2563eb;
+
+    font-size: 19px;
+    font-weight: 900;
+}
+
+.match-score .label {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #94a3b8;
+
+    font-size: 6px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: .3px;
+
+    text-align: center;
+}
+
+
+/* ==========================================
+   BOOK BUTTON
+   ========================================== */
+
+.btn-book {
+    width: 115px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    border: none;
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 12px rgba(37, 99, 235, 0.20);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn-book:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(37, 99, 235, 0.28);
+}
+
+.btn-book i {
+    font-size: 9px;
+}
+
+
+/* ==========================================
+   LOADING / EMPTY / ERROR
+   ========================================== */
+
+.loading-state,
+.empty-state,
+.error-state {
+    min-height: 260px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 35px;
+
+    background: #ffffff;
+
+    border: 1px solid #e7edf5;
+    border-radius: 16px;
+
+    text-align: center;
+
+    box-shadow:
+        0 5px 18px rgba(15, 23, 42, 0.04);
+}
+
+.loading-state > i,
+.empty-state > i,
+.error-state > i {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 14px;
+
+    border-radius: 14px;
+
+    background: #eff6ff;
+    color: #2563eb;
+
+    font-size: 22px;
+}
+
+.loading-state h3,
+.empty-state h3,
+.error-state h3 {
+    margin-bottom: 7px;
+
+    color: #172033;
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.loading-state p,
+.empty-state p,
+.error-state p {
+    max-width: 400px;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 900px) {
+
+    .rec-card {
+        flex-wrap: wrap;
+    }
+
+    .rec-main {
+        width: calc(100% - 66px);
+    }
+
+    .rec-actions {
+        width: 100%;
+
+        flex-direction: row;
+
+        justify-content: space-between;
+
+        border-left: none;
+        border-top: 1px solid #eef2f7;
+
+        padding-left: 0;
+        padding-top: 15px;
+    }
+
+    .match-score {
+        width: 65px;
+        height: 65px;
+    }
+
+    .match-score .score {
+        font-size: 16px;
+    }
+
+    .btn-book {
+        width: 130px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .recommendations-container {
+        margin-top: 15px;
+        padding: 0 15px;
+    }
+
+    .rec-card {
+        padding: 16px;
+
+        gap: 12px;
+    }
+
+    .rank-badge {
+        width: 40px;
+        height: 40px;
+
+        font-size: 11px;
+    }
+
+    .rec-main {
+        width: calc(100% - 52px);
+    }
+
+    .rec-details h3 {
+        font-size: 13px;
+    }
+
+    .address {
+        font-size: 8px;
+    }
+
+    .rec-tags {
+        gap: 6px;
+    }
+
+    .rec-tags span {
+        font-size: 8px;
+        padding: 5px 8px;
+    }
+
+    .ml-section {
+        padding: 10px;
+    }
+
+    .rec-actions {
+        gap: 10px;
+    }
+
+    .btn-book {
+        width: 115px;
+    }
+}
+
 
 
 

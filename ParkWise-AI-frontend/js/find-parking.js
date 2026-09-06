@@ -79,6 +79,10 @@ let suggestionController = null;
 
 let selectedLocationSuggestion = null;
 
+localStorage.removeItem(
+    "parkwise_selected_location"
+);
+
 const clearSearchButton =
     document.getElementById("clearSearch");
 
@@ -316,6 +320,36 @@ async function loadNearbyParking(
     latitude,
     longitude
 ) {
+
+    // ==========================================
+    // SAVE SELECTED LOCATION FOR AI RECOMMENDATION
+    // ==========================================
+
+    const selectedLocation = {
+
+        latitude: Number(latitude),
+
+        longitude: Number(longitude),
+
+        name:
+            destinationInput
+                ? destinationInput.value.trim()
+                : "Selected Location"
+
+    };
+
+
+    localStorage.setItem(
+        "parkwise_selected_location",
+        JSON.stringify(selectedLocation)
+    );
+
+
+    console.log(
+        "Location saved for AI Recommendation:",
+        selectedLocation
+    );
+
 
     try {
 
