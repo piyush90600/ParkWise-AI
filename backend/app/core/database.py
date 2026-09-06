@@ -1,21 +1,38 @@
-import os
+from pathlib import Path
 from pymongo import MongoClient
 from dotenv import load_dotenv
+import os
 
-load_dotenv()
+
+# --------------------------------------------------
+# Load .env from backend/app/.env
+# --------------------------------------------------
+
+BASE_DIR = Path(__file__).resolve().parents[1]
+ENV_FILE = BASE_DIR / ".env"
+
+load_dotenv(ENV_FILE)
 
 
-# MongoDB URI
-MONGO_URI = os.getenv("MONGO_URI")
+# --------------------------------------------------
+# MongoDB Configuration
+# --------------------------------------------------
 
-# Database name
+MONGO_URI = os.getenv(
+    "MONGO_URI",
+    "mongodb://127.0.0.1:27017"
+)
+
 DATABASE_NAME = os.getenv(
     "DATABASE_NAME",
     "parkwise_ai"
 )
 
 
-# MongoDB connection
+# --------------------------------------------------
+# MongoDB Client
+# --------------------------------------------------
+
 client = MongoClient(
     MONGO_URI,
     serverSelectionTimeoutMS=5000
@@ -24,20 +41,21 @@ client = MongoClient(
 db = client[DATABASE_NAME]
 
 
+# --------------------------------------------------
+# Collection Helper
+# --------------------------------------------------
+
 def collection(name: str):
-    """
-    Return MongoDB collection.
-    Example:
-        collection("parking_lots")
-        collection("slots")
-        collection("owners")
-    """
     return db[name]
 
 
-# Test MongoDB connection
+# --------------------------------------------------
+# MongoDB Connection Test
+# --------------------------------------------------
+
 try:
     client.admin.command("ping")
     print("MongoDB connected successfully!")
+
 except Exception as e:
     print("MongoDB connection failed:", e)
