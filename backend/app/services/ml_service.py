@@ -1,4 +1,8 @@
-import os, math, joblib, numpy as np
+import os
+import math
+import joblib
+import numpy as np
+import pandas as pd
 from pathlib import Path
 from app.core.config import settings
 from app.db.mongodb import collection
@@ -19,10 +23,42 @@ def lot_rating(lot_id):
     return round(sum(vals)/len(vals),2) if vals else 0.0
 
 def occupancy_prediction(price, rating, distance):
+    """
+    Predict occupancy using the trained RandomForest model.
+
+    The model was trained using a pandas DataFrame with
+    feature names, so prediction must also use the same
+    feature names to avoid sklearn warnings.
+    """
+
     if BUNDLE:
         try:
-            model=BUNDLE["model"]; pred=float(model.predict(np.array([[price,rating,distance]]))[0]); return max(0,min(100,pred))
-        except Exception: pass
+            model = BUNDLE["model"]
+
+            # Use the exact feature names used during training
+            features = BUNDLE.get(
+                "features",
+                ["price", "avg_rating", "distance_km"]
+            )
+
+            # Create DataFrame instead of NumPy array
+            input_data = pd.DataFrame(
+                [[price, rating, distance]],
+                columns=features
+            )
+
+            pred = float(
+                model.predict(input_data)[0]
+            )
+
+            return max(0.0, min(100.0, pred))
+
+        except Exception as e:
+            print(
+                f"ML prediction warning: {e}"
+            )
+
+    # Fallback prediction
     return 50.0
 
 def recommendation(lots, lat, lon, weights=None, vehicle_type=None, radius_km=5):
