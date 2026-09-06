@@ -455,3 +455,4 @@ function renderRecommendations(spots) {
         }
     );
 }
+});
