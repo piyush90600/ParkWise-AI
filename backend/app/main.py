@@ -8,6 +8,8 @@ from app.api import auth, parking, users, admin
 
 from app.routers import bookings
 
+from fastapi.responses import JSONResponse
+
 
 # ============================================================
 # FASTAPI APPLICATION
@@ -71,6 +73,19 @@ app.add_middleware(
 )
 
 
+@app.get("/health")
+async def health():
+    return {
+        "status": "ok",
+        "service": "ParkWise AI API"
+    }
+
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    return JSONResponse(content={}, status_code=204)
+
+
 # ============================================================
 # ROUTERS
 # ============================================================
@@ -120,27 +135,27 @@ def root():
 # HEALTH CHECK
 # ============================================================
 
-@app.get("/health")
-def health():
-    return {
-        "status": "ok",
-        "service": "ParkWise AI API"
-    }
+# @app.get("/health")
+# def health():
+#     return {
+#         "status": "ok",
+#         "service": "ParkWise AI API"
+#     }
 
 
-@app.get("/health/db")
-def health_db():
-    try:
-        ping()
+# @app.get("/health/db")
+# def health_db():
+#     try:
+#         ping()
 
-        return {
-            "status": "ok",
-            "mongodb": "connected"
-        }
+#         return {
+#             "status": "ok",
+#             "mongodb": "connected"
+#         }
 
-    except Exception as e:
-        return {
-            "status": "error",
-            "mongodb": "disconnected",
-            "detail": str(e)
-        }
+#     except Exception as e:
+#         return {
+#             "status": "error",
+#             "mongodb": "disconnected",
+#             "detail": str(e)
+#         }

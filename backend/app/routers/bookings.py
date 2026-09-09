@@ -32,7 +32,7 @@ async def create_booking(data:BookingRequest):
     await bookings.update_one({"_id":r.inserted_id},{"$set":{"bookings_id":bid,"id":bid}})
     return {"status":"success","message":"Parking booked successfully!","booking_id":bid,"lot_id":lot_id,"price":booking["price"]}
 
-@router.get("/{user_id}")
+@router.get("/user/{user_id}")
 async def user_bookings(user_id: str):
     """
     Return only bookings created by the logged-in user.
