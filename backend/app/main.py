@@ -92,9 +92,11 @@ app.include_router(bookings.router)
 
 @app.on_event("startup")
 def startup():
-
-    create_indexes()
-
+    try:
+        create_indexes()
+        print("MongoDB indexes created successfully")
+    except Exception as e:
+        print(f"MongoDB index creation warning: {e}")
 
 # ============================================================
 # HOME
@@ -120,27 +122,25 @@ def root():
 
 @app.get("/health")
 def health():
+    return {
+        "status": "ok",
+        "service": "ParkWise AI API"
+    }
 
+
+@app.get("/health/db")
+def health_db():
     try:
-
         ping()
 
         return {
-
             "status": "ok",
-
             "mongodb": "connected"
-
         }
 
     except Exception as e:
-
         return {
-
             "status": "error",
-
             "mongodb": "disconnected",
-
             "detail": str(e)
-
         }
