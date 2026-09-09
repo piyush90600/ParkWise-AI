@@ -985,7 +985,6 @@ function bookParking(lotId) {
         "selected_parking_lot_id",
         lotId
     );
-<<<<<<< HEAD
 
 
     alert(
@@ -998,7 +997,5 @@ function bookParking(lotId) {
     // window.location.href = "booking.html";
 
 }
-=======
-}
-});
->>>>>>> 1ac611e60ce6086eafe50427cbac2abb7ce0d7bf
+
+
