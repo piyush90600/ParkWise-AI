@@ -1,48 +1,43 @@
-from pathlib import Path
-
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
-
-
-# Backend folder
-BASE_DIR = Path(__file__).resolve().parents[2]
-
-# .env location:
-# Backend/app/.env
-ENV_FILE = BASE_DIR / "app" / ".env"
 
 
 class Settings(BaseSettings):
 
     # MongoDB
     mongodb_url: str = Field(
-        # default="mongodb://127.0.0.1:27017",
+        default="mongodb://127.0.0.1:27017",
         validation_alias="MONGO_URL"
     )
 
     mongodb_db: str = Field(
-        # default="parkwise_ai",
+        default="parkwise_ai",
         validation_alias="MONGODB_DB"
     )
 
     # JWT
     jwt_secret: str = Field(
-        # default="parkwise-ai-secret-key-change-in-production",
+        default="change-this-in-production",
         validation_alias="JWT_SECRET"
     )
 
     jwt_algorithm: str = Field(
-        # default="HS256",
+        default="HS256",
         validation_alias="JWT_ALGORITHM"
     )
 
     access_token_minutes: int = Field(
-        # default=1440,
+        default=1440,
         validation_alias="ACCESS_TOKEN_MINUTES"
     )
 
+    cors_origins: str = Field(
+        default="http://127.0.0.1:5500,http://localhost:5500",
+        validation_alias="CORS_ORIGINS"
+    )
+
     model_config = SettingsConfigDict(
-        env_file=str(ENV_FILE),
+        env_file=".env",
         env_file_encoding="utf-8",
         extra="ignore"
     )

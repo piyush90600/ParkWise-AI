@@ -159,35 +159,3 @@ async def user_bookings(user_id: str):
         "total_bookings": len(out)
     }
 
-@router.get("/owner/{owner_id}/bookings")
-async def owner_bookings(owner_id:str):
-    lot_ids=[]
-    async for l in parking_lots.find({"owner_id":owner_id},{"parking_lots_id":1,"_id":1}):
-        lot_ids.append(l.get("parking_lots_id") or str(l["_id"]))
-    out=[]
-    async for b in bookings.find({"lot_id":{"$in":lot_ids}}).sort("created_at",-1):
-        d=clean(b)
-        u=await __import__("app.database",fromlist=["users"]).users.find_one({"users_id":d.get("user_id")})
-        l=await parking_lots.find_one({"parking_lots_id":d.get("lot_id")})
-        d["driver_name"]=u.get("name","Unknown") if u else "Unknown"
-        d["email"]=u.get("email","") if u else ""
-        d["lot_name"]=l.get("name","") if l else d.get("parking_name","")
-        d["amount"]=d.get("price",0)
-        out.append(d)
-    return {"bookings":out}
-
-@router.get("/owner/{owner_id}/dashboard")
-async def owner_dashboard(owner_id:str):
-    lots=[]
-    async for l in parking_lots.find({"owner_id":owner_id}):
-        d=clean(l); lid=d.get("parking_lots_id",d.get("_id"))
-        d["total_spaces"]=int(d.get("total_slots",0) or 0)
-        d["occupied_spaces"]=await bookings.count_documents({"lot_id":lid,"status":{"$in":["confirmed","active"]}})
-        lots.append(d)
-    b=(await owner_bookings(owner_id))["bookings"]
-    return {"parking_lots":lots,"bookings":b,"stats":{
-        "total_spaces":sum(x["total_spaces"] for x in lots),
-        "occupied_spaces":sum(x["occupied_spaces"] for x in lots),
-        "active_bookings":sum(1 for x in b if x.get("status") in ("confirmed","active")),
-        "today_revenue":sum(float(x.get("amount",0) or 0) for x in b)
-    }}
