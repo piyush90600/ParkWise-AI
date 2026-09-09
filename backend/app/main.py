@@ -1,62 +1,122 @@
 from fastapi import FastAPI
+
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.core.config import settings
 from app.db.mongodb import ping, create_indexes
 
 from app.api import auth, parking, users, admin
+
 from app.routers import bookings
 
 
+# ============================================================
+# FASTAPI APPLICATION
+# ============================================================
+
 app = FastAPI(
+
     title="ParkWise AI API",
+
     version="1.0.0",
-    description="FastAPI + MongoDB backend"
+
+    description="FastAPI + MongoDB + AI Parking Recommendation Backend"
+
 )
 
 
+# ============================================================
+# CORS CONFIGURATION
+# ============================================================
+
 app.add_middleware(
+
     CORSMiddleware,
 
     allow_origins=[
+
+        # Local Development
+
         "http://127.0.0.1:5500",
+
         "http://localhost:5500",
+
         "http://127.0.0.1:5501",
+
         "http://localhost:5501",
+
         "http://127.0.0.1:5173",
+
         "http://localhost:5173",
+
         "http://127.0.0.1:8080",
+
         "http://localhost:8080",
+
         "http://127.0.0.1:3000",
+
         "http://localhost:3000",
+
+        # ADD YOUR DEPLOYED FRONTEND URL HERE
+
+        # "https://your-frontend-url.onrender.com",
+
     ],
 
     allow_credentials=True,
+
     allow_methods=["*"],
+
     allow_headers=["*"],
+
 )
 
 
+# ============================================================
+# ROUTERS
+# ============================================================
+
 app.include_router(auth.router)
+
 app.include_router(parking.router)
+
 app.include_router(users.router)
+
 app.include_router(admin.router)
+
 app.include_router(bookings.router)
 
 
+# ============================================================
+# STARTUP
+# ============================================================
+
 @app.on_event("startup")
 def startup():
+
     create_indexes()
 
 
+# ============================================================
+# HOME
+# ============================================================
+
 @app.get("/")
 def root():
+
     return {
+
         "name": "ParkWise AI API",
+
         "status": "running",
+
         "docs": "/docs"
+
     }
 
+
+# ============================================================
+# HEALTH CHECK
+# ============================================================
 
 @app.get("/health")
 def health():
@@ -66,14 +126,21 @@ def health():
         ping()
 
         return {
+
             "status": "ok",
+
             "mongodb": "connected"
+
         }
 
     except Exception as e:
 
         return {
+
             "status": "error",
+
             "mongodb": "disconnected",
+
             "detail": str(e)
+
         }
