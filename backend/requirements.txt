@@ -12,5 +12,5 @@ joblib==1.4.2
 scikit-learn==1.8.0
 numpy==2.2.5
 pandas==2.2.3
-MOTOR
+motor
 python-dotenv==1.1.0
