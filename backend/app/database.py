@@ -1,8 +1,14 @@
 from motor.motor_asyncio import AsyncIOMotorClient
 from .config import settings
+import os
 
-client = AsyncIOMotorClient(settings.MONGO_URL)
-db = client[settings.MONGODB_DB]
+MONGO_URL = os.getenv("MONGO_URL")
+
+if not MONGO_URL:
+    raise RuntimeError("MONGO_URL environment variable is not set")
+
+client = AsyncIOMotorClient(MONGO_URL)
+db = client[os.getenv("MONGODB_DB", "parkwise_ai")]
 
 users = db.users
 owners = db.owners
