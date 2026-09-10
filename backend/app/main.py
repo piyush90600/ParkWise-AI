@@ -81,9 +81,9 @@ async def health():
     }
 
 
-@app.get("/favicon.ico", include_in_schema=False)
-async def favicon():
-    return JSONResponse(content={}, status_code=204)
+# @app.get("/favicon.ico", include_in_schema=False)
+# async def favicon():
+#     return JSONResponse(content={}, status_code=204)
 
 
 # ============================================================
