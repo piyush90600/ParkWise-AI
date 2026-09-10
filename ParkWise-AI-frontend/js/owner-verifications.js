@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
 
     const API_BASE =
-        "http://127.0.0.1:8000";
+        "https://parkwise-ai-473c.onrender.com";
 
 
     // ==========================================

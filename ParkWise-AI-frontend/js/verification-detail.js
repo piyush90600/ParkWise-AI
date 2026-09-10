@@ -3,7 +3,7 @@ document.addEventListener(
     async function () {
 
         const API_BASE_URL =
-            "http://127.0.0.1:8000";
+            "https://parkwise-ai-473c.onrender.com";
 
         const emptyState =
             document.getElementById(
