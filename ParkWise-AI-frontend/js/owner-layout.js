@@ -215,7 +215,7 @@
 
             <a
                 class="nav-link logout"
-                href="landingpage.html"
+                href="index.html"
                 id="ownerLogout"
             >
 

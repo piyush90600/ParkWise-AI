@@ -286,7 +286,7 @@
                 localStorage.removeItem("admin_email");
                 localStorage.removeItem("admin_logged_in");
 
-                window.location.replace("landingpage.html");
+                window.location.replace("index.html");
 
             }
         );

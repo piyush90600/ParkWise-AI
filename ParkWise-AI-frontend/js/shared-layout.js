@@ -35,7 +35,7 @@
     sidebar.innerHTML = `
         <a
             class="app-brand"
-            href="landingpage.html"
+            href="index.html"
             aria-label="ParkWise AI home"
         >
             <span class="app-brand-icon">
@@ -72,7 +72,7 @@
             </a>
 
             <a
-                href="landingpage.html"
+                href="index.html"
                 class="nav-link logout"
                 onclick="localStorage.clear()"
             >
