@@ -60,7 +60,7 @@ app.add_middleware(
 
         # ADD YOUR DEPLOYED FRONTEND URL HERE
 
-        # "https://your-frontend-url.onrender.com",
+        "https://parkwise-ai-frontend.onrender.com",
 
     ],
 
