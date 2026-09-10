@@ -15,15 +15,24 @@ from fastapi.responses import JSONResponse
 # FASTAPI APPLICATION
 # ============================================================
 
-app = FastAPI(
+app = FastAPI()
 
-    title="ParkWise AI API",
 
-    version="1.0.0",
+from fastapi.responses import JSONResponse
 
-    description="FastAPI + MongoDB + AI Parking Recommendation Backend"
+@app.get("/")
+def root():
+    return {
+        "status": "ok",
+        "message": "ParkWise AI Backend is running"
+    }
 
-)
+@app.get("/")
+async def root():
+    return {
+        "status": "ok",
+        "message": "ParkWise AI Backend is running"
+    }
 
 
 # ============================================================
@@ -79,11 +88,6 @@ async def health():
         "status": "ok",
         "service": "ParkWise AI API"
     }
-
-
-# @app.get("/favicon.ico", include_in_schema=False)
-# async def favicon():
-#     return JSONResponse(content={}, status_code=204)
 
 
 # ============================================================
