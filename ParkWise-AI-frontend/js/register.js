@@ -1,535 +1,159 @@
-// ==========================================
-// PARKWISE AI
-// REGISTER ACCOUNT TYPE SWITCHING
-// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+    const API_BASE_URL = "http://127.0.0.1:8000";
 
-const accountTypes = document.querySelectorAll(
-    'input[name="accountType"]'
-);
+    const userForm = document.getElementById("userRegisterForm");
+    const ownerForm = document.getElementById("ownerRegisterForm");
+    const accountTypeRadios = document.querySelectorAll('input[name="accountType"]');
+    const errorBox = document.getElementById("registerError");
+    const errorText = document.getElementById("registerErrorText");
 
-const userForm = document.getElementById(
-    "userRegisterForm"
-);
-
-const ownerForm = document.getElementById(
-    "ownerRegisterForm"
-);
-
-
-// ==========================================
-// SHOW SELECTED ACCOUNT FORM
-// ==========================================
-
-function showRegistrationForm(type) {
-
-    if (!userForm || !ownerForm) {
-        return;
+    function showError(message) {
+        if (errorBox && errorText) {
+            errorText.innerText = message;
+            errorBox.style.display = "flex";
+        }
     }
 
-    const userRadio = document.querySelector(
-        'input[name="accountType"][value="user"]'
-    );
-
-    const ownerRadio = document.querySelector(
-        'input[name="accountType"][value="owner"]'
-    );
-
-
-    if (type === "owner") {
-
-        userForm.style.display = "none";
-        ownerForm.style.display = "block";
-
-        if (ownerRadio) {
-            ownerRadio.checked = true;
+    function clearError() {
+        if (errorBox) {
+            errorBox.style.display = "none";
         }
-
-        document.body.classList.add("owner-register-mode");
-
-    } else {
-
-        userForm.style.display = "block";
-        ownerForm.style.display = "none";
-
-        if (userRadio) {
-            userRadio.checked = true;
-        }
-
-        document.body.classList.remove("owner-register-mode");
-    }
-}
-
-
-// ==========================================
-// ACCOUNT TYPE CLICK
-// ==========================================
-
-accountTypes.forEach((radio) => {
-
-    radio.addEventListener("change", () => {
-
-        showRegistrationForm(
-            radio.value
-        );
-
-    });
-
-});
-
-
-// ==========================================
-// OPEN CORRECT FORM FROM URL
-//
-// register.html#user
-// register.html#owner
-// ==========================================
-
-function openFormFromHash() {
-
-    const hash =
-        window.location.hash
-            .replace("#", "")
-            .toLowerCase();
-
-
-    if (hash === "owner") {
-
-        showRegistrationForm("owner");
-
-    } else {
-
-        showRegistrationForm("user");
-
     }
 
-}
-
-
-// Run when page loads
-
-openFormFromHash();
-
-
-// Also handle browser back/forward
-
-window.addEventListener(
-    "hashchange",
-    openFormFromHash
-);
-
-
-// ==========================================
-// PASSWORD VISIBILITY
-// ==========================================
-
-const passwordButtons = document.querySelectorAll(
-    ".password-toggle"
-);
-
-passwordButtons.forEach((button) => {
-
-    button.addEventListener("click", () => {
-
-        const targetId = button.dataset.target;
-        const input = document.getElementById(targetId);
-        const icon = button.querySelector("i");
-
-        if (input.type === "password") {
-
-            input.type = "text";
-
-            icon.classList.remove("fa-eye");
-            icon.classList.add("fa-eye-slash");
-
-        } else {
-
-            input.type = "password";
-
-            icon.classList.remove("fa-eye-slash");
-            icon.classList.add("fa-eye");
-        }
-    });
-});
-
-
-// ==========================================
-// EMAIL VALIDATION
-// ==========================================
-
-function validEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-
-// ==========================================
-// PHONE VALIDATION
-// ==========================================
-
-function validPhone(phone) {
-    return /^[6-9][0-9]{9}$/.test(phone);
-}
-
-
-// ==========================================
-// USER REGISTRATION
-// ==========================================
-
-if (userForm) {
-
-    userForm.addEventListener("submit", async (event) => {
-
-        event.preventDefault();
-
-        const name = document.getElementById(
-            "userName"
-        ).value.trim();
-
-        const email = document.getElementById(
-            "userEmail"
-        ).value.trim();
-
-        const phone = document.getElementById(
-            "userPhone"
-        ).value.trim();
-
-        const vehicle = document.getElementById(
-            "vehicleType"
-        ).value;
-
-        const password = document.getElementById(
-            "userPassword"
-        ).value;
-
-        const confirmPassword = document.getElementById(
-            "userConfirmPassword"
-        ).value;
-
-        const terms = document.getElementById(
-            "userTerms"
-        ).checked;
-
-
-        // -----------------------------
-        // VALIDATION
-        // -----------------------------
-
-        if (name.length < 3) {
-            alert("Please enter your full name.");
-            return;
-        }
-
-        if (!validEmail(email)) {
-            alert("Please enter a valid email.");
-            return;
-        }
-
-        if (!validPhone(phone)) {
-            alert("Please enter a valid phone number.");
-            return;
-        }
-
-        if (!vehicle) {
-            alert("Please select your vehicle type.");
-            return;
-        }
-
-        if (password.length < 8) {
-            alert(
-                "Password must contain at least 8 characters."
-            );
-            return;
-        }
-
-        if (password !== confirmPassword) {
-            alert("Passwords do not match.");
-            return;
-        }
-
-        if (!terms) {
-            alert(
-                "Please accept the terms and conditions."
-            );
-            return;
-        }
-
-
-        // -----------------------------
-        // USER DATA
-        // -----------------------------
-
-        const userData = {
-            name: name,
-            email: email,
-            phone: phone,
-            vehicle_type: vehicle,
-            password: password,
-            role: "user"
-        };
-
-
-        console.log("User Registration:", userData);
-
-
-        // -----------------------------
-        // REGISTER API
-        // -----------------------------
-
-        try {
-
-            const response = await fetch(
-                "https://parkwise-ai-473c.onrender.com/register",
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-
-                    body: JSON.stringify(userData)
-                }
-            );
-
-            const result = await response.json();
-
-            if (
-                response.ok &&
-                result.status === "success"
-            ) {
-
-                alert(
-                    "Account created successfully! Please sign in."
-                );
-
-                window.location.replace(
-                    "./user_login.html"
-                );
-
+    // Role switcher
+    accountTypeRadios.forEach((radio) => {
+        radio.addEventListener("change", (e) => {
+            clearError();
+            if (e.target.value === "owner") {
+                userForm.style.display = "none";
+                ownerForm.style.display = "block";
             } else {
+                userForm.style.display = "block";
+                ownerForm.style.display = "none";
+            }
+        });
+    });
 
-                alert(
-                    result.message ||
-                    "Registration failed"
-                );
+    // Password visibility toggle
+    document.querySelectorAll(".password-toggle").forEach((btn) => {
+        btn.addEventListener("click", function () {
+            const targetId = this.getAttribute("data-target");
+            const targetInput = document.getElementById(targetId);
+            const icon = this.querySelector("i");
+
+            if (!targetInput) return;
+
+            if (targetInput.type === "password") {
+                targetInput.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                targetInput.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        });
+    });
+
+    // USER REGISTRATION
+    if (userForm) {
+        userForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            clearError();
+
+            const name = document.getElementById("userName")?.value.trim();
+            const email = document.getElementById("userEmail")?.value.trim();
+            const phone = document.getElementById("userPhone")?.value.trim();
+            const vehicleType = document.getElementById("vehicleType")?.value;
+            const password = document.getElementById("userPassword")?.value;
+            const confirmPassword = document.getElementById("userConfirmPassword")?.value;
+
+            if (password !== confirmPassword) {
+                showError("Passwords do not match.");
+                return;
             }
 
-        } catch (error) {
-
-            console.error(
-                "Registration error:",
-                error
-            );
-
-            alert(
-                "Unable to connect to server. Please try again."
-            );
-        }
-
-    });
-}
-
-
-// ==========================================
-// PARK OWNER REGISTRATION
-// ==========================================
-
-if (ownerForm) {
-
-    ownerForm.addEventListener("submit", async (event) => {
-
-        event.preventDefault();
-
-        const ownerName = document.getElementById(
-            "ownerName"
-        ).value.trim();
-
-        const email = document.getElementById(
-            "ownerEmail"
-        ).value.trim();
-
-        const phone = document.getElementById(
-            "ownerPhone"
-        ).value.trim();
-
-        const parkingName = document.getElementById(
-            "parkingName"
-        ).value.trim();
-
-        const location = document.getElementById(
-            "parkingLocation"
-        ).value.trim();
-
-        const capacity = document.getElementById(
-            "parkingCapacity"
-        ).value;
-
-        const parkingType = document.getElementById(
-            "parkingType"
-        ).value;
-
-        const password = document.getElementById(
-            "ownerPassword"
-        ).value;
-
-        const confirmPassword = document.getElementById(
-            "ownerConfirmPassword"
-        ).value;
-
-        const terms = document.getElementById(
-            "ownerTerms"
-        ).checked;
-
-
-        // -----------------------------
-        // VALIDATION
-        // -----------------------------
-
-        if (ownerName.length < 3) {
-            alert(
-                "Please enter the owner or business name."
-            );
-            return;
-        }
-
-        if (!validEmail(email)) {
-            alert("Please enter a valid email.");
-            return;
-        }
-
-        if (!validPhone(phone)) {
-            alert("Please enter a valid phone number.");
-            return;
-        }
-
-        if (parkingName === "") {
-            alert(
-                "Please enter the parking area name."
-            );
-            return;
-        }
-
-        if (location === "") {
-            alert(
-                "Please enter the parking location."
-            );
-            return;
-        }
-
-        if (!capacity || Number(capacity) < 1) {
-            alert(
-                "Please enter a valid parking capacity."
-            );
-            return;
-        }
-
-        if (!parkingType) {
-            alert(
-                "Please select the parking type."
-            );
-            return;
-        }
-
-        if (password.length < 8) {
-            alert(
-                "Password must contain at least 8 characters."
-            );
-            return;
-        }
-
-        if (password !== confirmPassword) {
-            alert("Passwords do not match.");
-            return;
-        }
-
-        if (!terms) {
-            alert(
-                "Please accept the terms and conditions."
-            );
-            return;
-        }
-
-
-        // -----------------------------
-        // OWNER DATA
-        // -----------------------------
-
-        const ownerData = {
-
-            name: ownerName,
-            email: email,
-            phone: phone,
-
-            parking_name: parkingName,
-            parking_location: location,
-
-            capacity: Number(capacity),
-
-            parking_type: parkingType,
-
-            password: password,
-
-            role: "park_owner"
-        };
-
-
-        console.log(
-            "Park Owner Registration:",
-            ownerData
-        );
-
-
-        // -----------------------------
-        // REGISTER API
-        // -----------------------------
-
-        try {
-
-            const response = await fetch(
-                "https://parkwise-ai-473c.onrender.com/register",
-                {
+            try {
+                const response = await fetch(`${API_BASE_URL}/register`, {
                     method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        phone: phone,
+                        vehicle_type: vehicleType,
+                        password: password,
+                        role: "user"
+                    })
+                });
 
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                const data = await response.json();
 
-                    body: JSON.stringify(ownerData)
+                if (!response.ok) {
+                    showError(data.detail || "User registration failed.");
+                    return;
                 }
-            );
 
-            const result = await response.json();
+                alert("User account created successfully! Please sign in.");
+                window.location.href = "user_login.html";
+            } catch (err) {
+                console.error(err);
+                showError("Cannot connect to server. Ensure FastAPI backend is running.");
+            }
+        });
+    }
 
-            if (
-                response.ok &&
-                result.status === "success"
-            ) {
+    // OWNER REGISTRATION
+    if (ownerForm) {
+        ownerForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            clearError();
 
-                alert(
-                    "Park Owner account created successfully! Please sign in."
-                );
+            const name = document.getElementById("ownerName")?.value.trim();
+            const email = document.getElementById("ownerEmail")?.value.trim();
+            const phone = document.getElementById("ownerPhone")?.value.trim();
+            const parkingName = document.getElementById("parkingName")?.value.trim();
+            const parkingLocation = document.getElementById("parkingLocation")?.value.trim();
+            const parkingCapacity = document.getElementById("parkingCapacity")?.value;
+            const parkingType = document.getElementById("parkingType")?.value;
+            const password = document.getElementById("ownerPassword")?.value;
+            const confirmPassword = document.getElementById("ownerConfirmPassword")?.value;
 
-                window.location.replace(
-                    "./owner_login.html"
-                );
-
-            } else {
-
-                alert(
-                    result.message ||
-                    "Registration failed"
-                );
+            if (password !== confirmPassword) {
+                showError("Passwords do not match.");
+                return;
             }
 
-        } catch (error) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/register`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        phone: phone,
+                        parking_name: parkingName,
+                        parking_location: parkingLocation,
+                        capacity: parkingCapacity ? Number(parkingCapacity) : null,
+                        parking_type: parkingType,
+                        password: password,
+                        role: "park_owner"
+                    })
+                });
 
-            console.error(
-                "Owner registration error:",
-                error
-            );
+                const data = await response.json();
 
-            alert(
-                "Unable to connect to server. Please try again."
-            );
-        }
+                if (!response.ok) {
+                    showError(data.detail || "Owner registration failed.");
+                    return;
+                }
 
-    });
-}
+                alert("Owner account created successfully! Please sign in.");
+                window.location.href = "owner_login.html";
+            } catch (err) {
+                console.error(err);
+                showError("Cannot connect to server. Ensure FastAPI backend is running.");
+            }
+        });
+    }
+});
