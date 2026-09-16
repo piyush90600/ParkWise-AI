@@ -228,9 +228,20 @@
 
                     </div>
 
-                    <div
-                        id="heatmapMap"
-                        class="heatmap-map">
+                    <div class="heatmap-map-wrap">
+
+                        <div
+                            id="heatmapMap"
+                            class="heatmap-map">
+                        </div>
+
+                        <div
+                            id="mapSkeleton"
+                            class="map-skeleton">
+                            <i class="fa-solid fa-spinner fa-spin"></i>
+                            <span>Loading predictions...</span>
+                        </div>
+
                     </div>
 
                     <div class="map-legend">
@@ -258,7 +269,7 @@
 
                 </div>
 
-                <div class="insights-panel">
+                <div class="insights-panel" id="insightsPanel">
 
                     <div class="insight-card">
 
@@ -272,99 +283,49 @@
                                 HIGH CONGESTION
                             </span>
 
-                            
+                            <h3 id="highCongestionName">
+                                Loading...
+                            </h3>
+
+                            <p>
+                                Highest predicted occupancy
+                            </p>
+
+                            <strong
+                                id="highCongestionValue"
+                                class="danger-text">
+                                --
+                            </strong>
 
                         </div>
 
                     </div>
 
-                    <div class="insights-panel" id="insightsPanel">
+                    <div class="insight-card">
 
-                        <div class="insight-card loading-insight">
-
-                            <div class="insight-icon">
-                                <i class="fa-solid fa-chart-line"></i>
-                            </div>
-
-                            <div class="insight-content">
-
-                                <span class="insight-label">
-                                    ML ANALYSIS
-                                </span>
-
-                                <h3 id="highCongestionName">
-                                    Loading...
-                                </h3>
-
-                                <p>
-                                    Highest predicted occupancy
-                                </p>
-
-                                <strong
-                                    id="highCongestionValue"
-                                    class="danger-text">
-                                    --
-                                </strong>
-
-                            </div>
-
+                        <div class="insight-icon success">
+                            <i class="fa-solid fa-circle-check"></i>
                         </div>
 
+                        <div class="insight-content">
 
-                        <div class="insight-card">
+                            <span class="insight-label">
+                                BEST AVAILABILITY
+                            </span>
 
-                            <div class="insight-icon success">
+                            <h3 id="bestAvailabilityName">
+                                Loading...
+                            </h3>
 
-                                <i class="fa-solid fa-circle-check"></i>
+                            <p>
+                                Lowest predicted occupancy
+                            </p>
 
-                            </div>
-
-                            <div class="insight-content">
-
-                                <span class="insight-label">
-                                    BEST AVAILABILITY
-                                </span>
-
-                                <h3 id="bestAvailabilityName">
-                                    Loading...
-                                </h3>
-
-                                <p>
-                                    Lowest predicted occupancy
-                                </p>
-
-                                <strong
-                                    id="bestAvailabilityValue"
-                                    class="success-text">
-                                    --
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="ai-insight">
-
-                            <div class="ai-insight-icon">
-
-                                <i class="fa-solid fa-wand-magic-sparkles"></i>
-
-                            </div>
-
-                            <div>
-
-                                <span>
-                                    AI INSIGHT
-                                </span>
-
-                                <p id="aiInsightText">
-                                    ParkWise AI is analysing parking
-                                    occupancy using MongoDB data
-                                    and the ML model.
-                                </p>
-
-                            </div>
+                            <strong
+                                id="bestAvailabilityValue"
+                                class="success-text">
+                                --
+                            </strong>
 
                         </div>
 
@@ -373,7 +334,7 @@
                     <div class="ai-insight">
 
                         <div class="ai-insight-icon">
-                            <i class="fa-solid fa-lightbulb"></i>
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
                         </div>
 
                         <div>
@@ -382,10 +343,10 @@
                                 AI INSIGHT
                             </span>
 
-                            <p>
-                                Metro Hub P2 is currently predicted
-                                to have the best availability among
-                                the monitored parking areas.
+                            <p id="aiInsightText">
+                                ParkWise AI is analysing parking
+                                occupancy using MongoDB data
+                                and the ML model.
                             </p>
 
                         </div>
@@ -403,6 +364,7 @@
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
 
 <script src="js/shared-layout.js"></script>
 <script src="js/predictive-heatmap.js"></script>
