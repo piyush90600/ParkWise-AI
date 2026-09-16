@@ -7,6 +7,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     const API_BASE_URL = "https://parkwise-ai-473c.onrender.com";
+    const ML_HEATMAP_URL = "./heatmap_predictions.json";
     const AUTO_REFRESH_MS = 60000; // refresh predictions every 60s
 
     // ==================================================
@@ -15,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const refreshBtn = document.getElementById("refreshHeatmapBtn");
     const mapSkeleton = document.getElementById("mapSkeleton");
-
+const timeRangeSelect = document.getElementById("timeRangeSelect");
     let heatLayer = null;
     let markers = [];
     let heatmapData = [];
@@ -105,60 +106,186 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function loadHeatmap() {
 
-        refreshBtn.classList.add("loading");
-        refreshBtn.disabled = true;
-        showSkeleton();
+    refreshBtn.classList.add("loading");
+    refreshBtn.disabled = true;
+    showSkeleton();
 
-        clearMap();
+    clearMap();
 
-        try {
+    try {
 
-            const response = await fetch(`${API_BASE_URL}/heatmap`);
+        // ==============================================
+        // LOAD DATABASE PARKING INFORMATION
+        // ==============================================
 
-            if (!response.ok) {
-                throw new Error("Heatmap API failed");
+        const response = await fetch(`${API_BASE_URL}/heatmap`);
+
+        if (!response.ok) {
+            throw new Error("Heatmap API failed");
+        }
+
+        const apiData = await response.json();
+
+        const databaseLocations =
+            Array.isArray(apiData.locations)
+                ? apiData.locations
+                : [];
+
+
+        // ==============================================
+        // LOAD ML PREDICTIONS
+        // ==============================================
+
+        const mlResponse = await fetch(
+            `${ML_HEATMAP_URL}?t=${Date.now()}`
+        );
+
+        if (!mlResponse.ok) {
+            throw new Error("ML heatmap JSON failed to load");
+        }
+
+        const mlData = await mlResponse.json();
+
+
+        // ==============================================
+        // CREATE ML LOOKUP BY LOT ID
+        // ==============================================
+
+        const mlLookup = {};
+
+        mlData.forEach(lot => {
+
+            if (!lot.lot_id) return;
+
+            mlLookup[lot.lot_id] = {
+                predicted_occupancy:
+                    Number(lot.predicted_occupancy) || 0,
+
+                latitude:
+                    Number(lot.latitude),
+
+                longitude:
+                    Number(lot.longitude),
+
+                name:
+                    lot.name || "Parking Area"
+            };
+        });
+
+
+        // ==============================================
+        // MERGE DATABASE + ML DATA
+        // ==============================================
+
+        const mergedLocations = databaseLocations.map(location => {
+
+            const lotId =
+                location.lot_id ||
+                location.parking_lots_id;
+
+            const prediction = mlLookup[lotId];
+
+            if (!prediction) {
+                return location;
             }
 
-            const data = await response.json();
+            return {
 
-            heatmapData = Array.isArray(data.locations) ? data.locations : [];
+                ...location,
 
-            const validLocations = heatmapData.filter(location =>
-                Number.isFinite(Number(location.lat)) &&
-                Number.isFinite(Number(location.lng))
-            );
+                // Keep existing database coordinates
+                // unless they are missing.
+                lat:
+                    Number(location.lat) ||
+                    prediction.latitude,
 
-            if (validLocations.length === 0) {
-                showEmptyHeatmap();
-                updateInsights([]);
-                return;
-            }
+                lng:
+                    Number(location.lng) ||
+                    prediction.longitude,
 
-            renderHeatLayer(validLocations);
-            renderMarkers(validLocations);
+                // IMPORTANT:
+                // Use ML prediction for heatmap occupancy.
+                occupancy:
+                    prediction.predicted_occupancy,
 
-            const bounds = validLocations.map(location => [
-                Number(location.lat),
-                Number(location.lng)
-            ]);
+                predicted_occupancy:
+                    prediction.predicted_occupancy
+            };
+        });
 
-            map.fitBounds(bounds, { padding: [40, 40], maxZoom: 15 });
 
-            updateInsights(heatmapData);
+        // ==============================================
+        // FINAL DATA
+        // ==============================================
 
-        } catch (error) {
+        heatmapData = mergedLocations;
 
-            console.error("Heatmap error:", error);
-            showErrorHeatmap();
+        const validLocations = heatmapData.filter(location =>
+            Number.isFinite(Number(location.lat)) &&
+            Number.isFinite(Number(location.lng))
+        );
+
+
+        if (validLocations.length === 0) {
+
+            showEmptyHeatmap();
             updateInsights([]);
 
-        } finally {
-
-            refreshBtn.classList.remove("loading");
-            refreshBtn.disabled = false;
-            hideSkeleton();
+            return;
         }
+
+
+        // ==============================================
+        // RENDER
+        // ==============================================
+
+        renderHeatLayer(validLocations);
+
+        renderMarkers(validLocations);
+
+
+        const bounds = validLocations.map(location => [
+            Number(location.lat),
+            Number(location.lng)
+        ]);
+
+
+        map.fitBounds(bounds, {
+            padding: [40, 40],
+            maxZoom: 15
+        });
+
+
+        updateInsights(validLocations);
+
+
+        console.log(
+            "ML heatmap locations:",
+            validLocations.length
+        );
+
+        console.log(
+            "ML heatmap data:",
+            validLocations
+        );
+
+
+    } catch (error) {
+
+        console.error("Heatmap error:", error);
+
+        showErrorHeatmap();
+
+        updateInsights([]);
+
+    } finally {
+
+        refreshBtn.classList.remove("loading");
+        refreshBtn.disabled = false;
+
+        hideSkeleton();
     }
+}
 
     // ==================================================
     // TRUE HEAT-GRADIENT LAYER
@@ -383,7 +510,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==================================================
     // INITIAL LOAD
     // ==================================================
-
+if (timeRangeSelect) {
+    timeRangeSelect.addEventListener("change", () => {
+        loadHeatmap();
+    });
+}
     loadUserProfile();
     loadHeatmap();
     startAutoRefresh();
