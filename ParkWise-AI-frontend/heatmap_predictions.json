@@ -1,0 +1,226 @@
+[
+    {
+        "lot_id": "P101",
+        "name": "Rohini Parking A",
+        "latitude": 28.746245,
+        "longitude": 77.058964,
+        "predicted_occupancy": 1.582225393099512
+    },
+    {
+        "lot_id": "P102",
+        "name": "Saket Parking B",
+        "latitude": 28.521139,
+        "longitude": 77.203302,
+        "predicted_occupancy": 2.0345987666835073
+    },
+    {
+        "lot_id": "P103",
+        "name": "Lajpat Nagar Parking C",
+        "latitude": 28.569873,
+        "longitude": 77.240638,
+        "predicted_occupancy": 1.8296389289132975
+    },
+    {
+        "lot_id": "P104",
+        "name": "Nehru Place Parking D",
+        "latitude": 28.549175,
+        "longitude": 77.254786,
+        "predicted_occupancy": 1.5610488316613538
+    },
+    {
+        "lot_id": "P105",
+        "name": "Pitampura Parking E",
+        "latitude": 28.69917,
+        "longitude": 77.133056,
+        "predicted_occupancy": 2.158449220926218
+    },
+    {
+        "lot_id": "P106",
+        "name": "Janakpuri Parking A",
+        "latitude": 28.620621,
+        "longitude": 77.085919,
+        "predicted_occupancy": 1.8560731778828718
+    },
+    {
+        "lot_id": "P107",
+        "name": "Greater Kailash Parking B",
+        "latitude": 28.55398,
+        "longitude": 77.240237,
+        "predicted_occupancy": 2.122604439676283
+    },
+    {
+        "lot_id": "P108",
+        "name": "Lajpat Nagar Parking C",
+        "latitude": 28.56636,
+        "longitude": 77.243951,
+        "predicted_occupancy": 2.847814412265887
+    },
+    {
+        "lot_id": "P109",
+        "name": "Pitampura Parking D",
+        "latitude": 28.702073,
+        "longitude": 77.130505,
+        "predicted_occupancy": 6.23033479496537
+    },
+    {
+        "lot_id": "P110",
+        "name": "Pitampura Parking E",
+        "latitude": 28.698135,
+        "longitude": 77.126797,
+        "predicted_occupancy": 2.3178549365739833
+    },
+    {
+        "lot_id": "P111",
+        "name": "Dwarka Parking A",
+        "latitude": 28.594089,
+        "longitude": 77.04657,
+        "predicted_occupancy": 2.541006314812595
+    },
+    {
+        "lot_id": "P112",
+        "name": "Hauz Khas Parking B",
+        "latitude": 28.550034,
+        "longitude": 77.202602,
+        "predicted_occupancy": 5.087104529658813
+    },
+    {
+        "lot_id": "P113",
+        "name": "Dwarka Parking C",
+        "latitude": 28.589452,
+        "longitude": 77.044548,
+        "predicted_occupancy": 1.4658206668211688
+    },
+    {
+        "lot_id": "P114",
+        "name": "Dwarka Parking D",
+        "latitude": 28.594048,
+        "longitude": 77.044122,
+        "predicted_occupancy": 4.171732464937957
+    },
+    {
+        "lot_id": "P115",
+        "name": "Pitampura Parking E",
+        "latitude": 28.700686,
+        "longitude": 77.134562,
+        "predicted_occupancy": 1.376126936266468
+    },
+    {
+        "lot_id": "P116",
+        "name": "Rohini Parking A",
+        "latitude": 28.749181,
+        "longitude": 77.049751,
+        "predicted_occupancy": 2.1416222761976975
+    },
+    {
+        "lot_id": "P117",
+        "name": "Greater Kailash Parking B",
+        "latitude": 28.544011,
+        "longitude": 77.245299,
+        "predicted_occupancy": 3.2662839448416734
+    },
+    {
+        "lot_id": "P118",
+        "name": "Rohini Parking C",
+        "latitude": 28.754697,
+        "longitude": 77.055075,
+        "predicted_occupancy": 1.5845616750453035
+    },
+    {
+        "lot_id": "P119",
+        "name": "Janakpuri Parking D",
+        "latitude": 28.621078,
+        "longitude": 77.084,
+        "predicted_occupancy": 2.1527419405077537
+    },
+    {
+        "lot_id": "P120",
+        "name": "Dwarka Parking E",
+        "latitude": 28.585191,
+        "longitude": 77.047738,
+        "predicted_occupancy": 4.988221616553471
+    },
+    {
+        "lot_id": "P121",
+        "name": "Lajpat Nagar Parking A",
+        "latitude": 28.561916,
+        "longitude": 77.243589,
+        "predicted_occupancy": 3.9722907509572103
+    },
+    {
+        "lot_id": "P122",
+        "name": "Saket Parking B",
+        "latitude": 28.524587,
+        "longitude": 77.213007,
+        "predicted_occupancy": 2.300000000000008
+    },
+    {
+        "lot_id": "P123",
+        "name": "Pitampura Parking C",
+        "latitude": 28.699617,
+        "longitude": 77.13278,
+        "predicted_occupancy": 2.564657913244867
+    },
+    {
+        "lot_id": "P124",
+        "name": "Saket Parking D",
+        "latitude": 28.525927,
+        "longitude": 77.212453,
+        "predicted_occupancy": 1.5248314470416142
+    },
+    {
+        "lot_id": "P125",
+        "name": "Janakpuri Parking E",
+        "latitude": 28.618194,
+        "longitude": 77.086241,
+        "predicted_occupancy": 2.970777010609994
+    },
+    {
+        "lot_id": "P126",
+        "name": "Rohini Parking A",
+        "latitude": 28.748611,
+        "longitude": 77.050617,
+        "predicted_occupancy": 1.3540271474511238
+    },
+    {
+        "lot_id": "P127",
+        "name": "Pitampura Parking B",
+        "latitude": 28.702253,
+        "longitude": 77.139887,
+        "predicted_occupancy": 2.999052703532024
+    },
+    {
+        "lot_id": "P128",
+        "name": "Rohini Parking C",
+        "latitude": 28.745542,
+        "longitude": 77.047972,
+        "predicted_occupancy": 1.8825899552501768
+    },
+    {
+        "lot_id": "P129",
+        "name": "Rohini Parking D",
+        "latitude": 28.747839,
+        "longitude": 77.054052,
+        "predicted_occupancy": 4.132131271334033
+    },
+    {
+        "lot_id": "P130",
+        "name": "Lajpat Nagar Parking E",
+        "latitude": 28.568328,
+        "longitude": 77.242665,
+        "predicted_occupancy": 4.313165338386358
+    },
+    {
+        "lot_id": "P131",
+        "name": "Vasant Kunj Parking A",
+        "latitude": 28.522455,
+        "longitude": 77.158585,
+        "predicted_occupancy": 6.918392078481388
+    },
+    {
+        "lot_id": "P132",
+        "name": "Saket Parking B",
+        "latitude": 28.528431,
+        "longitude": 77.204603,
+        "predicted_occupancy": 1.4260847467694646
+    }
+]
