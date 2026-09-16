@@ -152,7 +152,10 @@ def heatmap():
             "lng": float(longitude),
             "occupancy": occupancy_percentage,
             "total_slots": total,
-            "available_slots": available
+            "available_slots": available,
+            "price": lot.get("price", 0),
+            "rating": lot.get("rating", 0),
+            "status": "Open" if available > 0 else "Full"
         })
 
     return {
