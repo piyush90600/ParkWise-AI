@@ -14,7 +14,7 @@ from fastapi import (
     Form,
 )
 
-from app.services.ml_service import distance_km, recommendation
+from app.services.ml_service import distance_km, recommendation, lot_rating
 from app.core.deps import current_user, require_owner
 from app.schemas.api import RecommendationIn, BookingIn, ParkingLotIn
 
@@ -106,6 +106,57 @@ def parking_spots():
 
     return {
         "spots": out
+    }
+
+
+# ============================================================
+# PREDICTIVE HEATMAP
+# ============================================================
+
+@router.get("/heatmap")
+def heatmap():
+
+    locations = []
+
+    lots = collection("parking_lots").find({
+        "status": "approved"
+    })
+
+    for lot in lots:
+
+        lot_id = lot.get("parking_lots_id")
+
+        if not lot_id:
+            continue
+
+        latitude = lot.get("latitude")
+        longitude = lot.get("longitude")
+
+        if latitude is None or longitude is None:
+            continue
+
+        total, available = availability(lot_id)
+        total = total or lot.get("total_slots", 0) or 0
+        occupied = max(total - available, 0)
+
+        occupancy_percentage = (
+            round((occupied / total) * 100, 2)
+            if total > 0
+            else 0
+        )
+
+        locations.append({
+            "id": lot_id,
+            "name": lot.get("name", "Unnamed Parking"),
+            "lat": float(latitude),
+            "lng": float(longitude),
+            "occupancy": occupancy_percentage,
+            "total_slots": total,
+            "available_slots": available
+        })
+
+    return {
+        "locations": locations
     }
 
 
