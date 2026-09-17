@@ -14,6 +14,31 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/register.css">
     <link rel="stylesheet" href="css/shared.css">
+
+<style>
+    .form-info-box {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 13px 14px;
+        margin: 0 0 18px;
+        border-radius: 12px;
+        background: rgba(59, 130, 246, 0.08);
+        border: 1px solid rgba(59, 130, 246, 0.18);
+    }
+    .form-info-box > i {
+        margin-top: 2px;
+    }
+    .form-info-box strong {
+        display: block;
+        margin-bottom: 3px;
+    }
+    .form-info-box p {
+        margin: 0;
+        font-size: 0.88rem;
+        line-height: 1.45;
+    }
+</style>
 </head>
 
 <body class="auth-page">
@@ -220,15 +245,27 @@
             <!-- OWNER FORM -->
             <form id="ownerRegisterForm" class="register-form" style="display: none;">
                 <div class="form-section-title">
-                    <i class="fa-solid fa-square-parking"></i>
-                    Parking Owner Information
+                    <i class="fa-solid fa-user-tie"></i>
+                    Owner Account Information
+                </div>
+
+                <div class="form-info-box">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <div>
+                        <strong>Create your owner account first</strong>
+                        <p>
+                            Parking lot details are collected after registration during
+                            owner verification, so you only need to enter your account
+                            information here.
+                        </p>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="ownerName">Owner Name</label>
+                    <label for="ownerName">Full Name</label>
                     <div class="input-wrapper">
                         <i class="fa-regular fa-user"></i>
-                        <input type="text" id="ownerName" placeholder="Enter owner or business name" required>
+                        <input type="text" id="ownerName" placeholder="Enter your full name" autocomplete="name" required>
                     </div>
                 </div>
 
@@ -237,7 +274,7 @@
                         <label for="ownerEmail">Email Address</label>
                         <div class="input-wrapper">
                             <i class="fa-regular fa-envelope"></i>
-                            <input type="email" id="ownerEmail" placeholder="Enter email" required>
+                            <input type="email" id="ownerEmail" placeholder="Enter email" autocomplete="email" required>
                         </div>
                     </div>
 
@@ -245,46 +282,7 @@
                         <label for="ownerPhone">Phone Number</label>
                         <div class="input-wrapper">
                             <i class="fa-solid fa-phone"></i>
-                            <input type="tel" id="ownerPhone" placeholder="10-digit number" maxlength="10" required>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="parkingName">Parking Area Name</label>
-                    <div class="input-wrapper">
-                        <i class="fa-solid fa-square-parking"></i>
-                        <input type="text" id="parkingName" placeholder="Enter parking area name" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="parkingLocation">Parking Location</label>
-                    <div class="input-wrapper">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <input type="text" id="parkingLocation" placeholder="Enter parking address / location" required>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="parkingCapacity">Parking Capacity</label>
-                        <div class="input-wrapper">
-                            <i class="fa-solid fa-warehouse"></i>
-                            <input type="number" id="parkingCapacity" placeholder="Total number of slots" min="1" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="parkingType">Parking Type</label>
-                        <div class="select-wrapper">
-                            <i class="fa-solid fa-car"></i>
-                            <select id="parkingType" required>
-                                <option value="">Select parking type</option>
-                                <option value="car">Car</option>
-                                <option value="bike">Bike</option>
-                                <option value="both">Both (Car & Bike)</option>
-                            </select>
+                            <input type="tel" id="ownerPhone" placeholder="10-digit number" maxlength="10" inputmode="numeric" autocomplete="tel" required>
                         </div>
                     </div>
                 </div>
@@ -294,8 +292,8 @@
                         <label for="ownerPassword">Password</label>
                         <div class="input-wrapper">
                             <i class="fa-solid fa-lock"></i>
-                            <input type="password" id="ownerPassword" placeholder="Create password" required>
-                            <button type="button" class="password-toggle" data-target="ownerPassword">
+                            <input type="password" id="ownerPassword" placeholder="Create password" autocomplete="new-password" required>
+                            <button type="button" class="password-toggle" data-target="ownerPassword" aria-label="Show password">
                                 <i class="fa-regular fa-eye"></i>
                             </button>
                         </div>
@@ -305,8 +303,8 @@
                         <label for="ownerConfirmPassword">Confirm Password</label>
                         <div class="input-wrapper">
                             <i class="fa-solid fa-lock"></i>
-                            <input type="password" id="ownerConfirmPassword" placeholder="Confirm password" required>
-                            <button type="button" class="password-toggle" data-target="ownerConfirmPassword">
+                            <input type="password" id="ownerConfirmPassword" placeholder="Confirm password" autocomplete="new-password" required>
+                            <button type="button" class="password-toggle" data-target="ownerConfirmPassword" aria-label="Show password">
                                 <i class="fa-regular fa-eye"></i>
                             </button>
                         </div>
@@ -318,8 +316,8 @@
                     <span>I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a></span>
                 </label>
 
-                <button type="submit" class="auth-submit-btn">
-                    Register Parking Owner
+                <button type="submit" class="auth-submit-btn" id="ownerRegisterButton">
+                    Create Owner Account
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
 
