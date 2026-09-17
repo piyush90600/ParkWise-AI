@@ -2,49 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ParkWise AI | Smart Parking</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter\:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/shared.css">
 </head>
-
 <body>
-
 <header class="navbar">
-
     <div class="logo">
         <div class="logo-icon">
             <i class="fa-solid fa-square-parking"></i>
         </div>
-
         <span>ParkWise<span class="logo-ai"> AI</span></span>
     </div>
-
     <nav class="nav-links">
         <a href="#home" class="active">Home</a>
         <a href="#features">Features</a>
         <a href="#how-it-works">How It Works</a>
         <a href="#about">About</a>
     </nav>
-
     <div class="nav-buttons">
-
         <div class="login-menu">
-
             <button
                 type="button"
                 class="login-btn login-trigger"
@@ -53,146 +39,101 @@
                 Login
                 <i class="fa-solid fa-chevron-down"></i>
             </button>
-
             <div class="login-dropdown">
-
                 <!-- USER LOGIN -->
-                <a href="user_login.html" class="login-option">
-
+                <a href="user\_login.html" class="login-option">
                     <div class="login-option-icon user-icon">
                         <i class="fa-solid fa-user"></i>
                     </div>
-
                     <div class="login-option-content">
                         <strong>User Login</strong>
                         <span>
                             Find and book smart parking
                         </span>
                     </div>
-
                     <i class="fa-solid fa-arrow-right login-arrow"></i>
-
                 </a>
-
-
                 <!-- OWNER LOGIN -->
-                <a href="owner_login.html" class="login-option">
-
+                <a href="owner\_login.html" class="login-option">
                     <div class="login-option-icon owner-icon">
                         <i class="fa-solid fa-square-parking"></i>
                     </div>
-
                     <div class="login-option-content">
                         <strong>Owner Login</strong>
                         <span>
                             Manage your parking business
                         </span>
                     </div>
-
                     <i class="fa-solid fa-arrow-right login-arrow"></i>
-
                 </a>
-
             </div>
-
         </div>
-
-
         <a href="register.html" class="signup-btn">
             Get Started
         </a>
-
         <a href="admin-login.html" class="admin-login-link">
             <i class="fa-solid fa-user-shield"></i>
             Admin Login
         </a>
-
-
     </div>
-
     <button class="menu-btn" id="menuBtn">
         <i class="fa-solid fa-bars"></i>
     </button>
-
 </header>
-
 <section class="hero" id="home">
-
     <div class="hero-content">
-
         <div class="badge">
             <i class="fa-solid fa-sparkles"></i>
             AI-Powered Smart Parking
         </div>
-
         <h1>
             Find Parking.
             <span>Park Smarter.</span>
         </h1>
-
         <p>
             ParkWise AI helps you find the best parking spot using
             intelligent recommendations and parking occupancy prediction.
         </p>
-
         <div class="hero-buttons">
-
-            <a href="user_login.html" class="primary-btn">
+            <a href="user\_login.html" class="primary-btn">
                 Find Parking
                 <i class="fa-solid fa-arrow-right"></i>
             </a>
-
             <a href="#how-it-works" class="secondary-btn">
                 <i class="fa-solid fa-play"></i>
                 How It Works
             </a>
-
         </div>
-
         <div class="hero-stats">
-
             <div class="stat">
                 <strong>AI</strong>
                 <span>Powered</span>
             </div>
-
             <div class="stat">
                 <strong>24/7</strong>
                 <span>Availability</span>
             </div>
-
             <div class="stat">
                 <strong>Real-Time</strong>
                 <span>Insights</span>
             </div>
-
         </div>
-
     </div>
-
     <div class="hero-visual">
-
     <div class="location-parking-panel">
-
         <div class="location-panel-header">
-
             <div>
                 <span class="small-text">
                     PARKING NEAR YOU
                 </span>
-
                 <h3 id="locationTitle">
                     Finding your location...
                 </h3>
             </div>
-
             <div class="location-icon">
                 <i class="fa-solid fa-location-crosshairs"></i>
             </div>
-
         </div>
-
-
         <button
             class="location-btn"
             id="findNearbyParkingBtn"
@@ -201,8 +142,6 @@
             <i class="fa-solid fa-location-dot"></i>
             Find Parking Near Me
         </button>
-
-
         <div
             id="parkingLoading"
             class="parking-loading"
@@ -211,315 +150,210 @@
             <i class="fa-solid fa-spinner fa-spin"></i>
             Finding parking near you...
         </div>
-
-
         <div
             id="parkingResults"
             class="parking-results"
         >
             <div class="parking-empty">
-
                 <i class="fa-solid fa-location-dot"></i>
-
                 <h4>Find parking near you</h4>
-
                 <p>
                     Allow location access to see parking
                     available near your current location.
                 </p>
-
             </div>
         </div>
-
-
         <div
             id="noParking"
             class="parking-empty no-parking"
             style="display:none;"
         >
-
             <i class="fa-solid fa-square-parking"></i>
-
             <h4>No Parking Available Near You</h4>
-
             <p>
                 We couldn't find available parking
                 near your current location.
             </p>
-
         </div>
-
     </div>
-
 </section>
-
 <section class="features-section" id="features">
-
     <div class="section-heading">
-
         <span class="section-tag">
             SMART PARKING
         </span>
-
         <h2>
             Parking made <span>intelligent</span>
         </h2>
-
         <p>
             ParkWise AI combines machine learning and real-time
             parking data to help you make smarter parking decisions.
         </p>
-
     </div>
-
     <div class="features-grid">
-
         <div class="feature-card">
-
             <div class="feature-icon blue">
                 <i class="fa-solid fa-robot"></i>
             </div>
-
             <h3>AI Recommendations</h3>
-
             <p>
                 Get personalized parking recommendations based on
                 distance, price, availability and your preferences.
             </p>
-
             <a href="#">
                 Learn More
                 <i class="fa-solid fa-arrow-right"></i>
             </a>
-
         </div>
-
         <div class="feature-card">
-
             <div class="feature-icon green">
                 <i class="fa-solid fa-chart-line"></i>
             </div>
-
             <h3>Occupancy Prediction</h3>
-
             <p>
                 Predict future parking occupancy and know whether
                 spaces will be available when you arrive.
             </p>
-
             <a href="#">
                 Learn More
                 <i class="fa-solid fa-arrow-right"></i>
             </a>
-
         </div>
-
         <div class="feature-card">
-
             <div class="feature-icon purple">
                 <i class="fa-solid fa-map-location-dot"></i>
             </div>
-
             <h3>Smart Parking Map</h3>
-
             <p>
                 Explore nearby parking locations on an interactive
                 map and find the most convenient option.
             </p>
-
             <a href="#">
                 Learn More
                 <i class="fa-solid fa-arrow-right"></i>
             </a>
-
         </div>
-
         <div class="feature-card">
-
             <div class="feature-icon orange">
                 <i class="fa-solid fa-indian-rupee-sign"></i>
             </div>
-
             <h3>Price Comparison</h3>
-
             <p>
                 Compare parking prices and choose an option that
                 fits your budget.
             </p>
-
             <a href="#">
                 Learn More
                 <i class="fa-solid fa-arrow-right"></i>
             </a>
-
         </div>
-
     </div>
-
 </section>
-
 <section class="how-section" id="how-it-works">
-
     <div class="section-heading">
-
         <span class="section-tag">
             HOW IT WORKS
         </span>
-
         <h2>
             Park in <span>three simple steps</span>
         </h2>
-
     </div>
-
     <div class="steps-container">
-
         <div class="step">
-
             <div class="step-number">01</div>
-
             <div class="step-icon">
                 <i class="fa-solid fa-location-crosshairs"></i>
             </div>
-
             <h3>Enter Your Location</h3>
-
             <p>
                 Search for your destination or allow ParkWise AI
                 to detect your current location.
             </p>
-
         </div>
-
         <div class="step">
-
             <div class="step-number">02</div>
-
             <div class="step-icon">
                 <i class="fa-solid fa-brain"></i>
             </div>
-
             <h3>Get AI Recommendations</h3>
-
             <p>
                 Our recommendation model analyzes parking options
                 and finds the best match for you.
             </p>
-
         </div>
-
         <div class="step">
-
             <div class="step-number">03</div>
-
             <div class="step-icon">
                 <i class="fa-solid fa-square-parking"></i>
             </div>
-
             <h3>Park Smarter</h3>
-
             <p>
                 Choose your preferred parking location and reach
                 your destination without unnecessary searching.
             </p>
-
         </div>
-
     </div>
-
 </section>
-
 <section class="cta-section" id="about">
-
     <div class="cta-content">
-
         <div class="cta-icon">
             <i class="fa-solid fa-square-parking"></i>
         </div>
-
         <h2>
             Ready to park smarter?
         </h2>
-
         <p>
             Let ParkWise AI find the right parking spot for you.
         </p>
-
         <a href="register.html" class="cta-btn">
             Get Started
             <i class="fa-solid fa-arrow-right"></i>
         </a>
-
     </div>
-
 </section>
-
 <footer>
-
     <div class="footer-content">
-
         <div class="footer-brand">
-
             <div class="logo">
-
                 <div class="logo-icon">
                     <i class="fa-solid fa-square-parking"></i>
                 </div>
-
                 <span>
                     ParkWise<span class="logo-ai"> AI</span>
                 </span>
-
             </div>
-
             <p>
                 Intelligent parking for smarter cities.
             </p>
-
         </div>
-
         <div class="footer-links">
-
             <div>
                 <h4>Product</h4>
                 <a href="#features">Features</a>
                 <a href="#how-it-works">How It Works</a>
                 <a href="#">Find Parking</a>
             </div>
-
             <div>
                 <h4>Account</h4>
-                <a href="user_login.html">Login</a>
+                <a href="user\_login.html">Login</a>
                 <a href="register.html">Register</a>
             </div>
-
         </div>
-
     </div>
-
     <div class="footer-bottom">
-
         <p>
             © 2026 ParkWise AI. All rights reserved.
         </p>
-
         <div class="social-links">
-
             <a href="#">
                 <i class="fa-brands fa-github"></i>
             </a>
-
             <a href="#">
                 <i class="fa-brands fa-linkedin"></i>
             </a>
-
         </div>
-
     </div>
-
 </footer>
-
 <script src="js/main.js"></script>
-
 </body>
 </html>
