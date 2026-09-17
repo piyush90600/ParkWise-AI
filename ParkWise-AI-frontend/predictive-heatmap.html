@@ -1,384 +1,264 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Predictive Heatmap | ParkWise AI</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
     <link
         rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-
     <link rel="stylesheet" href="css/predictive-heatmap.css">
     <link rel="stylesheet" href="css/shared.css">
 </head>
-
 <body>
-
-<div class="app-layout">
-
-    <aside class="sidebar">
-
-        <div class="brand">
-
-            <div class="brand-logo">
-                <i class="fa-solid fa-square-parking"></i>
-            </div>
-
-            <div class="brand-text">
-                <strong>ParkWise</strong>
-                <span>AI Parking</span>
-            </div>
-
-        </div>
-
-        <nav class="sidebar-nav">
-
-            <div class="nav-section">
-
-                <p class="nav-title">MAIN MENU</p>
-
-                <a href="user-dashboard.html" class="nav-link">
-                    <i class="fa-solid fa-chart-pie"></i>
-                    <span>Dashboard</span>
-                </a>
-
-                <a href="find-parking.html" class="nav-link">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span>Find Parking</span>
-                </a>
-
-                <a href="predictive-heatmap.html" class="nav-link active">
-                    <i class="fa-solid fa-fire"></i>
-                    <span>Predictive Heatmap</span>
-                </a>
-
-                <a href="ai-recommendations.html" class="nav-link">
-                    <i class="fa-solid fa-robot"></i>
-                    <span>AI Recommendation</span>
-                </a>
-
-            </div>
-
-            <div class="nav-section">
-
-                <p class="nav-title">ACTIVITY</p>
-
-                <a href="parking-history.html" class="nav-link">
-                    <i class="fa-solid fa-clock-rotate-left"></i>
-                    <span>Parking History</span>
-                </a>
-
-                <a href="#" class="nav-link">
-                    <i class="fa-solid fa-bookmark"></i>
-                    <span>Saved Locations</span>
-                </a>
-
-            </div>
-
-            <div class="nav-section">
-
-                <p class="nav-title">ACCOUNT</p>
-
-                <a href="#" class="nav-link">
-                    <i class="fa-solid fa-user"></i>
-                    <span>Profile</span>
-                </a>
-
-                <a href="#" class="nav-link">
-                    <i class="fa-solid fa-gear"></i>
-                    <span>Settings</span>
-                </a>
-
-            </div>
-
-        </nav>
-
-        <div class="sidebar-bottom">
-
-            <div class="help-card">
-
-                <div class="help-icon">
-                    <i class="fa-solid fa-question"></i>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-logo">
+                    <i class="fa-solid fa-square-parking"></i>
                 </div>
-
-                <div>
-                    <strong>Need Help?</strong>
-                    <span>Contact support</span>
+                <div class="brand-text">
+                    <strong>ParkWise</strong>
+                    <span>AI Parking</span>
                 </div>
-
             </div>
-
-            <a href="login.html" class="logout-link">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                <span>Logout</span>
-            </a>
-
-        </div>
-
-    </aside>
-
-    <main class="main-content">
-
-        <header class="top-header">
-
-            <div class="page-heading">
-
-                <span class="eyebrow">
-                    AI PARKING INTELLIGENCE
-                </span>
-
-                <h1>Predictive Heatmap</h1>
-
-                <p>
-                    Explore parking demand and predicted availability
-                </p>
-
-            </div>
-
-        </header>
-
-        <div class="page-body">
-
-            <div class="page-intro">
-
-                <div>
-
-                    <div class="ai-label">
-                        <i class="fa-solid fa-circle-nodes"></i>
-                        PREDICTIVE ANALYTICS
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <p class="nav-title">MAIN MENU</p>
+                    <a href="user-dashboard.html" class="nav-link">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="find-parking.html" class="nav-link">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Find Parking</span>
+                    </a>
+                    <a href="predictive-heatmap.html" class="nav-link active">
+                        <i class="fa-solid fa-fire"></i>
+                        <span>Predictive Heatmap</span>
+                    </a>
+                    <a href="ai-recommendations.html" class="nav-link">
+                        <i class="fa-solid fa-robot"></i>
+                        <span>AI Recommendation</span>
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <p class="nav-title">ACTIVITY</p>
+                    <a href="parking-history.html" class="nav-link">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span>Parking History</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-bookmark"></i>
+                        <span>Saved Locations</span>
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <p class="nav-title">ACCOUNT</p>
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>Settings</span>
+                    </a>
+                </div>
+            </nav>
+            <div class="sidebar-bottom">
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fa-solid fa-question"></i>
                     </div>
-
-                    <h2>Predictive Occupancy Heatmap</h2>
-
+                    <div>
+                        <strong>Need Help?</strong>
+                        <span>Contact support</span>
+                    </div>
+                </div>
+                <a href="login.html" class="logout-link">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="top-header">
+                <div class="page-heading">
+                    <span class="eyebrow">
+                        AI PARKING INTELLIGENCE
+                    </span>
+                    <h1>Predictive Heatmap</h1>
                     <p>
-                        View predicted parking occupancy and congestion
-                        levels across nearby parking locations.
+                        Explore parking demand and predicted availability
                     </p>
-
                 </div>
-
-                <div class="prediction-status">
-                    <span class="status-dot"></span>
-                    AI Prediction Active
+            </header>
+            <div class="page-body">
+                <div class="page-intro">
+                    <div>
+                        <div class="ai-label">
+                            <i class="fa-solid fa-circle-nodes"></i>
+                            PREDICTIVE ANALYTICS
+                        </div>
+                        <h2>Predictive Occupancy Heatmap</h2>
+                        <p>
+                            View predicted parking occupancy and congestion
+                            levels across nearby parking locations.
+                        </p>
+                    </div>
+                    <div class="prediction-status">
+                        <span class="status-dot"></span>
+                        AI Prediction Active
+                    </div>
                 </div>
-
-            </div>
-
-            <section class="controls-card">
-
-                <div class="control-group">
-
-                    <label for="timeRangeSelect">
-                        <i class="fa-solid fa-clock"></i>
-                        Time Window
-                    </label>
-
-                    <select id="timeRangeSelect">
-                        <option value="7">07:00 AM</option>
-                        <option value="8">08:00 AM</option>
-                        <option value="9">09:00 AM</option>
-                        <option value="10">10:00 AM</option>
-                        <option value="11">11:00 AM</option>
-                        <option value="12" selected>12:00 PM</option>
-                        <option value="13">01:00 PM</option>
-                        <option value="14">02:00 PM</option>
-                       <option value="15">03:00 PM</option>                        
-                       <option value="16">04:00 PM</option>
-                        <option value="17">05:00 PM</option>
-                        <option value="18">06:00 PM</option>
-                        <option value="19">07:00 PM</option>
-                        <option value="20">08:00 PM</option>
-                        <option value="21">09:00 PM</option>
-                       
-                    </select>
-
-                </div>
-
-                <button
-                    class="refresh-btn"
-                    id="refreshHeatmapBtn">
-
-                    <i class="fa-solid fa-arrows-rotate"></i>
-
-                    Refresh Predictions
-
-                </button>
-
-            </section>
-
-            <section class="heatmap-layout">
-
-                <div class="map-card">
-
-                    <div class="card-header">
-
-                        <div>
-
-                            <div class="card-label">
-                                <i class="fa-solid fa-map"></i>
-                                LIVE PREDICTION MAP
+                <section class="controls-card">
+                    <div class="control-group">
+                        <label for="timeRangeSelect">
+                            <i class="fa-solid fa-clock"></i>
+                            Time Window
+                        </label>
+                        <select id="timeRangeSelect">
+                            <option value="7">07:00 AM</option>
+                            <option value="8">08:00 AM</option>
+                            <option value="9">09:00 AM</option>
+                            <option value="10">10:00 AM</option>
+                            <option value="11">11:00 AM</option>
+                            <option value="12" selected>12:00 PM</option>
+                            <option value="13">01:00 PM</option>
+                            <option value="14">02:00 PM</option>
+                            <option value="15">03:00 PM</option>
+                            <option value="16">04:00 PM</option>
+                            <option value="17">05:00 PM</option>
+                            <option value="18">06:00 PM</option>
+                            <option value="19">07:00 PM</option>
+                            <option value="20">08:00 PM</option>
+                            <option value="21">09:00 PM</option>
+                        </select>
+                    </div>
+                    <button
+                        class="refresh-btn"
+                        id="refreshHeatmapBtn">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                        Refresh Predictions
+                    </button>
+                </section>
+                <section class="heatmap-layout">
+                    <div class="map-card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-label">
+                                    <i class="fa-solid fa-map"></i>
+                                    LIVE PREDICTION MAP
+                                </div>
+                                <h3>Parking Occupancy</h3>
                             </div>
-
-                            <h3>Parking Occupancy</h3>
-
                         </div>
-
-                    </div>
-
-                    <div class="heatmap-map-wrap">
-
-                        <div
-                            id="heatmapMap"
-                            class="heatmap-map">
+                        <div class="heatmap-map-wrap">
+                            <div
+                                id="heatmapMap"
+                                class="heatmap-map">
+                            </div>
+                            <div
+                                id="mapSkeleton"
+                                class="map-skeleton">
+                                <i class="fa-solid fa-spinner fa-spin"></i>
+                                <span>Loading predictions...</span>
+                            </div>
                         </div>
-
-                        <div
-                            id="mapSkeleton"
-                            class="map-skeleton">
-                            <i class="fa-solid fa-spinner fa-spin"></i>
-                            <span>Loading predictions...</span>
-                        </div>
-
-                    </div>
-
-                    <div class="map-legend">
-
-                        <span class="legend-title">
-                            Occupancy:
-                        </span>
-
-                        <span class="legend-item">
-                            <span class="legend-dot green"></span>
-                            Low
-                        </span>
-
-                        <span class="legend-item">
-                            <span class="legend-dot yellow"></span>
-                            Moderate
-                        </span>
-
-                        <span class="legend-item">
-                            <span class="legend-dot red"></span>
-                            High
-                        </span>
-
-                    </div>
-
-                </div>
-
-                <div class="insights-panel" id="insightsPanel">
-
-                    <div class="insight-card">
-
-                        <div class="insight-icon danger">
-                            <i class="fa-solid fa-triangle-exclamation"></i>
-                        </div>
-
-                        <div class="insight-content">
-
-                            <span class="insight-label">
-                                HIGH CONGESTION
+                        <div class="map-legend">
+                            <span class="legend-title">
+                                Occupancy:
                             </span>
-
-                            <h3 id="highCongestionName">
-                                Loading...
-                            </h3>
-
-                            <p>
-                                Highest predicted occupancy
-                            </p>
-
-                            <strong
-                                id="highCongestionValue"
-                                class="danger-text">
-                                --
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-                    <div class="insight-card">
-
-                        <div class="insight-icon success">
-                            <i class="fa-solid fa-circle-check"></i>
-                        </div>
-
-                        <div class="insight-content">
-
-                            <span class="insight-label">
-                                BEST AVAILABILITY
+                            <span class="legend-item">
+                                <span class="legend-dot green"></span>
+                                Low
                             </span>
-
-                            <h3 id="bestAvailabilityName">
-                                Loading...
-                            </h3>
-
-                            <p>
-                                Lowest predicted occupancy
-                            </p>
-
-                            <strong
-                                id="bestAvailabilityValue"
-                                class="success-text">
-                                --
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-                    <div class="ai-insight">
-
-                        <div class="ai-insight-icon">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i>
-                        </div>
-
-                        <div>
-
-                            <span>
-                                AI INSIGHT
+                            <span class="legend-item">
+                                <span class="legend-dot yellow"></span>
+                                Moderate
                             </span>
-
-                            <p id="aiInsightText">
-                                ParkWise AI is analysing parking
-                                occupancy using MongoDB data
-                                and the ML model.
-                            </p>
-
+                            <span class="legend-item">
+                                <span class="legend-dot red"></span>
+                                High
+                            </span>
                         </div>
-
                     </div>
-
-                </div>
-
-            </section>
-
-        </div>
-
-    </main>
-
-</div>
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
-
-<script src="js/shared-layout.js"></script>
-<script src="js/predictive-heatmap.js"></script>
-
+                    <div class="insights-panel" id="insightsPanel">
+                        <div class="insight-card">
+                            <div class="insight-icon danger">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="insight-content">
+                                <span class="insight-label">
+                                    HIGH CONGESTION
+                                </span>
+                                <h3 id="highCongestionName">
+                                    Loading...
+                                </h3>
+                                <p>
+                                    Highest predicted occupancy
+                                </p>
+                                <strong
+                                    id="highCongestionValue"
+                                    class="danger-text">
+                                    --
+                                </strong>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-icon success">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </div>
+                            <div class="insight-content">
+                                <span class="insight-label">
+                                    BEST AVAILABILITY
+                                </span>
+                                <h3 id="bestAvailabilityName">
+                                    Loading...
+                                </h3>
+                                <p>
+                                    Lowest predicted occupancy
+                                </p>
+                                <strong
+                                    id="bestAvailabilityValue"
+                                    class="success-text">
+                                    --
+                                </strong>
+                            </div>
+                        </div>
+                        <div class="ai-insight">
+                            <div class="ai-insight-icon">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </div>
+                            <div>
+                                <span>
+                                    AI INSIGHT
+                                </span>
+                                <p id="aiInsightText">
+                                    ParkWise AI is analysing parking
+                                    occupancy using MongoDB data
+                                    and the ML model.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+    <script src="js/shared-layout.js"></script>
+    <script src="js/predictive-heatmap.js"></script>
 </body>
 </html>
+
