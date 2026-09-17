@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account | ParkWise AI</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/register.css">
     <link rel="stylesheet" href="css/shared.css">
-
 <style>
     .form-info-box {
         display: flex;
@@ -40,9 +36,7 @@
     }
 </style>
 </head>
-
 <body class="auth-page">
-
 <header class="navbar">
     <a href="index.html" class="logo">
         <div class="logo-icon">
@@ -52,7 +46,6 @@
             ParkWise<span class="logo-ai"> AI</span>
         </span>
     </a>
-
     <div class="auth-nav">
         <a href="index.html" class="auth-home-link">
             <i class="fa-solid fa-arrow-left"></i>
@@ -60,7 +53,6 @@
         </a>
     </div>
 </header>
-
 <main class="auth-container">
     <section class="auth-info">
         <div class="auth-info-content">
@@ -68,17 +60,14 @@
                 <i class="fa-solid fa-sparkles"></i>
                 Join ParkWise AI
             </span>
-
             <h1>
                 Park smarter.
                 <span>Every time.</span>
             </h1>
-
             <p>
                 Create your ParkWise AI account and experience intelligent parking with
                 AI-powered recommendations and occupancy prediction.
             </p>
-
             <div class="auth-benefits">
                 <div class="benefit">
                     <div class="benefit-icon">
@@ -89,7 +78,6 @@
                         <p>Get personalized parking suggestions.</p>
                     </div>
                 </div>
-
                 <div class="benefit">
                     <div class="benefit-icon">
                         <i class="fa-solid fa-chart-line"></i>
@@ -99,7 +87,6 @@
                         <p>Predict parking availability before you arrive.</p>
                     </div>
                 </div>
-
                 <div class="benefit">
                     <div class="benefit-icon">
                         <i class="fa-solid fa-map-location-dot"></i>
@@ -112,14 +99,12 @@
             </div>
         </div>
     </section>
-
     <section class="auth-form-section">
         <div class="auth-card register-card">
             <div class="auth-heading">
                 <h2>Create your account</h2>
                 <p>Choose your account type to continue.</p>
             </div>
-
             <div class="account-type-section">
                 <label class="account-type-title">I want to register as</label>
                 <div class="account-type-selector">
@@ -135,7 +120,6 @@
                             </div>
                         </div>
                     </label>
-
                     <label class="type-option">
                         <input type="radio" name="accountType" value="owner">
                         <div class="type-option-content">
@@ -150,19 +134,15 @@
                     </label>
                 </div>
             </div>
-
             <div id="registerError" class="form-message error-message" style="display: none;">
                 <i class="fa-solid fa-circle-exclamation"></i>
                 <span id="registerErrorText"></span>
             </div>
-
-            <!-- USER FORM -->
             <form id="userRegisterForm" class="register-form">
                 <div class="form-section-title">
                     <i class="fa-solid fa-user"></i>
                     Personal Information
                 </div>
-
                 <div class="form-group">
                     <label for="userName">Full Name</label>
                     <div class="input-wrapper">
@@ -170,7 +150,6 @@
                         <input type="text" id="userName" placeholder="Enter your full name" required>
                     </div>
                 </div>
-
                 <div class="form-row">
                     <div class="form-group">
                         <label for="userEmail">Email Address</label>
@@ -179,7 +158,6 @@
                             <input type="email" id="userEmail" placeholder="Enter email" required>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="userPhone">Phone Number</label>
                         <div class="input-wrapper">
@@ -188,7 +166,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label for="vehicleType">Vehicle Type</label>
                     <div class="select-wrapper">
@@ -201,7 +178,6 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="form-row">
                     <div class="form-group">
                         <label for="userPassword">Password</label>
@@ -213,7 +189,6 @@
                             </button>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="userConfirmPassword">Confirm Password</label>
                         <div class="input-wrapper">
@@ -225,30 +200,24 @@
                         </div>
                     </div>
                 </div>
-
                 <label class="checkbox-label terms-label">
                     <input type="checkbox" id="userTerms" required>
                     <span>I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a></span>
                 </label>
-
                 <button type="submit" class="auth-submit-btn">
                     Create User Account
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
-
                 <p class="register-text user-register-switch">
                     Already have a User account?
                     <a href="user_login.html">Sign In <i class="fa-solid fa-arrow-right"></i></a>
                 </p>
             </form>
-
-            <!-- OWNER FORM -->
             <form id="ownerRegisterForm" class="register-form" style="display: none;">
                 <div class="form-section-title">
                     <i class="fa-solid fa-user-tie"></i>
                     Owner Account Information
                 </div>
-
                 <div class="form-info-box">
                     <i class="fa-solid fa-circle-info"></i>
                     <div>
@@ -260,7 +229,6 @@
                         </p>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label for="ownerName">Full Name</label>
                     <div class="input-wrapper">
@@ -268,7 +236,6 @@
                         <input type="text" id="ownerName" placeholder="Enter your full name" autocomplete="name" required>
                     </div>
                 </div>
-
                 <div class="form-row">
                     <div class="form-group">
                         <label for="ownerEmail">Email Address</label>
@@ -277,7 +244,6 @@
                             <input type="email" id="ownerEmail" placeholder="Enter email" autocomplete="email" required>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="ownerPhone">Phone Number</label>
                         <div class="input-wrapper">
@@ -286,7 +252,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="form-row">
                     <div class="form-group">
                         <label for="ownerPassword">Password</label>
@@ -298,7 +263,6 @@
                             </button>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="ownerConfirmPassword">Confirm Password</label>
                         <div class="input-wrapper">
@@ -310,17 +274,14 @@
                         </div>
                     </div>
                 </div>
-
                 <label class="checkbox-label terms-label">
                     <input type="checkbox" id="ownerTerms" required>
                     <span>I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a></span>
                 </label>
-
                 <button type="submit" class="auth-submit-btn" id="ownerRegisterButton">
                     Create Owner Account
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
-
                 <p class="register-text owner-register-switch">
                     Already have a Park Owner account?
                     <a href="owner_login.html">Sign In <i class="fa-solid fa-arrow-right"></i></a>
@@ -329,7 +290,6 @@
         </div>
     </section>
 </main>
-
 <script src="js/register.js"></script>
 </body>
 </html>
