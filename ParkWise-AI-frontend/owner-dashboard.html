@@ -1,618 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
-
     <title>Owner Dashboard | ParkWise AI</title>
-
-
     <!-- Google Font -->
-
     <link
         rel="preconnect"
         href="https://fonts.googleapis.com"
     >
-
     <link
         rel="preconnect"
         href="https://fonts.googleapis.com"
         crossorigin
     >
-
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
-
-
     <!-- Font Awesome -->
-
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
-
-
     <!-- Existing Project CSS -->
-
     <link
         rel="stylesheet"
         href="css/shared.css"
     >
-
     <link
         rel="stylesheet"
         href="css/owner-dashboard.css"
     >
-
 </head>
-
-
 <body>
-
-
 <div class="app-layout">
-
-
-    <!-- =========================================
-         SIDEBAR
-         ========================================= -->
-
+    <!-- SIDEBAR -->
     <aside class="sidebar"></aside>
-
-
-
-    <!-- =========================================
-         MAIN
-         ========================================= -->
-
+    <!-- MAIN -->
     <main class="main-content">
-
-
         <!-- HEADER -->
-
         <header class="top-header"></header>
-
-
-
-        <!-- =====================================
-             OWNER DASHBOARD
-             ===================================== -->
-
+        <!-- OWNER DASHBOARD -->
         <section class="owner-page">
-
-
-            <!-- =================================
-                 WELCOME
-                 ================================= -->
-
+            <!-- WELCOME -->
             <div class="owner-welcome">
-
                 <div>
-
                     <span class="welcome-label">
                         OWNER PORTAL
                     </span>
-
                     <h2>
                         Welcome back,
                         <span id="welcomeOwnerName">
                             Owner
                         </span>
                     </h2>
-
                     <p>
                         Manage your parking business,
                         bookings and parking locations.
                     </p>
-
                 </div>
-
-
                 <div class="welcome-icon">
-
                     <i class="fa-solid fa-square-parking"></i>
-
                 </div>
-
             </div>
-
-
-
-            <!-- =================================
-                 STATISTICS
-                 ================================= -->
-
+            <!-- STATISTICS -->
             <div class="owner-overview">
-
-
                 <!-- TOTAL SPACES -->
-
                 <article class="owner-stat">
-
                     <div class="stat-icon blue">
-
                         <i class="fa-solid fa-square-parking"></i>
-
                     </div>
-
                     <div>
-
                         <span>
                             Total spaces
                         </span>
-
                         <strong id="totalSpaces">
                             0
                         </strong>
-
                     </div>
-
                 </article>
-
-
-
                 <!-- OCCUPIED -->
-
                 <article class="owner-stat">
-
                     <div class="stat-icon orange">
-
                         <i class="fa-solid fa-car"></i>
-
                     </div>
-
                     <div>
-
                         <span>
                             Occupied now
                         </span>
-
                         <strong id="occupiedSpaces">
                             0
                         </strong>
-
                     </div>
-
                 </article>
-
-
-
                 <!-- REVENUE -->
-
                 <article class="owner-stat">
-
                     <div class="stat-icon green">
-
                         <i class="fa-solid fa-indian-rupee-sign"></i>
-
                     </div>
-
                     <div>
-
                         <span>
                             Today's revenue
                         </span>
-
                         <strong id="todayRevenue">
                             ₹0
                         </strong>
-
                     </div>
-
                 </article>
-
-
-
                 <!-- BOOKINGS -->
-
                 <article class="owner-stat">
-
                     <div class="stat-icon purple">
-
                         <i class="fa-solid fa-calendar-check"></i>
-
                     </div>
-
                     <div>
-
                         <span>
                             Active bookings
                         </span>
-
                         <strong id="activeBookings">
                             0
                         </strong>
-
                     </div>
-
                 </article>
-
             </div>
-
-
-
-            <!-- =================================
-                 MAIN GRID
-                 ================================= -->
-
+            <!-- MAIN GRID -->
             <div class="owner-grid">
-
-
-                <!-- =================================
-                     LEFT COLUMN
-                     ================================= -->
-
+                <!-- LEFT COLUMN -->
                 <div>
-
-
                     <!-- PARKING LOTS -->
-
                     <section
                         class="owner-card"
                         id="parking-lots"
                     >
-
                         <div class="owner-card-header">
-
                             <div>
-
                                 <h2>
                                     Your parking lots
                                 </h2>
-
                                 <p>
                                     Manage your registered parking locations
                                 </p>
-
                             </div>
-
                             <button
                                 class="owner-outline-btn"
                                 type="button"
                                 id="addParkingLotBtn"
                             >
-
                                 <i class="fa-solid fa-plus"></i>
-
                                 Add lot
-
                             </button>
-
                         </div>
-
-
-                        <!--
-                            IMPORTANT:
-                            No default parking lot is written here.
-                        -->
-
+                        <!-- No default parking lot is written here. -->
                         <div
                             id="parkingLotsContainer"
                             class="parking-lots-container"
                         >
-
                             <div class="owner-empty-state">
-
                                 <div class="empty-icon">
-
                                     <i class="fa-solid fa-square-parking"></i>
-
                                 </div>
-
                                 <h3>
                                     No parking lots yet
                                 </h3>
-
                                 <p>
                                     Your registered parking lots will
                                     appear here.
                                 </p>
-
                                 <button
                                     type="button"
                                     class="owner-action"
                                     id="emptyAddLotBtn"
                                 >
-
                                     <i class="fa-solid fa-plus"></i>
-
                                     Add your first parking lot
-
                                 </button>
-
                             </div>
-
                         </div>
-
                     </section>
-
-
-
                     <!-- RECENT BOOKINGS -->
-
                     <section
                         class="owner-card owner-booking-card"
                         id="bookings"
                     >
-
                         <div class="owner-card-header">
-
                             <div>
-
                                 <h2>
                                     Recent bookings
                                 </h2>
-
                                 <p>
                                     Latest reservations from your parking lots
                                 </p>
-
                             </div>
-
                             <a
                                 href="owner-bookings.html"
                                 class="owner-text-link"
                             >
-
                                 View all
-
                                 <i class="fa-solid fa-arrow-right"></i>
-
                             </a>
-
                         </div>
-
-
                         <div
                             id="recentBookingsContainer"
                             class="recent-bookings-container"
                         >
-
                             <div class="owner-empty-state compact">
-
                                 <div class="empty-icon">
-
                                     <i class="fa-solid fa-calendar-xmark"></i>
-
                                 </div>
-
                                 <h3>
                                     No bookings yet
                                 </h3>
-
                                 <p>
                                     New bookings will appear here.
                                 </p>
-
                             </div>
-
                         </div>
-
                     </section>
-
-
                 </div>
-
-
-
-                <!-- =================================
-                     RIGHT COLUMN
-                     ================================= -->
-
+                <!-- RIGHT COLUMN -->
                 <aside>
-
-
                     <!-- OCCUPANCY -->
-
                     <section class="owner-card">
-
-
                         <div class="owner-card-header">
-
                             <div>
-
                                 <h2>
                                     Live occupancy
                                 </h2>
-
                                 <p>
                                     Current parking availability
                                 </p>
-
                             </div>
-
                             <span class="live-indicator">
-
                                 <span></span>
-
                                 LIVE
-
                             </span>
-
                         </div>
-
-
                         <div class="occupancy">
-
                             <div class="occupancy-top">
-
                                 <div>
-
                                     <span>
                                         Occupancy
                                     </span>
-
                                     <strong id="occupancyPercent">
                                         0%
                                     </strong>
-
                                 </div>
-
                                 <i class="fa-solid fa-chart-pie"></i>
-
                             </div>
-
-
                             <p id="occupancyText">
                                 No parking space data available.
                             </p>
-
-
                             <div class="progress">
-
                                 <span
                                     id="occupancyProgress"
                                     style="width:0%"
                                 ></span>
-
                             </div>
-
                         </div>
-
                     </section>
-
-
-
                     <!-- QUICK ACTIONS -->
-
                     <section class="owner-card quick-actions-card">
-
-
                         <div class="owner-card-header">
-
                             <div>
-
                                 <h2>
                                     Quick actions
                                 </h2>
-
                                 <p>
                                     Manage your owner account
                                 </p>
-
                             </div>
-
                         </div>
-
-
                         <a
                             href="#parking-lots"
                             class="quick-action"
                         >
-
                             <span>
-
                                 <i class="fa-solid fa-square-parking"></i>
-
                             </span>
-
                             <div>
-
                                 <strong>
                                     Manage parking lots
                                 </strong>
-
                                 <small>
                                     View and manage your locations
                                 </small>
-
                             </div>
-
                             <i class="fa-solid fa-chevron-right"></i>
-
                         </a>
-
-
                         <a
                             href="owner-bookings.html"
                             class="quick-action"
                         >
-
                             <span>
-
                                 <i class="fa-solid fa-calendar-check"></i>
-
                             </span>
-
                             <div>
-
                                 <strong>
                                     Manage bookings
                                 </strong>
-
                                 <small>
                                     View all reservations
                                 </small>
-
                             </div>
-
                             <i class="fa-solid fa-chevron-right"></i>
-
                         </a>
-
-
                         <a
                             href="owner-profile.html"
                             class="quick-action"
                         >
-
                             <span>
-
                                 <i class="fa-solid fa-user"></i>
-
                             </span>
-
                             <div>
-
                                 <strong>
                                     Owner profile
                                 </strong>
-
                                 <small>
                                     Manage your account
                                 </small>
-
                             </div>
-
                             <i class="fa-solid fa-chevron-right"></i>
-
                         </a>
-
                     </section>
-
-
                 </aside>
-
-
             </div>
-
-
         </section>
-
-
     </main>
-
 </div>
-
-
 <!-- OWNER LAYOUT -->
-
 <script src="js/owner-layout.js"></script>
-
-
 <!-- DASHBOARD -->
-
 <script src="js/owner-dashboard.js"></script>
-
-
 </body>
-
 </html>
