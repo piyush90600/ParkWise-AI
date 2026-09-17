@@ -1,546 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Find Parking | ParkWise AI</title>
-
-    
     <link rel="stylesheet" href="css/find-parking.css">
     <link rel="stylesheet" href="css/shared.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter\:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
     <link
         rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     />
 </head>
-
 <body>
-
     <aside class="sidebar" id="sidebar">
-
         <div class="logo-section">
-
             <div class="logo-icon">
                 <i class="fa-solid fa-square-parking"></i>
             </div>
-
             <div class="logo-text">
                 <h2>ParkWise</h2>
                 <span>AI Parking</span>
             </div>
-
         </div>
-
         <nav class="sidebar-nav">
-
             <p class="nav-heading">MAIN MENU</p>
-
             <a href="user-dashboard.html" class="nav-link">
                 <i class="fa-solid fa-chart-pie"></i>
                 <span>Dashboard</span>
             </a>
-
             <a href="find-parking.html" class="nav-link active">
                 <i class="fa-solid fa-location-dot"></i>
                 <span>Find Parking</span>
             </a>
-
             <a href="predictive-heatmap.html" class="nav-link">
                 <i class="fa-solid fa-fire"></i>
                 <span>Predictive Heatmap</span>
             </a>
-
             <a href="ai-recommendations.html" class="nav-link">
                 <i class="fa-solid fa-robot"></i>
                 <span>AI Recommendation</span>
             </a>
-
             <p class="nav-heading">ACTIVITY</p>
-
             <a href="parking-history.html" class="nav-link" >
                 <i class="fa-solid fa-clock-rotate-left"></i>
                 <span>Parking History</span>
             </a>
-
             <a href="#" class="nav-link" onclick="showMessage('Saved Locations coming soon')">
                 <i class="fa-solid fa-bookmark"></i>
                 <span>Saved Locations</span>
             </a>
-
             <p class="nav-heading">ACCOUNT</p>
-
             <a href="#" class="nav-link" onclick="showMessage('Profile coming soon')">
                 <i class="fa-solid fa-user"></i>
                 <span>Profile</span>
             </a>
-
             <a href="#" class="nav-link" onclick="showMessage('Settings coming soon')">
                 <i class="fa-solid fa-gear"></i>
                 <span>Settings</span>
             </a>
-
         </nav>
-
         <div class="sidebar-bottom">
-
             <div class="help-box">
-
                 <div class="help-icon">
                     <i class="fa-solid fa-circle-question"></i>
                 </div>
-
                 <div>
                     <strong>Need Help?</strong>
                     <span>Contact support</span>
                 </div>
-
             </div>
-
             <button class="logout-btn" onclick="logout()">
-
                 <i class="fa-solid fa-right-from-bracket"></i>
-
                 <span>Logout</span>
-
             </button>
-
         </div>
-
     </aside>
-
     <main class="main-content">
-
         <header class="top-header">
-
             <button class="mobile-menu" id="mobileMenu">
                 <i class="fa-solid fa-bars"></i>
             </button>
-
             <div class="page-title">
-
                 <h1>Find Parking</h1>
-
                 <p>
                     Find the best parking spot near your destination
                 </p>
-
             </div>
-
             <div class="header-actions">
-
                 <button class="notification-btn" onclick="toggleNotifications()">
-
                     <i class="fa-regular fa-bell"></i>
-
                     <span class="notification-dot"></span>
-
                 </button>
-
-            
         </header>
-
         <section class="page-content">
-
             <div class="search-section">
-
                 <div class="search-title">
-
                     <div>
-
                         <span class="ai-badge">
                             <i class="fa-solid fa-wand-magic-sparkles"></i>
                             AI POWERED
                         </span>
-
                         <h2>Where do you want to park?</h2>
-
                         <p>
                             Search a destination and we'll find the best parking options for you.
                         </p>
-
                     </div>
-
                 </div>
-
                 <div class="search-box">
-
                     <div class="search-input-wrapper">
-
                         <i class="fa-solid fa-location-dot"></i>
-
                         <input
                             type="text"
                             id="destinationInput"
                             placeholder="Enter destination, landmark or area..."
                             autocomplete="off">
-                        
                         <div
                             class="location-suggestions"
                             id="locationSuggestions"
                             role="listbox"
                             aria-label="Location suggestions"
                         ></div>
-                        
                         <button class="clear-btn" id="clearSearch">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
-
                     </div>
-
                     <button class="current-location-btn"
                         onclick="useCurrentLocation()">
-
                         <i class="fa-solid fa-crosshairs"></i>
-
                         <span>Use my location</span>
-
                     </button>
-
                     <button class="search-btn"
                         onclick="searchParking()">
-
                         <i class="fa-solid fa-magnifying-glass"></i>
-
                         Search
-
                     </button>
-
                 </div>
-
-
             </div>
-
             <!-- Dashboard Statistics -->
             <div class="stats-grid">
-
                 <!-- Nearby Parking -->
                 <div class="stat-card">
-
                     <div class="stat-icon blue">
                         <i class="fa-solid fa-square-parking"></i>
                     </div>
-
                     <div class="stat-details">
-
                         <span>Nearby Parking</span>
-
                         <strong id="nearbyParkingCount">0</strong>
-
                         <small>
                             <i class="fa-solid fa-location-dot"></i>
                             Parking locations nearby
                         </small>
-
                     </div>
-
                 </div>
-
-
                 <!-- Available Spots -->
                 <div class="stat-card">
-
                     <div class="stat-icon green">
                         <i class="fa-solid fa-car"></i>
                     </div>
-
                     <div class="stat-details">
-
                         <span>Available Spots</span>
-
                         <strong id="availableSpotsCount">0</strong>
-
                         <small class="positive">
                             <i class="fa-solid fa-circle-check"></i>
                             Currently available
                         </small>
-
                     </div>
-
                 </div>
-
-
                 <!-- Average Occupancy -->
                 <div class="stat-card">
-
                     <div class="stat-icon orange">
                         <i class="fa-solid fa-chart-pie"></i>
                     </div>
-
                     <div class="stat-details">
-
                         <span>Avg. Occupancy</span>
-
                         <strong id="averageOccupancy">0%</strong>
-
                         <small>
                             <i class="fa-solid fa-chart-line"></i>
                             Based on parking data
                         </small>
-
                     </div>
-
                 </div>
-
             </div>
-
            <div class="parking-layout">
-
                 <div class="map-container">
-
                     <div class="map-header">
-
                         <div>
-
                             <h3>
                                 Parking Map
                             </h3>
-
                             <span>
                                 Showing nearby parking locations
                             </span>
-
                         </div>
-
                         <button class="map-location-btn"
                             onclick="useCurrentLocation()">
-
                             <i class="fa-solid fa-crosshairs"></i>
-
                         </button>
-
                     </div>
-
                     <div class="map" id="parkingMap">
-
                         <div id="mapMarkers"></div>
-
                             <div class="map-empty-state" id="mapEmptyState">
-
                                 <div class="map-empty-icon">
                                     <i class="fa-solid fa-map-location-dot"></i>
                                 </div>
-
                                 <strong>
                                     Parking locations will appear here
                                 </strong>
-
                                 <span>
                                     Search a destination to find nearby parking
                                 </span>
-
                             </div>
-
                         <div id="mapMarkers"></div>
-
                             <div class="map-empty-state" id="mapEmptyState">
-
                                 <div class="map-empty-icon">
                                     <i class="fa-solid fa-map-location-dot"></i>
                                 </div>
-
                                 <strong>Parking locations will appear here</strong>
-
                                 <span>
                                     Search a destination to find nearby parking
                                 </span>
-
                             </div>
-
                         <div class="map-controls">
-
                             <button onclick="zoomMap('in')">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
-
                             <button onclick="zoomMap('out')">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-
                         </div>
-
                         <div class="map-legend">
-
                             <div>
                                 <span class="legend-dot available"></span>
                                 Available
                             </div>
-
                             <div>
                                 <span class="legend-dot limited"></span>
                                 Limited
                             </div>
-
                             <div>
                                 <span class="legend-dot full"></span>
                                 Full
                             </div>
-
                         </div>
-
                     </div>
-
-        
-
                 </div>
-
                 <!-- Nearby Parking -->
                 <div class="nearby-section">
-
                     <div class="section-header">
-
                         <div>
-
                             <h3>Nearby Parking</h3>
-
                             <p id="nearbySubtitle">
                                 Parking spaces available near you
                             </p>
-
                         </div>
-
                         <a href="find-parking.html">
-
                             View all
-
                             <i class="fa-solid fa-arrow-right"></i>
-
                         </a>
-
                     </div>
-
-
                     <div
                         class="parking-grid"
                         id="nearbyParkingGrid"
                     >
-
                         <div class="empty-parking">
-
                             <i class="fa-solid fa-location-dot"></i>
-
                             <h4>Finding parking...</h4>
-
                             <p>
                                 Parking locations will appear here
                                 when data is available.
                             </p>
-
                         </div>
-
                     </div>
-
                 </div>
-
-
-                
-
             </div>
-
         </section>
-
     </main>
-
     <div class="modal-overlay" id="parkingModal">
-
         <div class="parking-modal">
-
             <button class="modal-close" onclick="closeModal()">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-
             <div class="modal-icon">
                 <i class="fa-solid fa-square-parking"></i>
             </div>
-
             <span class="modal-label">
                 PARKING DETAILS
             </span>
-
             <h2 id="modalTitle">
                 Parking Details
             </h2>
-
             <p id="modalAddress">
                 Parking information will appear here.
             </p>
-
             <div class="modal-stats">
-
                 <div>
                     <strong id="modalSpots">--</strong>
                     <span>Available</span>
                 </div>
-
                 <div>
                     <strong id="modalPrice">--</strong>
                     <span>Per hour</span>
                 </div>
-
                 <div>
                     <strong id="modalDistance">--</strong>
                     <span>Distance</span>
                 </div>
-
             </div>
-
             <div class="modal-features">
-
                 <span>
                     <i class="fa-solid fa-shield-halved"></i>
                     Secure
                 </span>
-
                 <span>
                     <i class="fa-solid fa-video"></i>
                     CCTV
                 </span>
-
                 <span>
                     <i class="fa-solid fa-clock"></i>
                     24/7
                 </span>
-
             </div>
-
             <button class="modal-directions"
                 onclick="getDirections(document.getElementById('modalTitle').textContent)">
-
                 <i class="fa-solid fa-diamond-turn-right"></i>
-
                 Get Directions
-
             </button>
-
         </div>
-
     </div>
-
     <div class="toast" id="toast">
-
         <i class="fa-solid fa-circle-check"></i>
-
         <span id="toastMessage">
             Done
         </span>
-
     </div>
-
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="js/shared-layout.js"></script>
 <script src="js/find-parking.js"></script>
-
 </body>
-
 </html>
