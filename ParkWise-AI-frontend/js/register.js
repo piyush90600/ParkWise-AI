@@ -3,15 +3,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const userForm = document.getElementById("userRegisterForm");
     const ownerForm = document.getElementById("ownerRegisterForm");
-    const accountTypeRadios = document.querySelectorAll('input[name="accountType"]');
+    const accountTypeRadios = document.querySelectorAll(
+        'input[name="accountType"]'
+    );
+
     const errorBox = document.getElementById("registerError");
     const errorText = document.getElementById("registerErrorText");
 
+    // ==============================
+    // ERROR HANDLING
+    // ==============================
+
     function showError(message) {
-        if (errorBox && errorText) {
-            errorText.innerText = message;
-            errorBox.style.display = "flex";
-        }
+        if (!errorBox || !errorText) return;
+
+        errorText.textContent = message;
+        errorBox.style.display = "flex";
     }
 
     function clearError() {
@@ -20,140 +27,468 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Role switcher
+    // ==============================
+    // BUTTON LOADING
+    // ==============================
+
+    function setButtonLoading(
+        button,
+        loading,
+        loadingText,
+        defaultText
+    ) {
+        if (!button) return;
+
+        button.disabled = loading;
+
+        button.innerHTML = loading
+            ? `<i class="fa-solid fa-spinner fa-spin"></i> ${loadingText}`
+            : `${defaultText} <i class="fa-solid fa-arrow-right"></i>`;
+    }
+
+    // ==============================
+    // VALIDATION
+    // ==============================
+
+    function validatePhone(phone) {
+        return /^[6-9]\d{9}$/.test(phone);
+    }
+
+    function validatePassword(password) {
+        return password.length >= 6;
+    }
+
+    // ==============================
+    // API RESPONSE
+    // ==============================
+
+    async function parseResponse(response) {
+        const text = await response.text();
+
+        if (!text) {
+            return {};
+        }
+
+        try {
+            return JSON.parse(text);
+        } catch {
+            return {
+                detail: text
+            };
+        }
+    }
+
+    // ==============================
+    // ACCOUNT TYPE SWITCHER
+    // ==============================
+
     accountTypeRadios.forEach((radio) => {
         radio.addEventListener("change", (e) => {
             clearError();
-            if (e.target.value === "owner") {
-                userForm.style.display = "none";
-                ownerForm.style.display = "block";
-            } else {
-                userForm.style.display = "block";
-                ownerForm.style.display = "none";
+
+            const isOwner = e.target.value === "owner";
+
+            if (userForm) {
+                userForm.style.display = isOwner ? "none" : "block";
+            }
+
+            if (ownerForm) {
+                ownerForm.style.display = isOwner ? "block" : "none";
             }
         });
     });
 
-    // Password visibility toggle
-    document.querySelectorAll(".password-toggle").forEach((btn) => {
-        btn.addEventListener("click", function () {
-            const targetId = this.getAttribute("data-target");
-            const targetInput = document.getElementById(targetId);
+    // ==============================
+    // PASSWORD VISIBILITY
+    // ==============================
+
+    document.querySelectorAll(".password-toggle").forEach((button) => {
+        button.addEventListener("click", function () {
+            const targetInput = document.getElementById(
+                this.dataset.target
+            );
+
             const icon = this.querySelector("i");
 
-            if (!targetInput) return;
+            if (!targetInput || !icon) return;
 
-            if (targetInput.type === "password") {
-                targetInput.type = "text";
-                icon.classList.remove("fa-eye");
-                icon.classList.add("fa-eye-slash");
-            } else {
-                targetInput.type = "password";
-                icon.classList.remove("fa-eye-slash");
-                icon.classList.add("fa-eye");
-            }
+            const showPassword =
+                targetInput.type === "password";
+
+            targetInput.type = showPassword
+                ? "text"
+                : "password";
+
+            icon.classList.toggle(
+                "fa-eye",
+                !showPassword
+            );
+
+            icon.classList.toggle(
+                "fa-eye-slash",
+                showPassword
+            );
+
+            this.setAttribute(
+                "aria-label",
+                showPassword
+                    ? "Hide password"
+                    : "Show password"
+            );
         });
     });
 
+    // ==============================
+    // PHONE INPUT
+    // ==============================
+
+    ["userPhone", "ownerPhone"].forEach((id) => {
+        const input = document.getElementById(id);
+
+        if (!input) return;
+
+        input.addEventListener("input", () => {
+            input.value = input.value
+                .replace(/\D/g, "")
+                .slice(0, 10);
+        });
+    });
+
+    // ==============================
     // USER REGISTRATION
+    // ==============================
+
     if (userForm) {
         userForm.addEventListener("submit", async (e) => {
             e.preventDefault();
+
             clearError();
 
-            const name = document.getElementById("userName")?.value.trim();
-            const email = document.getElementById("userEmail")?.value.trim();
-            const phone = document.getElementById("userPhone")?.value.trim();
-            const vehicleType = document.getElementById("vehicleType")?.value;
-            const password = document.getElementById("userPassword")?.value;
-            const confirmPassword = document.getElementById("userConfirmPassword")?.value;
+            const button =
+                userForm.querySelector(
+                    'button[type="submit"]'
+                );
 
-            if (password !== confirmPassword) {
-                showError("Passwords do not match.");
+            const name =
+                document
+                    .getElementById("userName")
+                    ?.value.trim();
+
+            const email =
+                document
+                    .getElementById("userEmail")
+                    ?.value.trim();
+
+            const phone =
+                document
+                    .getElementById("userPhone")
+                    ?.value.trim();
+
+            const vehicleType =
+                document
+                    .getElementById("vehicleType")
+                    ?.value;
+
+            const password =
+                document
+                    .getElementById("userPassword")
+                    ?.value;
+
+            const confirmPassword =
+                document
+                    .getElementById("userConfirmPassword")
+                    ?.value;
+
+            // Validate phone
+            if (!validatePhone(phone)) {
+                showError(
+                    "Please enter a valid 10-digit Indian mobile number."
+                );
                 return;
             }
 
-            try {
-                const response = await fetch(`${API_BASE_URL}/register`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        name: name,
-                        email: email,
-                        phone: phone,
-                        vehicle_type: vehicleType,
-                        password: password,
-                        role: "user"
-                    })
-                });
+            // Validate password
+            if (!validatePassword(password)) {
+                showError(
+                    "Password must be at least 6 characters long."
+                );
+                return;
+            }
 
-                const data = await response.json();
+            // Confirm password
+            if (password !== confirmPassword) {
+                showError(
+                    "Passwords do not match."
+                );
+                return;
+            }
+
+            setButtonLoading(
+                button,
+                true,
+                "Creating account...",
+                "Create User Account"
+            );
+
+            try {
+                const response = await fetch(
+                    `${API_BASE_URL}/register`,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            name,
+                            email,
+                            phone,
+                            vehicle_type: vehicleType,
+                            password,
+                            role: "user"
+                        })
+                    }
+                );
+
+                const data =
+                    await parseResponse(response);
 
                 if (!response.ok) {
-                    showError(data.detail || "User registration failed.");
+                    showError(
+                        data.detail ||
+                        "User registration failed."
+                    );
                     return;
                 }
 
-                alert("User account created successfully! Please sign in.");
-                window.location.href = "user_login.html";
-            } catch (err) {
-                console.error(err);
-                showError("Cannot connect to server. Ensure FastAPI backend is running.");
+                alert(
+                    "User account created successfully! Please sign in."
+                );
+
+                window.location.href =
+                    "user_login.html";
+
+            } catch (error) {
+
+                console.error(
+                    "User registration error:",
+                    error
+                );
+
+                showError(
+                    "Cannot connect to the server. Please try again."
+                );
+
+            } finally {
+
+                setButtonLoading(
+                    button,
+                    false,
+                    "",
+                    "Create User Account"
+                );
             }
         });
     }
 
+    // ==============================
     // OWNER REGISTRATION
+    // ==============================
+    //
+    // IMPORTANT:
+    // Owner registration now creates ONLY
+    // the owner account.
+    //
+    // Parking lot information is collected
+    // later during owner verification.
+    //
+    // Removed from this request:
+    // - parking_name
+    // - parking_location
+    // - capacity
+    // - parking_type
+    //
+    // ==============================
+
     if (ownerForm) {
-        ownerForm.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            clearError();
 
-            const name = document.getElementById("ownerName")?.value.trim();
-            const email = document.getElementById("ownerEmail")?.value.trim();
-            const phone = document.getElementById("ownerPhone")?.value.trim();
-            const parkingName = document.getElementById("parkingName")?.value.trim();
-            const parkingLocation = document.getElementById("parkingLocation")?.value.trim();
-            const parkingCapacity = document.getElementById("parkingCapacity")?.value;
-            const parkingType = document.getElementById("parkingType")?.value;
-            const password = document.getElementById("ownerPassword")?.value;
-            const confirmPassword = document.getElementById("ownerConfirmPassword")?.value;
+        ownerForm.addEventListener(
+            "submit",
+            async (e) => {
 
-            if (password !== confirmPassword) {
-                showError("Passwords do not match.");
-                return;
-            }
+                e.preventDefault();
 
-            try {
-                const response = await fetch(`${API_BASE_URL}/register`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        name: name,
-                        email: email,
-                        phone: phone,
-                        parking_name: parkingName,
-                        parking_location: parkingLocation,
-                        capacity: parkingCapacity ? Number(parkingCapacity) : null,
-                        parking_type: parkingType,
-                        password: password,
-                        role: "park_owner"
-                    })
-                });
+                clearError();
 
-                const data = await response.json();
+                const button =
+                    document.getElementById(
+                        "ownerRegisterButton"
+                    );
 
-                if (!response.ok) {
-                    showError(data.detail || "Owner registration failed.");
+                const name =
+                    document
+                        .getElementById("ownerName")
+                        ?.value.trim();
+
+                const email =
+                    document
+                        .getElementById("ownerEmail")
+                        ?.value.trim();
+
+                const phone =
+                    document
+                        .getElementById("ownerPhone")
+                        ?.value.trim();
+
+                const password =
+                    document
+                        .getElementById("ownerPassword")
+                        ?.value;
+
+                const confirmPassword =
+                    document
+                        .getElementById(
+                            "ownerConfirmPassword"
+                        )
+                        ?.value;
+
+                // ------------------------------
+                // PHONE VALIDATION
+                // ------------------------------
+
+                if (!validatePhone(phone)) {
+
+                    showError(
+                        "Please enter a valid 10-digit Indian mobile number."
+                    );
+
                     return;
                 }
 
-                alert("Owner account created successfully! Please sign in.");
-                window.location.href = "owner_login.html";
-            } catch (err) {
-                console.error(err);
-                showError("Cannot connect to server. Ensure FastAPI backend is running.");
+                // ------------------------------
+                // PASSWORD VALIDATION
+                // ------------------------------
+
+                if (!validatePassword(password)) {
+
+                    showError(
+                        "Password must be at least 6 characters long."
+                    );
+
+                    return;
+                }
+
+                // ------------------------------
+                // CONFIRM PASSWORD
+                // ------------------------------
+
+                if (password !== confirmPassword) {
+
+                    showError(
+                        "Passwords do not match."
+                    );
+
+                    return;
+                }
+
+                // ------------------------------
+                // LOADING
+                // ------------------------------
+
+                setButtonLoading(
+                    button,
+                    true,
+                    "Creating account...",
+                    "Create Owner Account"
+                );
+
+                try {
+
+                    // ------------------------------
+                    // CREATE OWNER ACCOUNT
+                    // ------------------------------
+
+                    const response =
+                        await fetch(
+                            `${API_BASE_URL}/register`,
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body: JSON.stringify({
+
+                                    name,
+
+                                    email,
+
+                                    phone,
+
+                                    password,
+
+                                    // Owner role
+                                    role: "park_owner"
+
+                                })
+                            }
+                        );
+
+                    const data =
+                        await parseResponse(
+                            response
+                        );
+
+                    // ------------------------------
+                    // HANDLE ERROR
+                    // ------------------------------
+
+                    if (!response.ok) {
+
+                        showError(
+                            data.detail ||
+                            "Owner registration failed."
+                        );
+
+                        return;
+                    }
+
+                    // ------------------------------
+                    // SUCCESS
+                    // ------------------------------
+
+                    alert(
+                        "Owner account created successfully! Please sign in to continue with parking-lot verification."
+                    );
+
+                    window.location.href =
+                        "owner_login.html";
+
+                } catch (error) {
+
+                    console.error(
+                        "Owner registration error:",
+                        error
+                    );
+
+                    showError(
+                        "Cannot connect to the server. Please try again."
+                    );
+
+                } finally {
+
+                    setButtonLoading(
+                        button,
+                        false,
+                        "",
+                        "Create Owner Account"
+                    );
+                }
             }
-        });
+        );
     }
 });
