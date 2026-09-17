@@ -1,152 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
 
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>User Dashboard | ParkWise AI</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
-
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/shared.css">
 </head>
-
 <body class="dashboard-page">
-
     <aside class="sidebar" id="sidebar">
-
         <div class="sidebar-logo">
-
             <div class="sidebar-logo-icon">
                 <i class="fa-solid fa-p"></i>
             </div>
-
             <span>ParkWise <strong>AI</strong></span>
-
         </div>
-
         <nav class="sidebar-nav">
-
             <p class="nav-title">MAIN</p>
-
             <a href="user-dashboard.html" class="nav-item active">
                 <i class="fa-solid fa-chart-line"></i>
                 <span>Dashboard</span>
             </a>
-
             <a href="find-parking.html" class="nav-item">
                 <i class="fa-solid fa-location-dot"></i>
                 <span>Find Parking</span>
             </a>
-
             <a href="ai-recommendations.html" class="nav-item">
                 <i class="fa-solid fa-star"></i>
                 <span>Recommendations</span>
             </a>
-
             <a href="parking-history.html" class="nav-item">
                 <i class="fa-solid fa-clock-rotate-left"></i>
                 <span>Parking History</span>
             </a>
-
             <p class="nav-title">ACCOUNT</p>
-
             <a href="#" class="nav-item">
                 <i class="fa-solid fa-user"></i>
                 <span>Profile</span>
             </a>
-
             <a href="#" class="nav-item">
                 <i class="fa-solid fa-gear"></i>
                 <span>Settings</span>
             </a>
-
         </nav>
-
         <div class="sidebar-bottom">
-
             <div class="help-box">
-
                 <div class="help-icon">
                     <i class="fa-solid fa-circle-question"></i>
                 </div>
-
                 <div>
                     <strong>Need Help?</strong>
                     <p>We're here for you.</p>
                 </div>
-
             </div>
-
             <a href="index.html" class="logout-btn">
-
                 <i class="fa-solid fa-right-from-bracket"></i>
-
                 <span>Logout</span>
-
             </a>
-
         </div>
-
     </aside>
-
     <main class="dashboard-main">
-
         <header class="dashboard-topbar">
-
         </header>
-
         <section class="dashboard-content">
-
-            <!-- Welcome / Hero Section -->
             <div class="dashboard-welcome">
-
                 <div class="welcome-content">
-
                     <span class="section-badge">
                         <i class="fa-solid fa-sparkles"></i>
                         PARKWISE AI
                     </span>
-
                     <h1>Park smarter. Drive better.</h1>
-
                     <p>
                         Find nearby parking, get AI-powered recommendations,
                         and save time on every journey.
                     </p>
-
                     <div class="welcome-actions">
-
                         <a href="find-parking.html" class="primary-action">
                             <i class="fa-solid fa-location-dot"></i>
                             Find Parking
                         </a>
-
                         <a href="ai-recommendations.html" class="secondary-action">
                             <i class="fa-solid fa-wand-magic-sparkles"></i>
                             AI Recommendations
                         </a>
-
                     </div>
-
                 </div>
-
                 <div class="welcome-visual">
-
                     <div class="parking-visual-circle">
                         <i class="fa-solid fa-square-parking"></i>
                     </div>
-
                     <div class="floating-card floating-card-one">
                         <i class="fa-solid fa-circle-check"></i>
                         <div>
@@ -154,7 +104,6 @@
                             <span>AI Powered</span>
                         </div>
                     </div>
-
                     <div class="floating-card floating-card-two">
                         <i class="fa-solid fa-bolt"></i>
                         <div>
@@ -162,171 +111,106 @@
                             <span>Find faster</span>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
-
-            <!-- Quick Actions -->
             <div class="quick-section">
-
                 <div class="section-header">
                     <div>
                         <span class="panel-label">
                             <i class="fa-solid fa-bolt"></i>
                             QUICK ACTIONS
                         </span>
-
                         <h3>What would you like to do?</h3>
                     </div>
                 </div>
-
-
                 <div class="quick-actions-grid">
-
                     <a href="find-parking.html" class="quick-action-card">
-
                         <div class="quick-action-icon blue">
                             <i class="fa-solid fa-location-dot"></i>
                         </div>
-
                         <div>
                             <h4>Find Parking</h4>
                             <p>Discover available parking near you</p>
                         </div>
-
                         <i class="fa-solid fa-arrow-right action-arrow"></i>
-
                     </a>
-
-
                     <a href="ai-recommendations.html" class="quick-action-card">
-
                         <div class="quick-action-icon purple">
                             <i class="fa-solid fa-wand-magic-sparkles"></i>
                         </div>
-
                         <div>
                             <h4>AI Recommendations</h4>
                             <p>Get the best parking suggestion</p>
                         </div>
-
                         <i class="fa-solid fa-arrow-right action-arrow"></i>
-
                     </a>
-
-
                     <a href="parking-history.html" class="quick-action-card">
-
                         <div class="quick-action-icon green">
                             <i class="fa-solid fa-clock-rotate-left"></i>
                         </div>
-
                         <div>
                             <h4>Parking History</h4>
                             <p>Check your previous parking activity</p>
                         </div>
-
                         <i class="fa-solid fa-arrow-right action-arrow"></i>
-
                     </a>
-
                 </div>
-
             </div>
-
-
-            <!-- Why ParkWise AI -->
             <div class="why-section">
-
                 <div class="section-header">
                     <div>
                         <span class="panel-label">
                             <i class="fa-solid fa-star"></i>
                             PARKWISE AI
                         </span>
-
                         <h3>Parking made smarter</h3>
                     </div>
                 </div>
-
-
                 <div class="feature-grid">
-
                     <div class="feature-card">
-
                         <div class="feature-icon">
                             <i class="fa-solid fa-brain"></i>
                         </div>
-
                         <h4>AI Powered</h4>
-
                         <p>
                             Intelligent recommendations help you choose
                             the most suitable parking spot.
                         </p>
-
                     </div>
-
-
                     <div class="feature-card">
-
                         <div class="feature-icon">
                             <i class="fa-solid fa-location-crosshairs"></i>
                         </div>
-
                         <h4>Nearby Locations</h4>
-
                         <p>
                             Quickly discover parking locations close to
                             your destination.
                         </p>
-
                     </div>
-
-
                     <div class="feature-card">
-
                         <div class="feature-icon">
                             <i class="fa-solid fa-clock"></i>
                         </div>
-
                         <h4>Save Your Time</h4>
-
                         <p>
                             Spend less time searching and more time
                             reaching your destination.
                         </p>
-
                     </div>
-
-
                     <div class="feature-card">
-
                         <div class="feature-icon">
                             <i class="fa-solid fa-chart-line"></i>
                         </div>
-
                         <h4>Smart Insights</h4>
-
                         <p>
                             Use parking availability and occupancy insights
                             to make better decisions.
                         </p>
-
                     </div>
-
                 </div>
-
             </div>
-
         </section>
-
     </main>
-
     <script src="js/shared-layout.js"></script>
-
 </body>
-
 </html>
