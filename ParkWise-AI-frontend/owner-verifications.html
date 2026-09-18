@@ -1,5 +1,8 @@
+```html
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Owner Verifications | ParkWise AI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,232 +18,139 @@
         <main class="main-content">
             <header class="top-header"></header>
             <section class="admin-page">
-
-                <!-- ==========================================
-                    VERIFICATION SUMMARY
-                    ========================================== -->
-
+                <!-- Verification Summary -->
                 <div class="verification-summary">
-
                     <div class="verification-summary-card pending">
-
                         <div class="summary-icon">
                             <i class="fa-solid fa-hourglass-half"></i>
                         </div>
-
                         <div>
                             <span>Pending Review</span>
                             <strong id="pendingCount">0</strong>
                         </div>
-
                     </div>
-
-
                     <div class="verification-summary-card approved">
-
                         <div class="summary-icon">
                             <i class="fa-solid fa-circle-check"></i>
                         </div>
-
                         <div>
                             <span>Approved</span>
                             <strong id="approvedCount">0</strong>
                         </div>
-
                     </div>
-
-
                     <div class="verification-summary-card rejected">
-
                         <div class="summary-icon">
                             <i class="fa-solid fa-circle-xmark"></i>
                         </div>
-
                         <div>
                             <span>Rejected</span>
                             <strong id="rejectedCount">0</strong>
                         </div>
-
                     </div>
-
-
                     <div class="verification-summary-card total">
-
                         <div class="summary-icon">
                             <i class="fa-solid fa-users"></i>
                         </div>
-
                         <div>
                             <span>Total Owners</span>
                             <strong id="totalOwnersCount">0</strong>
                         </div>
-
                     </div>
-
                 </div>
-
-
-                <!-- ==========================================
-                    MAIN VERIFICATION CARD
-                    ========================================== -->
-
+                <!-- Main Verification Card -->
                 <section class="admin-card verification-card">
-
                     <div class="verification-card-heading">
-
                         <div>
-
                             <span class="card-eyebrow">
                                 OWNER MANAGEMENT
                             </span>
-
                             <h2>
                                 All Owner Verifications
                             </h2>
-
                             <p>
                                 Review and monitor every owner verification
                                 request submitted to ParkWise AI.
                             </p>
-
                         </div>
-
-
                         <div class="live-indicator">
-
                             <span class="live-dot"></span>
-
                             Live Database
-
                         </div>
-
                     </div>
-
-
-                    <!-- ==========================================
-                        TOOLBAR
-                        ========================================== -->
-
+                    <!-- Toolbar -->
                     <div class="verification-toolbar">
-
                         <div class="verification-search">
-
                             <i class="fa-solid fa-magnifying-glass"></i>
-
                             <input
                                 type="search"
                                 id="verificationSearch"
                                 placeholder="Search owner, business, email or parking lot..."
                                 autocomplete="off"
                             >
-
                         </div>
-
-
                         <select
                             class="filter-select"
                             id="verificationStatusFilter"
                         >
-
                             <option value="all">
                                 All Verifications
                             </option>
-
                             <option value="pending">
                                 Pending Review
                             </option>
-
                             <option value="approved">
                                 Approved
                             </option>
-
                             <option value="rejected">
                                 Rejected
                             </option>
-
                         </select>
-
-
                         <button
                             type="button"
                             class="refresh-verifications"
                             id="refreshVerifications"
                         >
-
                             <i class="fa-solid fa-rotate"></i>
-
                             Refresh
-
                         </button>
-
                     </div>
-
-
-                    <!-- ==========================================
-                        TABLE
-                        ========================================== -->
-
+                    <!-- Table -->
                     <div class="verification-table-wrapper">
-
                         <table class="verification-table">
-
                             <thead>
-
                                 <tr>
-
                                     <th>
                                         OWNER / BUSINESS
                                     </th>
-
                                     <th>
                                         PARKING LOT
                                     </th>
-
                                     <th>
                                         SUBMITTED
                                     </th>
-
                                     <th>
                                         STATUS
                                     </th>
-
                                     <th>
                                         ACTIONS
                                     </th>
-
                                 </tr>
-
                             </thead>
-
-
                             <tbody id="verificationTableBody">
-
                                 <tr>
-
                                     <td colspan="5">
-
                                         <div class="verification-loading">
-
                                             <i class="fa-solid fa-spinner fa-spin"></i>
-
                                             <span>
                                                 Loading owner verifications...
                                             </span>
-
                                         </div>
-
                                     </td>
-
                                 </tr>
-
                             </tbody>
-
                         </table>
-
                     </div>
-
                 </section>
-
             </section>
         </main>
     </div>
@@ -248,3 +158,4 @@
     <script src="js/owner-verifications.js"></script>
 </body>
 </html>
+

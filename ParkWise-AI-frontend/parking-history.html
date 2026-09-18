@@ -1,16 +1,14 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parking History | ParkWise AI</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    
     <link rel="stylesheet" href="css/parking-history.css">
     <link rel="stylesheet" href="css/shared.css">
 </head>
@@ -21,7 +19,6 @@
                 <i class="fa-solid fa-square-parking brand-icon"></i>
                 <span class="brand-name">ParkWise<span> AI</span></span>
             </div>
-
             <nav class="nav-menu">
                 <a href="user-dashboard.html" class="nav-link">
                     <i class="fa-solid fa-chart-pie"></i>
@@ -44,7 +41,6 @@
                     <span>Parking History</span>
                 </a>
             </nav>
-
             <div class="sidebar-footer">
                 <a href="login.html" class="nav-link logout">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -52,7 +48,6 @@
                 </a>
             </div>
         </aside>
-
         <main class="main-content">
             <header class="top-header">
                 <div>
@@ -60,34 +55,24 @@
                     <p class="subtitle">Review your past sessions, duration, and charges</p>
                 </div>
                 <div class="header-profile">
-
                     <button class="notification-btn">
                         <i class="fa-regular fa-bell"></i>
                     </button>
-
                     <div class="profile-info">
-
                         <div class="avatar" id="profileAvatar">
                             U
                         </div>
-
                         <div class="profile-text">
-
                             <strong id="profileName">
                                 User
                             </strong>
-
                             <span>
                                 Parking User
                             </span>
-
                         </div>
-
                     </div>
-
                 </div>
             </header>
-
             <div class="table-card">
                 <table class="history-table">
                     <thead>
@@ -100,31 +85,21 @@
                         </tr>
                     </thead>
                     <tbody id="historyBody">
-
                         <tr>
-
                             <td
                                 colspan="5"
                                 class="history-loading">
-
                                 <div class="history-loader">
-
                                     <i class="fa-solid fa-spinner fa-spin"></i>
-
                                     <strong>
                                         Loading your parking history...
                                     </strong>
-
                                     <span>
                                         Fetching bookings from your account
                                     </span>
-
                                 </div>
-
                             </td>
-
                         </tr>
-
                     </tbody>
                 </table>
             </div>

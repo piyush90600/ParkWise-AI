@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta
@@ -21,7 +20,7 @@
         crossorigin
     >
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter\:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
     <!-- Font Awesome -->
@@ -38,12 +37,11 @@
         rel="stylesheet"
         href="css/admin.css"
     >
-
     <!-- ONLY PARKING LOT PAGE CSS -->
     <link
         rel="stylesheet"
         href="css/admin-parking-lots.css"
->
+    >
 </head>
 <body>
     <div class="app-layout">
@@ -72,9 +70,7 @@
                             </p>
                         </div>
                     </section>
-
                     <!--STAT CARDS-->
-
                     <section class="parking-summary">
                         <div class="parking-summary-card">
                             <div class="summary-icon">
@@ -112,10 +108,8 @@
                                 <strong id="overallOccupancy">0%</strong>
                             </div>
                         </div>
-                    </section> 
-
+                    </section>
                     <!--TOOLBAR-->
-
                     <section class="parking-toolbar">
                         <div class="parking-search">
                             <i class="fa-solid fa-magnifying-glass"></i>
@@ -132,7 +126,6 @@
                             <option value="pending">Pending</option>
                             <option value="rejected">Rejected</option>
                         </select>
-
                         <button
                             type="button"
                             id="refreshParking"
@@ -141,9 +134,7 @@
                             Refresh
                         </button>
                     </section>
-
                     <!--TABLE CARD-->
-
                     <section class="parking-table-card">
                         <div class="parking-table-header">
                             <div>
@@ -155,18 +146,14 @@
                                 class="result-count"> 0 parking lots
                             </span>
                         </div>
-
                         <!-- LOADING -->
-
                         <div
                             id="parkingLoading"
                             class="parking-loading">
                             <i class="fa-solid fa-spinner fa-spin"></i>
                             <span>Loading parking lots from database...</span>
                         </div>
-
                         <!-- TABLE -->
-
                         <div class="parking-table-wrapper">
                             <table
                                 class="parking-table">
@@ -188,9 +175,7 @@
                                 </tbody>
                             </table>
                         </div>
-
                         <!--SLOT DETAILS -->
-
                             <section
                                 id="slotDetailsSection"
                                 class="parking-table-card"
@@ -205,9 +190,7 @@
                                         class="result-count">0 slots
                                     </span>
                                 </div>
-
                                 <!-- SLOT LOADING -->
-
                                 <div
                                     id="slotLoading"
                                     class="parking-loading"
@@ -215,9 +198,7 @@
                                     <i class="fa-solid fa-spinner fa-spin"></i>
                                     <span>Loading slots from database...</span>
                                 </div>
-
                                 <!-- SLOT TABLE -->
-
                                 <div class="parking-table-wrapper">
                                     <table class="parking-table">
                                         <thead>
@@ -233,9 +214,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-
                                 <!-- SLOT EMPTY -->
-
                                 <div
                                     id="slotEmpty"
                                     class="parking-empty"
@@ -247,9 +226,7 @@
                                     <p>No slots are available for this parking lot.</p>
                                 </div>
                             </section>
-
                         <!-- EMPTY -->
-
                         <div
                             id="parkingEmpty"
                             class="parking-empty"
@@ -267,14 +244,8 @@
                 </section>
             </main>
     </div>
-
     <!-- JAVASCRIPT-->
-
     <script src="js/admin-layout.js"></script>
-
     <script src="js/admin-parking-lots.js"></script>
-
-
 </body>
-
 </html>
